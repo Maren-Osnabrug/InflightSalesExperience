@@ -10,26 +10,51 @@ import UIKit
 import FirebaseDatabase
 
 class ViewController: UIViewController {
-    var rootRef: DatabaseReference!
+    var productsArray = [Product]()
+    var productGroupsArray = [AnyObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        rootRef = Database.database().reference()
-        let productsRef = Database.database().reference(withPath: "dataroot")
-        rootRef.observe(.value, with: { snapshot in
-//            print(snapshot.value)
-        })
+        // Do any additional setup after loading the view, typically from a nib.
+        let datarootRef = Database.database().reference(withPath: "dataroot")
+        let productGroupsRef = datarootRef.child("productGroups")
+        let productsRef = datarootRef.child("products")
+
         productsRef.observe(.value, with: { snapshot in
-//            print("test", snapshot.value)
-            
             for item in snapshot.children {
-                let products = item
-                print(type(of:products))
-                print(products)
+                let product = item as! DataSnapshot
+                let modelProduct = Product.init(snapshot: product)
+//                print(modelProduct.title)
+                self.productsArray.append(modelProduct)
             }
         })
         
-        // Do any additional setup after loading the view, typically from a nib.
+        productGroupsRef.observe(.value, with: { snapshot in
+            for item in snapshot.children {
+                self.productGroupsArray.append(item as AnyObject)
+//                print(item)
+            }
+        })
+        
+        
+//        datarootRef.observe(.value, with: { snapshot in
+//            for item in snapshot.children {
+//                let products = item as! DataSnapshot
+//                let productAO = (products.value as! NSArray) as Array
+//                for (product) in productAO.enumerated() {
+//                    let modelProduct = Product.init(snapshotValue: product as AnyObject)
+////                    print(modelProduct.title)
+//                    self.productsArray.append(modelProduct)
+//                    print(self.productsArray.count)
+//                }
+//            }
+//        })
+//        print("total", self.productsArray.count)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        print(self.productsArray, self.productGroupsArray)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,4 +64,3 @@ class ViewController: UIViewController {
 
 
 }
-

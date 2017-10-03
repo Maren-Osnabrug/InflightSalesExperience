@@ -141,12 +141,9 @@
 				9ADCF9861F7A95F400DB3C5A /* LaunchScreen.storyboard */,
 				9ADCF9891F7A95F400DB3C5A /* Info.plist */,
 				9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */,
-<<<<<<< HEAD
 				9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */,
 				9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */,
-=======
 				A4250F711F83848A0069C483 /* LoginViewController.swift */,
->>>>>>> develop
 			);
 			path = ISX;
 			sourceTree = "<group>";

@@ -82,7 +82,6 @@
             </objects>
             <point key="canvasLocation" x="-1391" y="134"/>
         </scene>
-        <!--Home View Controller-->
         <scene sceneID="VoY-ke-THS">
             <objects>
                 <viewController id="IyQ-Mh-xhT" customClass="HomeViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">

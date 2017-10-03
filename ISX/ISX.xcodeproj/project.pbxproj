@@ -19,6 +19,7 @@
 		9ADCF9AC1F7A98D100DB3C5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */; };
 		9ADCF9AD1F7A994300DB3C5A /* ISXTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF98E1F7A95F400DB3C5A /* ISXTests.xctest */; };
 		9ADCF9AE1F7A994700DB3C5A /* ISXUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9991F7A95F400DB3C5A /* ISXUITests.xctest */; };
+		A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
 		EBAF35BC201ED70D0EF31BFF /* Pods_ISXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C5EB799CD2580BE60103A6 /* Pods_ISXTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		9ADCF99D1F7A95F400DB3C5A /* ISXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISXUITests.swift; sourceTree = "<group>"; };
 		9ADCF99F1F7A95F400DB3C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A4250F711F83848A0069C483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
 		E5966162132F592CAFE63201 /* Pods_ISXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +137,7 @@
 				9ADCF9861F7A95F400DB3C5A /* LaunchScreen.storyboard */,
 				9ADCF9891F7A95F400DB3C5A /* Info.plist */,
 				9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */,
+				A4250F711F83848A0069C483 /* LoginViewController.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
 				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
 			);

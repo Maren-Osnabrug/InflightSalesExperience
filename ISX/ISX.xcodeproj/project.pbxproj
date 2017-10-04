@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		21822BBB739DF0A7DBCC3EA9 /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */; };
 		420BDD79A22718DACA1AAC76 /* Pods_ISXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5966162132F592CAFE63201 /* Pods_ISXUITests.framework */; };
+		9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */; };
 		9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */; };
 		9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97F1F7A95F400DB3C5A /* ViewController.swift */; };
 		9ADCF9831F7A95F400DB3C5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9811F7A95F400DB3C5A /* Main.storyboard */; };
@@ -23,6 +24,8 @@
 		D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398621F838AED00FD3BB0 /* ProductsViewController.swift */; };
 		D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */; };
 		D59398691F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398681F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift */; };
+		9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */; };
+		A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
 		EBAF35BC201ED70D0EF31BFF /* Pods_ISXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C5EB799CD2580BE60103A6 /* Pods_ISXTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +52,7 @@
 		5CDAECF6339464562D6F26FD /* Pods-ISX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.debug.xcconfig"; sourceTree = "<group>"; };
 		6CE845F22957F29FC7F91E47 /* Pods-ISX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.release.xcconfig"; sourceTree = "<group>"; };
 		6F2F219022647FDEAAC7C593 /* Pods-ISXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXUITests/Pods-ISXUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		9ADCF97A1F7A95F400DB3C5A /* ISX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9ADCF97F1F7A95F400DB3C5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 		9ADCF99D1F7A95F400DB3C5A /* ISXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISXUITests.swift; sourceTree = "<group>"; };
 		9ADCF99F1F7A95F400DB3C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		A4250F711F83848A0069C483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
 		D59398601F8386B000FD3BB0 /* Products.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 				D59398621F838AED00FD3BB0 /* ProductsViewController.swift */,
 				D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */,
 				D59398681F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift */,
+				9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */,
+				9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */,
+				A4250F711F83848A0069C483 /* LoginViewController.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -461,12 +470,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ISX/Pods-ISX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -483,11 +494,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */,
+=======
+				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
+>>>>>>> develop
 				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,
 				D59398691F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift in Sources */,
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
+				9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */,
+				9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -603,6 +621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

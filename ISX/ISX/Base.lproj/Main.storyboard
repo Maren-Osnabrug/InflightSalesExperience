@@ -14,10 +14,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,13 +47,31 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NMa-eg-6IO"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ISX" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-gy-Eui">
                                 <rect key="frame" x="87" y="70" width="200" height="150"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mT2-2R-1Rw">
+                                <rect key="frame" x="50" y="422" width="275" height="34"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.44705882349999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="19"/>
+                                <state key="normal" title="Passagier">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="olZ-DO-deZ" kind="show" identifier="passengerSeque" id="xYd-Lt-F3g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.050980392156862744" green="0.65098039215686276" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mT2-2R-1Rw" secondAttribute="trailing" constant="50" id="010-zY-bvk"/>
                             <constraint firstItem="st2-OG-KV4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="1q1-le-IP2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PpS-fK-X4Q" secondAttribute="trailing" constant="50" id="5Hs-fp-AE0"/>
                             <constraint firstItem="8bb-gy-Eui" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="6cn-nJ-OAF"/>
@@ -62,22 +80,29 @@
                             <constraint firstItem="st2-OG-KV4" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-8.5" id="CZb-Vc-dzq"/>
                             <constraint firstItem="Gkc-zs-Pb0" firstAttribute="top" secondItem="8bb-gy-Eui" secondAttribute="bottom" constant="50" id="MLw-bh-674"/>
                             <constraint firstItem="st2-OG-KV4" firstAttribute="top" secondItem="Gkc-zs-Pb0" secondAttribute="bottom" constant="11.5" id="R8P-uj-exU"/>
+                            <constraint firstItem="mT2-2R-1Rw" firstAttribute="top" secondItem="PpS-fK-X4Q" secondAttribute="bottom" constant="8" id="XNR-9W-0WL"/>
                             <constraint firstItem="Gkc-zs-Pb0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="eXV-wf-Y1C"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Gkc-zs-Pb0" secondAttribute="trailing" constant="50" id="eYa-K5-DQm"/>
                             <constraint firstItem="PpS-fK-X4Q" firstAttribute="top" secondItem="st2-OG-KV4" secondAttribute="bottom" constant="30" id="ngj-xf-VVE"/>
+                            <constraint firstItem="mT2-2R-1Rw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="t5e-SS-tqH"/>
                             <constraint firstItem="PpS-fK-X4Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="tsp-F5-G1j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Gkc-zs-Pb0" id="6FV-Oa-omd"/>
+                        <outlet property="passwordTextField" destination="st2-OG-KV4" id="cpM-fv-vAb"/>
+                        <segue destination="olZ-DO-deZ" kind="show" identifier="loginSeque" id="cCh-CP-yti"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1391" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="VoY-ke-THS">
             <objects>
-                <viewController id="IyQ-Mh-xhT" sceneMemberID="viewController">
+                <viewController id="IyQ-Mh-xhT" customClass="HomeViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zMA-eM-zEv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -217,4 +242,7 @@
     <resources>
         <image name="ISX" width="847" height="780"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xYd-Lt-F3g"/>
+    </inferredMetricsTieBreakers>
 </document>

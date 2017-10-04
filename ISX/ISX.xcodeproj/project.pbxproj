@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		21822BBB739DF0A7DBCC3EA9 /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */; };
 		420BDD79A22718DACA1AAC76 /* Pods_ISXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5966162132F592CAFE63201 /* Pods_ISXUITests.framework */; };
+		9A535EA51F84E121000AF927 /* CabinCrew.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A535EA31F84E121000AF927 /* CabinCrew.storyboard */; };
+		9A535EA71F84E164000AF927 /* CabinCrewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */; };
+		9A535EA91F84E877000AF927 /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A535EA81F84E877000AF927 /* RequestCell.swift */; };
 		9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */; };
 		9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */; };
 		9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97F1F7A95F400DB3C5A /* ViewController.swift */; };
@@ -48,6 +51,9 @@
 		5CDAECF6339464562D6F26FD /* Pods-ISX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.debug.xcconfig"; sourceTree = "<group>"; };
 		6CE845F22957F29FC7F91E47 /* Pods-ISX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.release.xcconfig"; sourceTree = "<group>"; };
 		6F2F219022647FDEAAC7C593 /* Pods-ISXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXUITests/Pods-ISXUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A535EA41F84E121000AF927 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CabinCrew.storyboard; sourceTree = "<group>"; };
+		9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewViewController.swift; sourceTree = "<group>"; };
+		9A535EA81F84E877000AF927 /* RequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		9ADCF97A1F7A95F400DB3C5A /* ISX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +150,9 @@
 				9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */,
 				9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */,
 				A4250F711F83848A0069C483 /* LoginViewController.swift */,
+				9A535EA31F84E121000AF927 /* CabinCrew.storyboard */,
+				9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */,
+				9A535EA81F84E877000AF927 /* RequestCell.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -298,6 +307,7 @@
 				9ADCF9881F7A95F400DB3C5A /* LaunchScreen.storyboard in Resources */,
 				9ADCF9AC1F7A98D100DB3C5A /* GoogleService-Info.plist in Resources */,
 				9ADCF9851F7A95F400DB3C5A /* Assets.xcassets in Resources */,
+				9A535EA51F84E121000AF927 /* CabinCrew.storyboard in Resources */,
 				9ADCF9831F7A95F400DB3C5A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +492,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
+				9A535EA91F84E877000AF927 /* RequestCell.swift in Sources */,
+				9A535EA71F84E164000AF927 /* CabinCrewViewController.swift in Sources */,
 				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
 				9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */,
@@ -521,6 +533,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9A535EA31F84E121000AF927 /* CabinCrew.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A535EA41F84E121000AF927 /* Base */,
+			);
+			name = CabinCrew.storyboard;
+			sourceTree = "<group>";
+		};
 		9ADCF9811F7A95F400DB3C5A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

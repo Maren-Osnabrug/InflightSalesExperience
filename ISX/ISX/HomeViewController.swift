@@ -25,13 +25,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var suggestionLabel: UILabel!
     @IBOutlet weak var suggestionCollectionView: UICollectionView!
     
+    var isDoneLoading = false;
+    
     var productsArray = [Product]()
     var datarootRef : DatabaseReference?
     var productsRef: DatabaseReference?
     
     // Array with suggestion products
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
-    var textArray:[String] = ["seiko", "airbus", "aigber", "bvlgari"]
+    var textArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +64,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.datarootRef = Database.database().reference(withPath: "dataroot")
         self.productsRef = datarootRef?.child("products")
         configureDatabase()
+            
+        
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -70,7 +74,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func configureDatabase() {
         self.productsRef?.observe(.value, with: { snapshot in
-            for (index, item) in snapshot.children.enumerated() {
+            for (_, item) in snapshot.children.enumerated() {
                 if let product = item as? DataSnapshot {
                     let modelProduct = Product.init(snapshot: product)
                     print(modelProduct.title)
@@ -78,19 +82,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //                    self.productsArray.append(modelProduct)
                 }
             }
-            print(self.textArray.count)
+            if(!self.isDoneLoading) {
+                self.suggestionCollectionView.reloadData()
+                self.isDoneLoading = true
+            }
         })
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageArray.count
+        return textArray.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let customCell = suggestionCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomSuggestionProductsCell
         
-        customCell.suggestionImage.image = UIImage(named: imageArray[indexPath.row])
-        customCell.suggestionText.text = textArray[indexPath.row] as! String
+        customCell.suggestionImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
+        customCell.suggestionText.text = textArray[indexPath.row % textArray.count]
         
         customCell.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
         customCell.suggestionViewText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)

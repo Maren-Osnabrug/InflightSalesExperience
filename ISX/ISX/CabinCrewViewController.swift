@@ -8,47 +8,77 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class CabinCrewViewController: UITableViewController {
+    
+    var requestsArray = [Request]()
+    var datarootRef: DatabaseReference?
+    var requestsRef: DatabaseReference?
+    var productsRef: DatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        Database.database().isPersistenceEnabled = true
+        self.datarootRef = Database.database().reference(withPath: "dataroot")
+        self.requestsRef = datarootRef?.child("requests")
+        self.productsRef = datarootRef?.child("products")
+        
+        self.requestsRef?.keepSynced(true)
+        tableView.dataSource = self
+        
+        self.requestsRef?.observe(.value, with: { snapshot in
+            for item in snapshot.children {
+                let itemData = item as! DataSnapshot
+//                print(itemData, type(of: itemData.children), "val:", itemData.value)
+                let dict = itemData.value as! [String:AnyObject]
+//                print(dict["completed"], dict["completed"] as! Int == 1)
+                self.requestsArray.append(
+                    Request.init(id: dict["id"] as! Int,
+                                 productId: dict["product"] as! Int,
+                                 customerChair: dict["customerChair"] as! String,
+                                 completed: dict["completed"] as! Int == 1 ? true : false))
+            }
+            self.requestsArray.sort { !$0.completed && $1.completed }
+            self.tableView.reloadData()
+        })
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return self.requestsArray.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
     }
     
-    // Set the spacing between sections
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15
-    }
-    
-    // Make the background color show through
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
-    }
-    
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as! RequestCell
+        let requestForCell = self.requestsArray[indexPath.row]
         
-//        cell.productName
-//        cell.productCode
+        self.productsRef?.observe(.value, with: { snapshot in
+            let arr = snapshot.children.allObjects as NSArray
+            for item in arr {
+                let item = Product.init(snapshot: item as! DataSnapshot)
+                if item.id == String(requestForCell.productId) {
+                    print("Found: ", item.title)
+                    cell.productName.text = item.title
+                }
+            }
+        })
+        
+        cell.contentView.layer.opacity = requestForCell.completed ? 0.25 : 1
+        
+//        cell.productName.text = "completed: " + String(requestForCell.completed)
+        cell.productCode.text = String(requestForCell.productId)
         
         cell.cellContentView.layer.borderColor = UIColor.white.cgColor
         cell.cellContentView.layer.borderWidth = 1
@@ -60,63 +90,36 @@ class CabinCrewViewController: UITableViewController {
         cell.chairView.layer.shadowOpacity = 0.8
         cell.chairView.layer.shadowRadius = 3
         cell.chairView.layer.shadowOffset = CGSize.init(width: 1, height: 1)
-        cell.chairLabel.text = "19A"
+        
+        cell.chairLabel.text = String(requestForCell.customerChair)
         cell.productImage.backgroundColor = UIColor.lightGray
 
         return cell
      }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected cell number: \(indexPath.row)!")
+        //Alert to mark request as done
+        let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .cancel, handler: { action in
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.requestsArray[indexPath.row].completed = true
+            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
+            self.requestsArray.sort { !$0.completed && $1.completed }
+            self.tableView.reloadData()
+        })
+        
+        let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.requestsArray[indexPath.row].completed = false
+            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
+            self.requestsArray.sort { !$0.completed && $1.completed }
+            self.tableView.reloadData()
+        })
+        
+        alertController.addAction(noAction)
+        alertController.addAction(yesAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

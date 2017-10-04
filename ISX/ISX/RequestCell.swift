@@ -17,5 +17,4 @@ class RequestCell: UITableViewCell {
     @IBOutlet weak var chairView: UIView!
     @IBOutlet weak var chairLabel: UILabel!
     @IBOutlet weak var cellContentView: UIView!
-    
 }

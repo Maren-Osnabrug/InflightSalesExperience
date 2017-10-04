@@ -25,21 +25,26 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var suggestionLabel: UILabel!
     @IBOutlet weak var suggestionCollectionView: UICollectionView!
     
-    // Array met "Onze suggesties" producten
+    var productsArray = [Product]()
+    var datarootRef : DatabaseReference?
+    var productsRef: DatabaseReference?
+    
+    // Array with suggestion products
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
-    let textArray = ["Seiko Horloge \n€ 299", "KLM Airbus \n€ 14", "Aigber City bag \n€ 139", "Bvlgari Man in Black \n€ 60"]
+    var textArray:[String] = ["seiko", "airbus", "aigber", "bvlgari"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Statusbar in het blauw
-        UIApplication.shared.statusBarStyle = .lightContent
-        UINavigationBar.appearance().clipsToBounds = true
+        // Statusbar blue
+//        UIApplication.shared.statusBarStyle = .lightContent
+//        UINavigationBar.appearance().clipsToBounds = true
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         statusBar.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        
-        // Border bottom voor "Onze suggesties" label
+        self.setNeedsStatusBarAppearanceUpdate()
+    
+        // Border bottom for "Onze suggesties" label
         // suggestionLabel.layer.borderWidth = 1.0
         // suggestionLabel.layer.borderColor = UIColor.gray.cgColor
         suggestionLabel.addBottomBorderWithColor(color: UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0), width: 1)
@@ -47,12 +52,34 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         suggestionCollectionView.delegate = self
         suggestionCollectionView.dataSource = self
         
-        // Tabbar items ongeselecteerde kleur
+        // Tabbar items unselected color
         UITabBar.appearance().unselectedItemTintColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         // Tabbar border top
         self.tabBarController?.tabBar.layer.borderWidth = 1
         self.tabBarController?.tabBar.layer.borderColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
+        
+        self.datarootRef = Database.database().reference(withPath: "dataroot")
+        self.productsRef = datarootRef?.child("products")
+        configureDatabase()
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func configureDatabase() {
+        self.productsRef?.observe(.value, with: { snapshot in
+            for (index, item) in snapshot.children.enumerated() {
+                if let product = item as? DataSnapshot {
+                    let modelProduct = Product.init(snapshot: product)
+                    print(modelProduct.title)
+                    self.textArray.append(modelProduct.title)
+//                    self.productsArray.append(modelProduct)
+                }
+            }
+            print(self.textArray.count)
+        })
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,25 +90,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let customCell = suggestionCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomSuggestionProductsCell
         
         customCell.suggestionImage.image = UIImage(named: imageArray[indexPath.row])
-        customCell.suggestionText.text = textArray[indexPath.row]
+        customCell.suggestionText.text = textArray[indexPath.row] as! String
         
         customCell.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
         customCell.suggestionViewText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         return customCell
     }
-    
-//    public func readData() {
-//        var ref: DatabaseReference!
-//        ref = Database.database().reference()
-//        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-//            // Get user value
-//            let value = snapshot.value as? NSDictionary
-//            let username = value?["username"] as? String ?? ""
-//            let user = User.init(username: username)
-//            
-//            // ...
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
-//    }
 }

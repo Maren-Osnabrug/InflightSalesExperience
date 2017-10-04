@@ -492,8 +492,6 @@
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
 				2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */,
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
-				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,
-				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
 				9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */,
 				9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */,
 			);

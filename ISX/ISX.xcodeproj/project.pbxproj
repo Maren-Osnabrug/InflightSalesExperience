@@ -494,12 +494,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */,
-=======
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
->>>>>>> develop
 				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,
 				D59398691F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift in Sources */,
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,

@@ -11,6 +11,7 @@ import UIKit
 class CustomSuggestionProductsCell: UICollectionViewCell {
 
     @IBOutlet weak var suggestionImage: UIImageView!
+    @IBOutlet weak var suggestionViewText: UIView!
     @IBOutlet weak var suggestionText: UILabel!
     
     /*

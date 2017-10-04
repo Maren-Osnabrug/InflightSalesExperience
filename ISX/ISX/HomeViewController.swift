@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 // Border bottom code
 extension UIView {
@@ -25,13 +26,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var suggestionCollectionView: UICollectionView!
     
     // Array met "Onze suggesties" producten
-    let imageArray = ["ISX", "ISX", "ISX", "ISX"]
+    let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     let textArray = ["Seiko Horloge \n€ 299", "KLM Airbus \n€ 14", "Aigber City bag \n€ 139", "Bvlgari Man in Black \n€ 60"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // Statusbar in het blauw
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().clipsToBounds = true
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
@@ -47,6 +49,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         // Tabbar items ongeselecteerde kleur
         UITabBar.appearance().unselectedItemTintColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
+        // Tabbar border top
+        self.tabBarController?.tabBar.layer.borderWidth = 1
+        self.tabBarController?.tabBar.layer.borderColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0).cgColor
+        self.tabBarController?.tabBar.clipsToBounds = true
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -60,8 +66,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         customCell.suggestionText.text = textArray[indexPath.row]
         
         customCell.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
-        customCell.suggestionText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        
+        customCell.suggestionViewText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         return customCell
     }
+    
+//    public func readData() {
+//        var ref: DatabaseReference!
+//        ref = Database.database().reference()
+//        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+//            // Get user value
+//            let value = snapshot.value as? NSDictionary
+//            let username = value?["username"] as? String ?? ""
+//            let user = User.init(username: username)
+//            
+//            // ...
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+//    }
 }

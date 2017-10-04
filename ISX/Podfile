@@ -6,7 +6,7 @@ target 'ISX' do
   use_frameworks!
 	pod 'Firebase/Core'
     pod 'Firebase/Database'
-
+	pod 'Firebase/Auth'
   # Pods for ISX
 
   target 'ISXTests' do

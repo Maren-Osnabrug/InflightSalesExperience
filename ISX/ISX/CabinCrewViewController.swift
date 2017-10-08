@@ -28,11 +28,13 @@ class CabinCrewViewController: UITableViewController {
         self.requestsRef?.keepSynced(true)
         tableView.dataSource = self
         
-        self.requestsRef?.queryOrdered(byChild: "completed").observeSingleEvent(of: .value, with: { snapshot in
+        self.requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
-                self.requestsArray.append(
-                    Request.init(snapshot: item as! DataSnapshot)
-                )
+                let toAdd = Request.init(snapshot: item as! DataSnapshot)
+                if (!self.requestsArray.contains { $0.id == toAdd.id }) {
+                    self.requestsArray.append(toAdd)
+                    self.requestsArray.sort { !$0.completed && $1.completed }
+                }
             }
             self.tableView.reloadData()
         })

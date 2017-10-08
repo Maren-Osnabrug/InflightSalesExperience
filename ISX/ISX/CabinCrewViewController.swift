@@ -28,19 +28,12 @@ class CabinCrewViewController: UITableViewController {
         self.requestsRef?.keepSynced(true)
         tableView.dataSource = self
         
-        self.requestsRef?.observe(.value, with: { snapshot in
+        self.requestsRef?.queryOrdered(byChild: "completed").observeSingleEvent(of: .value, with: { snapshot in
             for item in snapshot.children {
-                let itemData = item as! DataSnapshot
-//                print(itemData, type(of: itemData.children), "val:", itemData.value)
-                let dict = itemData.value as! [String:AnyObject]
-//                print(dict["completed"], dict["completed"] as! Int == 1)
                 self.requestsArray.append(
-                    Request.init(id: dict["id"] as! Int,
-                                 productId: dict["product"] as! Int,
-                                 customerChair: dict["customerChair"] as! String,
-                                 completed: dict["completed"] as! Int == 1 ? true : false))
+                    Request.init(snapshot: item as! DataSnapshot)
+                )
             }
-            self.requestsArray.sort { !$0.completed && $1.completed }
             self.tableView.reloadData()
         })
     }
@@ -98,23 +91,27 @@ class CabinCrewViewController: UITableViewController {
      }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell number: \(indexPath.row)!")
-        //Alert to mark request as done
         let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .cancel, handler: { action in
             tableView.deselectRow(at: indexPath, animated: true)
             self.requestsArray[indexPath.row].completed = true
-            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
             self.requestsArray.sort { !$0.completed && $1.completed }
+            self.requestsArray[indexPath.row].ref?.updateChildValues([
+                "completed": true
+                ])
+            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
             self.tableView.reloadData()
         })
         
         let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
             tableView.deselectRow(at: indexPath, animated: true)
             self.requestsArray[indexPath.row].completed = false
-            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
             self.requestsArray.sort { !$0.completed && $1.completed }
+            self.requestsArray[indexPath.row].ref?.updateChildValues([
+                "completed": false
+                ])
+            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
             self.tableView.reloadData()
         })
         

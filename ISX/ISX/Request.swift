@@ -15,12 +15,15 @@ class Request {
     let productId: Int
     let customerChair: String
     var completed: Bool
+    let ref: DatabaseReference?
     
-    init(id: Int, productId: Int, customerChair: String, completed: Bool) {
-        self.id = id
-        self.productId = productId
-        self.customerChair = customerChair
-        self.completed = completed
+    init(snapshot: DataSnapshot) {
+        let dict = snapshot.value as! [String:AnyObject]
+        self.id = dict["id"] as! Int
+        self.productId = dict["product"] as! Int
+        self.customerChair = dict["customerChair"] as! String
+        self.completed = (dict["completed"] as! Int == 1 ? true : false)
+        self.ref = snapshot.ref
     }
     
 //    init(snapshot: DataSnapshot) {

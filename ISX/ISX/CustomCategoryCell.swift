@@ -14,4 +14,6 @@ class CustomCategoryCell: UICollectionViewCell {
 
     @IBOutlet weak var categoryCellText: UILabel!
     
+    var categoryID: String!
+    
 }

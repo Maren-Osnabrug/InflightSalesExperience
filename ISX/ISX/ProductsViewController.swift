@@ -15,17 +15,19 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
     
     
     var rootRef: DatabaseReference!
-    var categories = ["sieraden", "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
-    var testArray = [String]()
+    var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
+    var categories = [String]()
+    var categoryID = [String]()
     var initialLoad = true;
+    var chosenCategoryID: String?
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var navBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.shared.statusBarStyle = .lightContent
         
+        UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().clipsToBounds = true
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
@@ -44,21 +46,23 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.testArray.count)
-        return self.testArray.count
+        return self.categories.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath)
             as! CustomCategoryCell
+    
         cell.backgroundColor =  UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
         
-        cell.categoryCellImage.image = UIImage(named: categories[indexPath.row % categories.count])
+        cell.categoryCellImage.image = UIImage(named: categoryImages[indexPath.row % categoryImages.count])
         
-        
-        cell.categoryCellText.text = testArray[indexPath.row]
+        cell.categoryCellText.text = categories[indexPath.row]
         cell.categoryCellText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         cell.categoryCellText.textColor = UIColor.white
+        
+        cell.categoryID = categoryID[indexPath.row]
+        
     
         return cell
     }
@@ -75,15 +79,41 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
             for item in snapshot.children {
                 let value = (item as! DataSnapshot).value as? [String:Any]
                 if let name = value!["Product_groep"] as? String {
-                    print(name)
-                    self.testArray.append(name)
+                    self.categories.append(name)
                 }
+                
+                if let categoryId = value!["ID"] as? String {
+                    self.categoryID.append(categoryId)
+                }
+                
             }
-            print("Aantal objecten in array: ", self.testArray.count)
             if (self.initialLoad == true) {
                 self.categoryCollectionView.reloadData()
                 self.initialLoad = false
             }
         })
     }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = self.categoryCollectionView!.cellForItem(at: indexPath) as! CustomCategoryCell
+        chosenCategoryID = cell.categoryID!
+        print("id is", chosenCategoryID)
+        performSegue(withIdentifier: "productsDetail", sender: self)
+    
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        print("id to send", self.chosenCategoryID!)
+        if segue.identifier == "productsDetail" {
+            if let controller = segue.destination as? ProductsFromCategoriesController {
+                if let catID = self.chosenCategoryID {
+                    controller.categoryID = catID
+                }
+            }
+        }
+    }
+    
+    
+    
 }

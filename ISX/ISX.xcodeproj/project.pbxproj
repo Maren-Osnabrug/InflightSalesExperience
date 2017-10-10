@@ -20,12 +20,13 @@
 		9ADCF9AC1F7A98D100DB3C5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */; };
 		9ADCF9AD1F7A994300DB3C5A /* ISXTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF98E1F7A95F400DB3C5A /* ISXTests.xctest */; };
 		9ADCF9AE1F7A994700DB3C5A /* ISXUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9991F7A95F400DB3C5A /* ISXUITests.xctest */; };
+		9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */; };
+		A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
+		D501D0F21F8CDE2E007E8B2D /* CustomProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */; };
 		D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59398601F8386B000FD3BB0 /* Products.storyboard */; };
 		D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398621F838AED00FD3BB0 /* ProductsViewController.swift */; };
 		D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */; };
 		D59398691F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398681F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift */; };
-		9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */; };
-		A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
 		EBAF35BC201ED70D0EF31BFF /* Pods_ISXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C5EB799CD2580BE60103A6 /* Pods_ISXTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		A4250F711F83848A0069C483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
+		D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProductCell.swift; sourceTree = "<group>"; };
 		D59398601F8386B000FD3BB0 /* Products.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
 		D59398621F838AED00FD3BB0 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryCell.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */,
 				9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */,
 				A4250F711F83848A0069C483 /* LoginViewController.swift */,
+				D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D501D0F21F8CDE2E007E8B2D /* CustomProductCell.swift in Sources */,
 				D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */,
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,

@@ -44,7 +44,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         statusBar.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         self.setNeedsStatusBarAppearanceUpdate()
     
-        suggestionLabel.addBottomBorderWithColor(color: UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0), width: 1)
         UITabBar.appearance().unselectedItemTintColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         self.tabBarController?.tabBar.layer.borderWidth = 1
         self.tabBarController?.tabBar.layer.borderColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0).cgColor
@@ -56,6 +55,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.datarootRef = Database.database().reference(withPath: "dataroot")
         self.productsRef = datarootRef?.child("products")
         configureDatabase()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        suggestionLabel.addBottomBorderWithColor(color: UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0), width: 1)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

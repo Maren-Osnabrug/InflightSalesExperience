@@ -31,41 +31,31 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var datarootRef : DatabaseReference?
     var productsRef: DatabaseReference?
     
-    // Array with suggestion products
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var textArray = [String]()
+    var suggestionArray = [String]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Statusbar blue
-//        UIApplication.shared.statusBarStyle = .lightContent
-//        UINavigationBar.appearance().clipsToBounds = true
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         statusBar.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         self.setNeedsStatusBarAppearanceUpdate()
     
-        // Border bottom for "Onze suggesties" label
-        // suggestionLabel.layer.borderWidth = 1.0
-        // suggestionLabel.layer.borderColor = UIColor.gray.cgColor
         suggestionLabel.addBottomBorderWithColor(color: UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0), width: 1)
-        
-        suggestionCollectionView.delegate = self
-        suggestionCollectionView.dataSource = self
-        
-        // Tabbar items unselected color
         UITabBar.appearance().unselectedItemTintColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        // Tabbar border top
         self.tabBarController?.tabBar.layer.borderWidth = 1
         self.tabBarController?.tabBar.layer.borderColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0).cgColor
         self.tabBarController?.tabBar.clipsToBounds = true
         
+        suggestionCollectionView.delegate = self
+        suggestionCollectionView.dataSource = self
+        
         self.datarootRef = Database.database().reference(withPath: "dataroot")
         self.productsRef = datarootRef?.child("products")
         configureDatabase()
-            
-        
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -79,7 +69,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     let modelProduct = Product.init(snapshot: product)
                     print(modelProduct.title)
                     self.textArray.append(modelProduct.title)
-//                    self.productsArray.append(modelProduct)
+                    self.suggestionArray = Array(self.textArray.prefix(4))
                 }
             }
             if(!self.isDoneLoading) {
@@ -88,16 +78,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         })
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return textArray.count
+        return suggestionArray.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let customCell = suggestionCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomSuggestionProductsCell
         
         customCell.suggestionImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
-        customCell.suggestionText.text = textArray[indexPath.row % textArray.count]
+        customCell.suggestionText.text = suggestionArray[indexPath.row]
         
         customCell.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
         customCell.suggestionViewText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)

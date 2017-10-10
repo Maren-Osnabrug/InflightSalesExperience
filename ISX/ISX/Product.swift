@@ -19,7 +19,7 @@ class Product {
     let brand: String
     let localPrice: String = ""
     let prologisticaNumberHH: String
-    let sku: String
+    let id: String
     let retailPrice: String
     let Did_You_Know_iPad: String = ""
     let Drawer_EUR_Norway_Suisse: String = ""
@@ -33,7 +33,7 @@ class Product {
     let Tax_Free_Exclusive: Bool = false
     
     init(Bestsellers: String, Product_group: String, Product_name_Holland_Herald_WBC_iPad: String, Sales_text_HH_WBC_iPad: String,
-        Start_date_SHC: String, brand_id: String, local_price: String, prologistica_number_HH: String, sku: String,
+        Start_date_SHC: String, brand_id: String, local_price: String, prologistica_number_HH: String, id: String,
                 retailPrice: String,
                 Did_You_Know_iPad: String,
                 Drawer_EUR_Norway_Suisse: String,
@@ -54,7 +54,7 @@ class Product {
         self.brand = brand_id
 //        self.localPrice = local_price
         self.prologisticaNumberHH = prologistica_number_HH
-        self.sku = sku
+        self.id = id
         self.retailPrice = retailPrice
         //        self.Did_You_Know_iPad = Did_You_Know_iPad
         //        self.Drawer_EUR_Norway_Suisse = Drawer_EUR_Norway_Suisse
@@ -78,7 +78,7 @@ class Product {
         brand = snapshotValue["brand_id"] as! String
 //        localPrice = snapshotValue["local_price"] != nil ? snapshotValue["local_price"] as! String : ""
         prologisticaNumberHH = snapshotValue["prologistica_number_HH"] as! String
-        sku = snapshotValue["sku"] as! String
+        id = snapshotValue["sku"] as! String
         retailPrice = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String
 
 //        print(snapshotValue)
@@ -105,7 +105,7 @@ class Product {
             "local_price" : localPrice,
             "prologistica_number_HH" : prologisticaNumberHH,
             "Ob_Retail_price_1_PL_HH_WBC_iPad" : retailPrice,
-            "sku" : sku
+            "id" : id
             //            "Did_You_Know_iPad" : Did_You_Know_iPad,
             //            "Drawer_EUR_Norway_Suisse" : Drawer_EUR_Norway_Suisse,
             //            "Drawer_EUR_extended" : Drawer_EUR_extended,

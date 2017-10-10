@@ -284,7 +284,7 @@
                         <viewLayoutGuide key="safeArea" id="JOy-mn-263"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="home" id="2JX-lB-YrC"/>
-                    <navigationItem key="navigationItem" id="4bo-4C-pQ9"/>
+                    <navigationItem key="navigationItem" title="Home" id="4bo-4C-pQ9"/>
                     <connections>
                         <outlet property="suggestionCollectionView" destination="sAq-uk-KOL" id="Lpj-G8-8Lr"/>
                         <outlet property="suggestionLabel" destination="cbA-ab-eza" id="qBs-gr-TFR"/>
@@ -305,6 +305,9 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.050980392159999999" green="0.65098039220000004" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Gu2-CQ-XdT" kind="relationship" relationship="rootViewController" id="zdF-6P-KZf"/>

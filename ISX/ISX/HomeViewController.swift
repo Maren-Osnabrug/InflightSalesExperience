@@ -25,16 +25,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var suggestionLabel: UILabel!
     @IBOutlet weak var suggestionCollectionView: UICollectionView!
     
-//    var productsArray = [Product]()
     var datarootRef : DatabaseReference?
     var productsRef: DatabaseReference?
     
     var productsArray = [Product]()
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
-    var textArray = [String]()
     var suggestionProductsArray = [Product]()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -55,17 +52,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidAppear(_ animated: Bool) {
         suggestionLabel.addBottomBorder(color: Constants.grey, width: 1)
     }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     func configureDatabase() {
         self.productsRef?.observe(.value, with: { snapshot in
             for (_, item) in snapshot.children.enumerated() {
                 if let product = item as? DataSnapshot {
                     let modelProduct = Product.init(snapshot: product)
-                    print(modelProduct.title)
                     self.productsArray.append(modelProduct)
                     self.suggestionProductsArray = Array(self.productsArray.prefix(4))
                 }

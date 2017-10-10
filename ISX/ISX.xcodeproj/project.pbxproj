@@ -14,6 +14,9 @@
 		9A535EA91F84E877000AF927 /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A535EA81F84E877000AF927 /* RequestCell.swift */; };
 		9A535EAF1F851E96000AF927 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A535EAE1F851E96000AF927 /* Request.swift */; };
 		9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */; };
+		9A8E617A1F8CC07600E9C5BB /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E61791F8CC07600E9C5BB /* Favorites.storyboard */; };
+		9A8E617C1F8CC95E00E9C5BB /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E617B1F8CC95E00E9C5BB /* FavoritesCell.swift */; };
+		9A8E617E1F8CCC6100E9C5BB /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */; };
 		9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */; };
 		9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97F1F7A95F400DB3C5A /* ViewController.swift */; };
 		9ADCF9831F7A95F400DB3C5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9811F7A95F400DB3C5A /* Main.storyboard */; };
@@ -57,6 +60,9 @@
 		9A535EA81F84E877000AF927 /* RequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		9A535EAE1F851E96000AF927 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
+		9A8E61791F8CC07600E9C5BB /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
+		9A8E617B1F8CC95E00E9C5BB /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
+		9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		9ADCF97A1F7A95F400DB3C5A /* ISX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9ADCF97F1F7A95F400DB3C5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +162,9 @@
 				9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */,
 				9A535EA81F84E877000AF927 /* RequestCell.swift */,
 				9A535EAE1F851E96000AF927 /* Request.swift */,
+				9A8E61791F8CC07600E9C5BB /* Favorites.storyboard */,
+				9A8E617B1F8CC95E00E9C5BB /* FavoritesCell.swift */,
+				9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -309,6 +318,7 @@
 			files = (
 				9ADCF9881F7A95F400DB3C5A /* LaunchScreen.storyboard in Resources */,
 				9ADCF9AC1F7A98D100DB3C5A /* GoogleService-Info.plist in Resources */,
+				9A8E617A1F8CC07600E9C5BB /* Favorites.storyboard in Resources */,
 				9ADCF9851F7A95F400DB3C5A /* Assets.xcassets in Resources */,
 				9A535EA51F84E121000AF927 /* CabinCrew.storyboard in Resources */,
 				9ADCF9831F7A95F400DB3C5A /* Main.storyboard in Resources */,
@@ -499,8 +509,10 @@
 				9A535EA91F84E877000AF927 /* RequestCell.swift in Sources */,
 				9A535EA71F84E164000AF927 /* CabinCrewViewController.swift in Sources */,
 				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,
+				9A8E617C1F8CC95E00E9C5BB /* FavoritesCell.swift in Sources */,
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
 				9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */,
+				9A8E617E1F8CCC6100E9C5BB /* FavoritesViewController.swift in Sources */,
 				9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

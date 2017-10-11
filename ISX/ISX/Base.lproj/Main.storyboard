@@ -14,6 +14,14 @@
         </array>
     </customFonts>
     <scenes>
+        <!--CabinCrew-->
+        <scene sceneID="VVL-hk-XuS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CabinCrew" id="mxV-Kp-lqJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Llt-Qx-eq3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="487" y="-336"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -51,8 +59,8 @@
                                     <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yZU-dS-Wsh"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ISX" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-gy-Eui">
-                                <rect key="frame" x="87" y="70" width="200" height="150"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ISX" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-gy-Eui">
+                                <rect key="frame" x="-236.5" y="70" width="847" height="158.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mT2-2R-1Rw">
                                 <rect key="frame" x="50" y="422" width="275" height="34"/>
@@ -92,40 +100,12 @@
                     <connections>
                         <outlet property="emailTextField" destination="Gkc-zs-Pb0" id="UWW-xd-28r"/>
                         <outlet property="passwordTextField" destination="st2-OG-KV4" id="hNz-ge-Max"/>
-                        <segue destination="olZ-DO-deZ" kind="show" identifier="loginSeque" id="cCh-CP-yti"/>
+                        <segue destination="mxV-Kp-lqJ" kind="show" identifier="loginSeque" id="Jk4-Xn-FhY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-935" y="134"/>
-        </scene>
-        <!--Home View Controller-->
-        <scene sceneID="VoY-ke-THS">
-            <objects>
-                <viewController id="IyQ-Mh-xhT" customClass="HomeViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zMA-eM-zEv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ISX" translatesAutoresizingMaskIntoConstraints="NO" id="rEQ-dz-7kd">
-                                <rect key="frame" x="112" y="258" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="5Lb-c2-Q6q"/>
-                                    <constraint firstAttribute="width" constant="150" id="IFE-AI-3YL"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.050980392156862744" green="0.65098039215686276" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="rEQ-dz-7kd" firstAttribute="centerX" secondItem="zMA-eM-zEv" secondAttribute="centerX" id="60u-Pu-uyB"/>
-                            <constraint firstItem="rEQ-dz-7kd" firstAttribute="centerY" secondItem="zMA-eM-zEv" secondAttribute="centerY" id="DKv-qc-T26"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="GXh-Eq-DeY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xXh-FW-Djb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-170" y="134"/>
+            <point key="canvasLocation" x="-335" y="134"/>
         </scene>
         <!--Producten-->
         <scene sceneID="go7-cF-qYO">
@@ -141,24 +121,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edd-sh-NaJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1836" y="296"/>
+            <point key="canvasLocation" x="1457" y="134"/>
         </scene>
-        <!--Favoriete producten-->
-        <scene sceneID="0C6-pY-Ho0">
+        <!--FavoritesNavigationController-->
+        <scene sceneID="unc-EN-Ilp">
             <objects>
-                <viewController id="tEK-ry-bMP" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EP9-Fm-Ddz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="4T8-3l-Ica"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Favoriete producten" image="favorite" id="Omp-Io-JeW"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hoo-Ky-lga" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Favorites" referencedIdentifier="FavoritesNavigationController" id="aol-VW-rIl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="wUW-lI-pYx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3S-Qk-hQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="1173"/>
+            <point key="canvasLocation" x="1456" y="601"/>
         </scene>
         <!--Home-->
         <scene sceneID="6dY-bf-LGC">
@@ -189,9 +162,6 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sAq-uk-KOL">
                                         <rect key="frame" x="0.0" y="256" width="375" height="554"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="375" id="2cH-2e-cjE"/>
-                                        </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="woE-Tn-XHu">
                                             <size key="itemSize" width="150" height="200"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -292,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S22-fd-XbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2818" y="-367"/>
+            <point key="canvasLocation" x="2188" y="-598"/>
         </scene>
         <!--Home-->
         <scene sceneID="RFF-rx-eDB">
@@ -315,7 +285,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3h-rQ-xMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2122" y="-366"/>
+            <point key="canvasLocation" x="1457" y="-597"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tpT-tD-u5H">
@@ -334,7 +304,7 @@
                     <connections>
                         <segue destination="Qlu-Sb-l51" kind="relationship" relationship="viewControllers" id="t0D-Ba-O9Z"/>
                         <segue destination="nA6-sj-DZS" kind="relationship" relationship="viewControllers" id="mBo-gk-mE5"/>
-                        <segue destination="tEK-ry-bMP" kind="relationship" relationship="viewControllers" id="llO-BH-Jft"/>
+                        <segue destination="aol-VW-rIl" kind="relationship" relationship="viewControllers" id="eTl-9t-U08"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byL-5l-gv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -345,12 +315,8 @@
     <resources>
         <image name="ISX" width="847" height="780"/>
         <image name="banner" width="985" height="485"/>
-        <image name="favorite" width="24" height="24"/>
         <image name="home" width="24" height="24"/>
         <image name="products" width="24" height="24"/>
         <image name="seiko" width="189" height="259"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="xYd-Lt-F3g"/>
-    </inferredMetricsTieBreakers>
 </document>

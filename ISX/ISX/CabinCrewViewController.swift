@@ -21,7 +21,6 @@ class CabinCrewViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupReferences()
-        observeRequests()
         tableView.dataSource = self
     }
     
@@ -32,6 +31,7 @@ class CabinCrewViewController: UITableViewController {
         productsRef = datarootRef?.child("products")
         
         requestsRef?.keepSynced(true)
+        observeRequests()
     }
     
     func observeRequests() {

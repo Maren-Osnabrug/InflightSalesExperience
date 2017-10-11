@@ -20,6 +20,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
     var categoryID = [String]()
     var initialLoad = true;
     var chosenCategoryID: String?
+    var chosenCategoryTitle: String?
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -27,6 +28,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //top bar kleur aanpassingen
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().clipsToBounds = true
         
@@ -37,6 +39,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
         
         let titleDict: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navBar.titleTextAttributes = titleDict as? [NSAttributedStringKey : Any]
+        //einde kleur aanpassingen
         
         firebaseData()
         
@@ -60,10 +63,8 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
         cell.categoryCellText.text = categories[indexPath.row]
         cell.categoryCellText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
         cell.categoryCellText.textColor = UIColor.white
-        
         cell.categoryID = categoryID[indexPath.row]
-        
-    
+
         return cell
     }
     
@@ -85,8 +86,8 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
                 if let categoryId = value!["ID"] as? String {
                     self.categoryID.append(categoryId)
                 }
-                
             }
+            
             if (self.initialLoad == true) {
                 self.categoryCollectionView.reloadData()
                 self.initialLoad = false
@@ -97,23 +98,20 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = self.categoryCollectionView!.cellForItem(at: indexPath) as! CustomCategoryCell
         chosenCategoryID = cell.categoryID!
-        print("id is", chosenCategoryID)
+        self.chosenCategoryTitle = cell.categoryCellText!.text
         performSegue(withIdentifier: "productsDetail", sender: self)
-    
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        print("id to send", self.chosenCategoryID!)
         if segue.identifier == "productsDetail" {
             if let controller = segue.destination as? ProductsFromCategoriesController {
                 if let catID = self.chosenCategoryID {
                     controller.categoryID = catID
                 }
+                if let catTitle = self.chosenCategoryTitle {
+                    controller.navigationBarTitle = catTitle
+                }
             }
         }
     }
-    
-    
-    
 }

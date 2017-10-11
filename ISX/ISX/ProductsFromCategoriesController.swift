@@ -12,6 +12,7 @@ import FirebaseDatabase
 class ProductsFromCategoriesController: UIViewController,
                 UICollectionViewDelegate, UICollectionViewDataSource{
 
+    
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var navBar: UINavigationBar!
     var productArray = [Product]()
@@ -19,6 +20,8 @@ class ProductsFromCategoriesController: UIViewController,
     "parfum", "reizen", "sieraden"]
     var initialLoad = true
     var categoryID: String?
+    var navigationBarTitle: String?
+    var chosenProduct: Product?
     var boolean = true
     let dataRoot = "dataroot"
     let products = "products"
@@ -30,8 +33,8 @@ class ProductsFromCategoriesController: UIViewController,
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        //start top bar kleur aanpassingen....
         UIApplication.shared.statusBarStyle = .lightContent
-        
         UINavigationBar.appearance().clipsToBounds = true
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
@@ -41,6 +44,10 @@ class ProductsFromCategoriesController: UIViewController,
         
         let titleDict: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navBar.titleTextAttributes = titleDict as? [NSAttributedStringKey : Any]
+        //einde kleur aanpassingen
+        
+        //dynamic topbar title (Niet weghalen)
+        navBar.topItem!.title = navigationBarTitle
         
         getProducts(categoryId: self.categoryID!)
     }
@@ -84,4 +91,28 @@ class ProductsFromCategoriesController: UIViewController,
             self.initialLoad = false
         }
     }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       // let cell = self.collectionView!.cellForItem(at: indexPath) as! CustomProductCell
+    
+        chosenProduct = productArray[indexPath.row]
+        
+        performSegue(withIdentifier: "productInfo", sender: self)
+    }
+    
+    //navigationController?.popViewController(animated: true)
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        print("Chosen Product: ", self.chosenProduct!.title, " | de prijs: ", self.chosenProduct!.retailPrice)
+        
+        if segue.identifier == "productInfo" {
+            if let controller = segue.destination as? ProductInfoController {
+                if let product = self.chosenProduct {
+                    controller.product = product
+                }
+            }
+        }
+    }
+    
+    
 }

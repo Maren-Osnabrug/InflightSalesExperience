@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		21822BBB739DF0A7DBCC3EA9 /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */; };
-		240F1A021F8CE42600702B4B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
 		240F1A041F8CF36200702B4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F1A031F8CF36200702B4B /* Constants.swift */; };
 		2476D9C81F839FC200686C1E /* CustomSuggestionProductsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476D9C71F839FC200686C1E /* CustomSuggestionProductsCell.swift */; };
 		2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476DCA31F838B2A00E5B03F /* HomeViewController.swift */; };
@@ -31,6 +30,7 @@
 		9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */; };
 		A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
 		D501D0F21F8CDE2E007E8B2D /* CustomProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */; };
+		D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */; };
 		D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59398601F8386B000FD3BB0 /* Products.storyboard */; };
 		D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398621F838AED00FD3BB0 /* ProductsViewController.swift */; };
 		D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */; };
@@ -88,6 +88,7 @@
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
 		D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProductCell.swift; sourceTree = "<group>"; };
+		D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoController.swift; sourceTree = "<group>"; };
 		D59398601F8386B000FD3BB0 /* Products.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
 		D59398621F838AED00FD3BB0 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryCell.swift; sourceTree = "<group>"; };
@@ -170,9 +171,6 @@
 				D59398621F838AED00FD3BB0 /* ProductsViewController.swift */,
 				D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */,
 				D59398681F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift */,
-				9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */,
-				9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */,
-				A4250F711F83848A0069C483 /* LoginViewController.swift */,
 				D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */,
 				2476DCA31F838B2A00E5B03F /* HomeViewController.swift */,
 				2476D9C71F839FC200686C1E /* CustomSuggestionProductsCell.swift */,
@@ -184,6 +182,7 @@
 				9A535EA81F84E877000AF927 /* RequestCell.swift */,
 				9A535EAE1F851E96000AF927 /* Request.swift */,
 				240F1A031F8CF36200702B4B /* Constants.swift */,
+				D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -527,10 +526,10 @@
 				D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */,
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
-				240F1A021F8CE42600702B4B /* LoginViewController.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
 				2476D9C81F839FC200686C1E /* CustomSuggestionProductsCell.swift in Sources */,
 				9A535EAF1F851E96000AF927 /* Request.swift in Sources */,
+				D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */,
 				9A535EA91F84E877000AF927 /* RequestCell.swift in Sources */,
 				9A535EA71F84E164000AF927 /* CabinCrewViewController.swift in Sources */,
 				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,

@@ -12,25 +12,26 @@ import UIKit
 class ProductInfoController : UIViewController {
     
     var product: Product?
-
-    @IBOutlet weak var stackView: UIStackView!
+    
+    @IBOutlet weak var productImageView: UIImageView!
     
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var favoriteImageView: UIImageView!
     
-    @IBOutlet weak var productImages: UIImageView!
-    @IBOutlet weak var likeLabel: UILabel!
-    
+    @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var claimButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = product?.title
-        priceLabel!.text = "€" + product!.retailPrice
+        productImageView.image = UIImage(named: "parfum")
+        productTitleLabel.text = product?.title
+        priceLabel.text = "€" + (product?.retailPrice)!
         descriptionTextView!.text = product?.description
-        productImages.image = UIImage(named: "parfum")
-        
+        favoriteImageView.image = UIImage(named: "Heart")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        favoriteImageView.tintColor = Constants.orange
     }
 }

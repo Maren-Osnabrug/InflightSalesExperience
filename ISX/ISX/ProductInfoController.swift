@@ -12,8 +12,7 @@ import UIKit
 class ProductInfoController : UIViewController {
     
     var product: Product?
-    
-    @IBOutlet weak var navigationBar: UINavigationBar!
+
     @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var priceLabel: UILabel!
@@ -28,15 +27,9 @@ class ProductInfoController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        //topbar dynamic title (niet weghalen)
-        navigationBar.topItem!.title = product?.title
-        
+        self.title = product?.title
         priceLabel!.text = "€" + product!.retailPrice
-        
-        
         descriptionTextView!.text = product?.description
-    
         productImages.image = UIImage(named: "parfum")
         
     }

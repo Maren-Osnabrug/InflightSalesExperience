@@ -14,7 +14,6 @@ class ProductsFromCategoriesController: UIViewController,
 
     
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet weak var navBar: UINavigationBar!
     var productArray = [Product]()
     var productImageArray = ["drank", "elektronica", "kinderen",
     "parfum", "reizen", "sieraden"]
@@ -32,22 +31,7 @@ class ProductsFromCategoriesController: UIViewController,
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        //start top bar kleur aanpassingen....
-        UIApplication.shared.statusBarStyle = .lightContent
-        UINavigationBar.appearance().clipsToBounds = true
-        
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        
-        statusBar.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        navBar.barTintColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        
-        let titleDict: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.navBar.titleTextAttributes = titleDict as? [NSAttributedStringKey : Any]
-        //einde kleur aanpassingen
-        
-        //dynamic topbar title (Niet weghalen)
-        navBar.topItem!.title = navigationBarTitle
+        self.title = "Products"
         
         getProducts(categoryId: self.categoryID!)
     }

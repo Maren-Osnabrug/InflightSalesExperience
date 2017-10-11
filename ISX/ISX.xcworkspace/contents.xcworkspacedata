@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Products.storyboard">
+   </FileRef>
+   <FileRef
       location = "group:ISX.xcodeproj">
    </FileRef>
    <FileRef

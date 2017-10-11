@@ -23,23 +23,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate,
     var chosenCategoryTitle: String?
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
-    @IBOutlet weak var navBar: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //top bar kleur aanpassingen
-        UIApplication.shared.statusBarStyle = .lightContent
-        UINavigationBar.appearance().clipsToBounds = true
-        
-        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        
-        statusBar.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        navBar.barTintColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        
-        let titleDict: NSDictionary = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.navBar.titleTextAttributes = titleDict as? [NSAttributedStringKey : Any]
-        //einde kleur aanpassingen
         
         firebaseData()
         

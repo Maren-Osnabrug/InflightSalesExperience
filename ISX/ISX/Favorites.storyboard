@@ -55,10 +55,10 @@
                                             </constraints>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J96-K9-Fgn">
-                                            <rect key="frame" x="115" y="40" width="245" height="38"/>
+                                            <rect key="frame" x="115" y="40" width="245" height="49.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductPrice" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="NWZ-vJ-KGC" userLabel="Product Price">
-                                                    <rect key="frame" x="15" y="21" width="83" height="17"/>
+                                                    <rect key="frame" x="15" y="29" width="83" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -73,15 +73,15 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="nCV-a7-fde" firstAttribute="top" secondItem="J96-K9-Fgn" secondAttribute="top" id="Atb-Ok-di6"/>
+                                                <constraint firstAttribute="bottom" secondItem="NWZ-vJ-KGC" secondAttribute="bottom" constant="3.5" id="C2I-yA-FRC"/>
                                                 <constraint firstItem="nCV-a7-fde" firstAttribute="leading" secondItem="J96-K9-Fgn" secondAttribute="leading" constant="15" id="bYs-LD-yOc"/>
                                                 <constraint firstItem="NWZ-vJ-KGC" firstAttribute="leading" secondItem="J96-K9-Fgn" secondAttribute="leading" constant="15" id="cKA-mK-4u4"/>
-                                                <constraint firstItem="NWZ-vJ-KGC" firstAttribute="top" secondItem="nCV-a7-fde" secondAttribute="bottom" id="qEy-gt-a87"/>
-                                                <constraint firstAttribute="bottom" secondItem="NWZ-vJ-KGC" secondAttribute="bottom" id="vR8-86-467"/>
+                                                <constraint firstItem="NWZ-vJ-KGC" firstAttribute="top" secondItem="nCV-a7-fde" secondAttribute="bottom" constant="8" id="qEy-gt-a87"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="J96-K9-Fgn" secondAttribute="bottom" constant="52" id="2ZG-Qd-YdF"/>
+                                        <constraint firstAttribute="bottom" secondItem="J96-K9-Fgn" secondAttribute="bottom" constant="40" id="2ZG-Qd-YdF"/>
                                         <constraint firstItem="J96-K9-Fgn" firstAttribute="leading" secondItem="gNz-Zw-sfD" secondAttribute="trailing" id="Has-m2-Vsn"/>
                                         <constraint firstItem="gNz-Zw-sfD" firstAttribute="centerY" secondItem="2Ay-ZV-DqF" secondAttribute="centerY" id="TNI-Rd-qgs"/>
                                         <constraint firstItem="gNz-Zw-sfD" firstAttribute="top" secondItem="2Ay-ZV-DqF" secondAttribute="top" constant="15" id="o75-p5-qoK"/>

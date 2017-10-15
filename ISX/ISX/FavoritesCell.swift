@@ -15,4 +15,21 @@ class FavoritesCell: UITableViewCell {
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var labelContainingView: UIView!
     @IBOutlet weak var cellContentView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupStyling()
+    }
+
+    func updateWithFavorite(favorite: Product) {
+        productName.text = favorite.title
+        productPrice.text = "€ " + favorite.retailPrice
+    }
+    
+    // PRAGMA MARK: - Private
+    private func setupStyling() {
+        cellContentView.layer.borderColor = UIColor.white.cgColor
+        cellContentView.layer.borderWidth = 1
+        productImage.backgroundColor = UIColor.lightGray
+    }
 }

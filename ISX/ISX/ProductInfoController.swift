@@ -11,25 +11,21 @@ import UIKit
 
 class ProductInfoController : UIViewController {
     
-    var product: Product?
-    
     @IBOutlet weak var productImageView: UIImageView!
-    
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
-    
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
     @IBOutlet weak var claimButton: UIButton!
     
-    let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-    let favoriteImage = UIImage(named: "favorite")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+    var product: Product?
+
+    private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
+    private let favoriteImage = UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate)
+
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
-            print("before", product.favorite)
             product.changeFavoriteStatus()
-            print("after", product.favorite)
             updateFavoriteButton(favorite: product.favorite)
         }
     }
@@ -48,7 +44,7 @@ class ProductInfoController : UIViewController {
         productTitleLabel.text = product.title
         priceLabel.text = "€" + (product.retailPrice)
         descriptionTextView!.text = product.description
-        descriptionTextView.textContainerInset = UIEdgeInsets.zero
+        descriptionTextView.textContainerInset = .zero
         descriptionTextView.textContainer.lineFragmentPadding = 0
         favoriteButton.tintColor = Constants.orange
         updateFavoriteButton(favorite: product.favorite)

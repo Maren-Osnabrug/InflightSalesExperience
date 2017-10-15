@@ -105,10 +105,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="ZrV-HW-dox"/>
+                    <connections>
+                        <segue destination="08a-HM-24v" kind="show" identifier="favoriteToProductSegue" id="YN1-eV-uqC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oma-TT-yff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="229.59999999999999" y="-852.3238380809596"/>
+        </scene>
+        <!--ProductInfoController-->
+        <scene sceneID="TaT-iA-PLq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Products" referencedIdentifier="ProductInfoController" id="08a-HM-24v" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gCi-RU-qwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="-1021"/>
         </scene>
     </scenes>
     <resources>

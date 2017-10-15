@@ -12,13 +12,13 @@ import FirebaseDatabase
 
 class FavoritesViewController: UITableViewController {
     
-    var favoritesArray = [Product]()
+    private var favoritesArray = [Product]()
     private var datarootRef: DatabaseReference?
     private var productsRef: DatabaseReference?
+    var selectedProduct: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         setupReference()
         tableView.dataSource = self
         tableView.reloadData()
@@ -32,23 +32,14 @@ class FavoritesViewController: UITableViewController {
     }
     
     func observeProducts() {
-//        productsRef?.observe(.value, with: { snapshot in
-//            for item in snapshot.children {
-//                let toAdd = Product.init(snapshot: item as! DataSnapshot)
-//                if (toAdd.favorite) {
-//                    self.favoritesArray.append(toAdd)
-//                }
-//            }
-//            self.tableView.reloadData()
-//        })
-//
-        productsRef?.queryOrdered(byChild: "favorite").queryStarting(atValue: true).observe(.value, with: { (snapshot) in
+        productsRef?.queryOrdered(byChild: "favorite").queryStarting(atValue: true).observe(.value, with: {
+            snapshot in
             self.favoritesArray = []
             for item in snapshot.children {
-                let toAdd = Product.init(snapshot: item as! DataSnapshot)
-                print(toAdd.title, toAdd.id)
+                guard let item = item as? DataSnapshot else { continue }
+                
+                let toAdd = Product(snapshot: item)
                 if (!self.favoritesArray.contains { $0.id == toAdd.id }) {
-                   
                     self.favoritesArray.append(toAdd)
                 }
             }
@@ -68,24 +59,31 @@ class FavoritesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomFavoritesCell", for: indexPath) as? FavoritesCell else { return UITableViewCell() }
-        let favoriteForCell = favoritesArray[indexPath.row]
-        cell.productName.text = favoriteForCell.title
-        cell.productPrice.text = "€ " + favoriteForCell.retailPrice
         
-        cell.cellContentView.layer.borderColor = UIColor.white.cgColor
-        cell.cellContentView.layer.borderWidth = 1
-
-        cell.productImage.backgroundColor = UIColor.lightGray
+        let favorite = favoritesArray[indexPath.row]
+        cell.updateWithFavorite(favorite: favorite)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedProduct = favoritesArray[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "favoriteToProductSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "favoriteToProductSegue" {
+            if let controller = segue.destination as? ProductInfoController {
+                if let product = selectedProduct {
+                    controller.product = product
+                }
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let modifyAction = UIContextualAction(style: .normal, title:  "Unfavorite", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let modifyAction = UIContextualAction(style: .normal, title: "Unfavorite", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             let favoriteProduct = self.favoritesArray[indexPath.row]
             favoriteProduct.changeFavoriteStatus()
             success(true)

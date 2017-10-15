@@ -57,8 +57,6 @@ class Product {
             favorite = snapshotValue["favorite"] as! Bool
         }
         
-        
-        
         //        Did_You_Know_iPad = snapshotValue["Did_You_Know_iPad"] as! String
         //        Drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String
         //        Drawer_EUR_extended = snapshotValue["Drawer_EUR_extended"] as! String

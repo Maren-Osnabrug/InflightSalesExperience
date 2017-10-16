@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class ProductInfoController : UIViewController {
     
@@ -19,6 +20,9 @@ class ProductInfoController : UIViewController {
     @IBOutlet weak var claimButton: UIButton!
     
     var product: Product?
+    private var datarootRef: DatabaseReference?
+    private var requestsRef: DatabaseReference?
+    var customerChair: String?
 
     private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
     private let favoriteImage = UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate)
@@ -30,10 +34,63 @@ class ProductInfoController : UIViewController {
         }
     }
     
+    @IBAction func didClickRequestButton(_ sender: Any) {
+        print("I want this!")
+        showInputDialog()
+    }
+    
+    func showInputDialog() {
+        let alertController = UIAlertController(title: "Enter your seatnumber", message: "Please enter your seat number so we can deliver your product.", preferredStyle: .alert)
+
+        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+            guard let customerChairNumber = alertController.textFields?.first?.text else { return }
+            guard let product = self.product else { return }
+
+            self.requestsRef?.queryOrderedByKey().queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
+                snapshot in
+                var requestLatestId = 0
+                for item in snapshot.children {
+                    let req = Request.init(snapshot: item as! DataSnapshot)
+                    requestLatestId = req.id
+                }
+                if let productId = Int(product.id) {
+                    let requestForItem = Request(
+                        id: requestLatestId + 1,
+                        productId: productId,
+                        customerChair: customerChairNumber,
+                        completed: false
+                    )
+                    
+                    let requestForItemRef = self.requestsRef?.childByAutoId()
+                    requestForItemRef?.setValue(requestForItem.toAnyObject())
+                }
+            })
+
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter Name"
+        }
+
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        //finally presenting the dialog box
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = product?.title
+        title = product?.title
+        setupReferences()
         setupStyling()
+    }
+    
+    func setupReferences() {
+        datarootRef = Database.database().reference(withPath: "dataroot")
+        requestsRef = datarootRef?.child("requests")
+        requestsRef?.keepSynced(true)
     }
     
     func setupStyling() {

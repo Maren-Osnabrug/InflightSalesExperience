@@ -47,7 +47,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.datarootRef = Database.database().reference(withPath: "dataroot")
         self.productsRef = datarootRef?.child("products")
         configureDatabase()
+        
+        if let flowLayout = suggestionCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        }
+        
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         suggestionLabel.addBottomBorder(color: Constants.grey, width: 1)

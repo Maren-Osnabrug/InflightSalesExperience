@@ -20,7 +20,7 @@ extension UIView {
     }
 }
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var suggestionLabel: UILabel!
     @IBOutlet weak var suggestionCollectionView: UICollectionView!
@@ -31,6 +31,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var productsArray = [Product]()
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var suggestionProductsArray = [Product]()
+    
+    var selectedProduct: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +50,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         productsRef = datarootRef?.child("products")
         configureDatabase()
         
-        if let flowLayout = suggestionCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
-        }
-        
+//        if let flowLayout = suggestionCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+//        }
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         suggestionLabel.addBottomBorder(color: Constants.grey, width: 1)
@@ -77,7 +77,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let customCell = suggestionCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomSuggestionProductsCell
+        let customCell = suggestionCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath as IndexPath) as! CustomSuggestionProductsCell
         
         customCell.suggestionProductImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
         customCell.suggestionProductLabel.text = suggestionProductsArray[indexPath.row].title
@@ -85,5 +85,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         customCell.backgroundColor = Constants.grey
         customCell.suggestionProductTextContainer.backgroundColor = Constants.blue
         return customCell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 60)) / 2
+        return CGSize(width: itemSize, height: itemSize*1.3)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedProduct = suggestionProductsArray[indexPath.row]
+        performSegue(withIdentifier: "homeToProductSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeToProductSegue" {
+            if let controller = segue.destination as? ProductInfoController {
+                if let product = selectedProduct {
+                    controller.product = product
+                }
+            }
+        }
     }
 }

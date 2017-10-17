@@ -17,4 +17,19 @@ class RequestCell: UITableViewCell {
     @IBOutlet weak var chairView: UIView!
     @IBOutlet weak var chairLabel: UILabel!
     @IBOutlet weak var cellContentView: UIView!
+    
+    func setupStyling() {
+        cellContentView.layer.borderColor = UIColor.white.cgColor
+        cellContentView.layer.borderWidth = 1
+        
+        chairView.layer.cornerRadius = 15
+        chairView.layer.borderColor = UIColor.clear.cgColor
+        chairView.layer.borderWidth = 1
+        chairView.layer.shadowColor = UIColor.lightGray.cgColor
+        chairView.layer.shadowOpacity = 0.8
+        chairView.layer.shadowRadius = 3
+        chairView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        
+        productImage.backgroundColor = .lightGray
+    }
 }

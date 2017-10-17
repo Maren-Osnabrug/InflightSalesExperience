@@ -31,42 +31,9 @@ class Product {
     let KLM_Only: String = ""
     let Save_21: String = ""
     let Tax_Free_Exclusive: Bool = false
-    
-    init(Bestsellers: String, Product_group: String, Product_name_Holland_Herald_WBC_iPad: String, Sales_text_HH_WBC_iPad: String,
-        Start_date_SHC: String, brand_id: String, local_price: String, prologistica_number_HH: String, id: String,
-                retailPrice: String,
-                Did_You_Know_iPad: String,
-                Drawer_EUR_Norway_Suisse: String,
-                Drawer_EUR_extended: String,
-                Drawer_EUR_reduced: String,
-                Drawer_ICA: String,
-                FB_miles_EARN_ob_1_2_miles_per_Euro: String,
-                Free_gift: String,
-                KLM_Only: String,
-                Save_21: String,
-                Tax_Free_Exclusive: String
-        ) {
-        self.bestsellers = Bestsellers
-        self.productGroup = Product_group
-        self.title = Product_name_Holland_Herald_WBC_iPad
-        self.description = Sales_text_HH_WBC_iPad
-        self.startDateSHC = Start_date_SHC
-        self.brand = brand_id
-//        self.localPrice = local_price
-        self.prologisticaNumberHH = prologistica_number_HH
-        self.id = id
-        self.retailPrice = retailPrice
-        //        self.Did_You_Know_iPad = Did_You_Know_iPad
-        //        self.Drawer_EUR_Norway_Suisse = Drawer_EUR_Norway_Suisse
-        //        self.Drawer_EUR_extended = Drawer_EUR_extended
-        //        self.Drawer_EUR_reduced = Drawer_EUR_reduced
-        //        self.Drawer_ICA = Drawer_ICA
-        //        self.FB_miles_EARN_ob_1_2_miles_per_Euro = FB_miles_EARN_ob_1_2_miles_per_Euro
-        //        self.Free_gift = Free_gift
-        //        self.KLM_Only = KLM_Only
-        //        self.Save_21 = Save_21
-        //        self.Tax_Free_Exclusive = Tax_Free_Exclusive
-    }
+    // self defined variables
+    let ref: DatabaseReference?
+    var favorite: Bool
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -80,8 +47,16 @@ class Product {
         prologisticaNumberHH = snapshotValue["prologistica_number_HH"] as! String
         id = snapshotValue["sku"] as! String
         retailPrice = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String
-
-//        print(snapshotValue)
+        self.ref = snapshot.ref
+        if (snapshotValue["favorite"] == nil) {
+            snapshot.ref.updateChildValues([
+                "favorite": false
+                ])
+            favorite = false
+        } else {
+            favorite = snapshotValue["favorite"] as! Bool
+        }
+        
         //        Did_You_Know_iPad = snapshotValue["Did_You_Know_iPad"] as! String
         //        Drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String
         //        Drawer_EUR_extended = snapshotValue["Drawer_EUR_extended"] as! String
@@ -94,29 +69,11 @@ class Product {
         //        Tax_Free_Exclusive = snapshotValue["Tax_Free_Exclusive"] as! String
     }
     
-    func toAnyObject() -> Any {
-        return [
-            "Bestsellers" : bestsellers,
-            "Product_group" : productGroup,
-            "Product_name_Holland_Herald_WBC_iPad" : title,
-            "Sales_text_HH_WBC_iPad" : description,
-            "Start_date_SHC" : startDateSHC,
-            "brand_id" : brand,
-            "local_price" : localPrice,
-            "prologistica_number_HH" : prologisticaNumberHH,
-            "Ob_Retail_price_1_PL_HH_WBC_iPad" : retailPrice,
-            "id" : id
-            //            "Did_You_Know_iPad" : Did_You_Know_iPad,
-            //            "Drawer_EUR_Norway_Suisse" : Drawer_EUR_Norway_Suisse,
-            //            "Drawer_EUR_extended" : Drawer_EUR_extended,
-            //            "Drawer_EUR_reduced" : Drawer_EUR_reduced,
-            //            "Drawer_ICA" : Drawer_ICA,
-            //            "FB_miles_EARN_ob_1_2_miles_per_Euro" : FB_miles_EARN_ob_1_2_miles_per_Euro,
-            //            "Free_gift" : Free_gift,
-            //            "KLM_Only" : KLM_Only,
-            //            "Save_21" : Save_21,
-            //            "Tax_Free_Exclusive" : Tax_Free_Exclusive,
-        ]
+    func changeFavoriteStatus() {
+        ref?.updateChildValues([
+            "favorite": !self.favorite
+            ])
+        favorite = !favorite
     }
 }
 

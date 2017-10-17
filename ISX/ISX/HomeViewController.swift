@@ -15,8 +15,8 @@ extension UIView {
     func addBottomBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
-        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: frame.size.width, height: width)
-        self.layer.addSublayer(border)
+        border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
+        layer.addSublayer(border)
     }
 }
 
@@ -25,17 +25,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var suggestionLabel: UILabel!
     @IBOutlet weak var suggestionCollectionView: UICollectionView!
     
-    var datarootRef : DatabaseReference?
+    var datarootRef: DatabaseReference?
     var productsRef: DatabaseReference?
     
     var productsArray = [Product]()
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var suggestionProductsArray = [Product]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
+        
         self.tabBarController?.tabBar.unselectedItemTintColor = Constants.blue
         self.tabBarController?.tabBar.layer.borderWidth = 1
         self.tabBarController?.tabBar.layer.borderColor = Constants.grey.cgColor
@@ -44,8 +44,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         suggestionCollectionView.delegate = self
         suggestionCollectionView.dataSource = self
         
-        self.datarootRef = Database.database().reference(withPath: "dataroot")
-        self.productsRef = datarootRef?.child("products")
+        datarootRef = Database.database().reference(withPath: "dataroot")
+        productsRef = datarootRef?.child("products")
         configureDatabase()
         
         if let flowLayout = suggestionCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -60,7 +60,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func configureDatabase() {
-        self.productsRef?.observe(.value, with: { snapshot in
+        productsRef?.observe(.value, with: { snapshot in
             for (_, item) in snapshot.children.enumerated() {
                 if let product = item as? DataSnapshot {
                     let modelProduct = Product.init(snapshot: product)
@@ -68,7 +68,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     self.suggestionProductsArray = Array(self.productsArray.prefix(4))
                 }
             }
-                self.suggestionCollectionView.reloadData()
+            self.suggestionCollectionView.reloadData()
         })
     }
     

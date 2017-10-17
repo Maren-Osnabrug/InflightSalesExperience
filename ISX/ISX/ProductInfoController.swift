@@ -35,7 +35,6 @@ class ProductInfoController : UIViewController {
     }
     
     @IBAction func didClickRequestButton(_ sender: Any) {
-        print("I want this!")
         showInputDialog()
     }
     

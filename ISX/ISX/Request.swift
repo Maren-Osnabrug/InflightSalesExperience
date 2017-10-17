@@ -17,6 +17,14 @@ class Request {
     var completed: Bool
     let ref: DatabaseReference?
     
+    init(id: Int, productId: Int, customerChair: String, completed: Bool) {
+        self.id = id
+        self.productId = productId
+        self.completed = completed
+        self.customerChair = customerChair
+        self.ref = nil
+    }
+    
     init(snapshot: DataSnapshot) {
         let dict = snapshot.value as! [String:AnyObject]
         self.id = dict["id"] as! Int
@@ -26,12 +34,14 @@ class Request {
         self.ref = snapshot.ref
     }
     
-//    init(snapshot: DataSnapshot) {
-//        print("init with ", snapshot)
-//        self.id = snapshot.id
-//        self.product = snapshot.product
-//        self.customerChair = snapshot.customerChair
-//    }
+    func toAnyObject()-> Any {
+        return [
+            "id": id,
+            "product": productId,
+            "completed": completed,
+            "customerChair": customerChair
+        ]
+    }
 }
 
 

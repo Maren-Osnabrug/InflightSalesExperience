@@ -32,10 +32,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-ej-gS7">
-                                            <rect key="frame" x="130" y="33" width="140" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="XjZ-l1-fhx"/>
-                                            </constraints>
+                                            <rect key="frame" x="130" y="33" width="155" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.21176470589999999" green="0.80784313730000001" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -66,7 +63,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductCode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="NwZ-Gk-qpa">
-                                            <rect key="frame" x="130" y="54" width="140" height="20"/>
+                                            <rect key="frame" x="130" y="54" width="155" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="GeP-zb-fuf"/>
                                             </constraints>
@@ -76,6 +73,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="ILq-up-z8A" firstAttribute="leading" secondItem="fa2-ej-gS7" secondAttribute="trailing" constant="15" id="3aZ-CJ-Yri"/>
                                         <constraint firstItem="XoP-7g-4Rg" firstAttribute="top" secondItem="NwZ-Gk-qpa" secondAttribute="bottom" id="6Hp-dl-m3t"/>
                                         <constraint firstAttribute="bottom" secondItem="ILq-up-z8A" secondAttribute="bottom" constant="40" id="6Ru-o7-KMa"/>
                                         <constraint firstItem="XoP-7g-4Rg" firstAttribute="top" secondItem="NwZ-Gk-qpa" secondAttribute="top" constant="20" id="7ko-kg-gCQ"/>

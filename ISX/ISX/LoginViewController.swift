@@ -23,8 +23,8 @@ class LoginViewController:UIViewController {
     @IBAction func loginAction(_ sender: Any) {
         if (emailTextField.text == "" || passwordTextField.text == "") {
             //Alert user that an error occurred because they didn't fill in the textfields
-            let alertController = UIAlertController(title: "Foutmelding", message: "Voer alstublieft een emailadres en wachtwoord in.", preferredStyle: .alert)
-            let acknowledgedAction = UIAlertAction(title: "Oke", style: .cancel, handler: nil)
+            let alertController = UIAlertController(title: "Error", message: "Please enter an email address and a password.", preferredStyle: .alert)
+            let acknowledgedAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(acknowledgedAction)
             present(alertController, animated: true, completion: nil)
             
@@ -35,8 +35,8 @@ class LoginViewController:UIViewController {
                     self.performSegue(withIdentifier: "loginSeque", sender: self)
                 } else {
                     //Alert user that an error occurred and shows firebase error
-                    let alertController = UIAlertController(title: "Foutmelding", message: "Onjuist e-mailadres of wachtwoord", preferredStyle: .alert)
-                    let acknowledgedAction = UIAlertAction(title: "Oke", style: .cancel, handler: nil)
+                    let alertController = UIAlertController(title: "Error", message: "Incorrect email address or password.", preferredStyle: .alert)
+                    let acknowledgedAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
                     alertController.addAction(acknowledgedAction)
                     self.present(alertController, animated: true, completion: nil)
                 }

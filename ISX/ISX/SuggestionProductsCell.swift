@@ -1,5 +1,5 @@
 //
-//  CustomSuggestionProductsCell.swift
+//  SuggestionProductCell.swift
 //  ISX
 //
 //  Created by Rosyl Budike on 03-10-17.
@@ -8,10 +8,9 @@
 
 import UIKit
 
-class CustomSuggestionProductsCell: UICollectionViewCell {
+class SuggestionProductCell: UICollectionViewCell {
 
     @IBOutlet weak var suggestionProductImage: UIImageView!
     @IBOutlet weak var suggestionProductTextContainer: UIView!
     @IBOutlet weak var suggestionProductLabel: UILabel!
-    
 }

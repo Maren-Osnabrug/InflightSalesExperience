@@ -21,8 +21,9 @@ extension UIView {
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var suggestionLabel: UILabel!
-    @IBOutlet weak var suggestionCollectionView: UICollectionView!
+    @IBOutlet weak var suggestionProductsCollectionView: UICollectionView!
     
     var datarootRef: DatabaseReference?
     var productsRef: DatabaseReference?
@@ -36,16 +37,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.tabBarController?.tabBar.unselectedItemTintColor = Constants.blue
-        self.tabBarController?.tabBar.layer.borderWidth = 1
-        self.tabBarController?.tabBar.layer.borderColor = Constants.grey.cgColor
-        self.tabBarController?.tabBar.clipsToBounds = true
+        suggestionProductsCollectionView.delegate = self
+        suggestionProductsCollectionView.dataSource = self
         
-        suggestionCollectionView.delegate = self
-        suggestionCollectionView.dataSource = self
-        
-        datarootRef = Database.database().reference(withPath: "dataroot")
-        productsRef = datarootRef?.child("products")
         configureDatabase()
     }
     
@@ -54,6 +48,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func configureDatabase() {
+        datarootRef = Database.database().reference(withPath: "dataroot")
+        productsRef = datarootRef?.child("products")
         productsRef?.observe(.value, with: { snapshot in
             for (_, item) in snapshot.children.enumerated() {
                 if let product = item as? DataSnapshot {
@@ -62,7 +58,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     self.suggestionProductsArray = Array(self.productsArray.prefix(4))
                 }
             }
-            self.suggestionCollectionView.reloadData()
+            self.suggestionProductsCollectionView.reloadData()
         })
     }
     
@@ -71,19 +67,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let customCell = suggestionCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath as IndexPath) as! CustomSuggestionProductsCell
+        let suggestionProductCell = suggestionProductsCollectionView.dequeueReusableCell(withReuseIdentifier: "suggestionProductCell", for: indexPath) as! SuggestionProductCell
         
-        customCell.suggestionProductImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
-        customCell.suggestionProductLabel.text = suggestionProductsArray[indexPath.row].title
+        suggestionProductCell.suggestionProductImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
+        suggestionProductCell.suggestionProductLabel.text = suggestionProductsArray[indexPath.row].title
         
-        customCell.backgroundColor = Constants.grey
-        customCell.suggestionProductTextContainer.backgroundColor = Constants.blue
-        return customCell
+        suggestionProductCell.backgroundColor = Constants.grey
+        suggestionProductCell.suggestionProductTextContainer.backgroundColor = Constants.blue
+        return suggestionProductCell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 60)) / 2
-        return CGSize(width: itemSize, height: itemSize*1.3)
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + Constants.sectionInsetsCollectionView)) / Constants.devideFactorItemCollectionView
+        return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorItemSize)
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -92,10 +88,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "homeToProductSegue" {
-            if let controller = segue.destination as? ProductInfoController {
+        if (segue.identifier == "homeToProductSegue") {
+            if let nextViewController = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
-                    controller.product = product
+                    nextViewController.product = product
                 }
             }
         }

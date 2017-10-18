@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,7 +61,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ISX" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-gy-Eui">
-                                <rect key="frame" x="-236.5" y="70" width="847" height="158.5"/>
+                                <rect key="frame" x="-236" y="70" width="847" height="158.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mT2-2R-1Rw">
                                 <rect key="frame" x="50" y="422" width="275" height="34"/>
@@ -128,23 +129,11 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="ZAT-Bm-L5u">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-o0-b9z">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-o0-b9z" userLabel="Banner">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="gNT-LF-NXY"/>
-                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Onze suggesties" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbA-ab-eza" userLabel="SuggestionLabel">
-                                        <rect key="frame" x="0.0" y="200" width="375" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="5My-yo-1sZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.8901960784313725" green="0.44705882352941173" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sAq-uk-KOL">
-                                        <rect key="frame" x="0.0" y="250" width="375" height="554"/>
+                                    <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sAq-uk-KOL" userLabel="Suggestion Products Collection View">
+                                        <rect key="frame" x="0.0" y="244" width="375" height="554"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="woE-Tn-XHu">
                                             <size key="itemSize" width="177" height="177"/>
@@ -153,7 +142,7 @@
                                             <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCell" id="2cU-Mw-1QD" customClass="CustomSuggestionProductsCell" customModule="ISX" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="suggestionProductCell" id="2cU-Mw-1QD" customClass="SuggestionProductCell" customModule="ISX" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="20" width="155" height="180"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -202,22 +191,29 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Onze suggesties" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbA-ab-eza" userLabel="Suggestion Label">
+                                        <rect key="frame" x="0.0" y="194" width="375" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="5My-yo-1sZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.8901960784313725" green="0.44705882352941173" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="91s-NS-EkM"/>
-                                    <constraint firstAttribute="trailing" secondItem="Hdx-o0-b9z" secondAttribute="trailing" id="EDB-7W-dMs"/>
-                                    <constraint firstAttribute="trailing" secondItem="cbA-ab-eza" secondAttribute="trailing" id="Q2d-qN-PHo"/>
-                                    <constraint firstItem="cbA-ab-eza" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="Vfx-49-Api"/>
-                                    <constraint firstItem="Hdx-o0-b9z" firstAttribute="top" secondItem="ZAT-Bm-L5u" secondAttribute="top" id="Wmn-TQ-OqQ"/>
-                                    <constraint firstItem="cbA-ab-eza" firstAttribute="top" secondItem="Hdx-o0-b9z" secondAttribute="bottom" id="pYm-s5-A8D"/>
-                                    <constraint firstAttribute="bottom" secondItem="sAq-uk-KOL" secondAttribute="bottom" id="pkN-rB-PTD"/>
-                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="height" secondItem="ZAT-Bm-L5u" secondAttribute="height" id="r5w-sJ-1ch"/>
-                                    <constraint firstItem="Hdx-o0-b9z" firstAttribute="leading" secondItem="ZAT-Bm-L5u" secondAttribute="leading" id="tUi-ky-t0L"/>
-                                    <constraint firstAttribute="trailing" secondItem="sAq-uk-KOL" secondAttribute="trailing" id="tc6-ZJ-BIf"/>
-                                    <constraint firstItem="Hdx-o0-b9z" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="tc6-yP-BGv"/>
-                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="top" secondItem="cbA-ab-eza" secondAttribute="bottom" id="tyI-F4-o3A"/>
-                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="leading" secondItem="ZAT-Bm-L5u" secondAttribute="leading" id="wHs-gr-bPg"/>
-                                    <constraint firstItem="cbA-ab-eza" firstAttribute="leading" secondItem="ZAT-Bm-L5u" secondAttribute="leading" id="xKA-Uk-XMq"/>
+                                    <constraint firstAttribute="trailing" secondItem="sAq-uk-KOL" secondAttribute="trailing" id="0ph-Zs-eQF"/>
+                                    <constraint firstItem="Hdx-o0-b9z" firstAttribute="leading" secondItem="ZAT-Bm-L5u" secondAttribute="leading" id="8di-Mr-7ii"/>
+                                    <constraint firstAttribute="bottom" secondItem="sAq-uk-KOL" secondAttribute="bottom" id="8jF-YC-aLh"/>
+                                    <constraint firstItem="cbA-ab-eza" firstAttribute="leading" secondItem="ZAT-Bm-L5u" secondAttribute="leading" id="I4k-9y-eij"/>
+                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="top" secondItem="cbA-ab-eza" secondAttribute="bottom" id="Y0I-Pv-rTt"/>
+                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="leading" secondItem="ZAT-Bm-L5u" secondAttribute="leading" id="cLf-SB-xOw"/>
+                                    <constraint firstItem="cbA-ab-eza" firstAttribute="top" secondItem="Hdx-o0-b9z" secondAttribute="bottom" id="cnh-5z-Wmc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hdx-o0-b9z" secondAttribute="trailing" id="dAi-ap-dO9"/>
+                                    <constraint firstItem="Hdx-o0-b9z" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="eR4-XM-Q7Q"/>
+                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="height" secondItem="ZAT-Bm-L5u" secondAttribute="height" id="iqO-6f-pKr"/>
+                                    <constraint firstItem="Hdx-o0-b9z" firstAttribute="top" secondItem="ZAT-Bm-L5u" secondAttribute="top" id="kj7-lR-Szw"/>
+                                    <constraint firstAttribute="trailing" secondItem="cbA-ab-eza" secondAttribute="trailing" id="l08-JD-glT"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -225,6 +221,7 @@
                         <constraints>
                             <constraint firstItem="ZAT-Bm-L5u" firstAttribute="top" secondItem="JOy-mn-263" secondAttribute="top" id="96c-mE-H0H"/>
                             <constraint firstItem="ZAT-Bm-L5u" firstAttribute="bottom" secondItem="JOy-mn-263" secondAttribute="bottom" id="EhZ-tR-Ds3"/>
+                            <constraint firstItem="Hdx-o0-b9z" firstAttribute="height" secondItem="JOy-mn-263" secondAttribute="height" multiplier="0.35" id="SMo-Yn-drJ"/>
                             <constraint firstItem="ZAT-Bm-L5u" firstAttribute="trailing" secondItem="JOy-mn-263" secondAttribute="trailing" id="bWd-E5-hbv"/>
                             <constraint firstItem="ZAT-Bm-L5u" firstAttribute="leading" secondItem="JOy-mn-263" secondAttribute="leading" id="h5o-b8-RXn"/>
                         </constraints>
@@ -233,8 +230,9 @@
                     <tabBarItem key="tabBarItem" title="Home" image="home" id="2JX-lB-YrC"/>
                     <navigationItem key="navigationItem" title="Home" id="4bo-4C-pQ9"/>
                     <connections>
-                        <outlet property="suggestionCollectionView" destination="sAq-uk-KOL" id="Lpj-G8-8Lr"/>
+                        <outlet property="scrollView" destination="ZAT-Bm-L5u" id="o7s-3l-03o"/>
                         <outlet property="suggestionLabel" destination="cbA-ab-eza" id="qBs-gr-TFR"/>
+                        <outlet property="suggestionProductsCollectionView" destination="sAq-uk-KOL" id="qsk-t2-BCl"/>
                         <segue destination="mPD-0b-6gC" kind="show" identifier="homeToProductSegue" id="TMa-nw-BGG"/>
                     </connections>
                 </viewController>
@@ -277,13 +275,14 @@
         <scene sceneID="tpT-tD-u5H">
             <objects>
                 <tabBarController id="olZ-DO-deZ" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KOV-vY-fMu">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KOV-vY-fMu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.89019607840000003" green="0.44705882349999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.8901960784313725" green="0.44705882352941173" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" red="0.050980392156862744" green="0.65098039215686276" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>

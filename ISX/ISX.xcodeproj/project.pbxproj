@@ -32,12 +32,13 @@
 		9ADCF9AE1F7A994700DB3C5A /* ISXUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9991F7A95F400DB3C5A /* ISXUITests.xctest */; };
 		9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */; };
 		A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
-		D501D0F21F8CDE2E007E8B2D /* CustomProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */; };
+		D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */; };
+		D530E3261F9747A500899DAB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530E3251F9747A500899DAB /* Category.swift */; };
 		D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */; };
 		D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59398601F8386B000FD3BB0 /* Products.storyboard */; };
-		D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398621F838AED00FD3BB0 /* ProductsViewController.swift */; };
-		D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */; };
-		D59398691F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398681F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift */; };
+		D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398621F838AED00FD3BB0 /* CategoriesViewController.swift */; };
+		D59398671F8397D200FD3BB0 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398661F8397D200FD3BB0 /* CategoryCell.swift */; };
+		D59398691F84F13E00FD3BB0 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59398681F84F13E00FD3BB0 /* ProductsViewController.swift */; };
 		EBAF35BC201ED70D0EF31BFF /* Pods_ISXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C5EB799CD2580BE60103A6 /* Pods_ISXTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,12 +94,13 @@
 		A4250F711F83848A0069C483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
-		D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProductCell.swift; sourceTree = "<group>"; };
+		D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		D530E3251F9747A500899DAB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoController.swift; sourceTree = "<group>"; };
 		D59398601F8386B000FD3BB0 /* Products.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
-		D59398621F838AED00FD3BB0 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
-		D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryCell.swift; sourceTree = "<group>"; };
-		D59398681F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsFromCategoriesController.swift; sourceTree = "<group>"; };
+		D59398621F838AED00FD3BB0 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		D59398661F8397D200FD3BB0 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		D59398681F84F13E00FD3BB0 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		E5966162132F592CAFE63201 /* Pods_ISXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECEFCD7C301053E68B22F392 /* Pods-ISXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,10 +176,10 @@
 				9ADCF9891F7A95F400DB3C5A /* Info.plist */,
 				9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */,
 				D59398601F8386B000FD3BB0 /* Products.storyboard */,
-				D59398621F838AED00FD3BB0 /* ProductsViewController.swift */,
-				D59398661F8397D200FD3BB0 /* CustomCategoryCell.swift */,
-				D59398681F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift */,
-				D501D0F11F8CDE2E007E8B2D /* CustomProductCell.swift */,
+				D59398621F838AED00FD3BB0 /* CategoriesViewController.swift */,
+				D59398661F8397D200FD3BB0 /* CategoryCell.swift */,
+				D59398681F84F13E00FD3BB0 /* ProductsViewController.swift */,
+				D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */,
 				2476DCA31F838B2A00E5B03F /* HomeViewController.swift */,
 				2476D9C71F839FC200686C1E /* CustomSuggestionProductsCell.swift */,
 				9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */,
@@ -192,6 +194,7 @@
 				9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */,
 				240F1A031F8CF36200702B4B /* Constants.swift */,
 				D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */,
+				D530E3251F9747A500899DAB /* Category.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -532,9 +535,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D501D0F21F8CDE2E007E8B2D /* CustomProductCell.swift in Sources */,
-				D59398671F8397D200FD3BB0 /* CustomCategoryCell.swift in Sources */,
-				D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */,
+				D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */,
+				D59398671F8397D200FD3BB0 /* CategoryCell.swift in Sources */,
+				D530E3261F9747A500899DAB /* Category.swift in Sources */,
+				D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */,
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
 				2476D9C81F839FC200686C1E /* CustomSuggestionProductsCell.swift in Sources */,
@@ -543,7 +547,7 @@
 				9A535EA91F84E877000AF927 /* RequestCell.swift in Sources */,
 				9A535EA71F84E164000AF927 /* CabinCrewViewController.swift in Sources */,
 				9ADCF9801F7A95F400DB3C5A /* ViewController.swift in Sources */,
-				D59398691F84F13E00FD3BB0 /* ProductsFromCategoriesController.swift in Sources */,
+				D59398691F84F13E00FD3BB0 /* ProductsViewController.swift in Sources */,
 				9A8E617C1F8CC95E00E9C5BB /* FavoritesCell.swift in Sources */,
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
 				2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */,
@@ -719,10 +723,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62FNX657RS;
+				DEVELOPMENT_TEAM = 5T22TFL7PY;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KLM.ISX.HVA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KLM.ISX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -735,10 +739,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62FNX657RS;
+				DEVELOPMENT_TEAM = 5T22TFL7PY;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KLM.ISX.HVA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KLM.ISX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -134,16 +134,24 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-d2-zUc">
                                                     <rect key="frame" x="0.0" y="271" width="240" height="54"/>
                                                     <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="Title" textAlignment="natural" minimumFontSize="17" disabledBackground="true" translatesAutoresizingMaskIntoConstraints="NO" id="567-oI-B6D">
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="Title" textAlignment="natural" minimumFontSize="17" disabledBackground="true" translatesAutoresizingMaskIntoConstraints="NO" id="567-oI-B6D">
                                                             <rect key="frame" x="8" y="4" width="224" height="17"/>
                                                             <color key="tintColor" red="0.80784313725490198" green="0.82745098039215681" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="€ 299" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J50-6L-mHH">
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="€ 299" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J50-6L-mHH">
                                                             <rect key="frame" x="8" y="29" width="224" height="17"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

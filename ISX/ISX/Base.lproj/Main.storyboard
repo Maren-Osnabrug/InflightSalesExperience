@@ -204,14 +204,14 @@
                                     </collectionView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="height" secondItem="ZAT-Bm-L5u" secondAttribute="height" id="8xp-t1-LWm"/>
+                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="91s-NS-EkM"/>
                                     <constraint firstAttribute="trailing" secondItem="Hdx-o0-b9z" secondAttribute="trailing" id="EDB-7W-dMs"/>
-                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="KbR-Xz-ocg"/>
                                     <constraint firstAttribute="trailing" secondItem="cbA-ab-eza" secondAttribute="trailing" id="Q2d-qN-PHo"/>
                                     <constraint firstItem="cbA-ab-eza" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="Vfx-49-Api"/>
                                     <constraint firstItem="Hdx-o0-b9z" firstAttribute="top" secondItem="ZAT-Bm-L5u" secondAttribute="top" id="Wmn-TQ-OqQ"/>
                                     <constraint firstItem="cbA-ab-eza" firstAttribute="top" secondItem="Hdx-o0-b9z" secondAttribute="bottom" id="pYm-s5-A8D"/>
                                     <constraint firstAttribute="bottom" secondItem="sAq-uk-KOL" secondAttribute="bottom" id="pkN-rB-PTD"/>
+                                    <constraint firstItem="sAq-uk-KOL" firstAttribute="height" secondItem="ZAT-Bm-L5u" secondAttribute="height" id="r5w-sJ-1ch"/>
                                     <constraint firstItem="Hdx-o0-b9z" firstAttribute="leading" secondItem="ZAT-Bm-L5u" secondAttribute="leading" id="tUi-ky-t0L"/>
                                     <constraint firstAttribute="trailing" secondItem="sAq-uk-KOL" secondAttribute="trailing" id="tc6-ZJ-BIf"/>
                                     <constraint firstItem="Hdx-o0-b9z" firstAttribute="width" secondItem="ZAT-Bm-L5u" secondAttribute="width" id="tc6-yP-BGv"/>

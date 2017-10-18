@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-// Border bottom code
 extension UIView {
     func addBottomBorder(color: UIColor, width: CGFloat) {
         let border = CALayer()
@@ -31,7 +30,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var productsArray = [Product]()
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var suggestionProductsArray = [Product]()
-    
     var selectedProduct: Product?
     
     override func viewDidLoad() {
@@ -49,10 +47,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = datarootRef?.child("products")
         configureDatabase()
-        
-//        if let flowLayout = suggestionCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

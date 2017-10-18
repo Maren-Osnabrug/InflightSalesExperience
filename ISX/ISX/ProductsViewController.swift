@@ -21,7 +21,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         case sortPrice = "Price (Low-High)"
  
         func getDisplayText() -> String {
-            return "Sorteer op: " + rawValue
+            return Constants.sortBy + rawValue
         }
         
     }
@@ -41,7 +41,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProductsViewController.onClickSortLabel))
         sortLabel.addGestureRecognizer(tap)
-        sortLabel.text = Constants.sortedBy + sortableProperties.sortRelevant.rawValue
+        sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue
     
         title = "Products"
         

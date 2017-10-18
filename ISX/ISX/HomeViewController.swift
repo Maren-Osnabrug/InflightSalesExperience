@@ -67,19 +67,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let suggestionProductCell = suggestionProductsCollectionView.dequeueReusableCell(withReuseIdentifier: "suggestionProductCell", for: indexPath) as! SuggestionProductCell
-        
-        suggestionProductCell.suggestionProductImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
-        suggestionProductCell.suggestionProductLabel.text = suggestionProductsArray[indexPath.row].title
-        
-        suggestionProductCell.backgroundColor = Constants.grey
-        suggestionProductCell.suggestionProductTextContainer.backgroundColor = Constants.blue
-        return suggestionProductCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell else { return UICollectionViewCell() }
+        cell.setupStyling()
+        cell.suggestionImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
+        cell.suggestionLabel.text = suggestionProductsArray[indexPath.row].title
+
+        return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + Constants.sectionInsetsCollectionView)) / Constants.devideFactorItemCollectionView
-        return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorItemSize)
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + Constants.sectionInsetsCollectionView)) / Constants.dividingFactorCollectionViewCell
+        return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorCollectionViewCell)
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

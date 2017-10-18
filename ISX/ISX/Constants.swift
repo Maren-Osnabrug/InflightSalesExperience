@@ -15,6 +15,6 @@ struct Constants {
     static let orange = UIColor(red:0.89, green:0.45, blue:0.13, alpha:1.0)
     
     static let sectionInsetsCollectionView: CGFloat = 60
-    static let devideFactorItemCollectionView: CGFloat = 2
-    static let multiplierFactorItemSize: CGFloat = 1.3
+    static let dividingFactorCollectionViewCell: CGFloat = 2
+    static let multiplierFactorCollectionViewCell: CGFloat = 1.3
 }

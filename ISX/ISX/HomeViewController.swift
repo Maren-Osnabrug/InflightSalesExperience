@@ -80,4 +80,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         customCell.suggestionProductTextContainer.backgroundColor = Constants.blue
         return customCell
     }
+    
+    func didTapSearch() {
+        let searchViewController = storyboard?.instantiateViewController(withIdentifier: "searchView")
+        
+        let navigationControler = UINavigationController(rootViewController: searchViewController!)
+        navigationControler.setViewControllers([searchViewController!], animated: false)
+        navigationControler.modalTransitionStyle = .crossDissolve
+        navigationControler.modalPresentationStyle = .overCurrentContext
+        present(navigationControler, animated: true, completion: nil)
+        
+        //        self.tabBarController?.tabBar.tintColor
+    }
+    
+    @IBAction func searchButton(_ sender: Any) {
+        didTapSearch()
+    }
 }

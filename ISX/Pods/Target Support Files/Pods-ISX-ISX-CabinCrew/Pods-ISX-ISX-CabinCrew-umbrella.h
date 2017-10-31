@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ISXTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ISXTestsVersionString[];
+FOUNDATION_EXPORT double Pods_ISX_ISX_CabinCrewVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_ISX_ISX_CabinCrewVersionString[];
 

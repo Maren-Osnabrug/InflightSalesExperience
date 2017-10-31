@@ -9,105 +9,7 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Helvetica.ttc">
-            <string>Helvetica-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
-        <!--CabinCrew-->
-        <scene sceneID="VVL-hk-XuS">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CabinCrew" id="mxV-Kp-lqJ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Llt-Qx-eq3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="487" y="-336"/>
-        </scene>
-        <!--Login View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mailadres" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gkc-zs-Pb0" userLabel="emailTextfield">
-                                <rect key="frame" x="50" y="278.5" width="275" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="YbB-K7-0zY"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wachtwoord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="st2-OG-KV4" userLabel="passwordTextfield">
-                                <rect key="frame" x="50" y="320" width="275" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpS-fK-X4Q" userLabel="loginButton">
-                                <rect key="frame" x="50" y="380" width="275" height="34"/>
-                                <color key="backgroundColor" red="0.8901960784313725" green="0.44705882352941173" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="19"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yZU-dS-Wsh"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ISX" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-gy-Eui">
-                                <rect key="frame" x="-236" y="70" width="847" height="158.5"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mT2-2R-1Rw">
-                                <rect key="frame" x="50" y="422" width="275" height="34"/>
-                                <color key="backgroundColor" red="0.89019607840000003" green="0.44705882349999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="19"/>
-                                <state key="normal" title="Passagier">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="olZ-DO-deZ" kind="show" identifier="passengerSeque" id="xYd-Lt-F3g"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.050980392156862744" green="0.65098039215686276" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mT2-2R-1Rw" secondAttribute="trailing" constant="50" id="010-zY-bvk"/>
-                            <constraint firstItem="st2-OG-KV4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="1q1-le-IP2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PpS-fK-X4Q" secondAttribute="trailing" constant="50" id="5Hs-fp-AE0"/>
-                            <constraint firstItem="8bb-gy-Eui" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="6cn-nJ-OAF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="st2-OG-KV4" secondAttribute="trailing" constant="50" id="7id-xL-Uck"/>
-                            <constraint firstItem="8bb-gy-Eui" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BIQ-5h-g77"/>
-                            <constraint firstItem="st2-OG-KV4" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-8.5" id="CZb-Vc-dzq"/>
-                            <constraint firstItem="Gkc-zs-Pb0" firstAttribute="top" secondItem="8bb-gy-Eui" secondAttribute="bottom" constant="50" id="MLw-bh-674"/>
-                            <constraint firstItem="st2-OG-KV4" firstAttribute="top" secondItem="Gkc-zs-Pb0" secondAttribute="bottom" constant="11.5" id="R8P-uj-exU"/>
-                            <constraint firstItem="mT2-2R-1Rw" firstAttribute="top" secondItem="PpS-fK-X4Q" secondAttribute="bottom" constant="8" id="XNR-9W-0WL"/>
-                            <constraint firstItem="Gkc-zs-Pb0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="eXV-wf-Y1C"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Gkc-zs-Pb0" secondAttribute="trailing" constant="50" id="eYa-K5-DQm"/>
-                            <constraint firstItem="PpS-fK-X4Q" firstAttribute="top" secondItem="st2-OG-KV4" secondAttribute="bottom" constant="30" id="ngj-xf-VVE"/>
-                            <constraint firstItem="mT2-2R-1Rw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="t5e-SS-tqH"/>
-                            <constraint firstItem="PpS-fK-X4Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="tsp-F5-G1j"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <connections>
-                        <outlet property="emailTextField" destination="Gkc-zs-Pb0" id="UWW-xd-28r"/>
-                        <outlet property="passwordTextField" destination="st2-OG-KV4" id="hNz-ge-Max"/>
-                        <segue destination="mxV-Kp-lqJ" kind="show" identifier="loginSeque" id="Jk4-Xn-FhY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-335" y="134"/>
-        </scene>
         <!--FavoritesNavigationController-->
         <scene sceneID="unc-EN-Ilp">
             <objects>
@@ -129,8 +31,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="ZAT-Bm-L5u">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-o0-b9z" userLabel="Banner">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-o0-b9z" userLabel="Banner">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sAq-uk-KOL" userLabel="Suggestion Products Collection View">
                                         <rect key="frame" x="0.0" y="244" width="375" height="554"/>
@@ -369,7 +271,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="igg-Fc-Gtn">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="collectionHeader" id="igg-Fc-Gtn">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -409,7 +311,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ISX" width="847" height="780"/>
         <image name="banner" width="985" height="485"/>
         <image name="home" width="24" height="24"/>
     </resources>

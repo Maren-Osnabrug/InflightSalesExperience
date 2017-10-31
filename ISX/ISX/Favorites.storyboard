@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favoriete producten-->
+        <!--Favorites-->
         <scene sceneID="2xW-oV-xob">
             <objects>
                 <navigationController storyboardIdentifier="FavoritesNavigationController" id="H95-ZD-nU5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favoriete producten" image="favorite" id="fUs-Qd-Lpx" userLabel="Favorites"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="favorite" id="fUs-Qd-Lpx" userLabel="Favorites"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v6k-aE-Soj">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

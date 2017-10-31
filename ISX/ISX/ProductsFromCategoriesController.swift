@@ -31,7 +31,7 @@ class ProductsFromCategoriesController: UIViewController,
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.title = "Products"
+        title = "Products"
         
         getProducts(categoryId: self.categoryID!)
     }
@@ -87,8 +87,6 @@ class ProductsFromCategoriesController: UIViewController,
     //navigationController?.popViewController(animated: true)
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        print("Chosen Product: ", self.chosenProduct!.title, " | de prijs: ", self.chosenProduct!.retailPrice)
-        
         if segue.identifier == "productInfo" {
             if let controller = segue.destination as? ProductInfoController {
                 if let product = self.chosenProduct {

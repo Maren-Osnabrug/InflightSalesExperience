@@ -12,6 +12,7 @@
 		2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476D9C71F839FC200686C1E /* SuggestionCell.swift */; };
 		2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476DCA31F838B2A00E5B03F /* HomeViewController.swift */; };
 		420BDD79A22718DACA1AAC76 /* Pods_ISXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5966162132F592CAFE63201 /* Pods_ISXUITests.framework */; };
+		9A12F2511F9802D4007F3E66 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */; };
 		9A535EA51F84E121000AF927 /* CabinCrew.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A535EA31F84E121000AF927 /* CabinCrew.storyboard */; };
 		9A535EA71F84E164000AF927 /* CabinCrewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */; };
 		9A535EA91F84E877000AF927 /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A535EA81F84E877000AF927 /* RequestCell.swift */; };
@@ -67,6 +68,7 @@
 		5CDAECF6339464562D6F26FD /* Pods-ISX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.debug.xcconfig"; sourceTree = "<group>"; };
 		6CE845F22957F29FC7F91E47 /* Pods-ISX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.release.xcconfig"; sourceTree = "<group>"; };
 		6F2F219022647FDEAAC7C593 /* Pods-ISXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXUITests/Pods-ISXUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		9A535EA41F84E121000AF927 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CabinCrew.storyboard; sourceTree = "<group>"; };
 		9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewViewController.swift; sourceTree = "<group>"; };
 		9A535EA81F84E877000AF927 /* RequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */,
 				240F1A031F8CF36200702B4B /* Constants.swift */,
 				D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */,
+				9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				D59398631F838AED00FD3BB0 /* ProductsViewController.swift in Sources */,
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
+				9A12F2511F9802D4007F3E66 /* HomeCollectionViewController.swift in Sources */,
 				2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */,
 				9A535EAF1F851E96000AF927 /* Request.swift in Sources */,
 				D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */,

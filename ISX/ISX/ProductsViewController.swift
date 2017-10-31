@@ -126,7 +126,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }else {
             counter = 0
             self.productsArray = self.relevantArray
-            self.sortLabel.text = "Sorteer op: " + sortableProperties.sortRelevant.rawValue
+            self.sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue
             self.collectionView.reloadData()
         }
     }

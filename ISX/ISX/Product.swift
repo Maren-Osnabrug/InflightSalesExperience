@@ -41,7 +41,7 @@ class Product {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         bestsellers = snapshotValue["Bestsellers"] as! String
         productGroup = snapshotValue["Product_group"] as! String
-        title = snapshotValue["Product_name_Holland_Herald_WBC_iPad"] as! String
+        title = (snapshotValue["Product_name_Holland_Herald_WBC_iPad"] as! String).capitalized
         description = snapshotValue["Sales_text_HH_WBC_iPad"] as! String
         startDateSHC = snapshotValue["Start_date_SHC"] as! String
         brand = snapshotValue["brand_id"] as! String

@@ -23,7 +23,7 @@ class FavoritesCell: UITableViewCell {
 
     func updateWithFavorite(favorite: Product) {
         productName.text = favorite.title
-        productPrice.text = "€ " + favorite.retailPrice
+        productPrice.text = "€ " + String(favorite.retailPrice)
     }
     
     // PRAGMA MARK: - Private

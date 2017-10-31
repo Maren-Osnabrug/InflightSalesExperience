@@ -2,7 +2,7 @@
 //  ProductsViewController.swift
 //  ISX
 //
-//  Created by Robby Michels on 03-10-17.
+//  Created by Robby Michels on 04-10-17.
 //  Copyright © 2017 Maren Osnabrug. All rights reserved.
 //
 
@@ -10,94 +10,144 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class ProductsViewController: UIViewController, UICollectionViewDelegate,
- UICollectionViewDataSource {
+class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+    @IBOutlet weak var sortLabel: UILabel!
+    @IBOutlet var collectionView: UICollectionView!
+    enum sortableProperties: String {
+        
+        case sortRelevant = "Relevance"
+        case sortTitle = "Title (A-Z)"
+        case sortPrice = "Price (Low-High)"
+ 
+        func getDisplayText() -> String {
+            return Constants.sortBy + rawValue
+        }
+        
+    }
+
+    var productsArray: [Product] = []
+    var productImageArray = ["drank", "elektronica", "kinderen",
+    "parfum", "reizen", "sieraden"]
+    var categoryID: String?
+    var selectedProduct: Product?
+    var counter = 0
     
-    
-    var rootRef: DatabaseReference!
-    var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
-    var categories = [String]()
-    var categoryID = [String]()
-    var initialLoad = true;
-    var chosenCategoryID: String?
-    var chosenCategoryTitle: String?
-    
-    @IBOutlet weak var categoryCollectionView: UICollectionView!
+    //this has to be replaced by an algorithm at some point.
+    var relevantArray: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firebaseData()
-        
-        categoryCollectionView.delegate = self
-        categoryCollectionView.dataSource = self
-
-    }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ProductsViewController.onClickSortLabel))
+        sortLabel.addGestureRecognizer(tap)
+        sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.categories.count
+        title = "Products"
+        
+        getProducts(categoryId: categoryID!)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+   
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        if (productsArray.count < 1) {
+            setLabelOnEmptyCollectionView(emptyArray: true)
+        } else {
+            return productsArray.count
+        }
+        return 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath)
-            as! CustomCategoryCell
-    
-        cell.backgroundColor =  UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
-        
-        cell.categoryCellImage.image = UIImage(named: categoryImages[indexPath.row % categoryImages.count])
-        
-        cell.categoryCellText.text = categories[indexPath.row]
-        cell.categoryCellText.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        cell.categoryCellText.textColor = UIColor.white
-        cell.categoryID = categoryID[indexPath.row]
-
-        return cell
+        setLabelOnEmptyCollectionView(emptyArray: false)
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath)
+            as? ProductCell {
+            cell.setCellData(product: productsArray[indexPath.row], image: productsArray[indexPath.row].image!)
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-    }
-    
-    public func firebaseData(){
-        let datarootRef = Database.database().reference(withPath: "dataroot")
-        let productGroupsRef = datarootRef.child("productGroups")
-        productGroupsRef.observe(.value, with: { snapshot in
+    public func getProducts(categoryId: String) {
+        let rootRef = Database.database().reference(withPath: "dataroot")
+        let productRef = rootRef.child("products")
+        
+        productRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
-                let value = (item as! DataSnapshot).value as? [String:Any]
-                if let name = value!["Product_groep"] as? String {
-                    self.categories.append(name)
-                }
-                
-                if let categoryId = value!["ID"] as? String {
-                    self.categoryID.append(categoryId)
+                if let value = item as? DataSnapshot {
+                    let product = Product(snapshot: value)
+                    product.setProductImage(productImage: UIImage(named: self.productImageArray[Int(arc4random_uniform(UInt32(self.productImageArray.count)))])!)
+                    if product.productGroup.elementsEqual(categoryId) {
+                        self.productsArray.append(product)
+                    }
                 }
             }
-            
-            if (self.initialLoad == true) {
-                self.categoryCollectionView.reloadData()
-                self.initialLoad = false
-            }
+            self.collectionView.reloadData()
         })
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = self.categoryCollectionView!.cellForItem(at: indexPath) as! CustomCategoryCell
-        chosenCategoryID = cell.categoryID!
-        self.chosenCategoryTitle = cell.categoryCellText!.text
-        performSegue(withIdentifier: "productsDetail", sender: self)
+        selectedProduct = productsArray[indexPath.row]
+        performSegue(withIdentifier: "productInfoSegue", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "productsDetail" {
-            if let controller = segue.destination as? ProductsFromCategoriesController {
-                if let catID = self.chosenCategoryID {
-                    controller.categoryID = catID
-                }
-                if let catTitle = self.chosenCategoryTitle {
-                    controller.navigationBarTitle = catTitle
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "productInfoSegue" {
+            if let nextViewController = segue.destination as? ProductInfoController {
+                if let product = selectedProduct {
+                    nextViewController.product = product
                 }
             }
         }
+    }
+    
+    func sortFor(property: sortableProperties) {
+        var toReturn = [Product]()
+        if (property == sortableProperties.sortTitle) {
+            relevantArray = productsArray
+            toReturn = productsArray.sorted(by: { $0.title < $1.title })
+        } else if (property == sortableProperties.sortPrice) {
+            toReturn = productsArray.sorted(by: { $0.retailPrice < $1.retailPrice } )
+        }
+        
+        productsArray = toReturn
+        sortLabel.text = property.getDisplayText()
+        collectionView.reloadData()
+    }
+    
+    @objc func onClickSortLabel() {
+        if (counter == 0) {
+            counter += 1
+            sortFor(property: sortableProperties.sortTitle)
+        }else if (counter == 1) {
+            counter += 1
+            sortFor(property: sortableProperties.sortPrice)
+        }else {
+            counter = 0
+            self.productsArray = self.relevantArray
+            self.sortLabel.text = "Sorteer op: " + sortableProperties.sortRelevant.rawValue
+            self.collectionView.reloadData()
+        }
+    }
+
+    
+    func setLabelOnEmptyCollectionView(emptyArray: Bool) {
+        let emptyLabel = getNoProductsLabel()
+        
+        if emptyArray {
+            collectionView.backgroundView = emptyLabel
+        } else {
+            collectionView.backgroundView = nil
+        }
+    }
+    
+    func getNoProductsLabel() -> UILabel {
+        let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        emptyLabel.text = "Unfortunately there were no products found in this category. Please choose one of our other categories"
+        emptyLabel.textColor = UIColor(red:0.81, green:0.83, blue:0.82, alpha:1.0)
+        emptyLabel.numberOfLines = 3
+        emptyLabel.textAlignment = NSTextAlignment.center
+        return emptyLabel
     }
 }

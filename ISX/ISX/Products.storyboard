@@ -13,7 +13,7 @@
         <!--Categories-->
         <scene sceneID="r0B-u9-BR8">
             <objects>
-                <viewController id="sKx-FD-WLO" customClass="ProductsViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sKx-FD-WLO" customClass="CategoriesViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4De-1t-pQu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
                                     <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="customCell" id="VZS-Rl-2m4" customClass="CustomCategoryCell" customModule="ISX" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="categoryCell" id="VZS-Rl-2m4" customClass="CategoryCell" customModule="ISX" customModuleProvider="target">
                                         <rect key="frame" x="67.5" y="20" width="240" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -60,8 +60,8 @@
                                         </constraints>
                                         <size key="customSize" width="240" height="300"/>
                                         <connections>
-                                            <outlet property="categoryCellImage" destination="cSk-1i-CPw" id="yQt-Lz-2Ii"/>
-                                            <outlet property="categoryCellText" destination="6Xg-lU-M7q" id="hXA-5w-GFh"/>
+                                            <outlet property="categoryImage" destination="cSk-1i-CPw" id="6Z3-M8-EmF"/>
+                                            <outlet property="categoryTitle" destination="6Xg-lU-M7q" id="Qf7-kf-AhU"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -78,18 +78,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="Categories" id="kRf-GP-oFM"/>
                     <connections>
-                        <outlet property="categoryCollectionView" destination="vHw-nb-yfw" id="1TL-4G-Zmo"/>
-                        <segue destination="Q3f-9C-Rck" kind="show" identifier="productsDetail" id="F4X-hc-4I7"/>
+                        <outlet property="categoryCollectionView" destination="vHw-nb-yfw" id="Usl-ZW-6HB"/>
+                        <segue destination="Q3f-9C-Rck" kind="show" identifier="productsDetailSegue" id="F4X-hc-4I7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5Q-Yi-gL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="233.33333333333334" y="-149.18478260869566"/>
         </scene>
-        <!--Products From Categories Controller-->
+        <!--Products View Controller-->
         <scene sceneID="KbV-iq-D7t">
             <objects>
-                <viewController storyboardIdentifier="productPerCategoryScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q3f-9C-Rck" customClass="ProductsFromCategoriesController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productPerCategoryScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q3f-9C-Rck" customClass="ProductsViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rbq-sn-DAN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,26 +97,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEs-Ik-IcW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpF-4r-brY">
-                                        <rect key="frame" x="299.5" y="14.5" width="55.5" height="21"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorteer op" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpF-4r-brY">
+                                        <rect key="frame" x="273.5" y="14.5" width="81.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.89019607840000003" green="0.44705882349999998" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkm-Ww-C0n">
-                                        <rect key="frame" x="20" y="14.5" width="38.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.8901960784313725" green="0.44705882352941173" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="fkm-Ww-C0n" firstAttribute="leading" secondItem="xEs-Ik-IcW" secondAttribute="leading" constant="20" id="9hv-nq-68u"/>
                                     <constraint firstAttribute="trailing" secondItem="CpF-4r-brY" secondAttribute="trailing" constant="20" id="ABb-pZ-UDf"/>
                                     <constraint firstItem="CpF-4r-brY" firstAttribute="centerY" secondItem="xEs-Ik-IcW" secondAttribute="centerY" id="bmc-1j-RJL"/>
                                     <constraint firstAttribute="height" constant="50" id="hXs-35-qx7"/>
-                                    <constraint firstItem="fkm-Ww-C0n" firstAttribute="centerY" secondItem="xEs-Ik-IcW" secondAttribute="centerY" id="pfC-Qu-Gv9"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eHS-38-Pd8">
@@ -129,7 +121,7 @@
                                     <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CustomProductCell" id="2eq-gj-LnQ" customClass="CustomProductCell" customModule="ISX" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="ProductCell" id="2eq-gj-LnQ" customClass="ProductCell" customModule="ISX" customModuleProvider="target">
                                         <rect key="frame" x="67.5" y="20" width="240" height="325"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -142,8 +134,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-d2-zUc">
                                                     <rect key="frame" x="0.0" y="271" width="241" height="54"/>
                                                     <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="Title" textAlignment="natural" minimumFontSize="17" disabledBackground="true" translatesAutoresizingMaskIntoConstraints="NO" id="567-oI-B6D">
-                                                            <rect key="frame" x="8" y="4" width="225" height="17"/>
+                                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="Title" textAlignment="natural" minimumFontSize="17" disabledBackground="true" translatesAutoresizingMaskIntoConstraints="NO" id="567-oI-B6D">
+                                                            <rect key="frame" x="8" y="4" width="224" height="17"/>
+                                                            <color key="tintColor" red="0.80784313725490198" green="0.82745098039215681" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
@@ -151,6 +148,10 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="€ 299" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J50-6L-mHH">
                                                             <rect key="frame" x="8" y="29" width="225" height="17"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -183,9 +184,9 @@
                                         </constraints>
                                         <size key="customSize" width="240" height="325"/>
                                         <connections>
-                                            <outlet property="productCellImage" destination="XLq-Rq-XEl" id="6GN-kQ-Gxc"/>
-                                            <outlet property="productCellPrice" destination="J50-6L-mHH" id="Fmc-xP-lqj"/>
-                                            <outlet property="productCellTitle" destination="567-oI-B6D" id="OwV-au-cqK"/>
+                                            <outlet property="productImage" destination="XLq-Rq-XEl" id="YKA-pn-d2X"/>
+                                            <outlet property="productPrice" destination="J50-6L-mHH" id="wmG-0I-sQT"/>
+                                            <outlet property="productTitle" destination="567-oI-B6D" id="cbY-Jv-uHw"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -212,8 +213,9 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="eHS-38-Pd8" id="tdl-28-MAj"/>
-                        <segue destination="5Xn-Ux-o2a" kind="show" identifier="productInfo" id="nbx-5t-g01"/>
+                        <outlet property="collectionView" destination="eHS-38-Pd8" id="1ff-Lf-a6H"/>
+                        <outlet property="sortLabel" destination="CpF-4r-brY" id="dA7-E5-dzM"/>
+                        <segue destination="5Xn-Ux-o2a" kind="show" identifier="productInfoSegue" id="nbx-5t-g01"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="raz-6o-GeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

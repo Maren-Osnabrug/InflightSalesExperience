@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import UIKit
 
 class Product {
     
@@ -20,7 +21,7 @@ class Product {
     let localPrice: String = ""
     let prologisticaNumberHH: String
     let id: String
-    let retailPrice: String
+    let retailPrice: Int
     let Did_You_Know_iPad: String = ""
     let Drawer_EUR_Norway_Suisse: String = ""
     let Drawer_EUR_extended: String = ""
@@ -31,6 +32,7 @@ class Product {
     let KLM_Only: String = ""
     let Save_21: String = ""
     let Tax_Free_Exclusive: Bool = false
+    var image: UIImage?
     // self defined variables
     let ref: DatabaseReference?
     var favorite: Bool
@@ -46,7 +48,13 @@ class Product {
 //        localPrice = snapshotValue["local_price"] != nil ? snapshotValue["local_price"] as! String : ""
         prologisticaNumberHH = snapshotValue["prologistica_number_HH"] as! String
         id = snapshotValue["sku"] as! String
-        retailPrice = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String
+        
+        if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
+            retailPrice = price
+        } else {
+           retailPrice = 0
+        }
+        
         self.ref = snapshot.ref
         if (snapshotValue["favorite"] == nil) {
             snapshot.ref.updateChildValues([
@@ -67,6 +75,10 @@ class Product {
         //        KLM_Only = snapshotValue["KLM_Only"] as! String
         //        Save_21 = snapshotValue["Save_21"] as! String
         //        Tax_Free_Exclusive = snapshotValue["Tax_Free_Exclusive"] as! String
+    }
+    
+    func setProductImage(productImage: UIImage) {
+        image = productImage
     }
     
     func changeFavoriteStatus() {

@@ -84,6 +84,11 @@ class ProductInfoController : UIViewController {
         title = product?.title
         setupReferences()
         setupStyling()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = Constants.blue
+        for view in (navigationController?.navigationBar.subviews)! {
+            view.backgroundColor = Constants.blue
+        }
     }
     
     func setupReferences() {

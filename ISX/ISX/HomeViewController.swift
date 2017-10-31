@@ -83,14 +83,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func didTapSearch() {
         let searchViewController = storyboard?.instantiateViewController(withIdentifier: "searchView")
-        
-        let navigationControler = UINavigationController(rootViewController: searchViewController!)
-        navigationControler.setViewControllers([searchViewController!], animated: false)
-        navigationControler.modalTransitionStyle = .crossDissolve
-        navigationControler.modalPresentationStyle = .overCurrentContext
-        present(navigationControler, animated: true, completion: nil)
-        
-        //        self.tabBarController?.tabBar.tintColor
+        let navigationController = UINavigationController(rootViewController: searchViewController!)
+        navigationController.setViewControllers([searchViewController!], animated: false)
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(navigationController, animated: true, completion: nil)
     }
     
     @IBAction func searchButton(_ sender: Any) {

@@ -269,10 +269,21 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="1As-sK-3Sa" userLabel="Search"/>
+                    <connections>
+                        <segue destination="7wQ-c9-LlC" kind="show" identifier="searchToProductInfoSegue" id="tsW-f3-u3Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gy-8g-GaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3028" y="-598"/>
+        </scene>
+        <!--ProductInfoController-->
+        <scene sceneID="Ko9-Cf-bN9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Products" referencedIdentifier="ProductInfoController" id="7wQ-c9-LlC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23Q-kJ-Say" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3793" y="-598"/>
         </scene>
         <!--Home-->
         <scene sceneID="RFF-rx-eDB">

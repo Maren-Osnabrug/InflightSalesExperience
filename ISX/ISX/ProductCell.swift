@@ -28,7 +28,7 @@ class ProductCell: UICollectionViewCell {
     }
     
     func setupStyling(){
-        backgroundColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
+        backgroundColor = Constants.darkGrey
     }
     
 }

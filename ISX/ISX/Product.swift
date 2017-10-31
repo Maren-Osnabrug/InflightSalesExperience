@@ -77,7 +77,7 @@ class Product {
         //        Tax_Free_Exclusive = snapshotValue["Tax_Free_Exclusive"] as! String
     }
     
-    func setProductImage(productImage: UIImage){
+    func setProductImage(productImage: UIImage) {
         image = productImage
     }
     

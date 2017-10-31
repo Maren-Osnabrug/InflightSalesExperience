@@ -61,12 +61,12 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         setLabelOnEmptyCollectionView(emptyArray: false)
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath)
-                as! ProductCell
-        
-        cell.setCellData(product: productsArray[indexPath.row], image: productsArray[indexPath.row].image!)
-        
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath)
+            as? ProductCell {
+            cell.setCellData(product: productsArray[indexPath.row], image: productsArray[indexPath.row].image!)
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
     public func getProducts(categoryId: String) {
@@ -113,7 +113,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         productsArray = toReturn
         sortLabel.text = property.getDisplayText()
-        reloadCollectionViewData()
+        collectionView.reloadData()
     }
     
     @objc func onClickSortLabel() {
@@ -127,13 +127,10 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
             counter = 0
             self.productsArray = self.relevantArray
             self.sortLabel.text = "Sorteer op: " + sortableProperties.sortRelevant.rawValue
-            reloadCollectionViewData()
+            self.collectionView.reloadData()
         }
     }
-    
-    func reloadCollectionViewData() {
-        self.collectionView.reloadData()
-    }
+
     
     func setLabelOnEmptyCollectionView(emptyArray: Bool) {
         let emptyLabel = getNoProductsLabel()

@@ -8,17 +8,24 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class Category {
     
     let categoryID: String
     let categoryName: String
     let categoryImage: UIImage
+    let ref: DatabaseReference?
     
-    init(categoryID: String, categoryName: String, categoryImage: UIImage){
-        self.categoryID = categoryID
-        self.categoryName = categoryName
-        self.categoryImage = categoryImage
+    //fetch from firebase later.
+    var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden",
+                          "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
+    
+    init(snapshot: DataSnapshot) {
+        let dict = snapshot.value as! [String:AnyObject]
+        categoryID = dict["ID"] as! String
+        categoryName = dict["Product_groep"] as! String
+        categoryImage = UIImage(named: self.categoryImages[Int(arc4random_uniform(UInt32(self.categoryImages.count)))])!
+        self.ref = snapshot.ref
     }
-    
 }

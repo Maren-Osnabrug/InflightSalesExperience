@@ -19,7 +19,7 @@ class CategoryCell: UICollectionViewCell {
         setupStyling()
     }
     
-    func setCellData(category: Category){
+    func setCategoryData(category: Category){
         categoryID = category.categoryID
         categoryTitle.text = category.categoryName
         categoryImage.image = category.categoryImage
@@ -27,7 +27,7 @@ class CategoryCell: UICollectionViewCell {
     
     func setupStyling(){
         backgroundColor =  Constants.darkGrey
-        categoryTitle.backgroundColor = UIColor(red:0.05, green:0.65, blue:0.88, alpha:1.0)
-        categoryTitle.textColor = UIColor.white
+        categoryTitle.backgroundColor = Constants.blue
+        categoryTitle.textColor = .white
     }
 }

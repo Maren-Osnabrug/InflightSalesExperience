@@ -32,10 +32,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath)
-            as! CategoryCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath)
+            as? CategoryCell else {
+                return UICollectionViewCell()
+        }
         
-        cell.setCellData(category: categoryArray[indexPath.row])
+        cell.setCategoryData(category: categoryArray[indexPath.row])
         return cell
     }
     
@@ -43,16 +45,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         let datarootRef = Database.database().reference(withPath: "dataroot")
         let productGroupsRef = datarootRef.child("productGroups")
         
-        // rewrite with model
         productGroupsRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
-                let value = (item as! DataSnapshot).value as? [String:Any]
-                if let name = value!["Product_groep"] as? String {
-                    if let categoryId = value!["ID"] as? String {
-                        let category = Category(categoryID: categoryId, categoryName: name,
-                                                categoryImage: UIImage(named: self.categoryImages[Int(arc4random_uniform(UInt32(self.categoryImages.count)))])!)
-                        self.categoryArray.append(category)
-                    }
+                if let value = item as? DataSnapshot {
+                    let category = Category(snapshot: value)
+                    self.categoryArray.append(category)
                 }
             }
             self.categoryCollectionView.reloadData()

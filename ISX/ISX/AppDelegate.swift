@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Google
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         UINavigationBar.appearance().barStyle = UIBarStyle.blackOpaque
         UINavigationBar.appearance().tintColor = .white
         FirebaseApp.configure()
+        
+        if let gai = GAI.sharedInstance(),
+            let gaConfigValues = Bundle.main.infoDictionary?["GoogleAnalytics"] as? [String: String],
+            let trackingId = gaConfigValues["TRACKING_ID"] {
+                gai.logger.logLevel = .verbose
+                gai.trackUncaughtExceptions = false
+                gai.tracker(withTrackingId: trackingId)
+            } else {
+                assertionFailure("Google Analytics not configured correctly")
+            }
         return true
     }
 

@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import Google
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         UICollectionViewDataSource {
     
+    let screenName = "Categories Overview"
     var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden",
                           "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
     var selectedCategoryID: String?
@@ -22,6 +24,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let googleAnalyticsTracker = GAI.sharedInstance().defaultTracker else { return }
+        googleAnalyticsTracker.set(kGAIScreenName, value: screenName)
+        
+        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
+        googleAnalyticsTracker.send(builder.build() as NSDictionary as [NSObject : AnyObject])
+        
         getFirebaseData()
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self

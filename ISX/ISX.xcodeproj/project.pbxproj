@@ -235,6 +235,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D5C19FE01FA8CAC400CCFFF7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		9ADCF9791F7A95F400DB3C5A /* ISX */ = {
 			isa = PBXNativeTarget;
@@ -246,6 +256,7 @@
 				9ADCF9781F7A95F400DB3C5A /* Resources */,
 				ED78E0BF91517A0FB4703D39 /* [CP] Embed Pods Frameworks */,
 				195D4FAAC53CE846D772A974 /* [CP] Copy Pods Resources */,
+				D5C19FE01FA8CAC400CCFFF7 /* Headers */,
 			);
 			buildRules = (
 			);

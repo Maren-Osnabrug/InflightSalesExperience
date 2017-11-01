@@ -31,7 +31,7 @@ class ProductsFromCategoriesController: UIViewController,
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.title = "Products"
+        title = "Products"
         
         getProducts(categoryId: self.categoryID!)
     }
@@ -46,7 +46,8 @@ class ProductsFromCategoriesController: UIViewController,
         
         cell.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
         
-        cell.productCellImage.image = UIImage(named: productImageArray[indexPath.row % productImageArray.count])
+        cell.productCellImage.image = UIImage.
+            UIImage(named: productImageArray[indexPath.row % productImageArray.count])
         cell.productCellTitle.text = productArray[indexPath.row].title
         cell.productCellPrice.text = "€" + productArray[indexPath.row].retailPrice
         
@@ -87,8 +88,6 @@ class ProductsFromCategoriesController: UIViewController,
     //navigationController?.popViewController(animated: true)
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        print("Chosen Product: ", self.chosenProduct!.title, " | de prijs: ", self.chosenProduct!.retailPrice)
-        
         if segue.identifier == "productInfo" {
             if let controller = segue.destination as? ProductInfoController {
                 if let product = self.chosenProduct {

@@ -98,7 +98,7 @@ class ProductInfoController : UIViewController {
         }
         productImageView.image = UIImage(named: "parfum")
         productTitleLabel.text = product.title
-        priceLabel.text = "€" + (product.retailPrice)
+        priceLabel.text = "€" + String(product.retailPrice)
         descriptionTextView!.text = product.description
         descriptionTextView.textContainerInset = .zero
         descriptionTextView.textContainer.lineFragmentPadding = 0

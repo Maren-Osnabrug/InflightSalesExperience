@@ -46,7 +46,8 @@ class ProductsFromCategoriesController: UIViewController,
         
         cell.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
         
-        cell.productCellImage.image = UIImage(named: productImageArray[indexPath.row % productImageArray.count])
+        cell.productCellImage.image = UIImage.
+            UIImage(named: productImageArray[indexPath.row % productImageArray.count])
         cell.productCellTitle.text = productArray[indexPath.row].title
         cell.productCellPrice.text = "€" + productArray[indexPath.row].retailPrice
         

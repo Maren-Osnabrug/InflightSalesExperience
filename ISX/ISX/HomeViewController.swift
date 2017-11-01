@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
-import Google
 
 extension UIView {
     func addBottomBorder(color: UIColor, width: CGFloat) {
@@ -33,17 +32,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var suggestionProductsArray = [Product]()
     var selectedProduct: Product?
-    let screenName = "Home"
+    private let viewName = "Home"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        guard let googleAnalyticsTracker = GAI.sharedInstance().defaultTracker else { return }
-        googleAnalyticsTracker.set(kGAIScreenName, value: screenName)
-        
-        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
-        googleAnalyticsTracker.send(builder.build() as NSDictionary as [NSObject : AnyObject])
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         
         suggestionProductsCollectionView.delegate = self
         suggestionProductsCollectionView.dataSource = self
@@ -98,6 +93,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if let nextViewController = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     nextViewController.product = product
+                    GoogleAnalyticsHelper().googleAnalyticLogAction(category: "suggestions", action: "Look at product", label: product.title)
                 }
             }
         }

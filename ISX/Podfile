@@ -7,17 +7,16 @@ target 'ISX' do
 	pod 'Firebase/Core'
     pod 'Firebase/Database'
 	pod 'Firebase/Auth'
-    pod 'Google/Analytics'
+    pod 'GoogleAnalytics'
   # Pods for ISX
 
-  target 'ISXTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'ISXUITests' do
-    inherit! :search_paths
-    # Pods for testing
+  target 'ISX-CabinCrew' do
+      use_frameworks!
+      pod 'Firebase/Core'
+      pod 'Firebase/Database'
+      pod 'Firebase/Auth'
+      
+   # Pods for ISX-CabinCrew
   end
 
 end

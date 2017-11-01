@@ -28,6 +28,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
         searchController.searchBar.backgroundColor = Constants.blue
+        navigationController?.navigationBar.barTintColor = Constants.blue
+        searchController.searchBar.delegate = self
         
         datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = datarootRef?.child("products")
@@ -42,6 +44,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         })
+    }
+    
+    /*
+     Exit search when cancel is clicked
+     */
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("search cancel")
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: false, completion: nil)
     }
     
     /*

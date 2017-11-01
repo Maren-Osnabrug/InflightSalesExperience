@@ -50,7 +50,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      Exit search when cancel is clicked
      */
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("search cancel")
         navigationController?.popViewController(animated: true)
         dismiss(animated: false, completion: nil)
     }

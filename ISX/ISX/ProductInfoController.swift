@@ -84,6 +84,21 @@ class ProductInfoController : UIViewController {
         title = product?.title
         setupReferences()
         setupStyling()
+        observeRequests()
+    }
+    
+    func observeRequests() {
+        product?.ref?.observe(.childChanged, with: { snapshot in
+            print(snapshot)
+//            for item in snapshot.children {
+//            }
+        })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("VDA", product?.favorite)
+        setupStyling()
     }
     
     func setupReferences() {

@@ -14,7 +14,9 @@ class GoogleAnalyticsHelper {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: screen)
         
-        let build = (GAIDictionaryBuilder.createScreenView().build() as NSDictionary) as! [AnyHashable: Any]
+        guard let build = (GAIDictionaryBuilder.createScreenView().build() as NSDictionary) as? [AnyHashable: Any] else {
+            return print("Couldnt build GAI DictionaryBuilder")
+        }
         tracker?.send(build)
     }
     
@@ -22,8 +24,10 @@ class GoogleAnalyticsHelper {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIEventAction, value: action)
         
-        let build = (GAIDictionaryBuilder.createEvent(withCategory: category, action: action,
-                                                      label: label, value: nil).build() as NSDictionary) as! [AnyHashable: Any]
+        guard let build = (GAIDictionaryBuilder.createEvent(withCategory: category, action: action,
+                                                            label: label, value: nil).build() as NSDictionary) as? [AnyHashable: Any] else {
+            return print("Couldn't build GAI DictionaryBuilder")
+        }
         tracker?.send(build)
     }
 }

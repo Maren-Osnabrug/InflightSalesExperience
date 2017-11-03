@@ -39,7 +39,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Do any additional setup after loading the view, typically from a nib.
         
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
-        
         suggestionProductsCollectionView.delegate = self
         suggestionProductsCollectionView.dataSource = self
         

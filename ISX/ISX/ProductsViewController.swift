@@ -32,12 +32,15 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var categoryID: String?
     var selectedProduct: Product?
     var counter = 0
+    private let viewName = "Product Overview"
     
     //this has to be replaced by an algorithm at some point.
     var relevantArray: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProductsViewController.onClickSortLabel))
         sortLabel.addGestureRecognizer(tap)
@@ -97,6 +100,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
             if let nextViewController = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     nextViewController.product = product
+                    GoogleAnalyticsHelper().googleAnalyticLogAction(category: viewName, action: "Look at product", label: product.title)
                 }
             }
         }

@@ -12,7 +12,8 @@ class SuggestionCell: UICollectionViewCell {
 
     @IBOutlet weak var suggestionImage: UIImageView!
     @IBOutlet weak var suggestionTextContainer: UIView!
-    @IBOutlet weak var suggestionLabel: UILabel!
+    @IBOutlet weak var suggestionTitleLabel: UILabel!
+    @IBOutlet weak var suggestionPriceLabel: UILabel!
     
     func setupStyling() {
         backgroundColor = Constants.grey

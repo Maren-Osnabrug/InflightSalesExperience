@@ -74,6 +74,10 @@ class CabinCrewViewController: UITableViewController {
         })
         
         cell.contentView.layer.opacity = requestForCell.completed ? 0.25 : 1
+        cell.productImage.image = UIImage(named: String(requestForCell.productId))
+        if ((UIImage(named: String(requestForCell.productId))) == nil){
+            cell.productImage.image = UIImage(named: "noImageAvailable")
+        }
         cell.productCode.text = String(requestForCell.productId)
         cell.chairLabel.text = String(requestForCell.customerChair)
 

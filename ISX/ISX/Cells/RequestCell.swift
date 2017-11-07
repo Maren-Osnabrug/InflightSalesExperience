@@ -30,6 +30,6 @@ class RequestCell: UITableViewCell {
         chairView.layer.shadowRadius = 3
         chairView.layer.shadowOffset = CGSize(width: 1, height: 1)
         
-        productImage.backgroundColor = .lightGray
+//        productImage.backgroundColor = .lightGray
     }
 }

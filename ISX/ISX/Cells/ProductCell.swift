@@ -20,8 +20,11 @@ class ProductCell: UICollectionViewCell {
         setupStyling()
     }
     
-    func setCellData(product: Product, image: UIImage){
-        productImage.image = image
+    func setCellData(product: Product){
+        productImage.image = UIImage(named: product.id)
+        if ((UIImage(named: product.id)) == nil){
+            productImage.image = UIImage(named: "noImageAvailable")
+        }
         productTitle.text = product.title
         productPrice.text = "€" + String(product.retailPrice)
 

@@ -22,6 +22,10 @@ class FavoritesCell: UITableViewCell {
     }
 
     func updateWithFavorite(favorite: Product) {
+        productImage.image = UIImage(named: favorite.id)
+        if ((UIImage(named: favorite.id)) == nil){
+            productImage.image = UIImage(named: "noImageAvailable")
+        }
         productName.text = favorite.title
         productPrice.text = "€ " + String(favorite.retailPrice)
     }
@@ -30,6 +34,5 @@ class FavoritesCell: UITableViewCell {
     private func setupStyling() {
         cellContentView.layer.borderColor = UIColor.white.cgColor
         cellContentView.layer.borderWidth = 1
-        productImage.backgroundColor = UIColor.lightGray
     }
 }

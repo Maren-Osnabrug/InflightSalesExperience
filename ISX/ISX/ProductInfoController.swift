@@ -146,10 +146,10 @@ class ProductInfoController : UIViewController {
     }
     
     @objc func textChanged(_ sender: Any) {
-        let tf = sender as! UITextField
-        var resp : UIResponder! = tf
-        while !(resp is UIAlertController) { resp = resp.next }
-        let alert = resp as! UIAlertController
+        guard let tf = sender as? UITextField else { return }
+        var resp : UIResponder? = tf
+        while !(resp is UIAlertController) { resp = resp?.next }
+        guard let alert = resp as? UIAlertController else { return }
         if let chairNumber = tf.text {
             alert.actions[0].isEnabled = (errorCheckChairNumber(chairNumber: chairNumber))
         }

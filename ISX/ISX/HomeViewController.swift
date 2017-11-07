@@ -94,4 +94,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
+    
+    func didTapSearch() {
+        let searchViewController = storyboard?.instantiateViewController(withIdentifier: "searchViewController")
+        let navigationController = UINavigationController(rootViewController: searchViewController!)
+        navigationController.setViewControllers([searchViewController!], animated: false)
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(navigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func searchButton(_ sender: Any) {
+        didTapSearch()
+    }
 }

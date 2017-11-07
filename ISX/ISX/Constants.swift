@@ -21,4 +21,6 @@ struct Constants {
     static let sectionInsetsCollectionView: CGFloat = 60
     static let dividingFactorCollectionViewCell: CGFloat = 2
     static let multiplierFactorCollectionViewCell: CGFloat = 1.3
+    
+    static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
 }

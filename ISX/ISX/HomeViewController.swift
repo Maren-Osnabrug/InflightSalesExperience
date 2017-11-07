@@ -77,12 +77,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionElementKindSectionHeader:
+        if (kind == UICollectionElementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "suggestionHeader", for: indexPath) as! SuggestionCollectionReusableView
             headerView.addBottomBorder(color: Constants.grey, width: 1)
             return headerView
-        default:
+        } else {
             assert(false, "Unexpected element kind")
         }
     }

@@ -35,6 +35,8 @@
 		9A3883D41FA8C79C00601EDD /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E617B1F8CC95E00E9C5BB /* FavoritesCell.swift */; };
 		9A535EAF1F851E96000AF927 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A535EAE1F851E96000AF927 /* Request.swift */; };
 		9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */; };
+		9A8C72CC1FAB71E400322F8B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C72CB1FAB71E400322F8B /* art.scnassets */; };
+		9A8C72CE1FAB761B00322F8B /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C72CD1FAB761B00322F8B /* ARViewController.swift */; };
 		9A8E617A1F8CC07600E9C5BB /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E61791F8CC07600E9C5BB /* Favorites.storyboard */; };
 		9A8E617C1F8CC95E00E9C5BB /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E617B1F8CC95E00E9C5BB /* FavoritesCell.swift */; };
 		9A8E617E1F8CCC6100E9C5BB /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */; };
@@ -72,6 +74,8 @@
 		9A535EA81F84E877000AF927 /* RequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		9A535EAE1F851E96000AF927 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
+		9A8C72CB1FAB71E400322F8B /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		9A8C72CD1FAB761B00322F8B /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		9A8E61791F8CC07600E9C5BB /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		9A8E617B1F8CC95E00E9C5BB /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				9A3883CE1FA8C6C700601EDD /* Models */,
 				9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */,
 				9ADCF9841F7A95F400DB3C5A /* Assets.xcassets */,
+				9A8C72CB1FAB71E400322F8B /* art.scnassets */,
 				9ADCF9891F7A95F400DB3C5A /* Info.plist */,
 				9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */,
 				240F1A031F8CF36200702B4B /* Constants.swift */,
@@ -215,6 +220,7 @@
 				A4250F711F83848A0069C483 /* LoginViewController.swift */,
 				9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */,
 				9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */,
+				9A8C72CD1FAB761B00322F8B /* ARViewController.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 				9A8E61801F8D2C1200E9C5BB /* Launch Screen.storyboard in Resources */,
 				9ADCF9AC1F7A98D100DB3C5A /* GoogleService-Info.plist in Resources */,
 				9A8E617A1F8CC07600E9C5BB /* Favorites.storyboard in Resources */,
+				9A8C72CC1FAB71E400322F8B /* art.scnassets in Resources */,
 				9A3883CC1FA8C28200601EDD /* Main.storyboard in Resources */,
 				D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */,
 				9A3883CB1FA8BF9000601EDD /* Assets.xcassets in Resources */,
@@ -486,6 +493,7 @@
 				D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */,
 				9A3883D21FA8C72E00601EDD /* RequestCell.swift in Sources */,
 				D59398671F8397D200FD3BB0 /* CategoryCell.swift in Sources */,
+				9A8C72CE1FAB761B00322F8B /* ARViewController.swift in Sources */,
 				D530E3261F9747A500899DAB /* Category.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,

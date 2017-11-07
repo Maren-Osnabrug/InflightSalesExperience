@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import UserNotifications
 
 class CabinCrewViewController: UITableViewController {
     
@@ -16,12 +17,65 @@ class CabinCrewViewController: UITableViewController {
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupReferences()
         tableView.dataSource = self
+        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+    }
+    
+    func localNot(_ stoel: String) {
+        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined:
+                self.requestAuthorization(completionHandler: { (success) in
+                    guard success else { return }
+                    
+                    // Schedule Local Notification
+                    self.scheduleLocalNotification(stoel)
+                })
+            case .authorized:
+                // Schedule Local Notification
+                self.scheduleLocalNotification(stoel)
+            case .denied:
+                print("Application Not Allowed to Display Notifications")
+            }
+        }
+    }
+    
+    private func scheduleLocalNotification(_ stoel: String) {
+        // Create Notification Content
+        let notificationContent = UNMutableNotificationContent()
+        
+        // Configure Notification Content
+        notificationContent.title = "Inflight Sales Order"
+        notificationContent.body = "Someone ordered a product on seat: \(stoel)"
+        
+        // Add Trigger
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 3.0, repeats: false)
+        
+        // Create Notification Request
+        let notificationRequest = UNNotificationRequest(identifier: "cocoacasts_local_notification", content: notificationContent, trigger: notificationTrigger)
+        
+        // Add Request to User Notification Center
+        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
+            if let error = error {
+                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
+            }
+        }
+    }
+    
+    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
+        // Request Authorization
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
+            if let error = error {
+                print("Request Authorization Failed (\(error), \(error.localizedDescription))")
+            }
+            
+            completionHandler(success)
+        }
     }
     
     func setupReferences() {
@@ -32,17 +86,37 @@ class CabinCrewViewController: UITableViewController {
         
         requestsRef?.keepSynced(true)
         observeRequests()
+        observerNewRequest()
     }
     
     func observeRequests() {
+        var stoel = ""
         requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 let toAdd = Request.init(snapshot: item as! DataSnapshot)
                 if (!self.requestsArray.contains { $0.id == toAdd.id }) {
                     self.requestsArray.append(toAdd)
-                    self.requestsArray.sort { !$0.completed && $1.completed }
+                    self.requestsArray.sort { !$0.completed && $1.completed}
+                    for items in self.requestsArray {
+                        if (!items.completed) {
+                            stoel = items.customerChair
+                        }
+                    }
                 }
             }
+//            self.localNot(stoel)
+            self.tableView.reloadData()
+        })
+    }
+    
+    func observerNewRequest() {
+        requestsRef?.queryLimited(toLast: 1).observe(.childAdded, with: { snapshot in
+            for item in snapshot.children {
+                print(" 🤡 \(item)" )
+            }
+            let latestRequest = Request(snapshot: snapshot)
+            let stoel = latestRequest.customerChair
+            self.localNot(stoel)
             self.tableView.reloadData()
         })
     }
@@ -82,7 +156,6 @@ class CabinCrewViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
-        
         let yesAction = UIAlertAction(title: "Yes", style: .cancel, handler: { action in
             tableView.deselectRow(at: indexPath, animated: true)
             self.requestsArray[indexPath.row].completed = true
@@ -107,6 +180,7 @@ class CabinCrewViewController: UITableViewController {
         
         alertController.addAction(noAction)
         alertController.addAction(yesAction)
+        
         self.present(alertController, animated: true, completion: nil)
     }
 }

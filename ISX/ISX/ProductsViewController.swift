@@ -27,8 +27,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     var productsArray: [Product] = []
-    var productImageArray = ["drank", "elektronica", "kinderen",
-    "parfum", "reizen", "sieraden"]
     var categoryID: String?
     var selectedProduct: Product?
     var counter = 0
@@ -66,7 +64,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         setLabelOnEmptyCollectionView(emptyArray: false)
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath)
             as? ProductCell {
-            cell.setCellData(product: productsArray[indexPath.row], image: productsArray[indexPath.row].image!)
+            cell.setCellData(product: productsArray[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
@@ -80,7 +78,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
             for item in snapshot.children {
                 if let value = item as? DataSnapshot {
                     let product = Product(snapshot: value)
-                    product.setProductImage(productImage: UIImage(named: self.productImageArray[Int(arc4random_uniform(UInt32(self.productImageArray.count)))])!)
                     if product.productGroup.elementsEqual(categoryId) {
                         self.productsArray.append(product)
                     }

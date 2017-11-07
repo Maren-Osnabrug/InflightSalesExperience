@@ -28,7 +28,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var datarootRef: DatabaseReference?
     var productsRef: DatabaseReference?
     
-    
     var productsArray = [Product]()
     var suggestionProductsArray = [Product]()
     var selectedProduct: Product?
@@ -70,12 +69,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell else { return UICollectionViewCell() }
-        cell.setupStyling()
-        cell.suggestionImage.image = UIImage(named: productsArray[indexPath.row].id)
-        if ((UIImage(named: productsArray[indexPath.row].id)) == nil){
-            cell.suggestionImage.image = UIImage(named: "noImageAvailable")
-        }
-        cell.suggestionLabel.text = suggestionProductsArray[indexPath.row].title
+        cell.setupData(product: productsArray[indexPath.row])
 
         return cell
     }

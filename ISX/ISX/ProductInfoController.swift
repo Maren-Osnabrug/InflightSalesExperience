@@ -104,10 +104,7 @@ class ProductInfoController : UIViewController {
         guard let product = product else {
             return
         }
-        productImageView.image = UIImage(named: product.id)
-        if ((UIImage(named: product.id)) == nil){
-            productImageView.image = UIImage(named: "noImageAvailable")
-        }
+        productImageView.image = UIImage(named: String(product.id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(product.id))
         productTitleLabel.text = product.title
         priceLabel.text = "€" + String(product.retailPrice)
         descriptionTextView!.text = product.description

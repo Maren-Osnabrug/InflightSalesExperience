@@ -44,7 +44,6 @@
 		A431DE4E1FA9F6B200086182 /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A431DE4B1FA9F6B200086182 /* RequestCell.swift */; };
 		A431DE4F1FA9F6B200086182 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */; };
 		A431DE501FA9F6B200086182 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */; };
-		A45738691F964595005D7F83 /* product.txt in Resources */ = {isa = PBXBuildFile; fileRef = A45738681F964594005D7F83 /* product.txt */; };
 		A458C9B61FA9DC4800F970DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */; };
 		A458C9B81FA9DC4800F970DD /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59398601F8386B000FD3BB0 /* Products.storyboard */; };
 		A4B0B9B51F964409005D1291 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0B9B41F964409005D1291 /* SearchViewController.swift */; };
@@ -90,7 +89,6 @@
 		A431DE481FA9F69D00086182 /* Favorites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		A431DE4B1FA9F6B200086182 /* RequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
-		A45738681F964594005D7F83 /* product.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = product.txt; sourceTree = "<group>"; };
 		A4B0B9B41F964409005D1291 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 		9ADCF97C1F7A95F400DB3C5A /* ISX */ = {
 			isa = PBXGroup;
 			children = (
-				A45738681F964594005D7F83 /* product.txt */,
 				9A3883D11FA8C71A00601EDD /* Cells */,
 				9A3883D01FA8C6F600601EDD /* Storyboards */,
 				9A3883CE1FA8C6C700601EDD /* Models */,
@@ -332,7 +329,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A458C9B61FA9DC4800F970DD /* GoogleService-Info.plist in Resources */,
-				A45738691F964595005D7F83 /* product.txt in Resources */,
 				A458C9B81FA9DC4800F970DD /* Products.storyboard in Resources */,
 				9A3883C41FA8BD4A00601EDD /* CabinCrew.storyboard in Resources */,
 				A431DE441FA9F65000086182 /* Launch Screen.storyboard in Resources */,

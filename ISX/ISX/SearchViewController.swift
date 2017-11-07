@@ -11,8 +11,8 @@ import FirebaseDatabase
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate{
     
     var searchController = UISearchController(searchResultsController: nil)
-    var resultsController = UITableViewController()
-    var filteredProductsObjects = [Product]()
+    var tableViewController = UITableViewController()
+    var filteredProductsArray = [Product]()
     var product = [Product]()
     var selectedProduct: Product?
     var datarootRef : DatabaseReference?
@@ -20,24 +20,38 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        resultsController.tableView.dataSource = self
-        resultsController.tableView.delegate = self
-        searchController = UISearchController(searchResultsController: self.resultsController)
+        tableViewController.tableView.dataSource = self
+        tableViewController.tableView.delegate = self
+        searchController = UISearchController(searchResultsController: self.tableViewController)
         searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.delegate = self
+        
+        styling()
+        configureDatabase()
+    }
+    
+    /*
+     Styling for page
+    */
+    func styling() {
+        searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         searchController.searchBar.backgroundColor = Constants.blue
         navigationController?.navigationBar.barTintColor = Constants.blue
-        searchController.searchBar.delegate = self
-        
+    }
+    
+    /*
+     Database setup
+     */
+    func configureDatabase() {
         datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = datarootRef?.child("products")
         
         productsRef?.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let product = item as? DataSnapshot {
-                    let modelProduct = Product.init(snapshot: product)
+                    let modelProduct = Product(snapshot: product)
                     if (!self.product.contains { $0.id == modelProduct.id }) {
                         self.product.append(modelProduct)
                     }
@@ -66,21 +80,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      Update the search results
      */
     func updateSearchResults(for searchController: UISearchController) {
-        filteredProductsObjects = product.filter({ (product: Product) -> Bool in
+        filteredProductsArray = product.filter({ (product: Product) -> Bool in
             if product.title.lowercased().contains(self.searchController.searchBar.text!.lowercased()) {
                 return true
             }else {
                 return false
             }
         })
-        self.resultsController.tableView.reloadData()
+        tableViewController.tableView.reloadData()
     }
     
     /*
      Return array with search results
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredProductsObjects.count
+        return filteredProductsArray.count
     }
     
     /*
@@ -88,7 +102,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = filteredProductsObjects[indexPath.row].title
+        cell.textLabel?.text = filteredProductsArray[indexPath.row].title
         return cell
     }
     
@@ -96,7 +110,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      Get selected product
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedProduct = filteredProductsObjects[indexPath.row]
+        selectedProduct = filteredProductsArray[indexPath.row]
         performSegue(withIdentifier: "searchToProductInfoSegue", sender: self)
     }
     
@@ -105,9 +119,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "searchToProductInfoSegue" {
-            if let controller = segue.destination as? ProductInfoController {
+            if let nextViewController = segue.destination as? ProductInfoController {
                 if (selectedProduct != nil) {
-                    controller.product = selectedProduct
+                    nextViewController.product = selectedProduct
                 }
             }
         }

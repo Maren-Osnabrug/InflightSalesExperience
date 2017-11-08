@@ -19,18 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = .white
         FirebaseApp.configure()
         
-        
-//        if let gai = GAI.sharedInstance(),
-//            let gaConfigValues = Bundle.main.infoDictionary?["GoogleAnalytics"] as? [String: String],
-//            let trackingId = gaConfigValues["TRACKING_ID"] {
-//                gai.logger.logLevel = .verbose
-//                gai.dispatchInterval = 1
-//                gai.trackUncaughtExceptions = false
-//                gai.tracker(withTrackingId: trackingId)
-//
-//            } else {
-//                assertionFailure("Google Analytics not configured correctly")
-//            }
+        if let gai = GAI.sharedInstance(),
+            let gaConfigValues = Bundle.main.infoDictionary?["GoogleAnalytics"] as? [String: String],
+            let trackingId = gaConfigValues["TRACKING_ID"] {
+                gai.logger.logLevel = .verbose
+                gai.dispatchInterval = 1
+                gai.trackUncaughtExceptions = false
+                gai.tracker(withTrackingId: trackingId)
+
+            } else {
+                assertionFailure("Google Analytics not configured correctly")
+            }
         return true
     }
 

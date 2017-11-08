@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 gai.dispatchInterval = 1
                 gai.trackUncaughtExceptions = false
                 gai.tracker(withTrackingId: trackingId)
-            
             } else {
                 assertionFailure("Google Analytics not configured correctly")
             }

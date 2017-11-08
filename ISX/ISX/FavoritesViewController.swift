@@ -16,9 +16,13 @@ class FavoritesViewController: UITableViewController {
     private var datarootRef: DatabaseReference?
     private var productsRef: DatabaseReference?
     var selectedProduct: Product?
+    private let viewName = "Favorite view"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
+        
         setupReference()
         tableView.dataSource = self
         tableView.reloadData()
@@ -77,6 +81,7 @@ class FavoritesViewController: UITableViewController {
             if let controller = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     controller.product = product
+                    GoogleAnalyticsHelper().googleAnalyticLogAction(category: viewName, action: "Look at product", label: product.title)
                 }
             }
         }

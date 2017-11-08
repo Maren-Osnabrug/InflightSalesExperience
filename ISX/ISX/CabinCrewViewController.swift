@@ -59,9 +59,7 @@ class CabinCrewViewController: UITableViewController {
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
-        cell.setupStyling()
-        
-        let requestForCell = requestsArray[indexPath.row]
+        cell.setCellData(request: requestsArray[indexPath.row])
         
         productsRef?.observe(.value, with: { snapshot in
             let arr = snapshot.children.allObjects as NSArray
@@ -72,10 +70,6 @@ class CabinCrewViewController: UITableViewController {
                 }
             }
         })
-        
-        cell.contentView.layer.opacity = requestForCell.completed ? 0.25 : 1
-        cell.productCode.text = String(requestForCell.productId)
-        cell.chairLabel.text = String(requestForCell.customerChair)
 
         return cell
      }

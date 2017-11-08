@@ -29,14 +29,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var productsRef: DatabaseReference?
     
     var productsArray = [Product]()
-    let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var suggestionProductsArray = [Product]()
     var selectedProduct: Product?
+    private let viewName = "Home"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         suggestionProductsCollectionView.delegate = self
         suggestionProductsCollectionView.dataSource = self
         
@@ -68,9 +69,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell else { return UICollectionViewCell() }
-        cell.setupStyling()
-        cell.suggestionImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
-        cell.suggestionLabel.text = suggestionProductsArray[indexPath.row].title
+        cell.setupData(product: productsArray[indexPath.row])
 
         return cell
     }
@@ -90,8 +89,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if let nextViewController = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     nextViewController.product = product
+                    GoogleAnalyticsHelper().googleAnalyticLogAction(category: "suggestions", action: "Look at product", label: product.title)
                 }
             }
         }
+    }
+    
+    func didTapSearch() {
+        let searchViewController = storyboard?.instantiateViewController(withIdentifier: "searchViewController")
+        let navigationController = UINavigationController(rootViewController: searchViewController!)
+        navigationController.setViewControllers([searchViewController!], animated: false)
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(navigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func searchButton(_ sender: Any) {
+        didTapSearch()
     }
 }

@@ -27,7 +27,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var productsRef: DatabaseReference?
     
     var productsArray = [Product]()
-    let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var suggestionProductsArray = [Product]()
     var selectedProduct: Product?
     private let viewName = "Home"
@@ -64,10 +63,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell else { return UICollectionViewCell() }
-        cell.setupStyling()
-        cell.suggestionImage.image = UIImage(named: imageArray[indexPath.row % imageArray.count])
-        cell.suggestionTitleLabel.text = suggestionProductsArray[indexPath.row].title
-        cell.suggestionPriceLabel.text = "€ " + String(suggestionProductsArray[indexPath.row].retailPrice)
+        cell.setupData(product: productsArray[indexPath.row])
         return cell
     }
     
@@ -103,5 +99,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
             }
         }
+    }
+    
+    func didTapSearch() {
+        let searchViewController = storyboard?.instantiateViewController(withIdentifier: "searchViewController")
+        let navigationController = UINavigationController(rootViewController: searchViewController!)
+        navigationController.setViewControllers([searchViewController!], animated: false)
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(navigationController, animated: true, completion: nil)
+    }
+    
+    @IBAction func searchButton(_ sender: Any) {
+        didTapSearch()
     }
 }

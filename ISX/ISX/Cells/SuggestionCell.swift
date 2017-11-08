@@ -15,8 +15,19 @@ class SuggestionCell: UICollectionViewCell {
     @IBOutlet weak var suggestionTitleLabel: UILabel!
     @IBOutlet weak var suggestionPriceLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupStyling()
+    }
+    
     func setupStyling() {
         backgroundColor = Constants.grey
         suggestionTextContainer.backgroundColor = Constants.blue
+    }
+    
+    func setupData(product: Product) {
+        suggestionImage.image = UIImage(named: String(product.id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(product.id))
+        suggestionTitleLabel.text = product.title
+        suggestionPriceLabel.text = "€ " + String(product.retailPrice)
     }
 }

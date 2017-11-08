@@ -43,7 +43,7 @@ class CabinCrewViewController: UITableViewController {
                 let toAdd = Request.init(snapshot: item as! DataSnapshot)
                 if (!self.requestsArray.contains { $0.id == toAdd.id }) {
                     self.requestsArray.append(toAdd)
-                    self.requestsArray.sort { !$0.completed && $1.completed}
+                    self.requestsArray.sort { !$0.completed && $1.completed }
                 }
             }
             self.tableView.reloadData()
@@ -158,7 +158,6 @@ class CabinCrewViewController: UITableViewController {
         
         alertController.addAction(noAction)
         alertController.addAction(yesAction)
-        
         self.present(alertController, animated: true, completion: nil)
     }
 }

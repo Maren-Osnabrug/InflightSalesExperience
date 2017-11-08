@@ -21,8 +21,6 @@ extension UIView {
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var suggestionLabel: UILabel!
     @IBOutlet weak var suggestionProductsCollectionView: UICollectionView!
     
     var datarootRef: DatabaseReference?
@@ -42,10 +40,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         suggestionProductsCollectionView.dataSource = self
         
         configureDatabase()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        suggestionLabel.addBottomBorder(color: Constants.grey, width: 1)
     }
     
     func configureDatabase() {
@@ -70,13 +64,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell else { return UICollectionViewCell() }
         cell.setupData(product: productsArray[indexPath.row])
-
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + Constants.sectionInsetsCollectionView)) / Constants.dividingFactorCollectionViewCell
         return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorCollectionViewCell)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "suggestionHeader", for: indexPath) as? SuggestionCollectionReusableView
+                else { return UICollectionReusableView()}
+            headerView.addBottomBorder(color: Constants.grey, width: 1)
+            return headerView
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let headerHeight = collectionView.frame.height
+        let headerWidth = collectionView.frame.width
+        return CGSize(width: headerWidth, height: headerHeight*Constants.multiplierFactorSuggestionHeader)
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

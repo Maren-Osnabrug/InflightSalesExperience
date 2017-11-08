@@ -26,58 +26,6 @@ class CabinCrewViewController: UITableViewController {
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     }
     
-    func localNot(_ stoel: String) {
-        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
-            switch notificationSettings.authorizationStatus {
-            case .notDetermined:
-                self.requestAuthorization(completionHandler: { (success) in
-                    guard success else { return }
-                    
-                    // Schedule Local Notification
-                    self.scheduleLocalNotification(stoel)
-                })
-            case .authorized:
-                // Schedule Local Notification
-                self.scheduleLocalNotification(stoel)
-            case .denied:
-                print("Application Not Allowed to Display Notifications")
-            }
-        }
-    }
-    
-    private func scheduleLocalNotification(_ stoel: String) {
-        // Create Notification Content
-        let notificationContent = UNMutableNotificationContent()
-        
-        // Configure Notification Content
-        notificationContent.title = "Inflight Sales Order"
-        notificationContent.body = "Someone ordered a product on seat: \(stoel)"
-        
-        // Add Trigger
-        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 3.0, repeats: false)
-        
-        // Create Notification Request
-        let notificationRequest = UNNotificationRequest(identifier: "cocoacasts_local_notification", content: notificationContent, trigger: notificationTrigger)
-        
-        // Add Request to User Notification Center
-        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
-            if let error = error {
-                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
-            }
-        }
-    }
-    
-    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
-        // Request Authorization
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
-            if let error = error {
-                print("Request Authorization Failed (\(error), \(error.localizedDescription))")
-            }
-            
-            completionHandler(success)
-        }
-    }
-    
     func setupReferences() {
         Database.database().isPersistenceEnabled = true
         datarootRef = Database.database().reference(withPath: "dataroot")
@@ -90,35 +38,65 @@ class CabinCrewViewController: UITableViewController {
     }
     
     func observeRequests() {
-        var stoel = ""
         requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 let toAdd = Request.init(snapshot: item as! DataSnapshot)
                 if (!self.requestsArray.contains { $0.id == toAdd.id }) {
                     self.requestsArray.append(toAdd)
                     self.requestsArray.sort { !$0.completed && $1.completed}
-                    for items in self.requestsArray {
-                        if (!items.completed) {
-                            stoel = items.customerChair
-                        }
-                    }
                 }
             }
-//            self.localNot(stoel)
             self.tableView.reloadData()
         })
     }
     
     func observerNewRequest() {
         requestsRef?.queryLimited(toLast: 1).observe(.childAdded, with: { snapshot in
-            for item in snapshot.children {
-                print(" 🤡 \(item)" )
-            }
             let latestRequest = Request(snapshot: snapshot)
-            let stoel = latestRequest.customerChair
-            self.localNot(stoel)
+            let customerChair = latestRequest.customerChair
+            self.localNot(customerChair)
             self.tableView.reloadData()
         })
+    }
+    
+    func localNot(_ customerChair: String) {
+        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined:
+                self.requestAuthorization(completionHandler: { (success) in
+                    guard success else { return }
+                    self.scheduleLocalNotification(customerChair)
+                })
+            case .authorized:
+                self.scheduleLocalNotification(customerChair)
+            case .denied:
+                return
+            }
+        }
+    }
+    
+    private func scheduleLocalNotification(_ customerChair: String) {
+        // Create Notification Content
+        let notificationContent = UNMutableNotificationContent()
+        
+        // Configure Notification Content
+        notificationContent.title = "Inflight Sales Order"
+        notificationContent.body = "Someone ordered a product on seat: \(customerChair)"
+        
+        // Add Trigger
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+        
+        // Create Notification Request
+        let notificationRequest = UNNotificationRequest(identifier: "cocoacasts_local_notification", content: notificationContent, trigger: notificationTrigger)
+        
+        // Add Request to User Notification Center
+        UNUserNotificationCenter.current().add(notificationRequest)
+    }
+    
+    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
+            completionHandler(success)
+        }
     }
     
     // MARK: - Table view data source

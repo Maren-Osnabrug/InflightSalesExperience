@@ -34,7 +34,7 @@ class CabinCrewViewController: UITableViewController {
         
         requestsRef?.keepSynced(true)
         observeRequests()
-        observerNewRequest()
+        observeNewRequest()
     }
     
     func observeRequests() {
@@ -50,16 +50,16 @@ class CabinCrewViewController: UITableViewController {
         })
     }
     
-    func observerNewRequest() {
+    func observeNewRequest() {
         requestsRef?.queryLimited(toLast: 1).observe(.childAdded, with: { snapshot in
             let latestRequest = Request(snapshot: snapshot)
             let customerChair = latestRequest.customerChair
-            self.localNot(customerChair)
+            self.checkAuthStatusProceed(customerChair)
             self.tableView.reloadData()
         })
     }
     
-    func localNot(_ customerChair: String) {
+    func checkAuthStatusProceed(_ customerChair: String) {
         UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
             switch notificationSettings.authorizationStatus {
             case .notDetermined:
@@ -81,10 +81,10 @@ class CabinCrewViewController: UITableViewController {
         
         // Configure Notification Content
         notificationContent.title = "Inflight Sales Order"
-        notificationContent.body = "Someone ordered a product on seat: \(customerChair)"
+        notificationContent.body = "A passenger ordered a product on seat: \(customerChair)"
         
         // Add Trigger
-        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 3.0, repeats: false)
         
         // Create Notification Request
         let notificationRequest = UNNotificationRequest(identifier: "cocoacasts_local_notification", content: notificationContent, trigger: notificationTrigger)

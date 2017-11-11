@@ -43,6 +43,8 @@
 		9ADCF9AC1F7A98D100DB3C5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */; };
 		9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */; };
 		D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */; };
+		D50A9A961FA9DA6600F697D1 /* BridgingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A9A971FA9DF6300F697D1 /* GoogleAnalyticsHelper.swift */; };
 		D530E3261F9747A500899DAB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530E3251F9747A500899DAB /* Category.swift */; };
 		D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */; };
 		D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59398601F8386B000FD3BB0 /* Products.storyboard */; };
@@ -60,7 +62,6 @@
 		510F5BF1DDADDA8962F02269 /* Pods-ISX-ISX-CabinCrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX-ISX-CabinCrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISX-ISX-CabinCrew/Pods-ISX-ISX-CabinCrew.release.xcconfig"; sourceTree = "<group>"; };
 		5CDAECF6339464562D6F26FD /* Pods-ISX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.debug.xcconfig"; sourceTree = "<group>"; };
 		6CE845F22957F29FC7F91E47 /* Pods-ISX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.release.xcconfig"; sourceTree = "<group>"; };
-		6F2F219022647FDEAAC7C593 /* Pods-ISXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXUITests/Pods-ISXUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		9A3883A71FA8BAEE00601EDD /* ISX-CabinCrew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISX-CabinCrew.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3883B01FA8BAEE00601EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
 		D024177099EE7950E6490A78 /* Pods_ISX_ISX_CabinCrew.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX_ISX_CabinCrew.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		D50A9A971FA9DF6300F697D1 /* GoogleAnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAnalyticsHelper.swift; sourceTree = "<group>"; };
 		D530E3251F9747A500899DAB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoController.swift; sourceTree = "<group>"; };
 		D59398601F8386B000FD3BB0 /* Products.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		D59398681F84F13E00FD3BB0 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		D5AC6D661FB31256003378F1 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		ECEFCD7C301053E68B22F392 /* Pods-ISXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		F0A7686F6573F85C7822AF0A /* Pods-ISX-ISX-CabinCrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX-ISX-CabinCrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISX-ISX-CabinCrew/Pods-ISX-ISX-CabinCrew.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +221,8 @@
 				A4250F711F83848A0069C483 /* LoginViewController.swift */,
 				9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */,
 				9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */,
+				D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */,
+				D50A9A971FA9DF6300F697D1 /* GoogleAnalyticsHelper.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -227,10 +232,8 @@
 			children = (
 				5CDAECF6339464562D6F26FD /* Pods-ISX.debug.xcconfig */,
 				6CE845F22957F29FC7F91E47 /* Pods-ISX.release.xcconfig */,
-				ECEFCD7C301053E68B22F392 /* Pods-ISXTests.debug.xcconfig */,
 				C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */,
 				18D772D564BF10BE68A5145E /* Pods-ISXUITests.debug.xcconfig */,
-				6F2F219022647FDEAAC7C593 /* Pods-ISXUITests.release.xcconfig */,
 				F0A7686F6573F85C7822AF0A /* Pods-ISX-ISX-CabinCrew.debug.xcconfig */,
 				510F5BF1DDADDA8962F02269 /* Pods-ISX-ISX-CabinCrew.release.xcconfig */,
 			);
@@ -238,6 +241,17 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D5C19FE01FA8CAC400CCFFF7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D50A9A961FA9DA6600F697D1 /* BridgingHeader.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		9A3883A61FA8BAEE00601EDD /* ISX-CabinCrew */ = {
@@ -270,6 +284,7 @@
 				9ADCF9781F7A95F400DB3C5A /* Resources */,
 				ED78E0BF91517A0FB4703D39 /* [CP] Embed Pods Frameworks */,
 				195D4FAAC53CE846D772A974 /* [CP] Copy Pods Resources */,
+				D5C19FE01FA8CAC400CCFFF7 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -496,6 +511,7 @@
 				D5AC6D671FB31256003378F1 /* Favorite.swift in Sources */,
 				2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */,
 				9A535EAF1F851E96000AF927 /* Request.swift in Sources */,
+				D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */,
 				D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */,
 				D59398691F84F13E00FD3BB0 /* ProductsViewController.swift in Sources */,
 				9A8E617C1F8CC95E00E9C5BB /* FavoritesCell.swift in Sources */,
@@ -691,6 +707,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX.HVA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -709,6 +726,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX.HVA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

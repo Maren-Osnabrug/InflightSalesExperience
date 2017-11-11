@@ -28,12 +28,17 @@ class ProductInfoController : UIViewController {
 
     private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
     private let favoriteImage = UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate)
+    
+    private let viewName = "Product information"
 
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
             product.changeFavoriteStatus()
             updateFavoriteButton(favorite: product.favorite)
+
             handleFavoriteInFirebase(isFavorite: product.favorite)
+            GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
+
         }
     }
     
@@ -72,6 +77,9 @@ class ProductInfoController : UIViewController {
                     requestForItemRef?.setValue(requestForItem.toAnyObject())
                 }
             })
+            
+            GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Product Information", action: "Interested in product", label: product.title)
+
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
 
@@ -89,6 +97,9 @@ class ProductInfoController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
+        
         title = product?.title
         //checkIfProductIsFavorited(productID: (product?.id)!)
 

@@ -32,11 +32,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let imageArray = ["seiko", "airbus", "aigber", "bvlgari"]
     var suggestionProductsArray = [Product]()
     var selectedProduct: Product?
+    private let viewName = "Home"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         suggestionProductsCollectionView.delegate = self
         suggestionProductsCollectionView.dataSource = self
         
@@ -91,6 +93,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if let nextViewController = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     nextViewController.product = product
+                    GoogleAnalyticsHelper().googleAnalyticLogAction(category: "suggestions", action: "Look at product", label: product.title)
                 }
             }
         }

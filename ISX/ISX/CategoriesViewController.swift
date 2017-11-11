@@ -13,6 +13,7 @@ import FirebaseDatabase
 class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         UICollectionViewDataSource {
     
+    private let viewName = "Categories Overview"
     var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden",
                           "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
     var selectedCategoryID: String?
@@ -22,6 +23,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
+        
         getFirebaseData()
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
@@ -58,6 +62,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCategoryID = categoryArray[indexPath.row].categoryID
+        GoogleAnalyticsHelper().googleAnalyticLogAction(category: viewName, action: "Choosing a Category", label: categoryArray[indexPath.row].categoryName)
         performSegue(withIdentifier: "productsDetailSegue", sender: self)
     }
     

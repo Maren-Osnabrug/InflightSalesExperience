@@ -23,4 +23,6 @@ struct Constants {
     static let multiplierFactorCollectionViewCell: CGFloat = 1.3
     
     static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
+    
+    static let DEVICEID = UIDevice.current.identifierForVendor!.uuidString
 }

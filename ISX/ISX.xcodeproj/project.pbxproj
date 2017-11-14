@@ -13,7 +13,7 @@
 		2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476D9C71F839FC200686C1E /* SuggestionCell.swift */; };
 		2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476DCA31F838B2A00E5B03F /* HomeViewController.swift */; };
 		85CB40592B865CF93D261EF9 /* Pods_ISX_ISX_CabinCrew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D024177099EE7950E6490A78 /* Pods_ISX_ISX_CabinCrew.framework */; };
-		9A12F2511F9802D4007F3E66 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */; };
+		9A0A4CC31FBB4CD700F20758 /* HomeCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */; };
 		9A3883B41FA8BAEE00601EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */; };
 		9A3883BA1FA8BB7C00601EDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B91FA8BB7C00601EDD /* GoogleService-Info.plist */; };
 		9A3883BD1FA8BC4A00601EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */; };
@@ -68,7 +68,7 @@
 		510F5BF1DDADDA8962F02269 /* Pods-ISX-ISX-CabinCrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX-ISX-CabinCrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISX-ISX-CabinCrew/Pods-ISX-ISX-CabinCrew.release.xcconfig"; sourceTree = "<group>"; };
 		5CDAECF6339464562D6F26FD /* Pods-ISX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.debug.xcconfig"; sourceTree = "<group>"; };
 		6CE845F22957F29FC7F91E47 /* Pods-ISX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISX.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISX/Pods-ISX.release.xcconfig"; sourceTree = "<group>"; };
-		9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
+		9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewHeader.swift; sourceTree = "<group>"; };
 		9A3883A71FA8BAEE00601EDD /* ISX-CabinCrew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ISX-CabinCrew.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3883B01FA8BAEE00601EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A3883B31FA8BAEE00601EDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -229,10 +229,10 @@
 				240F1A031F8CF36200702B4B /* Constants.swift */,
 				D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */,
 				A4B0B9B41F964409005D1291 /* SearchViewController.swift */,
-				9A12F2501F9802D4007F3E66 /* HomeCollectionViewController.swift */,
 				9A8C72CD1FAB761B00322F8B /* ARViewController.swift */,
 				D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */,
 				D50A9A971FA9DF6300F697D1 /* GoogleAnalyticsHelper.swift */,
+				9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -535,13 +535,13 @@
 				A4250F721F83848A0069C483 /* LoginViewController.swift in Sources */,
 				A4B0B9B51F964409005D1291 /* SearchViewController.swift in Sources */,
 				D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */,
+				9A0A4CC31FBB4CD700F20758 /* HomeCollectionViewHeader.swift in Sources */,
 				D59398671F8397D200FD3BB0 /* CategoryCell.swift in Sources */,
 				9A8C72CE1FAB761B00322F8B /* ARViewController.swift in Sources */,
 				A431DE461FA9F68C00086182 /* Request.swift in Sources */,
 				D530E3261F9747A500899DAB /* Category.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
-				9A12F2511F9802D4007F3E66 /* HomeCollectionViewController.swift in Sources */,
 				2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */,
 				D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */,
 				D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */,

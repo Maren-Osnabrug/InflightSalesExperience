@@ -29,13 +29,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="ZAT-Bm-L5u">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Hdx-o0-b9z" userLabel="Banner">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="226.5"/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sAq-uk-KOL" userLabel="Suggestion Products Collection View">
-                                        <rect key="frame" x="0.0" y="244" width="375" height="554"/>
+                                        <rect key="frame" x="0.0" y="276.5" width="375" height="647"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="woE-Tn-XHu">
                                             <size key="itemSize" width="177" height="177"/>
@@ -94,7 +94,7 @@
                                         </cells>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Onze suggesties" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbA-ab-eza" userLabel="Suggestion Label">
-                                        <rect key="frame" x="0.0" y="194" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="226.5" width="375" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="5My-yo-1sZ"/>
                                         </constraints>
@@ -140,9 +140,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="ZAT-Bm-L5u" id="o7s-3l-03o"/>
+                        <outlet property="suggestedProductsCollectionView" destination="sAq-uk-KOL" id="qsk-t2-BCl"/>
                         <outlet property="suggestionLabel" destination="cbA-ab-eza" id="qBs-gr-TFR"/>
-                        <outlet property="suggestionProductsCollectionView" destination="sAq-uk-KOL" id="qsk-t2-BCl"/>
-                        <segue destination="mPD-0b-6gC" kind="show" identifier="homeToProductSegue" id="TMa-nw-BGG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S22-fd-XbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -155,7 +154,7 @@
                 <viewControllerPlaceholder storyboardName="Products" referencedIdentifier="ProductInfoController" id="mPD-0b-6gC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHe-Jo-qv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3454" y="-412"/>
+            <point key="canvasLocation" x="3561" y="-810"/>
         </scene>
         <!--Search-->
         <scene sceneID="5R6-nR-ABi">
@@ -203,7 +202,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="Gu2-CQ-XdT" kind="relationship" relationship="rootViewController" id="3hb-IG-thE"/>
+                        <segue destination="tfr-xu-Mam" kind="relationship" relationship="rootViewController" id="lfo-F9-tps"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3h-rQ-xMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -248,8 +247,8 @@
         <!--Home-->
         <scene sceneID="Qy4-iv-rmy">
             <objects>
-                <collectionViewController storyboardIdentifier="homeCollectionViewHeader" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tfr-xu-Mam" customClass="HomeCollectionViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="dIs-Ol-iXD">
+                <collectionViewController storyboardIdentifier="homeCollectionViewHeader" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tfr-xu-Mam" customClass="HomeViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dIs-Ol-iXD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -308,7 +307,7 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="collectionHeader" id="igg-Fc-Gtn">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeCollectionViewHeader" id="igg-Fc-Gtn" customClass="HomeCollectionViewHeader" customModule="ISX" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
@@ -316,35 +315,63 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our suggestions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyc-wj-0oa">
-                                    <rect key="frame" x="0.0" y="200" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="200" width="375" height="48"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="znY-69-dtA"/>
+                                        <constraint firstAttribute="height" constant="48" id="aAD-rk-4Jy"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.89019607840000003" green="0.44705882349999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lB2-gP-Jr4" userLabel="Line">
+                                    <rect key="frame" x="0.0" y="248" width="375" height="2"/>
+                                    <color key="backgroundColor" red="0.90196078431372551" green="0.9137254901960784" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="2" id="QbK-EI-JjC"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="tM2-FX-LpS" secondAttribute="trailing" id="0Gc-me-Wdd"/>
+                                <constraint firstItem="lB2-gP-Jr4" firstAttribute="leading" secondItem="igg-Fc-Gtn" secondAttribute="leading" id="2tc-rc-6vu"/>
                                 <constraint firstItem="tM2-FX-LpS" firstAttribute="leading" secondItem="igg-Fc-Gtn" secondAttribute="leading" id="D0f-lx-cl3"/>
                                 <constraint firstItem="Gyc-wj-0oa" firstAttribute="top" secondItem="tM2-FX-LpS" secondAttribute="bottom" id="GYZ-iB-UYo"/>
-                                <constraint firstAttribute="bottom" secondItem="Gyc-wj-0oa" secondAttribute="bottom" id="NmW-U7-l8n"/>
                                 <constraint firstItem="Gyc-wj-0oa" firstAttribute="leading" secondItem="igg-Fc-Gtn" secondAttribute="leading" id="QyV-SA-CFA"/>
+                                <constraint firstAttribute="bottom" secondItem="lB2-gP-Jr4" secondAttribute="bottom" id="ROh-fH-nUH"/>
+                                <constraint firstItem="tM2-FX-LpS" firstAttribute="top" secondItem="igg-Fc-Gtn" secondAttribute="top" id="Xhg-OW-JP7"/>
                                 <constraint firstItem="tM2-FX-LpS" firstAttribute="height" secondItem="igg-Fc-Gtn" secondAttribute="height" multiplier="0.8" id="apO-ik-RaK"/>
+                                <constraint firstItem="lB2-gP-Jr4" firstAttribute="top" secondItem="Gyc-wj-0oa" secondAttribute="bottom" id="mz0-LN-4zM"/>
+                                <constraint firstItem="lB2-gP-Jr4" firstAttribute="width" secondItem="igg-Fc-Gtn" secondAttribute="width" id="o1D-Xo-ket"/>
+                                <constraint firstAttribute="trailing" secondItem="lB2-gP-Jr4" secondAttribute="trailing" id="pyJ-J1-4Cx"/>
                                 <constraint firstAttribute="trailing" secondItem="Gyc-wj-0oa" secondAttribute="trailing" id="v3Y-zh-MQ7"/>
                             </constraints>
+                            <connections>
+                                <outlet property="bannerImageView" destination="tM2-FX-LpS" id="jTN-b3-P0O"/>
+                                <outlet property="suggestionLabel" destination="Gyc-wj-0oa" id="g5Q-PK-nAX"/>
+                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="tfr-xu-Mam" id="QEI-oa-XYp"/>
                             <outlet property="delegate" destination="tfr-xu-Mam" id="nD5-PA-I2U"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Home" id="jlh-o2-Egd"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="csq-VR-l1t"/>
+                    <navigationItem key="navigationItem" title="Home" id="6EM-rg-pWi">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="92I-I8-hAG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="searchButton:" destination="Gu2-CQ-XdT" id="OOD-fs-WWA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="mPD-0b-6gC" kind="show" identifier="homeToProductSegue" id="weQ-wl-8VL"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nv2-UH-PAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2817" y="-1117"/>
+            <point key="canvasLocation" x="2817" y="-1066"/>
         </scene>
     </scenes>
     <resources>

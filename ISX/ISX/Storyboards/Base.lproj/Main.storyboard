@@ -248,7 +248,7 @@
         <!--Home-->
         <scene sceneID="Qy4-iv-rmy">
             <objects>
-                <collectionViewController id="tfr-xu-Mam" customClass="HomeCollectionViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="homeCollectionViewHeader" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tfr-xu-Mam" customClass="HomeCollectionViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="dIs-Ol-iXD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -344,7 +344,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nv2-UH-PAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816.8000000000002" y="-1039.4302848575712"/>
+            <point key="canvasLocation" x="2817" y="-1117"/>
         </scene>
     </scenes>
     <resources>

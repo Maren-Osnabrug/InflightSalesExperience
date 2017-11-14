@@ -56,7 +56,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 if let product = item as? DataSnapshot {
                     let modelProduct = Product.init(snapshot: product)
                     self.productsArray.append(modelProduct)
-                    print(modelProduct.title + " -> " + modelProduct.id)
                     self.suggestionProductsArray = Array(self.productsArray.prefix(4))
                 }
             }

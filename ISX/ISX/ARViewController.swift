@@ -12,6 +12,7 @@ import ARKit
 
 class ARViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
+    var product: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +21,44 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-//        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/Powerbank/powerbank_scaled.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+        sceneView.showsStatistics = true
+
+        addTapGestureToSceneView()
+    }
+    
+    func addProduct(x: Float = 0, y: Float = 0, z: Float = -0.2) {
+        if let product = product {
+            let scene = SCNScene(named: "art.scnassets/\(product.id)/\(product.id).scn")!
+            scene.rootNode.position = SCNVector3(x, y, z)
+            let node = scene.rootNode.childNode(withName: "Cube_bake", recursively: true)
+            node?.position = SCNVector3(x, y, z)
+            node?.eulerAngles.y = -.pi / 2
+            sceneView.scene.rootNode.addChildNode(node!)
+        }
+    }
+    
+    func addTapGestureToSceneView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTap(withGestureRecognizer:)))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+//    func addTapGestureToSceneView() {
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTap(withGestureRecognizer:)))
+//        sceneView.addGestureRecognizer(tapGestureRecognizer)
+//    }
+    
+    @objc func didTap(withGestureRecognizer recognizer: UIGestureRecognizer) {
+        let tapLocation = recognizer.location(in: sceneView)
+        let hitTestResults = sceneView.hitTest(tapLocation)
+        guard let node = hitTestResults.first?.node else {
+            let hitTestResultsWithFeaturePoints = sceneView.hitTest(tapLocation, types: .featurePoint)
+            if let hitTestResultWithFeaturePoints = hitTestResultsWithFeaturePoints.first {
+                let translation = hitTestResultWithFeaturePoints.worldTransform.translation
+                addProduct(x: translation.x, y: translation.y, z: translation.z)
+            }
+            return
+        }
+        node.removeFromParentNode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +69,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         // Run the view's session
         sceneView.session.run(configuration)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,4 +100,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
     }
 
+}
+
+extension float4x4 {
+    var translation: float3 {
+        let translation = self.columns.3
+        return float3(translation.x, translation.y, translation.z)
+    }
 }

@@ -174,8 +174,8 @@
                                 <size key="customSize" width="155" height="180"/>
                                 <connections>
                                     <outlet property="suggestionImage" destination="gpX-YV-vtB" id="7Yv-yi-caS"/>
-                                    <outlet property="suggestionLabel" destination="pjJ-2Q-93k" id="g9R-4k-PNe"/>
                                     <outlet property="suggestionTextContainer" destination="bZj-hP-cnd" id="XuY-sQ-9ln"/>
+                                    <outlet property="suggestionTitleLabel" destination="pjJ-2Q-93k" id="ZuS-rK-Hdd"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -218,8 +218,8 @@
                                 <constraint firstAttribute="trailing" secondItem="Gyc-wj-0oa" secondAttribute="trailing" id="v3Y-zh-MQ7"/>
                             </constraints>
                             <connections>
-                                <outlet property="bannerImageView" destination="tM2-FX-LpS" id="jTN-b3-P0O"/>
-                                <outlet property="suggestionLabel" destination="Gyc-wj-0oa" id="g5Q-PK-nAX"/>
+                                <outlet property="bannerImageView" destination="tM2-FX-LpS" id="Nqv-x9-75V"/>
+                                <outlet property="ourSuggestionLabel" destination="Gyc-wj-0oa" id="Kpv-sj-IR2"/>
                             </connections>
                         </collectionReusableView>
                         <connections>

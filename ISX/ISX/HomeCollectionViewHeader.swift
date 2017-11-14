@@ -11,5 +11,5 @@ import Foundation
 class HomeCollectionViewHeader: UICollectionReusableView {
     
     @IBOutlet weak var bannerImageView: UIImageView!
-    @IBOutlet weak var suggestionLabel: UILabel!
+    @IBOutlet weak var ourSuggestionLabel: UILabel!
 }

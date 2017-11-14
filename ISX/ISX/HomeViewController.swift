@@ -10,15 +10,6 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-//extension UIView {
-//    func addBottomBorder(color: UIColor, width: CGFloat) {
-//        let border = CALayer()
-//        border.backgroundColor = color.cgColor
-//        border.frame = CGRect(x: 0, y: frame.size.height - width, width: frame.size.width, height: width)
-//        layer.addSublayer(border)
-//    }
-//}
-
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var datarootRef: DatabaseReference?
@@ -39,11 +30,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         configureDatabase()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        suggestionLabel.addBottomBorder(color: Constants.grey, width: 1)
-//    }
-    
+
     func configureDatabase() {
         datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = datarootRef?.child("products")
@@ -67,8 +54,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell else { return UICollectionViewCell() }
-        cell.setupData(product: suggestedProductsArray[indexPath.row])
 
+        cell.setupData(product: suggestedProductsArray[indexPath.row])
         return cell
     }
     

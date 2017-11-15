@@ -72,7 +72,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HomeCollectionViewHeader", for: indexPath) as! HomeCollectionViewHeader
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HomeCollectionViewHeader", for: indexPath) as? HomeCollectionViewHeader else { return UICollectionReusableView() }
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -105,7 +105,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     func shuffleSuggestions() {
         bestSellersArray.shuffle()
-        suggestedProductsArray = Array(bestSellersArray.prefix(4))
+        suggestedProductsArray = Array(bestSellersArray.prefix(Constants.suggestionCount))
         collectionView?.reloadData()
     }
 }

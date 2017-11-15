@@ -13,7 +13,6 @@ class SuggestionCell: UICollectionViewCell {
     @IBOutlet weak var suggestionImage: UIImageView!
     @IBOutlet weak var suggestionTextContainer: UIView!
     @IBOutlet weak var suggestionTitleLabel: UILabel!
-    @IBOutlet weak var suggestionPriceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,8 +25,7 @@ class SuggestionCell: UICollectionViewCell {
     }
     
     func setupData(product: Product) {
-        suggestionImage.image = UIImage(named: String(product.id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(product.id))
+        suggestionImage.image = product.image
         suggestionTitleLabel.text = product.title
-        suggestionPriceLabel.text = "€ " + String(product.retailPrice)
     }
 }

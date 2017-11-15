@@ -22,7 +22,7 @@ class FavoritesCell: UITableViewCell {
     }
 
     func updateWithFavorite(favorite: Product) {
-        productImage.image = UIImage(named: String(favorite.id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(favorite.id))
+        productImage.image = favorite.image
         productName.text = favorite.title
         productPrice.text = "€ " + String(favorite.retailPrice)
     }

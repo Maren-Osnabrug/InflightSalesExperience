@@ -21,7 +21,7 @@ class ProductCell: UICollectionViewCell {
     }
     
     func setCellData(product: Product) {
-        productImage.image = UIImage(named: String(product.id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(product.id))
+        productImage.image = product.image
         productTitle.text = product.title
         productPrice.text = "€" + String(product.retailPrice)
 

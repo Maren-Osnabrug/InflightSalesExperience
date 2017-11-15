@@ -301,15 +301,12 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="8bG-OM-9lK" secondAttribute="bottom" id="2ph-3L-yrR"/>
                                     <constraint firstAttribute="trailing" secondItem="8bG-OM-9lK" secondAttribute="trailing" id="5VP-D5-In5"/>
-                                    <constraint firstItem="U9b-hL-jip" firstAttribute="top" secondItem="Fif-UE-Ags" secondAttribute="bottom" constant="10" id="D7w-6j-IWP"/>
                                     <constraint firstAttribute="trailing" secondItem="U9b-hL-jip" secondAttribute="trailing" id="MZt-Tq-a4v"/>
                                     <constraint firstItem="n0Q-cN-7Ki" firstAttribute="top" secondItem="5sX-qs-LfK" secondAttribute="top" id="QSS-Hq-Vxm"/>
                                     <constraint firstItem="n0Q-cN-7Ki" firstAttribute="leading" secondItem="5sX-qs-LfK" secondAttribute="leading" id="SFw-aO-5MR"/>
-                                    <constraint firstItem="8bG-OM-9lK" firstAttribute="top" secondItem="U9b-hL-jip" secondAttribute="bottom" constant="10" id="h4S-nc-SJt"/>
                                     <constraint firstItem="U9b-hL-jip" firstAttribute="leading" secondItem="5sX-qs-LfK" secondAttribute="leading" id="ipb-kg-CU6"/>
                                     <constraint firstItem="8bG-OM-9lK" firstAttribute="leading" secondItem="5sX-qs-LfK" secondAttribute="leading" id="oWk-GJ-dPw"/>
                                     <constraint firstAttribute="trailing" secondItem="n0Q-cN-7Ki" secondAttribute="trailing" id="sjG-yk-aPe"/>
-                                    <constraint firstItem="Fif-UE-Ags" firstAttribute="top" secondItem="n0Q-cN-7Ki" secondAttribute="bottom" id="tpb-Dz-fZu"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMh-LH-lvs">

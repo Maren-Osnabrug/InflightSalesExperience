@@ -16,6 +16,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     var productsRef: DatabaseReference?
     
     var suggestedProductsArray = [Product]()
+    var bestSellersArray = [Product]()
     var bestSellers = ["40780", "45118", "45411", "15129", "15128", "10110", "11808", "10048", "10109", "10053", "68112"]
     var selectedProduct: Product?
     private let viewName = "Home"
@@ -34,15 +35,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     func configureDatabase() {
         datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = datarootRef?.child("products")
-        productsRef?.observe(.value, with: { snapshot in
+        productsRef?.queryOrdered(byChild: "Bestsellers").queryStarting(atValue: "1").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let product = item as? DataSnapshot {
-                    let modelProduct = Product.init(snapshot: product)
-                    if (self.bestSellers.contains(modelProduct.id)) {
-                        self.suggestedProductsArray.append(modelProduct)
-                    }
-                    
+                    let modelProduct = Product(snapshot: product)
+                    self.bestSellersArray.append(modelProduct)
                 }
+                self.shuffleSuggestions()
             }
             self.collectionView?.reloadData()
         })
@@ -53,7 +52,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell
+            else { return UICollectionViewCell() }
 
         cell.setupData(product: suggestedProductsArray[indexPath.row])
         return cell
@@ -69,14 +69,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         performSegue(withIdentifier: "homeToProductSegue", sender: self)
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
-                                 viewForSupplementaryElementOfKind kind: String,
-                                 at indexPath: IndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: "HomeCollectionViewHeader",
-                                                                             for: indexPath) as! HomeCollectionViewHeader
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HomeCollectionViewHeader", for: indexPath) as! HomeCollectionViewHeader
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -105,5 +101,34 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @IBAction func searchButton(_ sender: Any) {
         didTapSearch()
+    }
+    
+    func shuffleSuggestions() {
+        bestSellersArray.shuffle()
+        suggestedProductsArray = Array(bestSellersArray.prefix(4))
+        collectionView?.reloadData()
+    }
+}
+
+extension MutableCollection {
+    /// Shuffles the contents of this collection.
+    mutating func shuffle() {
+        let c = count
+        guard c > 1 else { return }
+        
+        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
+            let d: IndexDistance = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
+            let i = index(firstUnshuffled, offsetBy: d)
+            swapAt(firstUnshuffled, i)
+        }
+    }
+}
+
+extension Sequence {
+    /// Returns an array with the contents of this sequence, shuffled.
+    func shuffled() -> [Element] {
+        var result = Array(self)
+        result.shuffle()
+        return result
     }
 }

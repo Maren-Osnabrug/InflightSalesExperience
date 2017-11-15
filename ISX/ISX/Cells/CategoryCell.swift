@@ -22,7 +22,7 @@ class CategoryCell: UICollectionViewCell {
     func setCategoryData(category: Category){
         categoryID = category.categoryID
         categoryTitle.text = category.categoryName
-        categoryImage.image = UIImage(named: String(category.categoryName)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(category.categoryName))
+        categoryImage.image = UIImage(named: String(category.categoryID)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(category.categoryID))
     }
     
     func setupStyling(){

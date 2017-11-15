@@ -39,32 +39,32 @@ class DatabaseViewController: UIViewController {
                 print("Connected")
 //                self.textView.text = "Connected"
                 self.productsRef?.observe(.value, with: { snapshot in
-                    for (index, item) in snapshot.children.enumerated() {
-                        if let product = item as? DataSnapshot {
-                            let modelProduct = Product.init(snapshot: product)
+//                    for (index, item) in snapshot.children.enumerated() {
+//                        if let product = item as? DataSnapshot {
+//                            let modelProduct = Product.init(snapshot: product)
 //                            self.textView.text = self.textView.text + "\n" + String(index) + "\t" +  modelProduct.title
-                        }
-                    }
+//                        }
+//                    }
                 })
                 self.productGroupsRef?.observe(.value, with: { snapshot in
-                    for item in snapshot.children {
-                        let fu  = (item as! DataSnapshot).value as? [String:AnyObject]
+//                    for item in snapshot.children {
+//                        let fu  = (item as! DataSnapshot).value as? [String:AnyObject]
 //                        self.textView.text = self.textView.text + "\n" + "\t" +  (fu!["Product_groep"] as! String)
-                    }
+//                    }
                 })
             } else {
                 print("Not connected")
 //                self.textView.text = "Not Connected"
                 self.productsRef?.observe(.childAdded, with: { snapshot in
-                    let modelProduct = Product.init(snapshot: snapshot)
+//                    let modelProduct = Product.init(snapshot: snapshot)
 //                    self.textView.text = self.textView.text + "\n" +  modelProduct.title
                 })
                 self.productGroupsRef?.observe(.childAdded, with: { snapshot in
-                    for item in snapshot.children {
-                        if let fu  = (item as! DataSnapshot).value as? [String:AnyObject] {
+//                    for item in snapshot.children {
+//                        if let fu  = (item as! DataSnapshot).value as? [String:AnyObject] {
 //                            self.textView.text = self.textView.text + "\n" + "\t" +  (fu["Product_groep"] as! String)
-                        }
-                    }
+//                        }
+//                    }
                 })
             }
         })

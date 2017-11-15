@@ -25,4 +25,8 @@ struct Constants {
     static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
     
     static let DEVICEID = UIDevice.current.identifierForVendor!.uuidString
+
+    static let multiplierFactorSuggestionHeader: CGFloat = 0.40
+    
+    static let suggestionCount = 4
 }

@@ -27,9 +27,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     var productsArray: [Product] = []
-    var productImageArray = ["drank", "elektronica", "kinderen",
-    "parfum", "reizen", "sieraden"]
-    var categoryID: String?
+    var category: Category?
     var selectedProduct: Product?
     var counter = 0
     private let viewName = "Product Overview"
@@ -46,9 +44,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         sortLabel.addGestureRecognizer(tap)
         sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue
     
-        title = "Products"
+        title = category?.categoryName
         
-        getProducts(categoryId: categoryID!)
+        getProducts(categoryId: (category?.categoryID)!)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -66,7 +64,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         setLabelOnEmptyCollectionView(emptyArray: false)
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath)
             as? ProductCell {
-            cell.setCellData(product: productsArray[indexPath.row], image: productsArray[indexPath.row].image!)
+            cell.setCellData(product: productsArray[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
@@ -80,7 +78,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
             for item in snapshot.children {
                 if let value = item as? DataSnapshot {
                     let product = Product(snapshot: value)
-                    product.setProductImage(productImage: UIImage(named: self.productImageArray[Int(arc4random_uniform(UInt32(self.productImageArray.count)))])!)
                     if product.productGroup.elementsEqual(categoryId) {
                         self.productsArray.append(product)
                     }
@@ -124,10 +121,10 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         if (counter == 0) {
             counter += 1
             sortFor(property: sortableProperties.sortTitle)
-        }else if (counter == 1) {
+        } else if (counter == 1) {
             counter += 1
             sortFor(property: sortableProperties.sortPrice)
-        }else {
+        } else {
             counter = 0
             self.productsArray = self.relevantArray
             self.sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue

@@ -18,24 +18,25 @@ class Product {
     let description: String
     let startDateSHC: String
     let brand: String
-    let localPrice: String = ""
+//    let localPrice: String = ""
     let prologisticaNumberHH: String
     let id: String
     let retailPrice: Int
-    let Did_You_Know_iPad: String = ""
-    let Drawer_EUR_Norway_Suisse: String = ""
-    let Drawer_EUR_extended: String = ""
-    let Drawer_EUR_reduced: String = ""
-    let Drawer_ICA: String = ""
-    let FB_miles_EARN_ob_1_2_miles_per_Euro: String = ""
-    let Free_gift: String = ""
-    let KLM_Only: String = ""
-    let Save_21: String = ""
-    let Tax_Free_Exclusive: Bool = false
+//    let Did_You_Know_iPad: String = ""
+//    let Drawer_EUR_Norway_Suisse: String = ""
+//    let Drawer_EUR_extended: String = ""
+//    let Drawer_EUR_reduced: String = ""
+//    let Drawer_ICA: String = ""
+//    let FB_miles_EARN_ob_1_2_miles_per_Euro: String = ""
+//    let Free_gift: String = ""
+//    let KLM_Only: String = ""
+//    let Save_21: String = ""
+//    let Tax_Free_Exclusive: Bool = false
     var image: UIImage?
     // self defined variables
     //let ref: DatabaseReference?
     var favorite: Bool = false
+
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -48,6 +49,7 @@ class Product {
 //        localPrice = snapshotValue["local_price"] != nil ? snapshotValue["local_price"] as! String : ""
         prologisticaNumberHH = snapshotValue["prologistica_number_HH"] as! String
         id = snapshotValue["sku"] as! String
+        image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
         
         if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
             retailPrice = price
@@ -55,6 +57,7 @@ class Product {
            retailPrice = 0
         }
         
+
 //        self.ref = snapshot.ref
 //        if (snapshotValue["favorite"] == nil) {
 //            snapshot.ref.updateChildValues([
@@ -64,7 +67,7 @@ class Product {
 //        } else {
 //            favorite = snapshotValue["favorite"] as! Bool
 //        }
-        
+
         //        Did_You_Know_iPad = snapshotValue["Did_You_Know_iPad"] as! String
         //        Drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String
         //        Drawer_EUR_extended = snapshotValue["Drawer_EUR_extended"] as! String
@@ -75,10 +78,6 @@ class Product {
         //        KLM_Only = snapshotValue["KLM_Only"] as! String
         //        Save_21 = snapshotValue["Save_21"] as! String
         //        Tax_Free_Exclusive = snapshotValue["Tax_Free_Exclusive"] as! String
-    }
-    
-    func setProductImage(productImage: UIImage) {
-        image = productImage
     }
     
     func changeFavoriteStatus() {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dog-De-H0l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dog-De-H0l">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -129,10 +129,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XLq-Rq-XEl">
-                                                    <rect key="frame" x="8" y="10" width="226" height="240"/>
+                                                    <rect key="frame" x="8" y="10" width="225" height="240"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-d2-zUc">
-                                                    <rect key="frame" x="0.0" y="271" width="241" height="54"/>
+                                                    <rect key="frame" x="0.0" y="271" width="240" height="54"/>
                                                     <subviews>
                                                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="Title" textAlignment="natural" minimumFontSize="17" disabledBackground="true" translatesAutoresizingMaskIntoConstraints="NO" id="567-oI-B6D">
                                                             <rect key="frame" x="8" y="4" width="224" height="17"/>
@@ -146,7 +146,7 @@
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="fill" text="€ 299" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J50-6L-mHH">
-                                                            <rect key="frame" x="8" y="29" width="225" height="17"/>
+                                                            <rect key="frame" x="8" y="29" width="224" height="17"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                             <accessibility key="accessibilityConfiguration">
                                                                 <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -237,7 +237,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5sX-qs-LfK">
-                                <rect key="frame" x="24" y="320" width="327" height="205"/>
+                                <rect key="frame" x="24" y="320" width="327" height="208"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0Q-cN-7Ki">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="50"/>
@@ -267,14 +267,31 @@
                                             <constraint firstAttribute="trailing" secondItem="HeG-Ws-ojR" secondAttribute="trailing" id="xGr-Y3-arB"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fif-UE-Ags" userLabel="AR">
+                                        <rect key="frame" x="0.0" y="55" width="327" height="30"/>
+                                        <color key="backgroundColor" red="0.050980392159999999" green="0.65098039220000004" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Iy4-SN-OWg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="This product in AR">
+                                            <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didClickARButton:" destination="5Xn-Ux-o2a" eventType="touchUpInside" id="OGE-uB-TBJ"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel of Product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9b-hL-jip">
-                                        <rect key="frame" x="0.0" y="55" width="327" height="24"/>
+                                        <rect key="frame" x="0.0" y="90" width="327" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8bG-OM-9lK">
-                                        <rect key="frame" x="0.0" y="84" width="327" height="121"/>
+                                        <rect key="frame" x="0.0" y="119" width="327" height="89"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -293,7 +310,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMh-LH-lvs">
-                                <rect key="frame" x="24" y="541" width="327" height="50"/>
+                                <rect key="frame" x="24" y="544" width="327" height="50"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.44705882349999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="AXf-YN-MgE"/>
@@ -319,7 +336,7 @@
                             <constraint firstItem="tMh-LH-lvs" firstAttribute="leading" secondItem="5sX-qs-LfK" secondAttribute="leading" id="HO9-gn-N2G"/>
                             <constraint firstItem="aci-1B-VtS" firstAttribute="trailing" secondItem="5sX-qs-LfK" secondAttribute="trailing" constant="24" id="M5f-wM-5Pr"/>
                             <constraint firstItem="tMh-LH-lvs" firstAttribute="top" secondItem="5sX-qs-LfK" secondAttribute="bottom" constant="16" id="Qa5-Wf-zWI"/>
-                            <constraint firstItem="aci-1B-VtS" firstAttribute="bottom" secondItem="tMh-LH-lvs" secondAttribute="bottom" constant="27" id="Xwk-0O-yJT"/>
+                            <constraint firstItem="aci-1B-VtS" firstAttribute="bottom" secondItem="tMh-LH-lvs" secondAttribute="bottom" constant="24" id="Xwk-0O-yJT"/>
                             <constraint firstItem="zOB-bP-nkr" firstAttribute="top" secondItem="aci-1B-VtS" secondAttribute="top" constant="32" id="YRn-l5-jW0"/>
                             <constraint firstItem="zOB-bP-nkr" firstAttribute="leading" secondItem="aci-1B-VtS" secondAttribute="leading" constant="50" id="Zom-Hd-hsN"/>
                             <constraint firstItem="tMh-LH-lvs" firstAttribute="trailing" secondItem="5sX-qs-LfK" secondAttribute="trailing" id="cf8-BC-Rl5"/>
@@ -327,17 +344,48 @@
                         <viewLayoutGuide key="safeArea" id="aci-1B-VtS"/>
                     </view>
                     <connections>
+                        <outlet property="ARButton" destination="Fif-UE-Ags" id="XXt-c5-hTA"/>
                         <outlet property="claimButton" destination="tMh-LH-lvs" id="Szd-yh-PdK"/>
                         <outlet property="descriptionTextView" destination="8bG-OM-9lK" id="JOl-4W-Zj3"/>
                         <outlet property="favoriteButton" destination="HeG-Ws-ojR" id="eKy-q5-cMb"/>
                         <outlet property="priceLabel" destination="q7D-fc-d0Q" id="zl3-8X-lQc"/>
                         <outlet property="productImageView" destination="zOB-bP-nkr" id="aFA-ac-DTb"/>
                         <outlet property="productTitleLabel" destination="U9b-hL-jip" id="foV-68-cbN"/>
+                        <segue destination="3VO-uy-z4G" kind="show" identifier="productInfoToARSegue" id="Cm9-B0-igU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xsm-Bv-3ZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2004" y="-150.67466266866569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="e6k-1S-6vY">
+            <objects>
+                <viewController id="3VO-uy-z4G" customClass="ARViewController" customModule="ISX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mJA-nV-hvz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="powerbank.dae" translatesAutoresizingMaskIntoConstraints="NO" id="4K2-Ve-Ytp">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </arscnView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4K2-Ve-Ytp" firstAttribute="top" secondItem="hfa-hy-LYg" secondAttribute="top" id="63M-pQ-Qug"/>
+                            <constraint firstItem="hfa-hy-LYg" firstAttribute="trailing" secondItem="4K2-Ve-Ytp" secondAttribute="trailing" id="DR9-4g-qja"/>
+                            <constraint firstItem="4K2-Ve-Ytp" firstAttribute="leading" secondItem="hfa-hy-LYg" secondAttribute="leading" id="Uxf-PX-Guk"/>
+                            <constraint firstItem="hfa-hy-LYg" firstAttribute="bottom" secondItem="4K2-Ve-Ytp" secondAttribute="bottom" id="kkH-YK-rMZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hfa-hy-LYg"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="4K2-Ve-Ytp" id="35h-I0-d0I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BxQ-et-f5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2817" y="-150"/>
         </scene>
         <!--Products-->
         <scene sceneID="3d5-Jc-eKg">

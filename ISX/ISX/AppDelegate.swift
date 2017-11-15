@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().barStyle = UIBarStyle.blackOpaque
         UINavigationBar.appearance().tintColor = .white
+        FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
         FirebaseApp.configure()
         
         if let gai = GAI.sharedInstance(),
@@ -25,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 gai.dispatchInterval = 1
                 gai.trackUncaughtExceptions = false
                 gai.tracker(withTrackingId: trackingId)
-            
             } else {
                 assertionFailure("Google Analytics not configured correctly")
             }

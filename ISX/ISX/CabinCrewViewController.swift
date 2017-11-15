@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import UserNotifications
 
 class CabinCrewViewController: UITableViewController {
     
@@ -16,12 +17,13 @@ class CabinCrewViewController: UITableViewController {
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupReferences()
         tableView.dataSource = self
+        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     }
     
     func setupReferences() {
@@ -32,6 +34,7 @@ class CabinCrewViewController: UITableViewController {
         
         requestsRef?.keepSynced(true)
         observeRequests()
+        observeNewRequest()
     }
     
     func observeRequests() {
@@ -47,6 +50,55 @@ class CabinCrewViewController: UITableViewController {
         })
     }
     
+    func observeNewRequest() {
+        requestsRef?.queryLimited(toLast: 1).observe(.childAdded, with: { snapshot in
+            let latestRequest = Request(snapshot: snapshot)
+            let customerChair = latestRequest.customerChair
+            self.checkAuthStatusProceed(customerChair)
+            self.tableView.reloadData()
+        })
+    }
+    
+    func checkAuthStatusProceed(_ customerChair: String) {
+        UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
+            switch notificationSettings.authorizationStatus {
+            case .notDetermined:
+                self.requestAuthorization(completionHandler: { (success) in
+                    guard success else { return }
+                    self.scheduleLocalNotification(customerChair)
+                })
+            case .authorized:
+                self.scheduleLocalNotification(customerChair)
+            case .denied:
+                return
+            }
+        }
+    }
+    
+    private func scheduleLocalNotification(_ customerChair: String) {
+        // Create Notification Content
+        let notificationContent = UNMutableNotificationContent()
+        
+        // Configure Notification Content
+        notificationContent.title = "Inflight Sales Order"
+        notificationContent.body = "A passenger ordered a product on seat: \(customerChair)"
+        
+        // Add Trigger
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 3.0, repeats: false)
+        
+        // Create Notification Request
+        let notificationRequest = UNNotificationRequest(identifier: "cocoacasts_local_notification", content: notificationContent, trigger: notificationTrigger)
+        
+        // Add Request to User Notification Center
+        UNUserNotificationCenter.current().add(notificationRequest)
+    }
+    
+    private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
+            completionHandler(success)
+        }
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,30 +111,24 @@ class CabinCrewViewController: UITableViewController {
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
-        cell.setupStyling()
-        
-        let requestForCell = requestsArray[indexPath.row]
+        let request = requestsArray[indexPath.row]
+        cell.setCellData(request: request)
         
         productsRef?.observe(.value, with: { snapshot in
             let arr = snapshot.children.allObjects as NSArray
             for item in arr {
-                let item = Product.init(snapshot: item as! DataSnapshot)
-                if item.id == String(requestForCell.productId) {
+                let item = Product(snapshot: item as! DataSnapshot)
+                if item.id == String(request.productId) {
                     cell.productName.text = item.title
                 }
             }
         })
-        
-        cell.contentView.layer.opacity = requestForCell.completed ? 0.25 : 1
-        cell.productCode.text = String(requestForCell.productId)
-        cell.chairLabel.text = String(requestForCell.customerChair)
 
         return cell
      }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
-        
         let yesAction = UIAlertAction(title: "Yes", style: .cancel, handler: { action in
             tableView.deselectRow(at: indexPath, animated: true)
             self.requestsArray[indexPath.row].completed = true

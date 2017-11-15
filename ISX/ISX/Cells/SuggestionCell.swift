@@ -12,10 +12,20 @@ class SuggestionCell: UICollectionViewCell {
 
     @IBOutlet weak var suggestionImage: UIImageView!
     @IBOutlet weak var suggestionTextContainer: UIView!
-    @IBOutlet weak var suggestionLabel: UILabel!
+    @IBOutlet weak var suggestionTitleLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupStyling()
+    }
     
     func setupStyling() {
         backgroundColor = Constants.grey
         suggestionTextContainer.backgroundColor = Constants.blue
+    }
+    
+    func setupData(product: Product) {
+        suggestionImage.image = product.image
+        suggestionTitleLabel.text = product.title
     }
 }

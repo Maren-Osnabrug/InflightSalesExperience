@@ -14,8 +14,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         UICollectionViewDataSource {
     
     private let viewName = "Categories Overview"
-    var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden",
-                          "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
     var selectedCategoryID: String?
     var categoryArray = [Category]()
     
@@ -54,6 +52,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
                 if let value = item as? DataSnapshot {
                     let category = Category(snapshot: value)
                     self.categoryArray.append(category)
+                    print(category.categoryName)
                 }
             }
             self.categoryCollectionView.reloadData()

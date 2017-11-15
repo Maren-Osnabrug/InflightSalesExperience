@@ -16,7 +16,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     private let viewName = "Categories Overview"
     var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden",
                           "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
-    var selectedCategoryID: String?
+    var selectedCategory: Category?
     var categoryArray = [Category]()
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
@@ -61,7 +61,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCategoryID = categoryArray[indexPath.row].categoryID
+        selectedCategory = categoryArray[indexPath.row]
         GoogleAnalyticsHelper().googleAnalyticLogAction(category: viewName, action: "Choosing a Category", label: categoryArray[indexPath.row].categoryName)
         performSegue(withIdentifier: "productsDetailSegue", sender: self)
     }
@@ -69,8 +69,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "productsDetailSegue" {
             if let nextViewController = segue.destination as? ProductsViewController {
-                if let catID = self.selectedCategoryID {
-                    nextViewController.categoryID = catID
+                if let category = self.selectedCategory {
+                    nextViewController.category = category
                 }
             }
         }

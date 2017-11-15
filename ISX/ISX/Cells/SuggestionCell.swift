@@ -25,7 +25,7 @@ class SuggestionCell: UICollectionViewCell {
     }
     
     func setupData(product: Product) {
-        suggestionImage.image = UIImage(named: String(product.id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(product.id))
+        suggestionImage.image = product.image
         suggestionTitleLabel.text = product.title
     }
 }

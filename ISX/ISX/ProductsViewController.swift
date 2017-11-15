@@ -27,7 +27,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     var productsArray: [Product] = []
-    var categoryID: String?
+    var category: Category?
     var selectedProduct: Product?
     var counter = 0
     private let viewName = "Product Overview"
@@ -44,9 +44,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         sortLabel.addGestureRecognizer(tap)
         sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue
     
-        title = "Products"
+        title = category?.categoryName
         
-        getProducts(categoryId: categoryID!)
+        getProducts(categoryId: (category?.categoryID)!)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -121,10 +121,10 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         if (counter == 0) {
             counter += 1
             sortFor(property: sortableProperties.sortTitle)
-        }else if (counter == 1) {
+        } else if (counter == 1) {
             counter += 1
             sortFor(property: sortableProperties.sortPrice)
-        }else {
+        } else {
             counter = 0
             self.productsArray = self.relevantArray
             self.sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue

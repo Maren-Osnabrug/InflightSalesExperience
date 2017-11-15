@@ -17,7 +17,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     var suggestedProductsArray = [Product]()
     var bestSellersArray = [Product]()
-    var bestSellers = ["40780", "45118", "45411", "15129", "15128", "10110", "11808", "10048", "10109", "10053", "68112"]
     var selectedProduct: Product?
     private let viewName = "Home"
     

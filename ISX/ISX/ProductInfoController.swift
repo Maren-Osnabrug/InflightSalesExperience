@@ -38,7 +38,6 @@ class ProductInfoController : UIViewController {
 
             handleFavoriteInFirebase(isFavorite: product.favorite)
             GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
-
         }
     }
     
@@ -97,44 +96,30 @@ class ProductInfoController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
-        
-        title = product?.title
-        //checkIfProductIsFavorited(productID: (product?.id)!)
-
-        setupReferences()
         setupStyling()
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
+    
+        title = product?.title
+        setupReferences()
     }
     
     func observeFavoriteStatus() {
-        print("kngkjngkjngkjngkjng;lgl,gl,gl,gl,g")
-        favoriteRef?.child(Constants.DEVICEID).child((product?.id)!)
-        .observeSingleEvent(of: .value, with: { snapshot in
-            print(self.product?.id)
-            print(snapshot.value)
-            print(snapshot.hasChildren())
-            if snapshot.hasChildren() {
-                print("ik kom bij true")
-                self.updateFavoriteButton(favorite: true)
-            }else {
-                print("ik kom bij false")
-                self.updateFavoriteButton(favorite: false)
-            }
-        })
-//        product?.ref?.observeSingleEvent(of: .value, with: { snapshot in
-//            if let data = snapshot.value as? [String: AnyObject] {
-//                if let favoriteHasChanged = data["favorite"] as? Bool {
-//                    self.product?.favorite = favoriteHasChanged
-//                    self.updateFavoriteButton(favorite: favoriteHasChanged)
-//                }
-//            }
-//        })
+        if let productID = product?.id {
+            favoriteRef?.child(Constants.DEVICEID).child(productID)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    if snapshot.hasChildren() {
+                        self.product?.changeFavoriteStatus()
+                        self.updateFavoriteButton(favorite: true)
+                    }else {
+                        self.product?.changeFavoriteStatus()
+                        self.updateFavoriteButton(favorite: false)
+                    }
+            })
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupStyling()
         observeFavoriteStatus()
     }
     
@@ -156,7 +141,7 @@ class ProductInfoController : UIViewController {
         descriptionTextView.textContainerInset = .zero
         descriptionTextView.textContainer.lineFragmentPadding = 0
         favoriteButton.tintColor = Constants.orange
-        //updateFavoriteButton(favorite: product.favorite)
+        updateFavoriteButton(favorite: product.favorite)
     }
     
     func updateFavoriteButton(favorite: Bool) {
@@ -189,7 +174,9 @@ class ProductInfoController : UIViewController {
     func handleFavoriteInFirebase(isFavorite: Bool) {
         if let productID = product?.id {
             if (isFavorite) {
-                addFavoriteProduct(productID: productID)
+                if let favProduct = self.product {
+                    addFavoriteProduct(product: favProduct)
+                }
             }else {
                 deleteFavorite(productID: productID)
             }
@@ -198,40 +185,12 @@ class ProductInfoController : UIViewController {
         }
     }
     
-//    func checkIfProductIsFavorited(productID: String) {
-//        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-//        favoriteRef?.child(Constants.DEVICEID).observe(.value, with: { snapshot in
-//            print(snapshot.value)
-//            print(snapshot.hasChildren())
-//            if snapshot.hasChild(productID) {
-//                self.product?.favorite = true
-//            }else {
-//                self.product?.favorite = false
-//            }
-//            //haal force wrap later weg
-//            print("kdjbdkjbjdhbjdhbjdhb")
-//            self.updateFavoriteButton(favorite: (self.product?.favorite)!)
-//        })
-////            .observeSingleEventofType(FIRDataEventType.Value, withBlock: { snapshot in
-////                print(snapshot.hasChildren())
-////                if snapshot.hasChildren() {
-////                    self.product?.favorite = true
-////                }else {
-////                    self.product?.favorite = false
-////                }
-////                //haal force wrap later weg
-////                self.updateFavoriteButton(favorite: (self.product?.favorite)!)
-////            })
-//        print("################################")
-//    }
-    
-    func addFavoriteProduct(productID: String) {
-        let pushObjectToFirebase = favoriteRef?.child(Constants.DEVICEID).child(String(productID))
-        pushObjectToFirebase?.setValue(["productid": productID])
+    func addFavoriteProduct(product: Product) {
+        let pushObjectToFirebase = favoriteRef?.child(Constants.DEVICEID).child(product.id)
+        pushObjectToFirebase?.setValue(product.toAnyObject())
     }
     
     func deleteFavorite(productID: String) {
         favoriteRef?.child(Constants.DEVICEID).child(productID).removeValue()
     }
-    
 }

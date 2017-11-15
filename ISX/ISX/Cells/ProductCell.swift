@@ -24,11 +24,9 @@ class ProductCell: UICollectionViewCell {
         productImage.image = image
         productTitle.text = product.title
         productPrice.text = "€" + String(product.retailPrice)
-
     }
     
     func setupStyling(){
         backgroundColor = Constants.darkGrey
     }
-    
 }

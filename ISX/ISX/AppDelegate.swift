@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let gai = GAI.sharedInstance(),
             let gaConfigValues = Bundle.main.infoDictionary?["GoogleAnalytics"] as? [String: String],
             let trackingId = gaConfigValues["TRACKING_ID"] {
-                gai.logger.logLevel = .verbose
                 gai.dispatchInterval = 1
                 gai.trackUncaughtExceptions = false
                 gai.tracker(withTrackingId: trackingId)

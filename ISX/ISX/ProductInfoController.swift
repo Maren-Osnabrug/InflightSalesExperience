@@ -9,12 +9,14 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import SceneKit
 
 class ProductInfoController : UIViewController {
     
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var ARButton: UIButton!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var claimButton: UIButton!
@@ -34,6 +36,20 @@ class ProductInfoController : UIViewController {
             product.changeFavoriteStatus()
             updateFavoriteButton(favorite: product.favorite)
             GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
+        }
+    }
+    
+    @IBAction func didClickARButton(_ sender: Any) {
+        performSegue(withIdentifier: "productInfoToARSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "productInfoToARSegue" {
+            if let controller = segue.destination as? ARViewController {
+                if let ARproduct = product {
+                    controller.product = ARproduct
+                }
+            }
         }
     }
     
@@ -86,11 +102,20 @@ class ProductInfoController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
-        
         title = product?.title
         setupReferences()
+        setupStyling()
+        observeRequests()
+    }
+    
+    func observeRequests() {
+        product?.ref?.observe(.childChanged, with: { snapshot in
+        })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setupStyling()
     }
     
@@ -112,6 +137,11 @@ class ProductInfoController : UIViewController {
         descriptionTextView.textContainer.lineFragmentPadding = 0
         favoriteButton.tintColor = Constants.orange
         updateFavoriteButton(favorite: product.favorite)
+        if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {
+            ARButton.isHidden = true
+        } else {
+            ARButton.isHidden = false
+        }
     }
     
     func updateFavoriteButton(favorite: Bool) {

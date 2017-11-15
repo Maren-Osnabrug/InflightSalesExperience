@@ -111,13 +111,14 @@ class CabinCrewViewController: UITableViewController {
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
-        cell.setCellData(request: requestsArray[indexPath.row])
+        let request = requestsArray[indexPath.row]
+        cell.setCellData(request: request)
         
         productsRef?.observe(.value, with: { snapshot in
             let arr = snapshot.children.allObjects as NSArray
             for item in arr {
-                let item = Product.init(snapshot: item as! DataSnapshot)
-                if item.id == String(requestForCell.productId) {
+                let item = Product(snapshot: item as! DataSnapshot)
+                if item.id == String(request.productId) {
                     cell.productName.text = item.title
                 }
             }

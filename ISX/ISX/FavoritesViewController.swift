@@ -94,7 +94,7 @@ class FavoritesViewController: UITableViewController {
             success(true)
         })
         modifyAction.image = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
-        modifyAction.backgroundColor = Constants.blue
+        modifyAction.backgroundColor = Constants.orange
         
         return UISwipeActionsConfiguration(actions: [modifyAction])
     }

@@ -52,7 +52,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
                 if let value = item as? DataSnapshot {
                     let category = Category(snapshot: value)
                     self.categoryArray.append(category)
-                    print(category.categoryName)
                 }
             }
             self.categoryCollectionView.reloadData()

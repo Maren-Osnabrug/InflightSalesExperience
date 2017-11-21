@@ -23,7 +23,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        Database.database().isPersistenceEnabled = true
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -34,6 +34,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     func configureDatabase() {
         datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = datarootRef?.child("products")
+        productsRef?.keepSynced(true)
         productsRef?.queryOrdered(byChild: "Bestsellers").queryStarting(atValue: "1").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let product = item as? DataSnapshot {

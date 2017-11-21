@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 assertionFailure("Google Analytics not configured correctly")
             }
+        Database.database().isPersistenceEnabled = true
         return true
     }
 

@@ -12,7 +12,6 @@ import FirebaseDatabase
 
 class FavoritesViewController: UITableViewController {
     private var favoritesArray = [Product]()
-    private var productIDArray = [String]()
     private var datarootRef: DatabaseReference?
     private var favoriteRef: DatabaseReference?
     private var productsRef: DatabaseReference?
@@ -39,7 +38,7 @@ class FavoritesViewController: UITableViewController {
             self.favoritesArray = []
             for item in snapshot.children {
                 guard let item = item as? DataSnapshot else { continue }
-                let product = Product.init(snapshot: item)
+                let product = Product(snapshot: item)
                 self.favoritesArray.append(product)
             }
             self.tableView.reloadData()

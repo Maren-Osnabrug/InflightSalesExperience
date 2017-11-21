@@ -69,7 +69,6 @@ class ProductInfoController : UIViewController {
             guard let product = self.product else { return }
             
             if(!self.errorCheckChairNumber(chairNumber: customerChairNumber)) {
-                print("Error - Invalid chairnumber")
                 return
             }
 
@@ -107,7 +106,7 @@ class ProductInfoController : UIViewController {
         alertController.addAction(cancelAction)
         alertController.actions[0].isEnabled = false
         
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -201,7 +200,7 @@ class ProductInfoController : UIViewController {
                 deleteFavorite(productID: productID)
             }
         }else {
-            print("couldn't cast productid to an integer, please make sure the id are only numbers.")
+            return
         }
     }
     

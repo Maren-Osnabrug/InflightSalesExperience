@@ -11,8 +11,6 @@ import Foundation
 class Favorite {
     let productID: Int
     
-    
-    
     init(productID: Int) {
         self.productID = productID
     }

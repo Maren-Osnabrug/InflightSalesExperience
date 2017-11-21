@@ -102,7 +102,7 @@ class CabinCrewViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return requestsArray.count
+        return requestsArray.count + 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,21 +110,41 @@ class CabinCrewViewController: UITableViewController {
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
-        let request = requestsArray[indexPath.row]
-        cell.setCellData(request: request)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell") as? RequestCell else { return UITableViewCell() }
         
-        productsRef?.observe(.value, with: { snapshot in
-            let arr = snapshot.children.allObjects as NSArray
-            for item in arr {
-                let item = Product(snapshot: item as! DataSnapshot)
-                if item.id == String(request.productId) {
-                    cell.productName.text = item.title
+        if (indexPath.row == 0){
+            let cella = tableView.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath)
+            cella.isUserInteractionEnabled = false
+            return cella
+        } else {
+            let request = requestsArray[indexPath.row - 1]
+            cell.setCellData(request: request)
+            productsRef?.observe(.value, with: { snapshot in
+                let arr = snapshot.children.allObjects as NSArray
+                for item in arr {
+                    let item = Product.init(snapshot: item as! DataSnapshot)
+                    if item.id == String(request.productId) {
+                        cell.productName.text = item.title
+                    }
                 }
-            }
-        })
-
-        return cell
+            })
+            return cell
+        }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
+//        let request = requestsArray[indexPath.row]
+//        cell.setCellData(request: request)
+//
+//        productsRef?.observe(.value, with: { snapshot in
+//            let arr = snapshot.children.allObjects as NSArray
+//            for item in arr {
+//                let item = Product(snapshot: item as! DataSnapshot)
+//                if item.id == String(request.productId) {
+//                    cell.productName.text = item.title
+//                }
+//            }
+//        })
+//
+//        return cell
      }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -14,8 +14,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         UICollectionViewDataSource {
     
     private let viewName = "Categories Overview"
-    var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden",
-                          "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
     var selectedCategory: Category?
     var categoryArray = [Category]()
     

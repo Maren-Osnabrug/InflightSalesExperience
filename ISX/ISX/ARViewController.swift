@@ -29,13 +29,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         addPinchGestureToSceneView()
     }
     
-    func addProduct(x: Float = 0, y: Float = 0, z: Float = -0.2) {
+    func addProduct(x: Float = 0, y: Float = 0, z: Float = -1) {
         if let product = product {
             scene = SCNScene(named: "art.scnassets/\(product.id)/\(product.id).scn")!
-            scene?.rootNode.position = SCNVector3(x, y, z)
             let node = scene?.rootNode.childNode(withName: "Cube_bake", recursively: true)
-            node?.position = SCNVector3(x, y, z)
             node?.eulerAngles.y = -.pi / 2
+            let camera = sceneView.pointOfView!
+            print(camera.orientation, camera.position)
+            let position = SCNVector3(x, y, z)
+            node?.position = camera.convertPosition(position, to: nil)
             sceneView.scene.rootNode.addChildNode(node!)
         }
     }
@@ -69,20 +71,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func CGPointToSCNVector3(view: SCNView, depth: Float, point: CGPoint) -> SCNVector3 {
-        let locationWithz = SCNVector3Make(Float(point.x), Float(point.y), depth)
+        let projectedOrigin = view.projectPoint(SCNVector3Make(0, 0, depth))
+        let locationWithz = SCNVector3Make(Float(point.x), Float(point.y), projectedOrigin.z)
         return view.unprojectPoint(locationWithz)
     }
     
     @objc func didPan(withGestureRecognizer sender: UIGestureRecognizer) {
-        let point = sender.location(in: view)
+        var point = sender.location(in: sceneView)
+        point = CGPoint(x: point.x, y: point.y)
         let hitTestResults = sceneView.hitTest(point)
-        print("point : ", point)
         guard let node = hitTestResults.first?.node else { return }
-        print("node : ", node.position.x , ", " , node.position.y)
-        
-//        let result: SCNVector3 = CGPointToSCNVector3(view: sceneView, depth: node.position.z, point: point)
-        let result: SCNVector3 = SCNVector3Make(Float(point.x), Float(point.y), 0.0)
-        node.position = result
+        let position = node.position
+        let cgpoint = CGPoint(x: CGFloat(position.x) + point.x, y: CGFloat(position.y) + point.y)
+        node.position = CGPointToSCNVector3(view: sceneView, depth: node.simdPosition.z, point: cgpoint)
     }
     
     @objc func didPinch(withGestureRecognizer gesture: UIPinchGestureRecognizer) {
@@ -146,10 +147,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 
 }
 
-extension float4x4 {
-    var translation: float3 {
-        let translation = self.columns.3
-        return float3(translation.x, translation.y, translation.z)
-    }
-}
+//extension float4x4 {
+//    var translation: float3 {
+//        let translation = self.columns.3
+//        return float3(translation.x, translation.y, translation.z)
+//    }
+//}
 

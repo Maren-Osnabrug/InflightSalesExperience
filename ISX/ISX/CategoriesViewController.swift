@@ -21,7 +21,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         
         getFirebaseData()
@@ -46,7 +45,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     public func getFirebaseData(){
         let datarootRef = Database.database().reference(withPath: "dataroot")
         let productGroupsRef = datarootRef.child("productGroups")
-        
+        productGroupsRef.keepSynced(true)
         productGroupsRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let value = item as? DataSnapshot {

@@ -17,18 +17,11 @@ class ProductCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupStyling()
     }
     
     func setCellData(product: Product) {
         productImage.image = product.image
         productTitle.text = product.title
         productPrice.text = "€" + String(product.retailPrice)
-
     }
-    
-    func setupStyling(){
-        backgroundColor = Constants.darkGrey
-    }
-    
 }

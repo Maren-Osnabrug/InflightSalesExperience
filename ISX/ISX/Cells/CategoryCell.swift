@@ -24,10 +24,4 @@ class CategoryCell: UICollectionViewCell {
         categoryTitle.text = category.categoryName
         categoryImage.image = category.categoryImage
     }
-    
-    func setupStyling(){
-        backgroundColor =  Constants.darkGrey
-        categoryTitle.backgroundColor = Constants.blue
-        categoryTitle.textColor = .white
-    }
 }

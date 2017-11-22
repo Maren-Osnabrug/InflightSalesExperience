@@ -16,12 +16,6 @@ class SuggestionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupStyling()
-    }
-    
-    func setupStyling() {
-        backgroundColor = Constants.grey
-        suggestionTextContainer.backgroundColor = Constants.blue
     }
     
     func setupData(product: Product) {

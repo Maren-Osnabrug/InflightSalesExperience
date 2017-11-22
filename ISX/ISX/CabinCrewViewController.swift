@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import UserNotifications
+import NVActivityIndicatorView
 
 class CabinCrewViewController: UITableViewController {
     
@@ -17,13 +18,16 @@ class CabinCrewViewController: UITableViewController {
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
-    
+    var activityIndicatorView: NVActivityIndicatorView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupReferences()
         tableView.dataSource = self
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: 150)
+        tableView.addSubview(activityIndicatorView!)
     }
     
     func setupReferences() {
@@ -38,6 +42,7 @@ class CabinCrewViewController: UITableViewController {
     }
     
     func observeRequests() {
+        activityIndicatorView?.startAnimating()
         requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 let toAdd = Request.init(snapshot: item as! DataSnapshot)
@@ -47,6 +52,7 @@ class CabinCrewViewController: UITableViewController {
                 }
             }
             self.tableView.reloadData()
+            self.activityIndicatorView?.stopAnimating()
         })
     }
     

@@ -8,6 +8,7 @@ target 'ISX' do
     pod 'Firebase/Database'
 	pod 'Firebase/Auth'
     pod 'GoogleAnalytics'
+    pod 'NVActivityIndicatorView'
   # Pods for ISX
 
   target 'ISX-CabinCrew' do
@@ -15,6 +16,7 @@ target 'ISX' do
       pod 'Firebase/Core'
       pod 'Firebase/Database'
       pod 'Firebase/Auth'
+      pod 'NVActivityIndicatorView'
       
    # Pods for ISX-CabinCrew
   end

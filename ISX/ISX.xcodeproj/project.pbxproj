@@ -13,6 +13,7 @@
 		2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476D9C71F839FC200686C1E /* SuggestionCell.swift */; };
 		2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476DCA31F838B2A00E5B03F /* HomeViewController.swift */; };
 		85CB40592B865CF93D261EF9 /* Pods_ISX_ISX_CabinCrew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D024177099EE7950E6490A78 /* Pods_ISX_ISX_CabinCrew.framework */; };
+		97AC4FC62485228EA63B4BBB /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3883C81FA8BE5A00601EDD /* Pods_ISX.framework */; };
 		9A0A4CC31FBB4CD700F20758 /* HomeCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */; };
 		9A3883B41FA8BAEE00601EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */; };
 		9A3883BA1FA8BB7C00601EDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B91FA8BB7C00601EDD /* GoogleService-Info.plist */; };
@@ -128,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21822BBB739DF0A7DBCC3EA9 /* Pods_ISX.framework in Frameworks */,
+				97AC4FC62485228EA63B4BBB /* Pods_ISX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +424,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ISX-ISX-CabinCrew/Pods-ISX-ISX-CabinCrew-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -429,6 +432,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -497,6 +501,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ISX/Pods-ISX-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -504,6 +509,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -742,10 +748,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5T22TFL7PY;
+				DEVELOPMENT_TEAM = 62FNX657RS;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX.HVA;
+				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;
@@ -761,10 +767,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5T22TFL7PY;
+				DEVELOPMENT_TEAM = 62FNX657RS;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX.HVA;
+				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;

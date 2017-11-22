@@ -22,8 +22,16 @@ class RequestCell: UITableViewCell {
         super.awakeFromNib()
         setupStyling()
     }
+    
+    func setCellData(request: Request) {
+        contentView.layer.opacity = request.completed ? 0.25 : 1
+        productImage.image = UIImage(named: String(request.productId)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(request.productId))
+        productCode.text = String(request.productId)
+        chairLabel.text = String(request.customerChair)
+    }
 
-    func setupStyling() {
+    // PRAGMA MARK: - Private
+    private func setupStyling() {
         cellContentView.layer.borderColor = UIColor.white.cgColor
         cellContentView.layer.borderWidth = 1
         
@@ -34,12 +42,5 @@ class RequestCell: UITableViewCell {
         chairView.layer.shadowOpacity = 0.8
         chairView.layer.shadowRadius = 3
         chairView.layer.shadowOffset = CGSize(width: 1, height: 1)
-    }
-    
-    func setCellData(request: Request) {
-        contentView.layer.opacity = request.completed ? 0.25 : 1
-        productImage.image = UIImage(named: String(request.productId)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(request.productId))
-        productCode.text = String(request.productId)
-        chairLabel.text = String(request.customerChair)
     }
 }

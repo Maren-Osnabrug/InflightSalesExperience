@@ -16,7 +16,6 @@
 		97AC4FC62485228EA63B4BBB /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3883C81FA8BE5A00601EDD /* Pods_ISX.framework */; };
 		9A0A4CC31FBB4CD700F20758 /* HomeCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */; };
 		9A3883B41FA8BAEE00601EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */; };
-		9A3883BA1FA8BB7C00601EDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B91FA8BB7C00601EDD /* GoogleService-Info.plist */; };
 		9A3883BD1FA8BC4A00601EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */; };
 		9A3883BE1FA8BCB900601EDD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F1A031F8CF36200702B4B /* Constants.swift */; };
 		9A3883C11FA8BCDA00601EDD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
@@ -29,6 +28,7 @@
 		9A3883CC1FA8C28200601EDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9811F7A95F400DB3C5A /* Main.storyboard */; };
 		9A3883CD1FA8C42000601EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9841F7A95F400DB3C5A /* Assets.xcassets */; };
 		9A3883CF1FA8C6DB00601EDD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530E3251F9747A500899DAB /* Category.swift */; };
+		9A74EEC01FC5C77B00411548 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */; };
 		9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */; };
 		9A8C72CC1FAB71E400322F8B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C72CB1FAB71E400322F8B /* art.scnassets */; };
 		9A8C72CE1FAB761B00322F8B /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C72CD1FAB761B00322F8B /* ARViewController.swift */; };
@@ -75,10 +75,11 @@
 		9A3883B01FA8BAEE00601EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A3883B31FA8BAEE00601EDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A3883B51FA8BAEE00601EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A3883B91FA8BB7C00601EDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A3883C81FA8BE5A00601EDD /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A535EA41F84E121000AF927 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CabinCrew.storyboard; sourceTree = "<group>"; };
 		9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewViewController.swift; sourceTree = "<group>"; };
+		9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A74EEC11FC5C89C00411548 /* ISX-CabinCrew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ISX-CabinCrew.entitlements"; sourceTree = "<group>"; };
 		9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		9A8C72CB1FAB71E400322F8B /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		9A8C72CD1FAB761B00322F8B /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
@@ -149,10 +150,11 @@
 		9A3883A81FA8BAEE00601EDD /* ISX-CabinCrew */ = {
 			isa = PBXGroup;
 			children = (
+				9A74EEC11FC5C89C00411548 /* ISX-CabinCrew.entitlements */,
+				9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */,
 				9A3883B01FA8BAEE00601EDD /* Assets.xcassets */,
 				9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */,
 				9A3883B51FA8BAEE00601EDD /* Info.plist */,
-				9A3883B91FA8BB7C00601EDD /* GoogleService-Info.plist */,
 			);
 			path = "ISX-CabinCrew";
 			sourceTree = "<group>";
@@ -340,6 +342,11 @@
 					9A3883A61FA8BAEE00601EDD = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					9ADCF9791F7A95F400DB3C5A = {
 						CreatedOnToolsVersion = 9.0;
@@ -371,13 +378,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A74EEC01FC5C77B00411548 /* GoogleService-Info.plist in Resources */,
 				A458C9B61FA9DC4800F970DD /* GoogleService-Info.plist in Resources */,
 				A458C9B81FA9DC4800F970DD /* Products.storyboard in Resources */,
 				9A3883C41FA8BD4A00601EDD /* CabinCrew.storyboard in Resources */,
 				A431DE441FA9F65000086182 /* Launch Screen.storyboard in Resources */,
 				9A3883B41FA8BAEE00601EDD /* LaunchScreen.storyboard in Resources */,
 				9AF872F71FB2204D0068C349 /* Favorites.storyboard in Resources */,
-				9A3883BA1FA8BB7C00601EDD /* GoogleService-Info.plist in Resources */,
 				9A3883CD1FA8C42000601EDD /* Assets.xcassets in Resources */,
 				9A3883CA1FA8BF8600601EDD /* Assets.xcassets in Resources */,
 			);
@@ -425,7 +432,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -433,7 +440,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,7 +509,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -510,7 +517,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,12 +608,13 @@
 			baseConfigurationReference = F0A7686F6573F85C7822AF0A /* Pods-ISX-ISX-CabinCrew.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ISX-CabinCrew/ISX-CabinCrew.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62FNX657RS;
+				DEVELOPMENT_TEAM = KDLWUU4ZNP;
 				INFOPLIST_FILE = "ISX-CabinCrew/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "KLM.ISX-CabinCrew";
+				PRODUCT_BUNDLE_IDENTIFIER = com.klm.isx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
@@ -619,12 +627,13 @@
 			baseConfigurationReference = 510F5BF1DDADDA8962F02269 /* Pods-ISX-ISX-CabinCrew.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ISX-CabinCrew/ISX-CabinCrew.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62FNX657RS;
+				DEVELOPMENT_TEAM = KDLWUU4ZNP;
 				INFOPLIST_FILE = "ISX-CabinCrew/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "KLM.ISX-CabinCrew";
+				PRODUCT_BUNDLE_IDENTIFIER = com.klm.isx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;

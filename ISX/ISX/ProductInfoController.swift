@@ -21,9 +21,11 @@ class ProductInfoController : UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var claimButton: UIButton!
     
+    var addAlertSaveAction: UIAlertAction?
     var product: Product?
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
+    private var favoriteRef: DatabaseReference?
     var customerChair: String?
 
     private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
@@ -35,6 +37,8 @@ class ProductInfoController : UIViewController {
         if let product = product {
             product.changeFavoriteStatus()
             updateFavoriteButton(favorite: product.favorite)
+
+            handleFavoriteInFirebase(isFavorite: product.favorite)
             GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
         }
     }
@@ -61,8 +65,12 @@ class ProductInfoController : UIViewController {
         let alertController = UIAlertController(title: "Enter your seatnumber", message: "Please enter your seat number so we can deliver your product.", preferredStyle: .alert)
 
         let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
-            guard let customerChairNumber = alertController.textFields?.first?.text else { return }
+            guard let customerChairNumber = alertController.textFields?.first?.text else {return}
             guard let product = self.product else { return }
+            
+            if(!self.errorCheckChairNumber(chairNumber: customerChairNumber)) {
+                return
+            }
 
             self.requestsRef?.queryOrderedByKey().queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
                 snapshot in
@@ -90,38 +98,49 @@ class ProductInfoController : UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
 
         alertController.addTextField { (textField) in
-            textField.placeholder = "Enter Name"
+            textField.placeholder = "example 1A"
+            textField.addTarget(self, action: #selector(self.textChanged), for: .editingChanged)
         }
 
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
+        alertController.actions[0].isEnabled = false
         
-        //finally presenting the dialog box
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStyling()
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         title = product?.title
         setupReferences()
-        setupStyling()
-        observeRequests()
     }
     
-    func observeRequests() {
-        product?.ref?.observe(.childChanged, with: { snapshot in
-        })
+    func observeFavoriteStatus() {
+        if let productID = product?.id {
+            favoriteRef?.child(Constants.DEVICEID).child(productID)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    if snapshot.hasChildren() {
+                        self.product?.changeFavoriteStatus()
+                        self.updateFavoriteButton(favorite: true)
+                    }else {
+                        self.product?.changeFavoriteStatus()
+                        self.updateFavoriteButton(favorite: false)
+                    }
+            })
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupStyling()
+        observeFavoriteStatus()
     }
     
     func setupReferences() {
         datarootRef = Database.database().reference(withPath: "dataroot")
         requestsRef = datarootRef?.child("requests")
+        favoriteRef = datarootRef?.child("favorite")
         requestsRef?.keepSynced(true)
     }
     
@@ -150,5 +169,47 @@ class ProductInfoController : UIViewController {
         } else {
             favoriteButton.setImage(unFavoriteImage, for: .normal)
         }
+    }
+    
+    func errorCheckChairNumber(chairNumber: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: Constants.chairNumberRegex, options: [])
+        if(regex.firstMatch(in: chairNumber, options: [], range: NSMakeRange(0, chairNumber.utf16.count)) != nil) {
+            return true
+        }else {
+            return false
+        }
+    }
+    
+    @objc func textChanged(_ sender: Any) {
+        guard let tf = sender as? UITextField else { return }
+        var resp : UIResponder? = tf
+        while !(resp is UIAlertController) { resp = resp?.next }
+        guard let alert = resp as? UIAlertController else { return }
+        if let chairNumber = tf.text {
+            alert.actions[0].isEnabled = (errorCheckChairNumber(chairNumber: chairNumber))
+        }
+    }
+    
+    func handleFavoriteInFirebase(isFavorite: Bool) {
+        if let productID = product?.id {
+            if (isFavorite) {
+                if let favProduct = self.product {
+                    addFavoriteProduct(product: favProduct)
+                }
+            }else {
+                deleteFavorite(productID: productID)
+            }
+        }else {
+            return
+        }
+    }
+    
+    func addFavoriteProduct(product: Product) {
+        let pushObjectToFirebase = favoriteRef?.child(Constants.DEVICEID).child(product.id)
+        pushObjectToFirebase?.setValue(product.toAnyObject())
+    }
+    
+    func deleteFavorite(productID: String) {
+        favoriteRef?.child(Constants.DEVICEID).child(productID).removeValue()
     }
 }

@@ -36,7 +36,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProductsViewController.onClickSortLabel))
@@ -77,7 +76,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     public func getProducts(categoryId: String) {
         let rootRef = Database.database().reference(withPath: "dataroot")
         let productRef = rootRef.child("products")
-        
+        productRef.keepSynced(true)
         productRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let value = item as? DataSnapshot {

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import SceneKit
+import PopupDialog
 
 class ProductInfoController : UIViewController {
     
@@ -33,6 +34,19 @@ class ProductInfoController : UIViewController {
     
     private let viewName = "Product information"
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupStyling()
+        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
+        title = product?.title
+        setupReferences()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        observeFavoriteStatus()
+    }
+    
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
             product.changeFavoriteStatus()
@@ -47,6 +61,10 @@ class ProductInfoController : UIViewController {
         performSegue(withIdentifier: "productInfoToARSegue", sender: self)
     }
     
+    @IBAction func didClickRequestButton(_ sender: Any) {
+        showInputDialog()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "productInfoToARSegue" {
             if let controller = segue.destination as? ARViewController {
@@ -57,84 +75,73 @@ class ProductInfoController : UIViewController {
         }
     }
     
-    @IBAction func didClickRequestButton(_ sender: Any) {
-        showInputDialog()
+    func showConfirmDialog(productName: String) {
+        let title = "Request made!"
+        let message = "Thank you for requesting \(productName). Cabin crew has been notified and will bring your item as soon as possible. Be advised this might take some time."
+
+        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
+                                transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)
+        let buttonOne = DefaultButton(title: "I understand") {}
+        popup.addButton(buttonOne)
+        present(popup, animated: true, completion: nil)
     }
     
     func showInputDialog() {
-        let alertController = UIAlertController(title: "Enter your seatnumber", message: "Please enter your seat number so we can deliver your product.", preferredStyle: .alert)
-
-        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
-            guard let customerChairNumber = alertController.textFields?.first?.text else {return}
+        let popupVC = PopupViewController(nibName: "popupView", bundle: nil)
+        let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceUp, gestureDismissal: true)
+        let cancelButton = CancelButton(title: "Cancel", height: 60) {
+        }
+        let requestButton = DefaultButton(title: "I want it!", height: 60, dismissOnTap: false) {
+            guard let customerChairNumber =  popupVC.chairNumberTextField.text else {return}
             guard let product = self.product else { return }
             
-            if(!self.errorCheckChairNumber(chairNumber: customerChairNumber)) {
+            if (!self.isValidChairNumber(chairNumber: customerChairNumber)) {
+                popup.shake()
                 return
+            } else {
+                self.requestsRef?.queryOrderedByKey().queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
+                    snapshot in
+                    var requestLatestId = 0
+                    for item in snapshot.children {
+                        let req = Request.init(snapshot: item as! DataSnapshot)
+                        requestLatestId = req.id
+                    }
+                    if let productId = Int(product.id) {
+                        let requestForItem = Request(
+                            id: requestLatestId + 1,
+                            productId: productId,
+                            customerChair: customerChairNumber,
+                            completed: false
+                        )
+                        
+                        let requestForItemRef = self.requestsRef?.childByAutoId()
+                        requestForItemRef?.setValue(requestForItem.toAnyObject())
+                    }
+                })
+                GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Product Information", action: "Interested in product", label: product.title)
+                popup.dismiss()
+                self.showConfirmDialog(productName: product.title)
             }
-
-            self.requestsRef?.queryOrderedByKey().queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
-                snapshot in
-                var requestLatestId = 0
-                for item in snapshot.children {
-                    let req = Request.init(snapshot: item as! DataSnapshot)
-                    requestLatestId = req.id
-                }
-                if let productId = Int(product.id) {
-                    let requestForItem = Request(
-                        id: requestLatestId + 1,
-                        productId: productId,
-                        customerChair: customerChairNumber,
-                        completed: false
-                    )
-                    
-                    let requestForItemRef = self.requestsRef?.childByAutoId()
-                    requestForItemRef?.setValue(requestForItem.toAnyObject())
-                }
-            })
-            
-            GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Product Information", action: "Interested in product", label: product.title)
-
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-
-        alertController.addTextField { (textField) in
-            textField.placeholder = "example 1A"
-            textField.addTarget(self, action: #selector(self.textChanged), for: .editingChanged)
         }
 
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        alertController.actions[0].isEnabled = false
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupStyling()
-        GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
-        title = product?.title
-        setupReferences()
+        popup.addButtons([cancelButton, requestButton])
+        present(popup, animated: true, completion: nil)
+
     }
     
     func observeFavoriteStatus() {
         if let productID = product?.id {
             favoriteRef?.child(Constants.DEVICEID).child(productID)
                 .observeSingleEvent(of: .value, with: { snapshot in
-                    if snapshot.hasChildren() {
+                    if (snapshot.hasChildren()) {
                         self.product?.changeFavoriteStatus()
                         self.updateFavoriteButton(favorite: true)
-                    }else {
+                    } else {
                         self.product?.changeFavoriteStatus()
                         self.updateFavoriteButton(favorite: false)
                     }
-            })
+                })
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        observeFavoriteStatus()
     }
     
     func setupReferences() {
@@ -171,22 +178,12 @@ class ProductInfoController : UIViewController {
         }
     }
     
-    func errorCheckChairNumber(chairNumber: String) -> Bool {
+    func isValidChairNumber(chairNumber: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: Constants.chairNumberRegex, options: [])
-        if(regex.firstMatch(in: chairNumber, options: [], range: NSMakeRange(0, chairNumber.utf16.count)) != nil) {
+        if (regex.firstMatch(in: chairNumber, options: [], range: NSMakeRange(0, chairNumber.utf16.count)) != nil) {
             return true
-        }else {
+        } else {
             return false
-        }
-    }
-    
-    @objc func textChanged(_ sender: Any) {
-        guard let tf = sender as? UITextField else { return }
-        var resp : UIResponder? = tf
-        while !(resp is UIAlertController) { resp = resp?.next }
-        guard let alert = resp as? UIAlertController else { return }
-        if let chairNumber = tf.text {
-            alert.actions[0].isEnabled = (errorCheckChairNumber(chairNumber: chairNumber))
         }
     }
     
@@ -196,10 +193,10 @@ class ProductInfoController : UIViewController {
                 if let favProduct = self.product {
                     addFavoriteProduct(product: favProduct)
                 }
-            }else {
+            } else {
                 deleteFavorite(productID: productID)
             }
-        }else {
+        } else {
             return
         }
     }

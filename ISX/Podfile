@@ -11,7 +11,7 @@ target 'ISX' do
 	pod 'Firebase/Auth'
     pod 'GoogleAnalytics'
     pod 'NVActivityIndicatorView'
-#    pod 'PopupDialog', '~> 0.6'
+    pod 'PopupDialog', '0.6.2'
   # Pods for ISX
 
   target 'ISX-CabinCrew' do
@@ -22,7 +22,7 @@ target 'ISX' do
       pod 'FirebaseInstanceID', '2.0.0'
       pod 'Firebase/Auth'
       pod 'NVActivityIndicatorView'
-#      pod 'PopupDialog', '~> 0.6'
+      pod 'PopupDialog', '0.6.2'
 
    # Pods for ISX-CabinCrew
   end

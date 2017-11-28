@@ -28,6 +28,8 @@
 		9A3883CC1FA8C28200601EDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9811F7A95F400DB3C5A /* Main.storyboard */; };
 		9A3883CD1FA8C42000601EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9841F7A95F400DB3C5A /* Assets.xcassets */; };
 		9A3883CF1FA8C6DB00601EDD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530E3251F9747A500899DAB /* Category.swift */; };
+		9A5383901FCD6AA20018B16C /* popupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A53838F1FCD6AA20018B16C /* popupView.xib */; };
+		9A5383921FCD6ED50018B16C /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5383911FCD6ED50018B16C /* PopupViewController.swift */; };
 		9A74EEC01FC5C77B00411548 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */; };
 		9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */; };
 		9A8C72CC1FAB71E400322F8B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C72CB1FAB71E400322F8B /* art.scnassets */; };
@@ -78,6 +80,8 @@
 		9A3883C81FA8BE5A00601EDD /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A535EA41F84E121000AF927 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CabinCrew.storyboard; sourceTree = "<group>"; };
 		9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewViewController.swift; sourceTree = "<group>"; };
+		9A53838F1FCD6AA20018B16C /* popupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = popupView.xib; sourceTree = "<group>"; };
+		9A5383911FCD6ED50018B16C /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A74EEC11FC5C89C00411548 /* ISX-CabinCrew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ISX-CabinCrew.entitlements"; sourceTree = "<group>"; };
 		9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 		9A3883A81FA8BAEE00601EDD /* ISX-CabinCrew */ = {
 			isa = PBXGroup;
 			children = (
+				9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */,
 				9A74EEC11FC5C89C00411548 /* ISX-CabinCrew.entitlements */,
 				9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */,
 				9A3883B01FA8BAEE00601EDD /* Assets.xcassets */,
@@ -231,7 +236,6 @@
 				D59398621F838AED00FD3BB0 /* CategoriesViewController.swift */,
 				D59398681F84F13E00FD3BB0 /* ProductsViewController.swift */,
 				A4250F711F83848A0069C483 /* LoginViewController.swift */,
-				9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */,
 				9A8E617D1F8CCC6100E9C5BB /* FavoritesViewController.swift */,
 				240F1A031F8CF36200702B4B /* Constants.swift */,
 				D565BF4B1F8E138800C922D7 /* ProductInfoController.swift */,
@@ -240,6 +244,8 @@
 				D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */,
 				D50A9A971FA9DF6300F697D1 /* GoogleAnalyticsHelper.swift */,
 				9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */,
+				9A53838F1FCD6AA20018B16C /* popupView.xib */,
+				9A5383911FCD6ED50018B16C /* PopupViewController.swift */,
 			);
 			path = ISX;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 				9A3883CC1FA8C28200601EDD /* Main.storyboard in Resources */,
 				D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */,
 				9A3883CB1FA8BF9000601EDD /* Assets.xcassets in Resources */,
+				9A5383901FCD6AA20018B16C /* popupView.xib in Resources */,
 				9AF872F61FB2204D0068C349 /* Favorites.storyboard in Resources */,
 				A431DE431FA9F65000086182 /* Launch Screen.storyboard in Resources */,
 			);
@@ -432,6 +439,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -440,6 +448,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -509,6 +518,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -517,6 +527,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -552,6 +563,7 @@
 				A4B0B9B51F964409005D1291 /* SearchViewController.swift in Sources */,
 				D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */,
 				9A0A4CC31FBB4CD700F20758 /* HomeCollectionViewHeader.swift in Sources */,
+				9A5383921FCD6ED50018B16C /* PopupViewController.swift in Sources */,
 				D59398671F8397D200FD3BB0 /* CategoryCell.swift in Sources */,
 				9A8C72CE1FAB761B00322F8B /* ARViewController.swift in Sources */,
 				A431DE461FA9F68C00086182 /* Request.swift in Sources */,

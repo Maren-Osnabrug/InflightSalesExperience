@@ -15,6 +15,7 @@ struct Constants {
     static let orange = UIColor(red:0.89, green:0.45, blue:0.13, alpha:1.0)
     static let darkGrey = UIColor(red:0.90, green:0.91, blue:0.95, alpha:1.0)
     static let textGrey = UIColor(red:0.81, green:0.83, blue:0.82, alpha:1.0)
+    static let okayGreen = UIColor(red:0.50, green:0.86, blue:0.15, alpha:1.0)
     static let spinnerGrey = UIColor.black.withAlphaComponent(0.25)
 
     static let sortBy = "Sort by: "

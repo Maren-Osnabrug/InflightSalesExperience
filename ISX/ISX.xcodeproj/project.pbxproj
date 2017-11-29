@@ -16,7 +16,6 @@
 		97AC4FC62485228EA63B4BBB /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3883C81FA8BE5A00601EDD /* Pods_ISX.framework */; };
 		9A0A4CC31FBB4CD700F20758 /* HomeCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */; };
 		9A3883B41FA8BAEE00601EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */; };
-		9A3883BD1FA8BC4A00601EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF97D1F7A95F400DB3C5A /* AppDelegate.swift */; };
 		9A3883BE1FA8BCB900601EDD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F1A031F8CF36200702B4B /* Constants.swift */; };
 		9A3883C11FA8BCDA00601EDD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4250F711F83848A0069C483 /* LoginViewController.swift */; };
 		9A3883C31FA8BD4100601EDD /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */; };
@@ -30,6 +29,7 @@
 		9A3883CF1FA8C6DB00601EDD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D530E3251F9747A500899DAB /* Category.swift */; };
 		9A5383901FCD6AA20018B16C /* popupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A53838F1FCD6AA20018B16C /* popupView.xib */; };
 		9A5383921FCD6ED50018B16C /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5383911FCD6ED50018B16C /* PopupViewController.swift */; };
+		9A5383941FCEED030018B16C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5383931FCEED030018B16C /* AppDelegate.swift */; };
 		9A74EEC01FC5C77B00411548 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */; };
 		9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */; };
 		9A8C72CC1FAB71E400322F8B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C72CB1FAB71E400322F8B /* art.scnassets */; };
@@ -82,6 +82,7 @@
 		9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewViewController.swift; sourceTree = "<group>"; };
 		9A53838F1FCD6AA20018B16C /* popupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = popupView.xib; sourceTree = "<group>"; };
 		9A5383911FCD6ED50018B16C /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		9A5383931FCEED030018B16C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A74EEC11FC5C89C00411548 /* ISX-CabinCrew.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ISX-CabinCrew.entitlements"; sourceTree = "<group>"; };
 		9A874E861F83883F0052BBD7 /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +161,7 @@
 				9A3883B01FA8BAEE00601EDD /* Assets.xcassets */,
 				9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */,
 				9A3883B51FA8BAEE00601EDD /* Info.plist */,
+				9A5383931FCEED030018B16C /* AppDelegate.swift */,
 			);
 			path = "ISX-CabinCrew";
 			sourceTree = "<group>";
@@ -543,7 +545,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A3883BD1FA8BC4A00601EDD /* AppDelegate.swift in Sources */,
 				9A3883C11FA8BCDA00601EDD /* LoginViewController.swift in Sources */,
 				9A3883BE1FA8BCB900601EDD /* Constants.swift in Sources */,
 				9A3883C51FA8BD4F00601EDD /* CabinCrewViewController.swift in Sources */,
@@ -551,6 +552,7 @@
 				A431DE4E1FA9F6B200086182 /* RequestCell.swift in Sources */,
 				9A3883C31FA8BD4100601EDD /* Product.swift in Sources */,
 				9A3883CF1FA8C6DB00601EDD /* Category.swift in Sources */,
+				9A5383941FCEED030018B16C /* AppDelegate.swift in Sources */,
 				A431DE501FA9F6B200086182 /* FavoritesCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

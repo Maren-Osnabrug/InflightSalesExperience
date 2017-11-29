@@ -26,12 +26,11 @@ class CabinCrewViewController: UITableViewController {
         setupReferences()
         tableView.dataSource = self
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.activityPadding)
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
         tableView.addSubview(activityIndicatorView!)
     }
     
     func setupReferences() {
-        Database.database().isPersistenceEnabled = true
         datarootRef = Database.database().reference(withPath: "dataroot")
         requestsRef = datarootRef?.child("requests")
         productsRef = datarootRef?.child("products")

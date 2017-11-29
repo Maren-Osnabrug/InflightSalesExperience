@@ -116,6 +116,7 @@ class ProductInfoController : UIViewController {
                         
                         let requestForItemRef = self.requestsRef?.childByAutoId()
                         requestForItemRef?.setValue(requestForItem.toAnyObject())
+                        print(requestForItem)
                     }
                 })
                 GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Product Information", action: "Interested in product", label: product.title)

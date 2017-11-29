@@ -16,6 +16,12 @@ class LoginViewController:UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        emailTextField.text = "cabin@crew.nl"
+        passwordTextField.text = "cabincrew"
+    }
+    
     /*
      * Login function
      */

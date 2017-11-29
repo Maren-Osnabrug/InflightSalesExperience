@@ -50,7 +50,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         getProducts(categoryId: (category?.categoryID)!)
         collectionView.delegate = self
         collectionView.dataSource = self
-        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: 150)
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.activityPadding)
         collectionView.addSubview(activityIndicatorView!)
     }
    

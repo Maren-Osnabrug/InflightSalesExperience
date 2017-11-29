@@ -30,7 +30,7 @@ struct Constants {
 
     static let multiplierFactorSuggestionHeader: CGFloat = 0.40
     
-    static let activityPadding = 150
+    static let indicatorPadding:CGFloat = 150
     
     static let suggestionCount = 4
 }

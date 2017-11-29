@@ -25,7 +25,7 @@ class FavoritesViewController: UITableViewController {
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
     
         tableView.dataSource = self
-        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.activityPadding)
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
         tableView.addSubview(activityIndicatorView!)
         setupReference()
     }

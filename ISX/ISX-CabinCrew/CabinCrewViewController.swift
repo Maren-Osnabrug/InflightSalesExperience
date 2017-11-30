@@ -18,7 +18,7 @@ class CabinCrewViewController: UITableViewController {
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
-    var activityIndicatorView: NVActivityIndicatorView?
+//    var activityIndicatorView: NVActivityIndicatorView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,8 @@ class CabinCrewViewController: UITableViewController {
         setupReferences()
         tableView.dataSource = self
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
-        tableView.addSubview(activityIndicatorView!)
+//        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
+//        tableView.addSubview(activityIndicatorView!)
     }
     
     func setupReferences() {
@@ -41,7 +41,7 @@ class CabinCrewViewController: UITableViewController {
     }
     
     func observeRequests() {
-        activityIndicatorView?.startAnimating()
+//        activityIndicatorView?.startAnimating()
         requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 let toAdd = Request.init(snapshot: item as! DataSnapshot)
@@ -51,7 +51,7 @@ class CabinCrewViewController: UITableViewController {
                 }
             }
             self.tableView.reloadData()
-            self.activityIndicatorView?.stopAnimating()
+//            self.activityIndicatorView?.stopAnimating()
         })
     }
     

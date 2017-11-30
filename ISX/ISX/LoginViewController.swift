@@ -43,9 +43,9 @@ class LoginViewController:UIViewController {
                     let crewRef = Database.database().reference(withPath: "dataroot").child("crew")
                     let crewMemberRef = crewRef.childByAutoId()
                     let key = "deviceID\(crewMemberRef.key)"
-                    let crewMember: Any = [key: InstanceID.instanceID().token()!]
-                    
-                    crewRef.setValue(crewMember)
+                    let crewMember = [key: InstanceID.instanceID().token()!]
+
+                    crewRef.updateChildValues(crewMember)
 
                     self.performSegue(withIdentifier: "loginSeque", sender: self)
                 } else {

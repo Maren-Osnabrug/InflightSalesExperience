@@ -13,7 +13,6 @@
 		2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476D9C71F839FC200686C1E /* SuggestionCell.swift */; };
 		2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476DCA31F838B2A00E5B03F /* HomeViewController.swift */; };
 		85CB40592B865CF93D261EF9 /* Pods_ISX_ISX_CabinCrew.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D024177099EE7950E6490A78 /* Pods_ISX_ISX_CabinCrew.framework */; };
-		97AC4FC62485228EA63B4BBB /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3883C81FA8BE5A00601EDD /* Pods_ISX.framework */; };
 		9A0A4CC31FBB4CD700F20758 /* HomeCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */; };
 		9A3883B41FA8BAEE00601EDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */; };
 		9A3883BE1FA8BCB900601EDD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F1A031F8CF36200702B4B /* Constants.swift */; };
@@ -134,7 +133,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				21822BBB739DF0A7DBCC3EA9 /* Pods_ISX.framework in Frameworks */,
-				97AC4FC62485228EA63B4BBB /* Pods_ISX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ class LoginViewController:UIViewController {
         emailTextField.text = "cabin@crew.nl"
         passwordTextField.text = "cabincrew"
         Database.database().isPersistenceEnabled = true
-        print("This should work: " + InstanceID.instanceID().token()!)
+//        print("This should work: " + InstanceID.instanceID().token())
     }
     
     /*
@@ -43,7 +43,7 @@ class LoginViewController:UIViewController {
                     let crewRef = Database.database().reference(withPath: "dataroot").child("crew")
                     let crewMemberRef = crewRef.childByAutoId()
                     let key = "deviceID\(crewMemberRef.key)"
-                    let crewMember = [key: InstanceID.instanceID().token()!]
+                    let crewMember = [InstanceID.instanceID().token()!:key]
 
                     crewRef.updateChildValues(crewMember)
 

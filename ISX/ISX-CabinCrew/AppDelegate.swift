@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 completionHandler: {_, _ in })
             // For iOS 10 data message (sent via FCM
             Messaging.messaging().delegate = self
+            Messaging.messaging().shouldEstablishDirectChannel = true
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -80,6 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // The callback to handle data message MessagingRemoteMessageces running iOS 10 or above.
     func application(received remoteMessage: MessagingRemoteMessage) {
         print(remoteMessage.appData)
+        let d : [String : Any] = remoteMessage.appData["notification"] as! [String : Any]
+        let body : String = d["body"] as! String
+        let controller = UIAlertController(title: "In App Notification", message: body, preferredStyle: .alert)
+        window?.rootViewController?.present(controller, animated: true, completion: nil)
     }
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
@@ -92,6 +97,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Let FCM know about the message for analytics etc.
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        print(userInfo)
+        print(userInfo["aps"])
+        print(userInfo["aps"]["alert"])
+        print(userInfo["aps"]["alert"])
+        if let aps = userInfo["aps"] as? [String:AnyObject] {
+            if let alert = aps["alert"] as? [String:AnyObject] {
+                if let message = alert["body"] as? [String:AnyObject] {
+                    let controller = UIAlertController(title: message["title"] as? String, message: message["body"] as? String, preferredStyle: .alert)
+                    window?.rootViewController?.present(controller, animated: true, completion: nil)
+                }
+            }
+        }
+        // handle your message
+
     }
 }
 

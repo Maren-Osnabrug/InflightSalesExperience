@@ -26,7 +26,7 @@ class CabinCrewViewController: UITableViewController {
         setupReferences()
         tableView.dataSource = self
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.activityPadding)
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
         tableView.addSubview(activityIndicatorView!)
     }
     

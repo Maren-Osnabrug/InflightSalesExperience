@@ -33,8 +33,10 @@ class Product {
 //    let Save_21: String = ""
 //    let Tax_Free_Exclusive: Bool = false
     var image: UIImage?
+
     // self defined variables
-    //let ref: DatabaseReference?
+    let ref: DatabaseReference?
+    var url: String = "https://shop.klm.com/"
     var favorite: Bool = false
 
     
@@ -50,23 +52,14 @@ class Product {
         prologisticaNumberHH = snapshotValue["prologistica_number_HH"] as! String
         id = snapshotValue["sku"] as! String
         image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
-        
+        url = snapshotValue["url"] as! String
         if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
             retailPrice = price
         } else {
            retailPrice = 0
         }
         
-
-//        self.ref = snapshot.ref
-//        if (snapshotValue["favorite"] == nil) {
-//            snapshot.ref.updateChildValues([
-//                "favorite": false
-//                ])
-//            favorite = false
-//        } else {
-//            favorite = snapshotValue["favorite"] as! Bool
-//        }
+        self.ref = snapshot.ref
 
         //        Did_You_Know_iPad = snapshotValue["Did_You_Know_iPad"] as! String
         //        Drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String

@@ -58,21 +58,41 @@ class ProductInfoController : UIViewController {
     }
     
     @IBAction func didClickARButton(_ sender: Any) {
-        performSegue(withIdentifier: "productInfoToARSegue", sender: self)
+        performSegue(withIdentifier: Constants.productInfoToAR, sender: self)
     }
     
     @IBAction func didClickRequestButton(_ sender: Any) {
-        showInputDialog()
+        showOrderDialog()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "productInfoToARSegue" {
+        if segue.identifier == Constants.productInfoToAR {
             if let controller = segue.destination as? ARViewController {
                 if let ARproduct = product {
                     controller.product = ARproduct
                 }
             }
+        } else if segue.identifier == Constants.productInfoToWeb {
+            if let controller = segue.destination as? WebViewController {
+                if let url = product?.url {
+                    controller.url = URL(string: url)!
+                }
+            }
         }
+    }
+    
+    func showOrderDialog() {
+        let title = "Delivery now or later?"
+        let message = "If you are currently on a plane -> press Now. If you want the product delivered on a different flight or at home -> press later."
+        
+        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
+                                transitionStyle: .bounceUp, gestureDismissal: true, hideStatusBar: true)
+        let buttonOne = DefaultButton(title: "Now") { self.showInputDialog()}
+        let buttonTwo = DefaultButton(title: "Later") {
+            self.performSegue(withIdentifier:  Constants.productInfoToWeb, sender: self)
+        }
+        popup.addButtons([buttonOne, buttonTwo])
+        present(popup, animated: true, completion: nil)
     }
     
     func showConfirmDialog(productName: String) {

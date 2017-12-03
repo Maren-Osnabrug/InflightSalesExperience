@@ -62,9 +62,7 @@ class FavoritesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomFavoritesCell", for: indexPath) as? FavoritesCell else { return UITableViewCell() }
         
-        if let favorite = favoritesArray[indexPath.row] as? Product {
-            cell.updateWithFavorite(favorite: favorite)
-        }
+        cell.updateWithFavorite(favorite: favoritesArray[indexPath.row])
         return cell
     }
     

@@ -59,7 +59,7 @@ class Product {
            retailPrice = 0
         }
         
-        self.ref = snapshot.ref
+        ref = snapshot.ref
 
         //        Did_You_Know_iPad = snapshotValue["Did_You_Know_iPad"] as! String
         //        Drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String

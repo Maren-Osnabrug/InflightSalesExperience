@@ -30,6 +30,12 @@ class CabinCrewViewController: UITableViewController {
 //        tableView.addSubview(activityIndicatorView!)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.hidesBackButton = true
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     func setupReferences() {
         datarootRef = Database.database().reference(withPath: "dataroot")
         requestsRef = datarootRef?.child("requests")

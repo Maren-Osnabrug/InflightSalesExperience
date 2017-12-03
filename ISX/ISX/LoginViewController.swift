@@ -20,8 +20,7 @@ class LoginViewController:UIViewController {
         super.viewDidAppear(animated)
         emailTextField.text = "cabin@crew.nl"
         passwordTextField.text = "cabincrew"
-        Database.database().isPersistenceEnabled = true
-//        print("This should work: " + InstanceID.instanceID().token())
+        navigationController?.isNavigationBarHidden = true
     }
     
     /*

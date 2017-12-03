@@ -52,7 +52,10 @@ class Product {
         prologisticaNumberHH = snapshotValue["prologistica_number_HH"] as! String
         id = snapshotValue["sku"] as! String
         image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
-        url = snapshotValue["url"] as! String
+        if let productURL = snapshotValue["url"] as? String {
+            url = productURL
+        }
+        
         if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
             retailPrice = price
         } else {

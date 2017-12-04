@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="progressCell" rowHeight="96" id="evI-IS-XfD" customClass="ProgressBarCell" customModule="ISX">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="progressCell" rowHeight="96" id="evI-IS-XfD" customClass="ProgressBarCell" customModule="ISX_CabinCrew" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="evI-IS-XfD" id="fZM-sb-6FC">
@@ -33,29 +33,29 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" restorationIdentifier="progressBar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="b67-7Z-eCn" userLabel="progressBar">
-                                            <rect key="frame" x="20" y="41" width="335" height="2"/>
+                                            <rect key="frame" x="20" y="51" width="335" height="2"/>
                                         </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcE-nq-Ewf">
-                                            <rect key="frame" x="20" y="22" width="21" height="21"/>
+                                            <rect key="frame" x="20" y="32.5" width="21" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€550" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt7-GF-JeW">
-                                            <rect key="frame" x="313" y="22" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€550" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt7-GF-JeW" userLabel="Average Revenue Label">
+                                            <rect key="frame" x="313" y="32.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Huidige Opbrengst: €225" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEz-Cv-urf">
-                                            <rect key="frame" x="20" y="51" width="162" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEz-Cv-urf" userLabel="Current Revenue Label">
+                                            <rect key="frame" x="20" y="61" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoogste opbrengst: €620" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-8K-hgW" userLabel="HoogsteLabel">
-                                            <rect key="frame" x="20" y="74" width="165.5" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-8K-hgW" userLabel="Highest Revenue Label">
+                                            <rect key="frame" x="20" y="84" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -65,15 +65,21 @@
                                         <constraint firstAttribute="trailing" secondItem="b67-7Z-eCn" secondAttribute="trailing" constant="20" id="Enm-QL-jfG"/>
                                         <constraint firstItem="7ag-8K-hgW" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="JIi-Vg-uWA"/>
                                         <constraint firstAttribute="trailing" secondItem="Jt7-GF-JeW" secondAttribute="trailing" constant="20" id="LI9-EQ-7Bv"/>
-                                        <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="fZM-sb-6FC" secondAttribute="topMargin" constant="30" id="Nec-hX-gix"/>
                                         <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="zcE-nq-Ewf" secondAttribute="bottom" constant="-2" id="Pp8-4L-bE9"/>
                                         <constraint firstItem="yEz-Cv-urf" firstAttribute="top" secondItem="b67-7Z-eCn" secondAttribute="bottom" constant="8" id="b8h-NP-eEP"/>
                                         <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="Jt7-GF-JeW" secondAttribute="bottom" constant="-2" id="fdy-Tf-xo9"/>
+                                        <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="fZM-sb-6FC" secondAttribute="topMargin" constant="40" id="mGg-Q2-1Dr"/>
                                         <constraint firstItem="b67-7Z-eCn" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="o1N-Em-k8q"/>
                                         <constraint firstItem="yEz-Cv-urf" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="ppA-oi-Rgk"/>
                                         <constraint firstItem="zcE-nq-Ewf" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="sDf-6g-Mop"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="averageRevenueLabel" destination="Jt7-GF-JeW" id="Ag8-A8-skO"/>
+                                    <outlet property="currentRevenueLabel" destination="yEz-Cv-urf" id="U3d-Pk-g4G"/>
+                                    <outlet property="highestRevenueLabel" destination="7ag-8K-hgW" id="9NN-zp-W2h"/>
+                                    <outlet property="progressBar" destination="b67-7Z-eCn" id="9Oo-bX-fHA"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomRequestCell" rowHeight="130" id="MMZ-cg-6RI" customClass="RequestCell" customModule="ISX_CabinCrew" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="124" width="375" height="130"/>

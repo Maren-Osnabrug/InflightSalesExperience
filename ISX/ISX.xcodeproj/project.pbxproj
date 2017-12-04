@@ -48,7 +48,9 @@
 		A431DE501FA9F6B200086182 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */; };
 		A458C9B61FA9DC4800F970DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */; };
 		A458C9B81FA9DC4800F970DD /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59398601F8386B000FD3BB0 /* Products.storyboard */; };
-		A4AB1C3F1FC4658500E63D8D /* ProgressBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */; };
+		A47314981FC57A66007BB279 /* ProgressBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */; };
+		A473149A1FC5AAA6007BB279 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47314991FC5AAA6007BB279 /* Flight.swift */; };
+		A473149B1FC5C03B007BB279 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47314991FC5AAA6007BB279 /* Flight.swift */; };
 		A4B0B9B51F964409005D1291 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0B9B41F964409005D1291 /* SearchViewController.swift */; };
 		D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */; };
 		D50A9A961FA9DA6600F697D1 /* BridgingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,6 +98,7 @@
 		A431DE451FA9F68C00086182 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A431DE4B1FA9F6B200086182 /* RequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
+		A47314991FC5AAA6007BB279 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarCell.swift; sourceTree = "<group>"; };
 		A4B0B9B41F964409005D1291 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +164,7 @@
 				9ADCF9AF1F7B9CCA00DB3C5A /* Product.swift */,
 				D530E3251F9747A500899DAB /* Category.swift */,
 				A431DE451FA9F68C00086182 /* Request.swift */,
+				A47314991FC5AAA6007BB279 /* Flight.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -519,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A47314981FC57A66007BB279 /* ProgressBarCell.swift in Sources */,
 				9A3883BD1FA8BC4A00601EDD /* AppDelegate.swift in Sources */,
 				9A3883C11FA8BCDA00601EDD /* LoginViewController.swift in Sources */,
 				9A3883BE1FA8BCB900601EDD /* Constants.swift in Sources */,
@@ -527,6 +532,7 @@
 				A431DE4E1FA9F6B200086182 /* RequestCell.swift in Sources */,
 				9A3883C31FA8BD4100601EDD /* Product.swift in Sources */,
 				9A3883CF1FA8C6DB00601EDD /* Category.swift in Sources */,
+				A473149B1FC5C03B007BB279 /* Flight.swift in Sources */,
 				A431DE501FA9F6B200086182 /* FavoritesCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,10 +550,10 @@
 				A431DE461FA9F68C00086182 /* Request.swift in Sources */,
 				D530E3261F9747A500899DAB /* Category.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */,
+				A473149A1FC5AAA6007BB279 /* Flight.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
 				2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */,
 				D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */,
-				A4AB1C3F1FC4658500E63D8D /* ProgressBarCell.swift in Sources */,
 				D565BF4C1F8E138800C922D7 /* ProductInfoController.swift in Sources */,
 				A431DE4D1FA9F6B200086182 /* RequestCell.swift in Sources */,
 				D59398691F84F13E00FD3BB0 /* ProductsViewController.swift in Sources */,
@@ -600,7 +606,7 @@
 				INFOPLIST_FILE = "ISX-CabinCrew/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "KLM.ISX-CabinCrew.JZ";
+				PRODUCT_BUNDLE_IDENTIFIER = "KLM.ISX-CabinCrew";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
@@ -618,7 +624,7 @@
 				INFOPLIST_FILE = "ISX-CabinCrew/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "KLM.ISX-CabinCrew.JZ";
+				PRODUCT_BUNDLE_IDENTIFIER = "KLM.ISX-CabinCrew";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = ISX/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;

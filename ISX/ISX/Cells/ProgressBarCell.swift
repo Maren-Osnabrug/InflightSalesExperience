@@ -10,17 +10,19 @@ import Foundation
 import UIKit
 
 class ProgressBarCell: UITableViewCell {
-    @IBOutlet weak var opbrengstLabel: UILabel!
-    @IBOutlet weak var hoogsteOpbrengstLabel: UILabel!
     
-    var omzetArray = [124, 125, 1874]
+    @IBOutlet weak var highestRevenueLabel: UILabel!
+    @IBOutlet weak var currentRevenueLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var averageRevenueLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        opbrengstLabel.text = "Huidige opbrengst: €\(omzetArray[1])"
-        hoogsteOpbrengstLabel.text = "Hoogste opbrengst: €\(omzetArray[2])"
-        //        progressBar.setProgress
+    var omzetArray = [124, 125, 874]
+    
+    func setProgressBar (flight: Flight) {
+        let progress = (Float(flight.averageRevenue)/Float(flight.highestRevenue))
+        currentRevenueLabel.text = "Current Revenue: €\(flight.averageRevenue)"
+        highestRevenueLabel.text = "Highest Revenue: €\(flight.highestRevenue)"
+        averageRevenueLabel.text = "€\(flight.highestRevenue)"
+        progressBar.setProgress(progress, animated: true)
     }
-    
-    
 }

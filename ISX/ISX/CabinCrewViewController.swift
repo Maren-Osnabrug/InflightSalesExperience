@@ -14,9 +14,11 @@ import UserNotifications
 class CabinCrewViewController: UITableViewController {
     
     var requestsArray = [Request]()
+    var flightsArray = [Flight]()
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
+    private var flightsRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +33,12 @@ class CabinCrewViewController: UITableViewController {
         datarootRef = Database.database().reference(withPath: "dataroot")
         requestsRef = datarootRef?.child("requests")
         productsRef = datarootRef?.child("products")
+        flightsRef = datarootRef?.child("flights")
         
         requestsRef?.keepSynced(true)
         observeRequests()
         observeNewRequest()
+        flights()
     }
     
     func observeRequests() {
@@ -99,6 +103,18 @@ class CabinCrewViewController: UITableViewController {
         }
     }
     
+    func flights() {
+        flightsRef?.observe(.value, with: { snapshot in
+            for item in snapshot.children{
+                if let flight = item as? DataSnapshot {
+                    let flightnumber = Flight(snapshot: flight)
+                        self.flightsArray.append(flightnumber)
+                }
+            }
+        })
+        return print("succes")
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,41 +126,31 @@ class CabinCrewViewController: UITableViewController {
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell") as? RequestCell else { return UITableViewCell() }
-        
         if (indexPath.row == 0){
-            let cella = tableView.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath)
-            cella.isUserInteractionEnabled = false
-            return cella
+            guard let progressBarCell = tableView.dequeueReusableCell(withIdentifier: "progressCell") as? ProgressBarCell
+                else { return UITableViewCell() }
+            if (flightsArray.count > 0 ){
+                let flight = flightsArray[1]
+                progressBarCell.setProgressBar(flight: flight)
+            }
+                progressBarCell.isUserInteractionEnabled = false
+            return progressBarCell
         } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
             let request = requestsArray[indexPath.row - 1]
             cell.setCellData(request: request)
+    
             productsRef?.observe(.value, with: { snapshot in
                 let arr = snapshot.children.allObjects as NSArray
                 for item in arr {
-                    let item = Product.init(snapshot: item as! DataSnapshot)
+                    let item = Product(snapshot: item as! DataSnapshot)
                     if item.id == String(request.productId) {
                         cell.productName.text = item.title
                     }
                 }
             })
-            return cell
+        return cell
         }
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
-//        let request = requestsArray[indexPath.row]
-//        cell.setCellData(request: request)
-//
-//        productsRef?.observe(.value, with: { snapshot in
-//            let arr = snapshot.children.allObjects as NSArray
-//            for item in arr {
-//                let item = Product(snapshot: item as! DataSnapshot)
-//                if item.id == String(request.productId) {
-//                    cell.productName.text = item.title
-//                }
-//            }
-//        })
-//
-//        return cell
      }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -159,7 +165,7 @@ class CabinCrewViewController: UITableViewController {
             self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
             self.tableView.reloadData()
         })
-        
+
         let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
             tableView.deselectRow(at: indexPath, animated: true)
             self.requestsArray[indexPath.row].completed = false
@@ -170,7 +176,7 @@ class CabinCrewViewController: UITableViewController {
             self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
             self.tableView.reloadData()
         })
-        
+
         alertController.addAction(noAction)
         alertController.addAction(yesAction)
         self.present(alertController, animated: true, completion: nil)

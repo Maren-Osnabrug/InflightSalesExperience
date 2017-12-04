@@ -22,10 +22,11 @@ class CategoryCell: UICollectionViewCell {
     func setCategoryData(category: Category){
         categoryID = category.categoryID
         categoryTitle.text = category.categoryName
-        categoryImage.image = category.categoryImage
+        categoryImage.image = UIImage(named: String(category.categoryID)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(category.categoryID))
     }
-    
-    func setupStyling(){
+
+    // PRAGMA MARK: - Private
+    private func setupStyling(){
         backgroundColor =  Constants.darkGrey
         categoryTitle.backgroundColor = Constants.blue
         categoryTitle.textColor = .white

@@ -9,26 +9,27 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import NVActivityIndicatorView
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         UICollectionViewDataSource {
     
     private let viewName = "Categories Overview"
-    var categoryImages = ["sieraden", "parfum", "elektronica", "reizen", "sieraden",
-                          "parfum", "elektronica", "reizen", "sieraden", "parfum", "elektronica", "reizen"]
     var selectedCategory: Category?
     var categoryArray = [Category]()
+    var activityIndicatorView: NVActivityIndicatorView?
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         
         getFirebaseData()
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: 150)
+        categoryCollectionView.addSubview(activityIndicatorView!)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -48,7 +49,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     public func getFirebaseData(){
         let datarootRef = Database.database().reference(withPath: "dataroot")
         let productGroupsRef = datarootRef.child("productGroups")
-        
+        productGroupsRef.keepSynced(true)
+        activityIndicatorView?.startAnimating()
         productGroupsRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let value = item as? DataSnapshot {
@@ -57,6 +59,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
                 }
             }
             self.categoryCollectionView.reloadData()
+            self.activityIndicatorView?.stopAnimating()
         })
     }
     

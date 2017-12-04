@@ -33,8 +33,12 @@ class Product {
 //    let Save_21: String = ""
 //    let Tax_Free_Exclusive: Bool = false
     var image: UIImage?
+
+    // self defined variables
     let ref: DatabaseReference?
-    var favorite: Bool
+    var url: String = "https://shop.klm.com/"
+    var favorite: Bool = false
+
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -48,6 +52,9 @@ class Product {
         prologisticaNumberHH = snapshotValue["prologistica_number_HH"] as! String
         id = snapshotValue["sku"] as! String
         image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
+        if let productURL = snapshotValue["url"] as? String {
+            url = productURL
+        }
         
         if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
             retailPrice = price
@@ -55,15 +62,8 @@ class Product {
            retailPrice = 0
         }
         
-        self.ref = snapshot.ref
-        if (snapshotValue["favorite"] == nil) {
-            snapshot.ref.updateChildValues([
-                "favorite": false
-                ])
-            favorite = false
-        } else {
-            favorite = snapshotValue["favorite"] as! Bool
-        }
+        ref = snapshot.ref
+
         //        Did_You_Know_iPad = snapshotValue["Did_You_Know_iPad"] as! String
         //        Drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String
         //        Drawer_EUR_extended = snapshotValue["Drawer_EUR_extended"] as! String
@@ -77,10 +77,21 @@ class Product {
     }
     
     func changeFavoriteStatus() {
-        ref?.updateChildValues([
-            "favorite": !self.favorite
-            ])
         favorite = !favorite
+    }
+    
+    func toAnyObject()-> Any {
+        return [
+            "sku": id,
+            "Ob_Retail_price_1_PL-HH-WBC-iPad": String(retailPrice),
+            "Product_name_Holland_Herald_WBC_iPad": title,
+            "Bestsellers": bestsellers,
+            "Product_group": productGroup,
+            "Sales_text_HH_WBC_iPad": description,
+            "Start_date_SHC": startDateSHC,
+            "brand_id": brand,
+            "prologistica_number_HH": prologisticaNumberHH,
+        ]
     }
 }
 

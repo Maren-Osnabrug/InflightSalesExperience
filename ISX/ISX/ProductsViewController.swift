@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import NVActivityIndicatorView
 
 class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -31,13 +32,13 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var selectedProduct: Product?
     var counter = 0
     private let viewName = "Product Overview"
+    var activityIndicatorView: NVActivityIndicatorView?
     
     //this has to be replaced by an algorithm at some point.
     var relevantArray: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProductsViewController.onClickSortLabel))
@@ -49,15 +50,12 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         getProducts(categoryId: (category?.categoryID)!)
         collectionView.delegate = self
         collectionView.dataSource = self
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
+        collectionView.addSubview(activityIndicatorView!)
     }
    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        if (productsArray.count < 1) {
-            setLabelOnEmptyCollectionView(emptyArray: true)
-        } else {
-            return productsArray.count
-        }
-        return 0
+        return productsArray.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -73,7 +71,8 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     public func getProducts(categoryId: String) {
         let rootRef = Database.database().reference(withPath: "dataroot")
         let productRef = rootRef.child("products")
-        
+        productRef.keepSynced(true)
+        activityIndicatorView?.startAnimating()
         productRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let value = item as? DataSnapshot {
@@ -84,6 +83,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
                 }
             }
             self.collectionView.reloadData()
+            self.activityIndicatorView?.stopAnimating()
         })
     }
     

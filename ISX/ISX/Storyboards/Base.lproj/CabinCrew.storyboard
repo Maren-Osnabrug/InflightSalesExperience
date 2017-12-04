@@ -192,12 +192,12 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="Q94-PL-WoN" kind="relationship" relationship="rootViewController" id="Jl9-E3-MYR"/>
+                        <segue destination="ZZA-HS-huw" kind="relationship" relationship="rootViewController" id="csU-b3-n3n"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFI-mR-yXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686" y="-9"/>
+            <point key="canvasLocation" x="-84" y="-9"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="vcb-Gg-Ga7">
@@ -208,13 +208,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ISX" translatesAutoresizingMaskIntoConstraints="NO" id="gIp-1r-bXf">
-                                <rect key="frame" x="0.0" y="86" width="375" height="160"/>
+                                <rect key="frame" x="0.0" y="91.5" width="375" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="3cf-Wv-M7m"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mailadres" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-qD-7Tu" userLabel="emailTextfield">
-                                <rect key="frame" x="50" y="296" width="275" height="30"/>
+                                <rect key="frame" x="50" y="301.5" width="275" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OgQ-OM-gen"/>
                                 </constraints>
@@ -223,7 +223,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wachtwoord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cSq-wZ-hOT" userLabel="passwordTextfield">
-                                <rect key="frame" x="50" y="337.5" width="275" height="30"/>
+                                <rect key="frame" x="50" y="343" width="275" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="lvY-yO-SMD"/>
                                 </constraints>
@@ -232,7 +232,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVF-R0-Ziy" userLabel="loginButton">
-                                <rect key="frame" x="50" y="397.5" width="275" height="34"/>
+                                <rect key="frame" x="50" y="403" width="275" height="34"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.44705882349999998" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="19"/>
                                 <state key="normal" title="Login">
@@ -264,15 +264,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gmt-WF-Jwo"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Ooc-4u-N7i"/>
                     <connections>
                         <outlet property="emailTextField" destination="KWO-qD-7Tu" id="tEf-5o-TWF"/>
                         <outlet property="passwordTextField" destination="cSq-wZ-hOT" id="Mvh-Ac-NVD"/>
-                        <segue destination="jPq-JH-xg9" kind="show" identifier="loginSeque" id="oBL-bw-TWF"/>
+                        <segue destination="Q94-PL-WoN" kind="show" identifier="loginSeque" id="Exc-wO-gkY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85R-RD-TzU" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39.200000000000003" y="-9.4452773613193415"/>
+            <point key="canvasLocation" x="711" y="-9"/>
         </scene>
     </scenes>
     <resources>

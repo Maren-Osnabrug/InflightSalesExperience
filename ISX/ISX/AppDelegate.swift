@@ -9,27 +9,31 @@
 import UIKit
 import Firebase
 
+import UserNotifications
+import Firebase
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().barStyle = UIBarStyle.blackOpaque
         UINavigationBar.appearance().tintColor = .white
+    
         FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
         FirebaseApp.configure()
         
         if let gai = GAI.sharedInstance(),
             let gaConfigValues = Bundle.main.infoDictionary?["GoogleAnalytics"] as? [String: String],
             let trackingId = gaConfigValues["TRACKING_ID"] {
-//                gai.logger.logLevel = .verbose
                 gai.dispatchInterval = 1
                 gai.trackUncaughtExceptions = false
                 gai.tracker(withTrackingId: trackingId)
             } else {
                 assertionFailure("Google Analytics not configured correctly")
             }
+        Database.database().isPersistenceEnabled = true
         return true
     }
 
@@ -54,7 +58,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

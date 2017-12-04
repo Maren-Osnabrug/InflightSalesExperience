@@ -21,12 +21,12 @@
             <point key="canvasLocation" x="1456" y="601"/>
         </scene>
         <!--ProductInfoController-->
-        <scene sceneID="cXB-Am-fb7">
+        <scene sceneID="MFP-Bi-SKp">
             <objects>
-                <viewControllerPlaceholder storyboardName="Products" referencedIdentifier="ProductInfoController" id="mPD-0b-6gC" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gHe-Jo-qv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Products" referencedIdentifier="ProductInfoController" id="G1W-EG-nLr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nz7-o6-6UB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3561" y="-810"/>
+            <point key="canvasLocation" x="3561" y="-908"/>
         </scene>
         <!--Search-->
         <scene sceneID="5R6-nR-ABi">
@@ -239,7 +239,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="mPD-0b-6gC" kind="show" identifier="homeToProductSegue" id="weQ-wl-8VL"/>
+                        <segue destination="G1W-EG-nLr" kind="show" identifier="homeToProductInfoSegue" id="lwQ-YV-oaR"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nv2-UH-PAf" userLabel="First Responder" sceneMemberID="firstResponder"/>

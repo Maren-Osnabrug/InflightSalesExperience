@@ -29,4 +29,6 @@ struct Constants {
     static let multiplierFactorSuggestionHeader: CGFloat = 0.40
     
     static let suggestionCount = 4
+    
+    static let multiplierFactorMiles = 400
 }

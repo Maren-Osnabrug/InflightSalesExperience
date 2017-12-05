@@ -46,7 +46,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTap(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
     func addPanGestureToSceneView() {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.didPan(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(panGestureRecognizer)
@@ -55,7 +55,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         let pinchGesture: UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(self.didPinch(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(pinchGesture)
     }
-    
+
     @objc func didTap(withGestureRecognizer recognizer: UIGestureRecognizer) {
 //        let tapLocation = recognizer.location(in: sceneView)
 //        let hitTestResults = sceneView.hitTest(tapLocation)

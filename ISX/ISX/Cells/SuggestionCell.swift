@@ -19,13 +19,14 @@ class SuggestionCell: UICollectionViewCell {
         setupStyling()
     }
     
-    func setupStyling() {
-        backgroundColor = Constants.grey
-        suggestionTextContainer.backgroundColor = Constants.blue
-    }
-    
     func setupData(product: Product) {
         suggestionImage.image = product.image
         suggestionTitleLabel.text = product.title
+    }
+    
+    // PRAGMA MARK: - Private
+    private func setupStyling() {
+        backgroundColor = Constants.grey
+        suggestionTextContainer.backgroundColor = Constants.blue
     }
 }

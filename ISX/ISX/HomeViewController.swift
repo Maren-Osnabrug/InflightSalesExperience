@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import NVActivityIndicatorView
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -19,6 +20,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     var bestSellersArray = [Product]()
     var selectedProduct: Product?
     private let viewName = "Home"
+    var activityIndicatorView: NVActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         collectionView?.delegate = self
         collectionView?.dataSource = self
-        
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
+        collectionView?.addSubview(activityIndicatorView!)
         configureDatabase()
     }
 
@@ -35,6 +38,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = datarootRef?.child("products")
         productsRef?.keepSynced(true)
+        activityIndicatorView?.startAnimating()
         productsRef?.queryOrdered(byChild: "Bestsellers").queryStarting(atValue: "1").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let product = item as? DataSnapshot {
@@ -44,6 +48,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                 self.shuffleSuggestions()
             }
             self.collectionView?.reloadData()
+            self.activityIndicatorView?.stopAnimating()
         })
     }
     

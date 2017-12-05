@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import NVActivityIndicatorView
 
 class FavoritesViewController: UITableViewController {
     private var favoritesArray = [Product]()
@@ -17,12 +18,15 @@ class FavoritesViewController: UITableViewController {
     private var productsRef: DatabaseReference?
     var selectedProduct: Product?
     private let viewName = "Favorite view"
-    
+    var activityIndicatorView: NVActivityIndicatorView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
     
         tableView.dataSource = self
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
+        tableView.addSubview(activityIndicatorView!)
         setupReference()
     }
     
@@ -34,6 +38,7 @@ class FavoritesViewController: UITableViewController {
     }
     
     func observeFavorites() {
+        activityIndicatorView?.startAnimating()
         favoriteRef?.child(Constants.DEVICEID).observe(.value, with: { snapshot in
             self.favoritesArray = []
             for item in snapshot.children {
@@ -42,6 +47,7 @@ class FavoritesViewController: UITableViewController {
                 self.favoritesArray.append(product)
             }
             self.tableView.reloadData()
+            self.activityIndicatorView?.stopAnimating()
         })
     }
     
@@ -56,9 +62,7 @@ class FavoritesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomFavoritesCell", for: indexPath) as? FavoritesCell else { return UITableViewCell() }
         
-        if let favorite = favoritesArray[indexPath.row] as? Product {
-            cell.updateWithFavorite(favorite: favorite)
-        }
+        cell.updateWithFavorite(favorite: favoritesArray[indexPath.row])
         return cell
     }
     

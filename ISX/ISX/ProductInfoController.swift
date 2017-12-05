@@ -139,8 +139,8 @@ class ProductInfoController : UIViewController {
                             productId: productId,
                             customerChair: customerChairNumber,
                             completed: false,
-                            fbNumber: flyingBlueNumber,
-                            fbMiles: product.fbMiles
+                            flyingBlueNumber: flyingBlueNumber,
+                            flyingBlueMiles: product.fbMiles
                         )
                         
                         let requestForItemRef = self.requestsRef?.childByAutoId()

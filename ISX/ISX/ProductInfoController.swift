@@ -49,11 +49,8 @@ class ProductInfoController : UIViewController {
     
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
-            print("before changefavoritestatus \(product.favorite)")
             product.favorite = !product.favorite
-            print("after changefavoritestatus \(product.favorite)")
             updateFavoriteButton(favorite: product.favorite)
-            print("after updatebutton \(product.favorite)")
             handleFavoriteInFirebase(isFavorite: product.favorite)
             GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
         }

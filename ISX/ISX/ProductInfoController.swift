@@ -49,9 +49,11 @@ class ProductInfoController : UIViewController {
     
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
-            product.changeFavoriteStatus()
+            print("before changefavoritestatus \(product.favorite)")
+            product.favorite = !product.favorite
+            print("after changefavoritestatus \(product.favorite)")
             updateFavoriteButton(favorite: product.favorite)
-
+            print("after updatebutton \(product.favorite)")
             handleFavoriteInFirebase(isFavorite: product.favorite)
             GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
         }
@@ -154,10 +156,10 @@ class ProductInfoController : UIViewController {
             favoriteRef?.child(Constants.DEVICEID).child(productID)
                 .observeSingleEvent(of: .value, with: { snapshot in
                     if (snapshot.hasChildren()) {
-                        self.product?.changeFavoriteStatus()
+                        self.product?.favorite = true
                         self.updateFavoriteButton(favorite: true)
                     } else {
-                        self.product?.changeFavoriteStatus()
+                        self.product?.favorite = false
                         self.updateFavoriteButton(favorite: false)
                     }
                 })
@@ -190,14 +192,6 @@ class ProductInfoController : UIViewController {
         }
     }
     
-    func updateFavoriteButton(favorite: Bool) {
-        if (favorite) {
-            favoriteButton.setImage(favoriteImage, for: .normal)
-        } else {
-            favoriteButton.setImage(unFavoriteImage, for: .normal)
-        }
-    }
-    
     func isValidChairNumber(chairNumber: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: Constants.chairNumberRegex, options: [])
         if (regex.firstMatch(in: chairNumber, options: [], range: NSMakeRange(0, chairNumber.utf16.count)) != nil) {
@@ -218,6 +212,14 @@ class ProductInfoController : UIViewController {
             }
         } else {
             return
+        }
+    }
+
+    func updateFavoriteButton(favorite: Bool) {
+        if (favorite) {
+            favoriteButton.setImage(favoriteImage, for: .normal)
+        } else {
+            favoriteButton.setImage(unFavoriteImage, for: .normal)
         }
     }
     

@@ -55,7 +55,7 @@ class Product {
             url = productURL
         }
         
-        if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
+        if let price = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as? Int {
             retailPrice = price
         } else {
            retailPrice = 0
@@ -75,10 +75,6 @@ class Product {
         //        KLM_Only = snapshotValue["KLM_Only"] as! String
         //        Save_21 = snapshotValue["Save_21"] as! String
         //        Tax_Free_Exclusive = snapshotValue["Tax_Free_Exclusive"] as! String
-    }
-    
-    func changeFavoriteStatus() {
-        favorite = !favorite
     }
     
     func toAnyObject()-> Any {

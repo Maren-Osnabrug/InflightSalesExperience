@@ -51,7 +51,7 @@ class Product {
         id = snapshotValue["sku"] as! String
         image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
         
-        if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
+        if let price = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as? Int {
             retailPrice = price
         } else {
            retailPrice = 0

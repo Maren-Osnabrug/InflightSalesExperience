@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		21822BBB739DF0A7DBCC3EA9 /* Pods_ISX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */; };
-		2408A3161FCD7FAD005448BB /* ProductInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408A3151FCD7FAD005448BB /* ProductInfoCell.swift */; };
-		2408A3181FCD7FC1005448BB /* ProductDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2408A3171FCD7FC1005448BB /* ProductDescriptionCell.swift */; };
 		240F1A041F8CF36200702B4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F1A031F8CF36200702B4B /* Constants.swift */; };
 		2423D9101FB1F3AB00D5EF17 /* BridgingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2476D9C71F839FC200686C1E /* SuggestionCell.swift */; };
@@ -65,8 +63,6 @@
 
 /* Begin PBXFileReference section */
 		18D772D564BF10BE68A5145E /* Pods-ISXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ISXUITests/Pods-ISXUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2408A3151FCD7FAD005448BB /* ProductInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoCell.swift; sourceTree = "<group>"; };
-		2408A3171FCD7FC1005448BB /* ProductDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDescriptionCell.swift; sourceTree = "<group>"; };
 		240F1A031F8CF36200702B4B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2476D9C71F839FC200686C1E /* SuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCell.swift; sourceTree = "<group>"; };
 		2476DCA31F838B2A00E5B03F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -190,8 +186,6 @@
 				A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */,
 				A431DE4B1FA9F6B200086182 /* RequestCell.swift */,
 				2476D9C71F839FC200686C1E /* SuggestionCell.swift */,
-				2408A3151FCD7FAD005448BB /* ProductInfoCell.swift */,
-				2408A3171FCD7FC1005448BB /* ProductDescriptionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -548,7 +542,6 @@
 				D59398671F8397D200FD3BB0 /* CategoryCell.swift in Sources */,
 				9A8C72CE1FAB761B00322F8B /* ARViewController.swift in Sources */,
 				A431DE461FA9F68C00086182 /* Request.swift in Sources */,
-				2408A3161FCD7FAD005448BB /* ProductInfoCell.swift in Sources */,
 				D530E3261F9747A500899DAB /* Category.swift in Sources */,
 				D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
@@ -561,7 +554,6 @@
 				A431DE4F1FA9F6B200086182 /* FavoritesCell.swift in Sources */,
 				9ADCF97E1F7A95F400DB3C5A /* AppDelegate.swift in Sources */,
 				2476DCA41F838B2A00E5B03F /* HomeViewController.swift in Sources */,
-				2408A3181FCD7FC1005448BB /* ProductDescriptionCell.swift in Sources */,
 				9ADCF9B01F7B9CCA00DB3C5A /* Product.swift in Sources */,
 				9A8E617E1F8CCC6100E9C5BB /* FavoritesViewController.swift in Sources */,
 				9A874E871F83883F0052BBD7 /* DatabaseViewController.swift in Sources */,

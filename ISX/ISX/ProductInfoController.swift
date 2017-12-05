@@ -11,6 +11,14 @@ import UIKit
 import FirebaseDatabase
 import SceneKit
 
+extension Int {
+    func withCommas() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        return numberFormatter.string(from: NSNumber(value:self))!
+    }
+}
+
 class ProductInfoController : UITableViewController {
     
     @IBOutlet weak var productInfoTableView: UITableView!
@@ -41,8 +49,7 @@ class ProductInfoController : UITableViewController {
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         title = product?.title
         setupReferences()
-        productInfoTableView.allowsSelection = false;
-        self.tableView.estimatedRowHeight = self.tableView.rowHeight
+        self.tableView.estimatedRowHeight = 85
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
@@ -58,9 +65,8 @@ class ProductInfoController : UITableViewController {
         productImageView.image = product.image
         productTitleLabel.text = product.title
         priceLabel.text = "€ " + String(product.retailPrice)
-        milesLabel.text = "Or " + String(product.retailPrice*Constants.multiplierFactorMiles) + " Miles"
+        milesLabel.text = "Or " + String((product.retailPrice*Constants.multiplierFactorMiles).withCommas()) + " Miles"
         descriptionLabel.text = product.description
-        favoriteButton.tintColor = Constants.orange
         updateFavoriteButton(favorite: product.favorite)
         if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {
             ARButton.isHidden = true
@@ -215,5 +221,9 @@ class ProductInfoController : UITableViewController {
         if let chairNumber = tf.text {
             alert.actions[0].isEnabled = (errorCheckChairNumber(chairNumber: chairNumber))
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }

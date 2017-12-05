@@ -113,6 +113,13 @@ class ProductInfoController : UIViewController {
         }
         let requestButton = DefaultButton(title: "I want it!", height: 60, dismissOnTap: false) {
             guard let customerChairNumber =  popupVC.chairNumberTextField.text else {return}
+            var flyingBlueNumber = ""
+            if (popupVC.flyingBlueNumberTextField.text == nil) {
+                flyingBlueNumber = ""
+            } else {
+                flyingBlueNumber = popupVC.flyingBlueNumberTextField.text!
+            }
+            
             guard let product = self.product else { return }
             
             if (!self.isValidChairNumber(chairNumber: customerChairNumber)) {
@@ -131,7 +138,9 @@ class ProductInfoController : UIViewController {
                             id: requestLatestId + 1,
                             productId: productId,
                             customerChair: customerChairNumber,
-                            completed: false
+                            completed: false,
+                            flyingBlueNumber: flyingBlueNumber,
+                            flyingBlueMiles: product.fbMiles
                         )
                         
                         let requestForItemRef = self.requestsRef?.childByAutoId()

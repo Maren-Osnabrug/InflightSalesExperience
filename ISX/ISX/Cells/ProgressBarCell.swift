@@ -11,18 +11,21 @@ import UIKit
 
 class ProgressBarCell: UITableViewCell {
     
-    @IBOutlet weak var highestRevenueLabel: UILabel!
-    @IBOutlet weak var currentRevenueLabel: UILabel!
+    @IBOutlet weak var targetRevenueTextLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var averageRevenueLabel: UILabel!
+    @IBOutlet weak var targetRevenueAmountLabel: UILabel!
     
-    var omzetArray = [124, 125, 874]
-    
-    func setProgressBar (flight: Flight) {
-        let progress = (Float(flight.averageRevenue)/Float(flight.highestRevenue))
-        currentRevenueLabel.text = "Current Revenue: €\(flight.averageRevenue)"
-        highestRevenueLabel.text = "Highest Revenue: €\(flight.highestRevenue)"
-        averageRevenueLabel.text = "€\(flight.highestRevenue)"
+    func setProgressBar (flight: Flight, currentRevenue: Int) {
+        var progress: Float
+        if(currentRevenue <= flight.averageRevenue) {
+            progress = (Float(currentRevenue)/Float(flight.highestRevenue))
+            targetRevenueTextLabel.text = "Target Revenue: €\(currentRevenue)/€\(flight.averageRevenue)"
+            targetRevenueAmountLabel.text = "€\(flight.averageRevenue)"
+        } else {
+            progress = (Float(currentRevenue)/Float(flight.highestRevenue))
+            targetRevenueTextLabel.text = "Target Revenue: €\(currentRevenue)/€\(flight.highestRevenue)"
+            targetRevenueAmountLabel.text = "€\(flight.highestRevenue)"
+        }
         progressBar.setProgress(progress, animated: true)
     }
 }

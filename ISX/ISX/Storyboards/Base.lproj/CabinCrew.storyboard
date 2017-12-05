@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jPq-JH-xg9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jPq-JH-xg9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -41,29 +41,21 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€550" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt7-GF-JeW" userLabel="Average Revenue Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€550" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt7-GF-JeW" userLabel="Target Revenue Amount Label">
                                             <rect key="frame" x="313" y="32.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEz-Cv-urf" userLabel="Current Revenue Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEz-Cv-urf" userLabel="Target Revenue Text Label">
                                             <rect key="frame" x="20" y="61" width="0.0" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-8K-hgW" userLabel="Highest Revenue Label">
-                                            <rect key="frame" x="20" y="84" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="7ag-8K-hgW" firstAttribute="top" secondItem="b67-7Z-eCn" secondAttribute="bottom" constant="31" id="5x5-Ek-GvH"/>
                                         <constraint firstAttribute="trailing" secondItem="b67-7Z-eCn" secondAttribute="trailing" constant="20" id="Enm-QL-jfG"/>
-                                        <constraint firstItem="7ag-8K-hgW" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="JIi-Vg-uWA"/>
                                         <constraint firstAttribute="trailing" secondItem="Jt7-GF-JeW" secondAttribute="trailing" constant="20" id="LI9-EQ-7Bv"/>
                                         <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="zcE-nq-Ewf" secondAttribute="bottom" constant="-2" id="Pp8-4L-bE9"/>
                                         <constraint firstItem="yEz-Cv-urf" firstAttribute="top" secondItem="b67-7Z-eCn" secondAttribute="bottom" constant="8" id="b8h-NP-eEP"/>
@@ -74,11 +66,11 @@
                                         <constraint firstItem="zcE-nq-Ewf" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="sDf-6g-Mop"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="averageRevenueLabel" destination="Jt7-GF-JeW" id="Ag8-A8-skO"/>
-                                    <outlet property="currentRevenueLabel" destination="yEz-Cv-urf" id="U3d-Pk-g4G"/>
-                                    <outlet property="highestRevenueLabel" destination="7ag-8K-hgW" id="9NN-zp-W2h"/>
                                     <outlet property="progressBar" destination="b67-7Z-eCn" id="9Oo-bX-fHA"/>
+                                    <outlet property="targetRevenueAmountLabel" destination="Jt7-GF-JeW" id="Ag8-A8-skO"/>
+                                    <outlet property="targetRevenueTextLabel" destination="yEz-Cv-urf" id="U3d-Pk-g4G"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomRequestCell" rowHeight="130" id="MMZ-cg-6RI" customClass="RequestCell" customModule="ISX_CabinCrew" customModuleProvider="target">

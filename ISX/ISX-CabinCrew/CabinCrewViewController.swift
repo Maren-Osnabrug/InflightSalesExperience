@@ -22,7 +22,7 @@ class CabinCrewViewController: UITableViewController {
     private var productsRef: DatabaseReference?
     private var flightsRef: DatabaseReference?
     var activityIndicatorView: NVActivityIndicatorView?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

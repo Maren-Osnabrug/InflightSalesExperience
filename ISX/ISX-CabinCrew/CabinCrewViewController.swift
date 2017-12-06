@@ -158,10 +158,8 @@ class CabinCrewViewController: UITableViewController {
             let flight = flightsArray[1]
             var currentRevenue = Int()
             for request in requestsArray {
-                for item in productsArray {
-                    if (item.id == String(request.productId) && request.completed == true) {
-                        currentRevenue += item.retailPrice
-                    }
+                if let found = productsArray.first(where: { $0.id.elementsEqual(String(request.productId)) && request.completed == true}) {
+                    currentRevenue += found.retailPrice
                 }
             }
             progressBarCell.setProgressBar(flight: flight, currentRevenue: currentRevenue)

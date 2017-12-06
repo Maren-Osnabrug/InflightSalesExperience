@@ -20,10 +20,8 @@ struct Constants {
     static let okayGreen = UIColor(red:0.50, green:0.86, blue:0.15, alpha:1.0)
     static let spinnerGrey = UIColor.black.withAlphaComponent(0.25)
 
-    
 //      PRAGMA MARK: Display strings
     static let sortBy = "Sort by: "
-    
     
 //      PRAGMA MARK: Spacing
     static let sectionInsetsCollectionView: CGFloat = 60
@@ -32,14 +30,16 @@ struct Constants {
     static let multiplierFactorSuggestionHeader: CGFloat = 0.40
     static let indicatorPadding:CGFloat = 150
     
-    
 //      PRAGMA MARK: Random
     static let suggestionCount = 4
     static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
     static let DEVICEID = UIDevice.current.identifierForVendor!.uuidString
 
-    
 //      PRAGMA MARK: Segues
     static let productInfoToWeb = "productInfoToWebSegue"
     static let productInfoToAR = "productInfoToARSegue"
+    static let homeToProductInfo = "homeToProductInfoSegue"
+    
+    //      PRAGMA MARK: Row heights
+    static let tableViewRowHeight:CGFloat = 85
 }

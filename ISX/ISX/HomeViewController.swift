@@ -85,7 +85,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "homeToProductInfoSegue") {
+        if (segue.identifier == Constants.homeToProductInfo) {
             if let nextViewController = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     nextViewController.product = product

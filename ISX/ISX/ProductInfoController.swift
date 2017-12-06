@@ -41,7 +41,7 @@ class ProductInfoController : UITableViewController {
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         title = product?.title
         setupReferences()
-        self.tableView.estimatedRowHeight = 85
+        self.tableView.estimatedRowHeight = Constants.tableViewRowHeight
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     

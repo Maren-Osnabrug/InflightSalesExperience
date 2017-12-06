@@ -28,6 +28,6 @@ class ProductCell: UICollectionViewCell {
     
     // PRAGMA MARK: - Private
     private func setupStyling(){
-        backgroundColor =  Constants.darkGrey
+        backgroundColor = Constants.darkGrey
     }
 }

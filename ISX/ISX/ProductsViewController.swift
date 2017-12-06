@@ -15,8 +15,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     @IBOutlet weak var sortLabel: UILabel!
     @IBOutlet var collectionView: UICollectionView!
-        enum sortableProperties: String {
-        
+    enum sortableProperties: String {
         case sortRelevant = "Relevance"
         case sortTitle = "Title (A-Z)"
         case sortPrice = "Price (Low-High)"

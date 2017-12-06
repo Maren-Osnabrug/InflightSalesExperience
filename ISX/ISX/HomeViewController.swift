@@ -71,7 +71,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedProduct = suggestedProductsArray[indexPath.row]
-        performSegue(withIdentifier: "homeToProductInfoSegue", sender: self)
+        performSegue(withIdentifier: Constants.homeToProductInfo, sender: self)
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

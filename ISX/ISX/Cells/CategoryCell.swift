@@ -26,7 +26,7 @@ class CategoryCell: UICollectionViewCell {
     }
     
     // PRAGMA MARK: - Private
-    private func setupStyling(){
+    private func setupStyling() {
         backgroundColor =  Constants.darkGrey
         categoryTitle.backgroundColor = Constants.blue
         categoryTitle.textColor = .white

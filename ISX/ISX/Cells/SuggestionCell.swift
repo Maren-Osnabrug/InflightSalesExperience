@@ -25,7 +25,7 @@ class SuggestionCell: UICollectionViewCell {
     }
     
     // PRAGMA MARK: - Private
-    private func setupStyling(){
+    private func setupStyling() {
         backgroundColor = Constants.grey
         suggestionTextContainer.backgroundColor = Constants.blue
     }

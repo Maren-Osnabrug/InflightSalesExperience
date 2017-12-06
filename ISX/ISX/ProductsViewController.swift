@@ -11,12 +11,11 @@ import UIKit
 import FirebaseDatabase
 import NVActivityIndicatorView
 
-class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var sortLabel: UILabel!
     @IBOutlet var collectionView: UICollectionView!
     enum sortableProperties: String {
-        
         case sortRelevant = "Relevance"
         case sortTitle = "Title (A-Z)"
         case sortPrice = "Price (Low-High)"
@@ -24,7 +23,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         func getDisplayText() -> String {
             return Constants.sortBy + rawValue
         }
-        
     }
 
     var productsArray: [Product] = []
@@ -66,6 +64,11 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + Constants.sectionInsetsCollectionView)) / Constants.dividingFactorCollectionViewCell
+        return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorCollectionViewCell)
     }
     
     public func getProducts(categoryId: String) {

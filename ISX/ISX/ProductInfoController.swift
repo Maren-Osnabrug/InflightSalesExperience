@@ -12,25 +12,26 @@ import FirebaseDatabase
 import SceneKit
 import PopupDialog
 
-class ProductInfoController : UIViewController {
+class ProductInfoController : UITableViewController {
     
+    @IBOutlet weak var productInfoTableView: UITableView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var ARButton: UIButton!
     @IBOutlet weak var productTitleLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var claimButton: UIButton!
     
-    var addAlertSaveAction: UIAlertAction?
     var product: Product?
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var favoriteRef: DatabaseReference?
     var customerChair: String?
+    var addAlertSaveAction: UIAlertAction?
 
-    private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
     private let favoriteImage = UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate)
+    private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
     
     private let viewName = "Product information"
 
@@ -40,6 +41,8 @@ class ProductInfoController : UIViewController {
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         title = product?.title
         setupReferences()
+        self.tableView.estimatedRowHeight = Constants.tableViewRowHeight
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +50,26 @@ class ProductInfoController : UIViewController {
         observeFavoriteStatus()
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func setupStyling() {
+        guard let product = product else {
+            return
+        }
+        productImageView.image = product.image
+        productTitleLabel.text = product.title
+        priceLabel.text = "€ " + String(product.retailPrice)
+        descriptionLabel.text = product.description
+        updateFavoriteButton(favorite: product.favorite)
+        if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {
+            ARButton.isHidden = true
+        } else {
+            ARButton.isHidden = false
+        }
+    }
+
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
             product.favorite = !product.favorite
@@ -177,25 +200,6 @@ class ProductInfoController : UIViewController {
         requestsRef = datarootRef?.child("requests")
         favoriteRef = datarootRef?.child("favorite")
         requestsRef?.keepSynced(true)
-    }
-    
-    func setupStyling() {
-        guard let product = product else {
-            return
-        }
-        productImageView.image = product.image
-        productTitleLabel.text = product.title
-        priceLabel.text = "€" + String(product.retailPrice)
-        descriptionTextView!.text = product.description
-        descriptionTextView.textContainerInset = .zero
-        descriptionTextView.textContainer.lineFragmentPadding = 0
-        favoriteButton.tintColor = Constants.orange
-        updateFavoriteButton(favorite: product.favorite)
-        if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {
-            ARButton.isHidden = true
-        } else {
-            ARButton.isHidden = false
-        }
     }
     
     func isValidChairNumber(chairNumber: String) -> Bool {

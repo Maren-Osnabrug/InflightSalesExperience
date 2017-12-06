@@ -25,6 +25,7 @@ class ProductCell: UICollectionViewCell {
         productTitle.text = product.title
         productPrice.text = "€" + String(product.retailPrice)
     }
+    
     // PRAGMA MARK: - Private
     private func setupStyling() {
         backgroundColor = Constants.darkGrey

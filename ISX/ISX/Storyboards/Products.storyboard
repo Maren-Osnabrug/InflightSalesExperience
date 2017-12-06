@@ -256,11 +256,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="67" id="rML-Gc-t4G">
-                                        <rect key="frame" x="0.0" y="240" width="375" height="67"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="63" id="rML-Gc-t4G">
+                                        <rect key="frame" x="0.0" y="240" width="375" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rML-Gc-t4G" id="TeX-tc-LiH">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWo-Sx-zN0">
@@ -289,12 +289,12 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Qk-W4-g3G" userLabel="AR">
-                                                    <rect key="frame" x="20" y="36.5" width="335" height="30"/>
-                                                    <color key="backgroundColor" red="0.050980392159999999" green="0.65098039220000004" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <rect key="frame" x="285" y="0.0" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="a4X-7x-TPF"/>
+                                                        <constraint firstAttribute="height" constant="30" id="1in-X2-PMD"/>
+                                                        <constraint firstAttribute="width" constant="30" id="trp-Sm-r14"/>
                                                     </constraints>
-                                                    <state key="normal" title="View this in AR!">
+                                                    <state key="normal" image="augmented-reality">
                                                         <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -304,21 +304,28 @@
                                                         <action selector="didClickARButton:" destination="eW0-le-XYG" eventType="touchUpInside" id="Twg-Pa-1az"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeJ-AX-k4Q">
+                                                    <rect key="frame" x="20" y="36.5" width="50.5" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <color key="textColor" red="0.050980392159999999" green="0.65098039220000004" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="XeJ-AX-k4Q" secondAttribute="bottom" id="Ce6-5H-7op"/>
                                                 <constraint firstItem="PWo-Sx-zN0" firstAttribute="leading" secondItem="TeX-tc-LiH" secondAttribute="leading" constant="20" id="EjW-VW-wDx"/>
-                                                <constraint firstAttribute="bottom" secondItem="7Qk-W4-g3G" secondAttribute="bottom" id="OwC-Iq-Sc1"/>
-                                                <constraint firstAttribute="trailing" secondItem="7Qk-W4-g3G" secondAttribute="trailing" constant="20" id="RXb-q3-DMh"/>
-                                                <constraint firstItem="7Qk-W4-g3G" firstAttribute="top" secondItem="PWo-Sx-zN0" secondAttribute="bottom" constant="10" id="VRL-8c-vFV"/>
-                                                <constraint firstItem="7Qk-W4-g3G" firstAttribute="leading" secondItem="TeX-tc-LiH" secondAttribute="leading" constant="20" id="YN3-oZ-9Rb"/>
+                                                <constraint firstItem="XeJ-AX-k4Q" firstAttribute="leading" secondItem="TeX-tc-LiH" secondAttribute="leading" constant="20" id="MgC-W9-f2k"/>
                                                 <constraint firstItem="PWo-Sx-zN0" firstAttribute="top" secondItem="TeX-tc-LiH" secondAttribute="top" id="eOe-YM-FgZ"/>
+                                                <constraint firstItem="7Qk-W4-g3G" firstAttribute="top" secondItem="TeX-tc-LiH" secondAttribute="top" id="jFM-CU-zhN"/>
                                                 <constraint firstItem="RKs-DR-0Ag" firstAttribute="top" secondItem="TeX-tc-LiH" secondAttribute="top" id="nD8-8c-erp"/>
                                                 <constraint firstAttribute="trailing" secondItem="RKs-DR-0Ag" secondAttribute="trailing" constant="20" id="quW-GX-zEO"/>
+                                                <constraint firstItem="RKs-DR-0Ag" firstAttribute="leading" secondItem="7Qk-W4-g3G" secondAttribute="trailing" constant="10" id="yUb-bp-Y2c"/>
+                                                <constraint firstItem="XeJ-AX-k4Q" firstAttribute="top" secondItem="PWo-Sx-zN0" secondAttribute="bottom" constant="10" id="z9J-HC-gik"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="180" id="qmn-NI-iHL">
-                                        <rect key="frame" x="0.0" y="307" width="375" height="180"/>
+                                        <rect key="frame" x="0.0" y="303" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qmn-NI-iHL" id="ezJ-P0-chP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
@@ -349,7 +356,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="CPM-PJ-70Q">
-                                        <rect key="frame" x="0.0" y="487" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="483" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CPM-PJ-70Q" id="MCA-xP-BOt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -394,6 +401,7 @@
                         <outlet property="claimButton" destination="ixd-kE-zm0" id="qX7-fJ-ZmY"/>
                         <outlet property="descriptionLabel" destination="H8X-jn-c9N" id="asw-Mg-o93"/>
                         <outlet property="favoriteButton" destination="RKs-DR-0Ag" id="9Xk-uA-7Da"/>
+                        <outlet property="milesLabel" destination="XeJ-AX-k4Q" id="8Fy-aZ-Ti0"/>
                         <outlet property="priceLabel" destination="PWo-Sx-zN0" id="ESQ-dR-dMV"/>
                         <outlet property="productImageView" destination="0zA-8V-Uus" id="TZi-U7-5st"/>
                         <outlet property="productInfoTableView" destination="UdR-h0-5NT" id="Ecg-IS-FXd"/>
@@ -497,6 +505,7 @@
     </scenes>
     <resources>
         <image name="Heart" width="24" height="24"/>
+        <image name="augmented-reality" width="170" height="170"/>
         <image name="products" width="24" height="24"/>
         <image name="true" width="16" height="16"/>
     </resources>

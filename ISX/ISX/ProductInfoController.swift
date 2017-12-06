@@ -49,9 +49,8 @@ class ProductInfoController : UIViewController {
     
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
-            product.changeFavoriteStatus()
+            product.favorite = !product.favorite
             updateFavoriteButton(favorite: product.favorite)
-
             handleFavoriteInFirebase(isFavorite: product.favorite)
             GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
         }
@@ -113,6 +112,13 @@ class ProductInfoController : UIViewController {
         }
         let requestButton = DefaultButton(title: "I want it!", height: 60, dismissOnTap: false) {
             guard let customerChairNumber =  popupVC.chairNumberTextField.text else {return}
+            var flyingBlueNumber = ""
+            if (popupVC.flyingBlueNumberTextField.text == nil) {
+                flyingBlueNumber = ""
+            } else {
+                flyingBlueNumber = popupVC.flyingBlueNumberTextField.text!
+            }
+            
             guard let product = self.product else { return }
             
             if (!self.isValidChairNumber(chairNumber: customerChairNumber)) {
@@ -131,7 +137,9 @@ class ProductInfoController : UIViewController {
                             id: requestLatestId + 1,
                             productId: productId,
                             customerChair: customerChairNumber,
-                            completed: false
+                            completed: false,
+                            flyingBlueNumber: flyingBlueNumber,
+                            flyingBlueMiles: product.fbMiles
                         )
                         
                         let requestForItemRef = self.requestsRef?.childByAutoId()
@@ -154,10 +162,10 @@ class ProductInfoController : UIViewController {
             favoriteRef?.child(Constants.DEVICEID).child(productID)
                 .observeSingleEvent(of: .value, with: { snapshot in
                     if (snapshot.hasChildren()) {
-                        self.product?.changeFavoriteStatus()
+                        self.product?.favorite = true
                         self.updateFavoriteButton(favorite: true)
                     } else {
-                        self.product?.changeFavoriteStatus()
+                        self.product?.favorite = false
                         self.updateFavoriteButton(favorite: false)
                     }
                 })
@@ -190,14 +198,6 @@ class ProductInfoController : UIViewController {
         }
     }
     
-    func updateFavoriteButton(favorite: Bool) {
-        if (favorite) {
-            favoriteButton.setImage(favoriteImage, for: .normal)
-        } else {
-            favoriteButton.setImage(unFavoriteImage, for: .normal)
-        }
-    }
-    
     func isValidChairNumber(chairNumber: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: Constants.chairNumberRegex, options: [])
         if (regex.firstMatch(in: chairNumber, options: [], range: NSMakeRange(0, chairNumber.utf16.count)) != nil) {
@@ -218,6 +218,14 @@ class ProductInfoController : UIViewController {
             }
         } else {
             return
+        }
+    }
+
+    func updateFavoriteButton(favorite: Bool) {
+        if (favorite) {
+            favoriteButton.setImage(favoriteImage, for: .normal)
+        } else {
+            favoriteButton.setImage(unFavoriteImage, for: .normal)
         }
     }
     

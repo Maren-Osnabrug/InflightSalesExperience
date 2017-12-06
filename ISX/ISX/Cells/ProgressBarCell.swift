@@ -18,7 +18,7 @@ class ProgressBarCell: UITableViewCell {
     func setProgressBar (flight: Flight, currentRevenue: Int) {
         var progress: Float
         if(currentRevenue <= flight.averageRevenue) {
-            progress = (Float(currentRevenue)/Float(flight.highestRevenue))
+            progress = (Float(currentRevenue)/Float(flight.averageRevenue))
             targetRevenueTextLabel.text = "Target Revenue: €\(currentRevenue)/€\(flight.averageRevenue)"
             targetRevenueAmountLabel.text = "€\(flight.averageRevenue)"
         } else {

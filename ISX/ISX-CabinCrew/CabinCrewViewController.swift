@@ -48,8 +48,8 @@ class CabinCrewViewController: UITableViewController {
         requestsRef?.keepSynced(true)
         observeRequests()
         observeNewRequest()
-        flights()
-        products()
+        observeFlights()
+        observeProducts()
     }
     
     func observeRequests() {
@@ -119,12 +119,12 @@ class CabinCrewViewController: UITableViewController {
     /*
      Returns array with flights
      */
-    func flights() {
+    func observeFlights() {
         flightsRef?.observe(.value, with: { snapshot in
             for item in snapshot.children {
-                if let flight = item as? DataSnapshot {
-                    let flightnumber = Flight(snapshot: flight)
-                        self.flightsArray.append(flightnumber)
+                if let flightSnapshot = item as? DataSnapshot {
+                    let flight = Flight(snapshot: flightSnapshot)
+                    self.flightsArray.append(flight)
                 }
             }
         })
@@ -133,12 +133,12 @@ class CabinCrewViewController: UITableViewController {
     /*
      Returns array with products
     */
-    func products() {
+    func observeProducts() {
         productsRef?.observe(.value, with: { snapshot in
             for item in snapshot.children {
-                if let product = item as? DataSnapshot {
-                    let products = Product(snapshot: product)
-                    self.productsArray.append(products)
+                if let productSnapshot = item as? DataSnapshot {
+                    let product = Product(snapshot: productSnapshot)
+                    self.productsArray.append(product)
                 }
             }
             self.tableView.reloadData()
@@ -147,23 +147,19 @@ class CabinCrewViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return requestsArray.count
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Constants.progressBarCellHeight
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let progressBarCell = tableView.dequeueReusableCell(withIdentifier: "progressCell") as? ProgressBarCell
             else { return UITableViewCell() }
-        if (flightsArray.count > 0 ){
+        if (flightsArray.count > 0 ) {
             let flight = flightsArray[1]
             var currentRevenue = Int()
             for request in requestsArray {
                 for item in productsArray {
-                    if item.id == String(request.productId) && request.completed == true {
+                    if (item.id == String(request.productId) && request.completed == true) {
                         currentRevenue += item.retailPrice
                     }
                 }
@@ -174,24 +170,24 @@ class CabinCrewViewController: UITableViewController {
         return progressBarCell
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return requestsArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.requestCellHeight
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
         let request = requestsArray[indexPath.row]
         cell.setCellData(request: request)
-    
-        productsRef?.observe(.value, with: { snapshot in
-            let arr = snapshot.children.allObjects as NSArray
-                for item in arr {
-                    let item = Product(snapshot: item as! DataSnapshot)
-                    if item.id == String(request.productId) {
-                        cell.productName.text = item.title
-                    }
-                }
-            })
+        
+        for item in productsArray {
+            if (item.id == String(request.productId)) {
+                cell.productName.text = item.title
+            }
+        }
         return cell
     }
     

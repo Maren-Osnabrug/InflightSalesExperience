@@ -38,14 +38,15 @@ struct Constants {
 //      PRAGMA MARK: Segues
     static let productInfoToWeb = "productInfoToWebSegue"
     static let productInfoToAR = "productInfoToARSegue"
-
     static let homeToProductInfo = "homeToProductInfoSegue"
     
-    //      PRAGMA MARK: Row heights
+//      PRAGMA MARK: Row heights
     static let tableViewRowHeight:CGFloat = 85
 
 //      PRAGMA MARK: Cells
     static let progressBarCellHeight:CGFloat = 100
     static let requestCellHeight:CGFloat = 130
-
+    
+//      PRAGMA MARK: Calculate miles
+    static let multiplierFactorMiles = 400
 }

@@ -12,11 +12,20 @@ import FirebaseDatabase
 import SceneKit
 import PopupDialog
 
+extension Int {
+    func withCommas() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        return numberFormatter.string(from: NSNumber(value:self))!
+    }
+}
+
 class ProductInfoController : UITableViewController {
     
     @IBOutlet weak var productInfoTableView: UITableView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var ARButton: UIButton!
     @IBOutlet weak var productTitleLabel: UILabel!
@@ -61,6 +70,7 @@ class ProductInfoController : UITableViewController {
         productImageView.image = product.image
         productTitleLabel.text = product.title
         priceLabel.text = "€ " + String(product.retailPrice)
+        milesLabel.text = "Or " + String((product.retailPrice*Constants.multiplierFactorMiles).withCommas()) + " Miles"
         descriptionLabel.text = product.description
         updateFavoriteButton(favorite: product.favorite)
         if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {

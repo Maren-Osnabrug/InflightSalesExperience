@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jPq-JH-xg9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jPq-JH-xg9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -25,8 +25,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="progressCell" rowHeight="96" id="evI-IS-XfD" customClass="ProgressBarCell" customModule="ISX_CabinCrew" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="96"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="evI-IS-XfD" id="fZM-sb-6FC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" restorationIdentifier="progressBar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="b67-7Z-eCn" userLabel="progressBar">
+                                            <rect key="frame" x="20" y="51" width="335" height="2"/>
+                                        </progressView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcE-nq-Ewf">
+                                            <rect key="frame" x="20" y="32.5" width="21" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€550" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt7-GF-JeW" userLabel="Target Revenue Amount Label">
+                                            <rect key="frame" x="313" y="32.5" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEz-Cv-urf" userLabel="Target Revenue Text Label">
+                                            <rect key="frame" x="20" y="61" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="b67-7Z-eCn" secondAttribute="trailing" constant="20" id="Enm-QL-jfG"/>
+                                        <constraint firstAttribute="trailing" secondItem="Jt7-GF-JeW" secondAttribute="trailing" constant="20" id="LI9-EQ-7Bv"/>
+                                        <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="zcE-nq-Ewf" secondAttribute="bottom" constant="-2" id="Pp8-4L-bE9"/>
+                                        <constraint firstItem="yEz-Cv-urf" firstAttribute="top" secondItem="b67-7Z-eCn" secondAttribute="bottom" constant="8" id="b8h-NP-eEP"/>
+                                        <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="Jt7-GF-JeW" secondAttribute="bottom" constant="-2" id="fdy-Tf-xo9"/>
+                                        <constraint firstItem="b67-7Z-eCn" firstAttribute="top" secondItem="fZM-sb-6FC" secondAttribute="topMargin" constant="40" id="mGg-Q2-1Dr"/>
+                                        <constraint firstItem="b67-7Z-eCn" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="o1N-Em-k8q"/>
+                                        <constraint firstItem="yEz-Cv-urf" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="ppA-oi-Rgk"/>
+                                        <constraint firstItem="zcE-nq-Ewf" firstAttribute="leading" secondItem="fZM-sb-6FC" secondAttribute="leading" constant="20" id="sDf-6g-Mop"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="progressBar" destination="b67-7Z-eCn" id="9Oo-bX-fHA"/>
+                                    <outlet property="targetRevenueAmountLabel" destination="Jt7-GF-JeW" id="Ag8-A8-skO"/>
+                                    <outlet property="targetRevenueTextLabel" destination="yEz-Cv-urf" id="U3d-Pk-g4G"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomRequestCell" rowHeight="130" id="MMZ-cg-6RI" customClass="RequestCell" customModule="ISX_CabinCrew" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MMZ-cg-6RI" id="pXe-i6-jfl">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>

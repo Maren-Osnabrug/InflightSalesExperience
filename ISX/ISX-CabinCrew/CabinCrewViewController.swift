@@ -15,9 +15,12 @@ import NVActivityIndicatorView
 class CabinCrewViewController: UITableViewController {
     
     var requestsArray = [Request]()
+    var flightsArray = [Flight]()
+    var productsArray = [Product]()
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
+    private var flightsRef: DatabaseReference?
     var activityIndicatorView: NVActivityIndicatorView?
 
     override func viewDidLoad() {
@@ -40,10 +43,13 @@ class CabinCrewViewController: UITableViewController {
         datarootRef = Database.database().reference(withPath: "dataroot")
         requestsRef = datarootRef?.child("requests")
         productsRef = datarootRef?.child("products")
+        flightsRef = datarootRef?.child("flights")
         
         requestsRef?.keepSynced(true)
         observeRequests()
         observeNewRequest()
+        observeFlights()
+        observeProducts()
     }
     
     func observeRequests() {
@@ -110,33 +116,78 @@ class CabinCrewViewController: UITableViewController {
         }
     }
     
+    /*
+     Returns array with flights
+     */
+    func observeFlights() {
+        flightsRef?.observe(.value, with: { snapshot in
+            for item in snapshot.children {
+                if let flightSnapshot = item as? DataSnapshot {
+                    let flight = Flight(snapshot: flightSnapshot)
+                    self.flightsArray.append(flight)
+                }
+            }
+        })
+    }
+    
+    /*
+     Returns array with products
+    */
+    func observeProducts() {
+        productsRef?.observe(.value, with: { snapshot in
+            for item in snapshot.children {
+                if let productSnapshot = item as? DataSnapshot {
+                    let product = Product(snapshot: productSnapshot)
+                    self.productsArray.append(product)
+                }
+            }
+            self.tableView.reloadData()
+        })
+    }
+    
     // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Constants.progressBarCellHeight
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let progressBarCell = tableView.dequeueReusableCell(withIdentifier: "progressCell") as? ProgressBarCell
+            else { return UITableViewCell() }
+        if (flightsArray.count > 0 ) {
+            let flight = flightsArray[1]
+            var currentRevenue = Int()
+            for request in requestsArray {
+                if let found = productsArray.first(where: { $0.id.elementsEqual(String(request.productId)) && request.completed == true}) {
+                    currentRevenue += found.retailPrice
+                }
+            }
+            progressBarCell.setProgressBar(flight: flight, currentRevenue: currentRevenue)
+            progressBarCell.isUserInteractionEnabled = false
+        }
+        return progressBarCell
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return requestsArray.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return Constants.requestCellHeight
     }
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
         let request = requestsArray[indexPath.row]
         cell.setCellData(request: request)
         
-        productsRef?.observe(.value, with: { snapshot in
-            let arr = snapshot.children.allObjects as NSArray
-            for item in arr {
-                let item = Product(snapshot: item as! DataSnapshot)
-                if item.id == String(request.productId) {
-                    cell.productName.text = item.title
-                }
+        for item in productsArray {
+            if (item.id == String(request.productId)) {
+                cell.productName.text = item.title
             }
-        })
-
+        }
         return cell
-     }
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
@@ -150,7 +201,7 @@ class CabinCrewViewController: UITableViewController {
             self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
             self.tableView.reloadData()
         })
-        
+
         let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
             tableView.deselectRow(at: indexPath, animated: true)
             self.requestsArray[indexPath.row].completed = false
@@ -161,7 +212,7 @@ class CabinCrewViewController: UITableViewController {
             self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
             self.tableView.reloadData()
         })
-        
+
         alertController.addAction(noAction)
         alertController.addAction(yesAction)
         self.present(alertController, animated: true, completion: nil)

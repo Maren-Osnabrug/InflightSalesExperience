@@ -40,4 +40,8 @@ struct Constants {
 //      PRAGMA MARK: Segues
     static let productInfoToWeb = "productInfoToWebSegue"
     static let productInfoToAR = "productInfoToARSegue"
+
+//      PRAGMA MARK: Cells
+    static let progressBarCellHeight:CGFloat = 100
+    static let requestCellHeight:CGFloat = 130
 }

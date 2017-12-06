@@ -16,10 +16,17 @@ class SuggestionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupStyling()
     }
     
     func setupData(product: Product) {
         suggestionImage.image = product.image
         suggestionTitleLabel.text = product.title
+    }
+    
+    // PRAGMA MARK: - Private
+    private func setupStyling(){
+        backgroundColor =  Constants.grey
+        suggestionTextContainer.backgroundColor = Constants.blue
     }
 }

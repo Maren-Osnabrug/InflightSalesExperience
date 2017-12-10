@@ -19,14 +19,15 @@ class CabinCrewViewController: UITableViewController {
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
     var activityIndicatorView: NVActivityIndicatorView?
-
+    private var selectedRequest: Request?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupReferences()
         tableView.dataSource = self
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.activityPadding)
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
         tableView.addSubview(activityIndicatorView!)
     }
     
@@ -34,9 +35,9 @@ class CabinCrewViewController: UITableViewController {
         Database.database().isPersistenceEnabled = true
         datarootRef = Database.database().reference(withPath: "dataroot")
         requestsRef = datarootRef?.child("requests")
+        requestsRef?.keepSynced(true)
         productsRef = datarootRef?.child("products")
         
-        requestsRef?.keepSynced(true)
         observeRequests()
         observeNewRequest()
     }
@@ -45,10 +46,12 @@ class CabinCrewViewController: UITableViewController {
         activityIndicatorView?.startAnimating()
         requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
-                let toAdd = Request.init(snapshot: item as! DataSnapshot)
-                if (!self.requestsArray.contains { $0.id == toAdd.id }) {
-                    self.requestsArray.append(toAdd)
-                    self.requestsArray.sort { !$0.completed && $1.completed }
+                if let itemSnapshot = item as? DataSnapshot {
+                    let toAdd = Request.init(snapshot: itemSnapshot )
+                    if (!self.requestsArray.contains { $0.id == toAdd.id }) {
+                        self.requestsArray.append(toAdd)
+                        self.requestsArray.sort { !$0.completed && $1.completed }
+                    }
                 }
             }
             self.tableView.reloadData()
@@ -120,11 +123,13 @@ class CabinCrewViewController: UITableViewController {
         let request = requestsArray[indexPath.row]
         cell.setCellData(request: request)
         
+        let requestForCell = requestsArray[indexPath.row]
+        
         productsRef?.observe(.value, with: { snapshot in
             let arr = snapshot.children.allObjects as NSArray
             for item in arr {
                 let item = Product(snapshot: item as! DataSnapshot)
-                if item.id == String(request.productId) {
+                if item.id == String(requestForCell.productId) {
                     cell.productName.text = item.title
                 }
             }
@@ -134,31 +139,48 @@ class CabinCrewViewController: UITableViewController {
      }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .cancel, handler: { action in
-            tableView.deselectRow(at: indexPath, animated: true)
-            self.requestsArray[indexPath.row].completed = true
-            self.requestsArray.sort { !$0.completed && $1.completed }
-            self.requestsArray[indexPath.row].ref?.updateChildValues([
-                "completed": true
-                ])
-            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
-            self.tableView.reloadData()
-        })
-        
-        let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
-            tableView.deselectRow(at: indexPath, animated: true)
-            self.requestsArray[indexPath.row].completed = false
-            self.requestsArray.sort { !$0.completed && $1.completed }
-            self.requestsArray[indexPath.row].ref?.updateChildValues([
-                "completed": false
-                ])
-            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
-            self.tableView.reloadData()
-        })
-        
-        alertController.addAction(noAction)
-        alertController.addAction(yesAction)
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
+//        let yesAction = UIAlertAction(title: "Yes", style: .cancel, handler: { action in
+//            tableView.deselectRow(at: indexPath, animated: true)
+//            self.requestsArray[indexPath.row].completed = true
+//            self.requestsArray.sort { !$0.completed && $1.completed }
+//            self.requestsArray[indexPath.row].ref?.updateChildValues([
+//                "completed": true
+//                ])
+//            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
+//            self.tableView.reloadData()
+//        })
+//
+//        let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
+//            tableView.deselectRow(at: indexPath, animated: true)
+//            self.requestsArray[indexPath.row].completed = false
+//            self.requestsArray.sort { !$0.completed && $1.completed }
+//            self.requestsArray[indexPath.row].ref?.updateChildValues([
+//                "completed": false
+//                ])
+//            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
+//            self.tableView.reloadData()
+//        })
+//
+//        alertController.addAction(noAction)
+//        alertController.addAction(yesAction)
+//        self.present(alertController, animated: true, completion: nil)
+        selectedRequest = requestsArray[indexPath.row]
+        performSegue(withIdentifier: "toRequestInfoSegue", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "toRequestInfoSegue" {
+            if let nextViewController = segue.destination as? RequestDetailViewController {
+                guard let productID = self.selectedRequest?.productId else { return }
+                print("ProductID van product op cabincrew home: ", productID)
+                guard let chairNumber = self.selectedRequest?.customerChair else { return }
+                guard let deviceID = self.selectedRequest?.deviceID else { return }
+                nextViewController.productID = String(productID)
+                nextViewController.chairNumber = chairNumber
+                nextViewController.usersDeviceID = deviceID
+            }
+        }
+    }
+    
 }

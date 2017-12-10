@@ -7,11 +7,51 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
-class Favorite {
-    let productID: Int
+class Favorite {    
+    let bestsellers: String!
+    let productGroup: String!
+    let title: String!
+    let description: String!
+    let startDateSHC: String!
+    let brand: String!
+    let prologistricaNumberHH: String!
+    let id: String!
+    let image: UIImage!
+    let retailPrice: Int!
+    let drawer_EUR_Norway_Suisse: String
+//    let drawer_EUR_extended: String
+//    let drawer_EUR_reduced: String
+//    let drawer_ICA: String
     
-    init(productID: Int) {
-        self.productID = productID
+    init(snapshot: DataSnapshot) {
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        bestsellers = snapshotValue["Bestsellers"] as! String
+        productGroup = snapshotValue["Product_group"] as! String
+        title = (snapshotValue["Product_name_Holland_Herald_WBC_iPad"] as! String).capitalized
+        description = snapshotValue["Sales_text_HH_WBC_iPad"] as! String
+        startDateSHC = snapshotValue["Start_date_SHC"] as! String
+        brand = snapshotValue["brand_id"] as! String
+        prologistricaNumberHH = snapshotValue["prologistica_number_HH"] as! String
+        id = snapshotValue["sku"] as! String
+        image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
+        //drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String
+        if let norwayDrawer = snapshotValue["Drawer_EUR_Norway_Suisse"] as? String {
+            drawer_EUR_Norway_Suisse = norwayDrawer
+        } else {
+            drawer_EUR_Norway_Suisse = "200"
+        }
+        
+//        drawer_EUR_extended = snapshotValue["Drawer_EUR_extended"] as! String
+//        drawer_EUR_reduced = snapshotValue["Drawer_EUR_reduced"] as! String
+//        drawer_ICA = snapshotValue["Drawer_ICA"] as! String
+        
+        if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
+            retailPrice = price
+        } else {
+            retailPrice = 0
+        }
     }
+    
 }

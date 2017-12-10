@@ -13,7 +13,6 @@ import SceneKit
 import PopupDialog
 
 class ProductInfoController : UIViewController {
-    
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
@@ -111,7 +110,8 @@ class ProductInfoController : UIViewController {
                             id: requestLatestId + 1,
                             productId: productId,
                             customerChair: customerChairNumber,
-                            completed: false
+                            completed: false,
+                            deviceID: Constants.DEVICEID
                         )
                         
                         let requestForItemRef = self.requestsRef?.childByAutoId()

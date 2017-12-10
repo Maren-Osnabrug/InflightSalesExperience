@@ -23,10 +23,10 @@ class Product {
     let id: String
     let retailPrice: Int
 //    let Did_You_Know_iPad: String = ""
-//    let Drawer_EUR_Norway_Suisse: String = ""
-//    let Drawer_EUR_extended: String = ""
-//    let Drawer_EUR_reduced: String = ""
-//    let Drawer_ICA: String = ""
+    let drawer_EUR_Norway_Suisse: String
+   // let drawer_EUR_extended: String
+    //let drawer_EUR_reduced: String
+    //let drawer_ICA: String
 //    let FB_miles_EARN_ob_1_2_miles_per_Euro: String = ""
 //    let Free_gift: String = ""
 //    let KLM_Only: String = ""
@@ -51,7 +51,17 @@ class Product {
         id = snapshotValue["sku"] as! String
         image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
         
-        if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
+        if let norwayDrawer = snapshotValue["Drawer_EUR_Norway_Suisse"] as? String {
+            drawer_EUR_Norway_Suisse = norwayDrawer
+        } else {
+            drawer_EUR_Norway_Suisse = "200"
+        }
+//        drawer_EUR_extended = snapshotValue["Drawer_EUR_extended"] as! String
+//        drawer_EUR_reduced = snapshotValue["Drawer_EUR_reduced"] as! String
+//        drawer_ICA = snapshotValue["Drawer_ICA"] as! String
+        
+        
+        if let price = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as? Int {
             retailPrice = price
         } else {
            retailPrice = 0
@@ -84,6 +94,8 @@ class Product {
         favorite = !favorite
     }
     
+
+    
     func toAnyObject()-> Any {
         return [
             "sku": id,
@@ -95,6 +107,10 @@ class Product {
             "Start_date_SHC": startDateSHC,
             "brand_id": brand,
             "prologistica_number_HH": prologisticaNumberHH,
+            "Drawer_EUR_Norway_Suisse": drawer_EUR_Norway_Suisse,
+//            "Drawer_EUR_extended": drawer_EUR_extended,
+//            "Drawer_EUR_reduced": drawer_EUR_reduced,
+//            "Drawer_ICA": drawer_ICA,
         ]
     }
 }

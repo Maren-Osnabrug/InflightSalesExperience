@@ -17,6 +17,11 @@ struct Constants {
     static let textGrey = UIColor(red:0.81, green:0.83, blue:0.82, alpha:1.0)
     static let okayGreen = UIColor(red:0.50, green:0.86, blue:0.15, alpha:1.0)
     static let spinnerGrey = UIColor.black.withAlphaComponent(0.25)
+    static let radiusBorderColor = UIColor.clear.cgColor
+    static let radiusShadowColor = UIColor.lightGray.cgColor
+    
+    static let buttonCornerRadius:CGFloat = 10
+    static let chairNumberViewCornerRadius:CGFloat = 15
 
     static let sortBy = "Sort by: "
     
@@ -33,4 +38,19 @@ struct Constants {
     static let indicatorPadding:CGFloat = 150
     
     static let suggestionCount = 4
+    
+    static let firebaseFavoriteTable = "favorite"
+    static let firebaseDataroot = "dataroot"
+    static let firebaseProductsTable = "products"
+    static let firebaseFlightsTable = "flights"
+    static let firebaseProductGroupsTable = "productGroups"
+    static let firebaseRequestsTable = "requests"
+    
+    static let keepFirebaseSynced = true
+    
+    static let requestSimpleProductCellSize: CGFloat = 155
+    static let requestLabelCellSize: CGFloat = 30
+    static let requestLocationCellSize: CGFloat = 140
+    static let requestFavoriteCellSize: CGFloat = 50
+    static let requestExtraProductInfoCellSize: CGFloat = 400
 }

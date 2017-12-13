@@ -32,8 +32,6 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: UICollectionViewDataSource
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return housesArray.count
     }
@@ -46,8 +44,8 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right)) / 3
-        return CGSize(width: itemSize, height: itemSize*1.4)
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right)) / Constants.dividingFactorHousesCollectionViewCell
+        return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorHousesCollectionViewCell)
     }
     
     public func getHouses(categoryId: String) {
@@ -71,14 +69,11 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedHouse = housesArray[indexPath.row]
-        performSegue(withIdentifier: "houseInfo", sender: self)
+        performSegue(withIdentifier: Constants.houseToInfo, sender: self)
     }
     
-    
-    // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "houseInfo" {
+        if segue.identifier == Constants.houseToInfo {
             if let nextViewController = segue.destination as? HouseInfoViewController {
                 if let house = selectedHouse {
                     nextViewController.house = house

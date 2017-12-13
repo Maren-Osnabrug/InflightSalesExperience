@@ -29,6 +29,8 @@ struct Constants {
     static let multiplierFactorCollectionViewCell: CGFloat = 1.3
     static let multiplierFactorSuggestionHeader: CGFloat = 0.40
     static let indicatorPadding:CGFloat = 150
+    static let dividingFactorHousesCollectionViewCell: CGFloat = 3
+    static let multiplierFactorHousesCollectionViewCell: CGFloat = 1.4
     
 //      PRAGMA MARK: Random
     static let suggestionCount = 4
@@ -39,6 +41,8 @@ struct Constants {
     static let productInfoToWeb = "productInfoToWebSegue"
     static let productInfoToAR = "productInfoToARSegue"
     static let homeToProductInfo = "homeToProductInfoSegue"
+    static let categoryToHouses = "categoryToHousesSeque"
+    static let houseToInfo = "houseToInfoSeque"
     
 //      PRAGMA MARK: Row heights
     static let tableViewRowHeight:CGFloat = 85

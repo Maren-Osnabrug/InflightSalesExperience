@@ -90,7 +90,7 @@
                     <connections>
                         <outlet property="categoryCollectionView" destination="vHw-nb-yfw" id="Usl-ZW-6HB"/>
                         <segue destination="Q3f-9C-Rck" kind="show" identifier="productsDetailSegue" id="F4X-hc-4I7"/>
-                        <segue destination="2KL-4o-4Wd" kind="show" identifier="categoryToHouses" id="w7c-Bc-BQ6"/>
+                        <segue destination="2KL-4o-4Wd" kind="show" identifier="categoryToHousesSeque" id="w7c-Bc-BQ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5Q-Yi-gL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,7 +154,7 @@
                     </collectionView>
                     <connections>
                         <outlet property="housesCollectionView" destination="i1E-rN-nYG" id="tTF-bl-9gU"/>
-                        <segue destination="NoL-gg-2mB" kind="show" identifier="houseInfo" id="460-eN-yWf"/>
+                        <segue destination="NoL-gg-2mB" kind="show" identifier="houseToInfoSeque" id="460-eN-yWf"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56x-Ho-Kkm" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -41,7 +41,7 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "houseCell", for: indexPath) as? HouseCell
             else { return UICollectionViewCell() }
-        cell.setCellData(product: housesArray[indexPath.row])
+        cell.setCellData(house: housesArray[indexPath.row])
         return cell
     }
     

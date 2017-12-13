@@ -10,17 +10,20 @@ import UIKit
 
 class HouseCell: UICollectionViewCell {
     @IBOutlet weak var houseImage: UIImageView!
-    
     @IBOutlet weak var houseNumber: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupStyling()
     }
     
-    func setCellData(product: Product) {
+    func setCellData(house: Product) {
+        houseImage.image = house.image
+        houseNumber.text = house.id
     }
     
     private func setupStyling() {
-        backgroundColor = Constants.darkGrey
+        layer.borderWidth = 0.5
+        layer.borderColor = Constants.blue.cgColor
     }
 }

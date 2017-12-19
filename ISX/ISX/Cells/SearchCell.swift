@@ -25,5 +25,4 @@ class SearchCell: UITableViewCell {
         productNameLabel.text = product.title
         productImage.image = product.image
     }
-    
 }

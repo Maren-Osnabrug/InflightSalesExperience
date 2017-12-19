@@ -97,13 +97,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return filteredProductsArray.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.searchBarCellHeight
+    }
+    
     /*
      Add search results from array to cell in tableView
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = filteredProductsArray[indexPath.row].title
-        return cell
+        guard let searchCell = Bundle.main.loadNibNamed("SearchCell", owner: self, options: nil)?.first as? SearchCell
+        else { return UITableViewCell() }
+        let product = filteredProductsArray[indexPath.row]
+        searchCell.setSearchCell(product: product)
+        return searchCell
     }
     
     /*

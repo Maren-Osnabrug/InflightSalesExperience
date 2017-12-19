@@ -50,11 +50,12 @@
 		A431DE4F1FA9F6B200086182 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */; };
 		A431DE501FA9F6B200086182 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A431DE4C1FA9F6B200086182 /* FavoritesCell.swift */; };
 		A458C9B61FA9DC4800F970DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9ADCF9AB1F7A979400DB3C5A /* GoogleService-Info.plist */; };
-		A458C9B81FA9DC4800F970DD /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59398601F8386B000FD3BB0 /* Products.storyboard */; };
 		A47314981FC57A66007BB279 /* ProgressBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */; };
 		A473149A1FC5AAA6007BB279 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47314991FC5AAA6007BB279 /* Flight.swift */; };
 		A473149B1FC5C03B007BB279 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47314991FC5AAA6007BB279 /* Flight.swift */; };
 		A4B0B9B51F964409005D1291 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0B9B41F964409005D1291 /* SearchViewController.swift */; };
+		A4CADA871FE15ABC003F2DDA /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CADA851FE15ABC003F2DDA /* SearchCell.swift */; };
+		A4CADA881FE15ABC003F2DDA /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CADA861FE15ABC003F2DDA /* SearchCell.xib */; };
 		D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */; };
 		D50A9A961FA9DA6600F697D1 /* BridgingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A9A971FA9DF6300F697D1 /* GoogleAnalyticsHelper.swift */; };
@@ -109,6 +110,8 @@
 		A47314991FC5AAA6007BB279 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarCell.swift; sourceTree = "<group>"; };
 		A4B0B9B41F964409005D1291 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A4CADA851FE15ABC003F2DDA /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		A4CADA861FE15ABC003F2DDA /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
 		D024177099EE7950E6490A78 /* Pods_ISX_ISX_CabinCrew.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX_ISX_CabinCrew.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +205,8 @@
 				A431DE4B1FA9F6B200086182 /* RequestCell.swift */,
 				2476D9C71F839FC200686C1E /* SuggestionCell.swift */,
 				A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */,
+				A4CADA851FE15ABC003F2DDA /* SearchCell.swift */,
+				A4CADA861FE15ABC003F2DDA /* SearchCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				9A8C72CC1FAB71E400322F8B /* art.scnassets in Resources */,
 				9A3883CC1FA8C28200601EDD /* Main.storyboard in Resources */,
 				D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */,
+				A4CADA881FE15ABC003F2DDA /* SearchCell.xib in Resources */,
 				9A5383901FCD6AA20018B16C /* popupView.xib in Resources */,
 				9AF872F61FB2204D0068C349 /* Favorites.storyboard in Resources */,
 				9AE3B66F1FD3480100F90EC4 /* Assets.xcassets in Resources */,
@@ -551,7 +557,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A47314981FC57A66007BB279 /* ProgressBarCell.swift in Sources */,
-				9A3883BD1FA8BC4A00601EDD /* AppDelegate.swift in Sources */,
 				9A3883C11FA8BCDA00601EDD /* LoginViewController.swift in Sources */,
 				9A3883BE1FA8BCB900601EDD /* Constants.swift in Sources */,
 				9A3883C51FA8BD4F00601EDD /* CabinCrewViewController.swift in Sources */,
@@ -582,6 +587,7 @@
 				D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */,
 				A473149A1FC5AAA6007BB279 /* Flight.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
+				A4CADA871FE15ABC003F2DDA /* SearchCell.swift in Sources */,
 				D5AC6D671FB31256003378F1 /* Favorite.swift in Sources */,
 				2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */,
 				D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */,
@@ -634,7 +640,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconCabinCrew;
 				CODE_SIGN_ENTITLEMENTS = "ISX-CabinCrew/ISX-CabinCrew.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4XANSSD56W;
 				DEVELOPMENT_TEAM = KDLWUU4ZNP;
 				INFOPLIST_FILE = "ISX-CabinCrew/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -655,7 +660,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconCabinCrew;
 				CODE_SIGN_ENTITLEMENTS = "ISX-CabinCrew/ISX-CabinCrew.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4XANSSD56W;
 				DEVELOPMENT_TEAM = KDLWUU4ZNP;
 				INFOPLIST_FILE = "ISX-CabinCrew/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -785,7 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62FNX657RS;
+				DEVELOPMENT_TEAM = 4XANSSD56W;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX;
@@ -804,7 +808,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62FNX657RS;
+				DEVELOPMENT_TEAM = 4XANSSD56W;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX;

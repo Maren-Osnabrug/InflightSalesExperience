@@ -16,7 +16,7 @@ class HouseCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setCellData(house: Product) {
+    func setCellData(house: House) {
         houseImage.image = house.image
         houseNumber.text = house.id
     }

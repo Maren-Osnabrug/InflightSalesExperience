@@ -16,7 +16,7 @@ class HouseInfoViewController: UITableViewController {
     @IBOutlet weak var houseDescription: UILabel!
     @IBOutlet weak var reserveHouseButton: UIButton!
 
-    var house: Product?
+    var house: House?
 
     override func viewDidLoad() {
         super.viewDidLoad()

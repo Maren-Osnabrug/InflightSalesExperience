@@ -14,9 +14,9 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     
     @IBOutlet var housesCollectionView: UICollectionView!
     
-    var housesArray: [Product] = []
+    var housesArray: [House] = []
     var category: Category?
-    var selectedHouse: Product?
+    var selectedHouse: House?
     
     var activityIndicatorView: NVActivityIndicatorView?
     
@@ -50,14 +50,14 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     
     public func getHouses(categoryId: String) {
         let rootRef = Database.database().reference(withPath: "dataroot")
-        let houseRef = rootRef.child("products")
+        let houseRef = rootRef.child("houses")
         houseRef.keepSynced(true)
         activityIndicatorView?.startAnimating()
         houseRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let value = item as? DataSnapshot {
-                    let house = Product(snapshot: value)
-                    if house.productGroup.elementsEqual(categoryId) {
+                    let house = House(snapshot: value)
+                    if house.category.elementsEqual(categoryId) {
                         self.housesArray.append(house)
                     }
                 }

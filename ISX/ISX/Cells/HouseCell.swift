@@ -14,16 +14,10 @@ class HouseCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupStyling()
     }
     
     func setCellData(house: Product) {
         houseImage.image = house.image
         houseNumber.text = house.id
-    }
-    
-    private func setupStyling() {
-        layer.borderWidth = 0.5
-        layer.borderColor = Constants.blue.cgColor
     }
 }

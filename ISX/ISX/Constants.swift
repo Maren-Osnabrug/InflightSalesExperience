@@ -23,7 +23,6 @@ struct Constants {
 //      PRAGMA MARK: Display strings
     static let sortBy = "Sort by: "
     
-    
 //      PRAGMA MARK: Spacing
     static let sectionInsetsCollectionView: CGFloat = 60
     static let dividingFactorCollectionViewCell: CGFloat = 2
@@ -31,18 +30,24 @@ struct Constants {
     static let multiplierFactorSuggestionHeader: CGFloat = 0.40
     static let indicatorPadding:CGFloat = 150
     
-    
 //      PRAGMA MARK: Random
     static let suggestionCount = 4
     static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
     static let DEVICEID = UIDevice.current.identifierForVendor!.uuidString
-    
+
 //      PRAGMA MARK: Segues
     static let productInfoToWeb = "productInfoToWebSegue"
     static let productInfoToAR = "productInfoToARSegue"
+    static let homeToProductInfo = "homeToProductInfoSegue"
+    
+//      PRAGMA MARK: Row heights
+    static let tableViewRowHeight:CGFloat = 85
 
 //      PRAGMA MARK: Cells
     static let progressBarCellHeight:CGFloat = 100
     static let requestCellHeight:CGFloat = 130
     static let searchBarCellHeight:CGFloat = 60
+    
+//      PRAGMA MARK: Calculate miles
+    static let multiplierFactorMiles = 400
 }

@@ -64,6 +64,7 @@ struct Constants {
     static let requestLocationCellSize: CGFloat = 155
     static let requestFavoriteCellSize: CGFloat = 50
     static let requestExtraProductInfoCellSize: CGFloat = 400
+    static let searchBarCellHeight:CGFloat = 60
 
     //PRAGMA MARK: firebase
     static let firebaseFavoriteTable = "favorite"
@@ -74,6 +75,7 @@ struct Constants {
     static let firebaseRequestsTable = "requests"
     static let keepFirebaseSynced = true
 
+    
 //      PRAGMA MARK: Calculate miles
     static let multiplierFactorMiles = 400
     

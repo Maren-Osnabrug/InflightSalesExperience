@@ -37,7 +37,7 @@ class RequestProductInfoCell: UITableViewCell {
     }
     
     @IBAction func onButtonClicked(_ sender: Any) {
-        showSoldDialog()()
+        showSoldDialog()
     }
     
     func setupStyling() {

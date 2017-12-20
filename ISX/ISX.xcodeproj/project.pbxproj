@@ -59,6 +59,8 @@
 		D50179E41FCECD9900496950 /* RequestLocationInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50179DE1FCEC8D500496950 /* RequestLocationInfoCell.swift */; };
 		D50179E51FCECD9D00496950 /* RequestLocationLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50179E01FCEC91500496950 /* RequestLocationLabelCell.swift */; };
 		D50179E61FCECDA100496950 /* RequestFavoritesLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50179E21FCEC94500496950 /* RequestFavoritesLabelCell.swift */; };
+		A4CADA871FE15ABC003F2DDA /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CADA851FE15ABC003F2DDA /* SearchCell.swift */; };
+		A4CADA881FE15ABC003F2DDA /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CADA861FE15ABC003F2DDA /* SearchCell.xib */; };
 		D501D0F21F8CDE2E007E8B2D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D501D0F11F8CDE2E007E8B2D /* ProductCell.swift */; };
 		D50A9A961FA9DA6600F697D1 /* BridgingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = D5C19FE21FA9CDA800CCFFF7 /* BridgingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50A9A971FA9DF6300F697D1 /* GoogleAnalyticsHelper.swift */; };
@@ -121,6 +123,8 @@
 		A47314991FC5AAA6007BB279 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarCell.swift; sourceTree = "<group>"; };
 		A4B0B9B41F964409005D1291 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A4CADA851FE15ABC003F2DDA /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		A4CADA861FE15ABC003F2DDA /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		C38D4E50F0AF0B51E25C71B6 /* Pods_ISX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C593B991095988968F1A1104 /* Pods-ISXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISXTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISXTests/Pods-ISXTests.release.xcconfig"; sourceTree = "<group>"; };
 		D024177099EE7950E6490A78 /* Pods_ISX_ISX_CabinCrew.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISX_ISX_CabinCrew.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +236,8 @@
 				D5E894E91FD6FF1C00626057 /* RequestExtraProductDetailCell.swift */,
 				D5E894EB1FD827D000626057 /* RequestExtraProductDetailLabelCell.swift */,
 				A4AB1C3E1FC4658500E63D8D /* ProgressBarCell.swift */,
+				A4CADA851FE15ABC003F2DDA /* SearchCell.swift */,
+				A4CADA861FE15ABC003F2DDA /* SearchCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 				9A8C72CC1FAB71E400322F8B /* art.scnassets in Resources */,
 				9A3883CC1FA8C28200601EDD /* Main.storyboard in Resources */,
 				D59398611F8386B000FD3BB0 /* Products.storyboard in Resources */,
+				A4CADA881FE15ABC003F2DDA /* SearchCell.xib in Resources */,
 				9A5383901FCD6AA20018B16C /* popupView.xib in Resources */,
 				9AF872F61FB2204D0068C349 /* Favorites.storyboard in Resources */,
 				9AE3B66F1FD3480100F90EC4 /* Assets.xcassets in Resources */,
@@ -626,6 +633,7 @@
 				D59398631F838AED00FD3BB0 /* CategoriesViewController.swift in Sources */,
 				A473149A1FC5AAA6007BB279 /* Flight.swift in Sources */,
 				240F1A041F8CF36200702B4B /* Constants.swift in Sources */,
+				A4CADA871FE15ABC003F2DDA /* SearchCell.swift in Sources */,
 				D5AC6D671FB31256003378F1 /* Favorite.swift in Sources */,
 				2476D9C81F839FC200686C1E /* SuggestionCell.swift in Sources */,
 				D50A9A991FA9F23E00F697D1 /* GoogleAnalyticsHelper.swift in Sources */,
@@ -828,6 +836,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5T22TFL7PY;
+				DEVELOPMENT_TEAM = 4XANSSD56W;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX.HVA;
@@ -847,6 +856,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5T22TFL7PY;
+				DEVELOPMENT_TEAM = 4XANSSD56W;
 				INFOPLIST_FILE = ISX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KLM.ISX.HVA;

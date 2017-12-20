@@ -50,6 +50,7 @@ struct Constants {
 //      PRAGMA MARK: Cells
     static let progressBarCellHeight:CGFloat = 100
     static let requestCellHeight:CGFloat = 130
+    static let searchBarCellHeight:CGFloat = 60
     
 //      PRAGMA MARK: Calculate miles
     static let multiplierFactorMiles = 400

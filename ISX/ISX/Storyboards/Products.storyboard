@@ -213,8 +213,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAW-Cm-VWg">
-                                                    <rect key="frame" x="20" y="0.0" width="58" height="26.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAW-Cm-VWg">
+                                                    <rect key="frame" x="20" y="0.0" width="235.5" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -241,6 +241,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="cD3-eL-nyn" secondAttribute="trailing" constant="20" id="eN8-NW-2mf"/>
                                                 <constraint firstItem="Zzr-2R-YT5" firstAttribute="top" secondItem="PAW-Cm-VWg" secondAttribute="bottom" constant="20" id="he5-RN-Gm2"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zzr-2R-YT5" secondAttribute="trailing" constant="20" id="lsd-8J-I49"/>
+                                                <constraint firstItem="cD3-eL-nyn" firstAttribute="leading" secondItem="PAW-Cm-VWg" secondAttribute="trailing" constant="20" id="wfm-Q8-Pxo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

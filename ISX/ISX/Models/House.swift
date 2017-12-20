@@ -16,11 +16,17 @@ let category: String
 let description: String
 let id: String
 let title: String
-
-//  self defined variables
-let ref: DatabaseReference?
 var image: UIImage?
+let ref: DatabaseReference?
 
+    init(category: String, description: String, id: String, title: String) {
+        self.category = category
+        self.description = description
+        self.id = id
+        self.title = title
+        self.ref = nil
+    }
+    
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         category = snapshotValue["Category"] as! String

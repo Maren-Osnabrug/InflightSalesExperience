@@ -11,11 +11,9 @@ import UIKit
 
 class FavoritesInRequestCell: UITableViewCell {
     @IBOutlet weak var productName: UILabel!
-//    @IBOutlet weak var cellContentView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //setupStyling()
     }
     
     func setCellData(favorite: Favorite) {
@@ -25,10 +23,4 @@ class FavoritesInRequestCell: UITableViewCell {
     func setProductName(productName: String) {
         self.productName.text = productName
     }
-    
-//    // PRAGMA MARK: - Private
-//    private func setupStyling() {
-//        cellContentView.layer.borderColor = UIColor.white.cgColor
-//        cellContentView.layer.borderWidth = 1
-//    }
 }

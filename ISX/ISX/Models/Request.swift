@@ -15,26 +15,43 @@ class Request {
     let productId: Int
     let customerChair: String
     var completed: Bool
-    let deviceID: String
+    var deviceID: String = ""
     let ref: DatabaseReference?
+    var flyingBlueNumber: String = ""
+    var flyingBlueMiles: String = ""
     
-    init(id: Int, productId: Int, customerChair: String, completed: Bool, deviceID: String) {
+
+    init(id: Int, productId: Int, customerChair: String, completed: Bool, deviceID: String, flyingBlueNumber: String, flyingBlueMiles: String) {
+
         self.id = id
         self.productId = productId
         self.completed = completed
         self.customerChair = customerChair
         self.deviceID = deviceID
+        self.flyingBlueMiles = flyingBlueMiles
+        self.flyingBlueNumber = flyingBlueNumber
         self.ref = nil
     }
     
     init(snapshot: DataSnapshot) {
-        print(snapshot)
         let dict = snapshot.value as! [String:AnyObject]
         self.id = dict["id"] as! Int
         self.productId = dict["product"] as! Int
         self.customerChair = dict["customerChair"] as! String
         self.completed = (dict["completed"] as! Int == 1 ? true : false)
-        self.deviceID = dict["deviceid"] as! String
+
+        if let deviceId = dict["deviceid"] as? String {
+            self.deviceID = deviceId
+        }
+
+        if let miles = dict["flyingBlueMiles"] as? String {
+            self.flyingBlueMiles = miles
+        }
+        
+        if let number = dict["flyingBlueNumber"] as? String {
+            self.flyingBlueNumber = number
+        }
+        
         self.ref = snapshot.ref
     }
     
@@ -44,7 +61,9 @@ class Request {
             "product": productId,
             "completed": completed,
             "customerChair": customerChair,
-            "deviceid": deviceID
+            "deviceid": deviceID,
+            "flyingBlueMiles": flyingBlueMiles,
+            "flyingBlueNumber": flyingBlueNumber,
         ]
     }
 }

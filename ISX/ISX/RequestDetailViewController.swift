@@ -19,47 +19,34 @@ class RequestDetailViewController: UITableViewController {
     var chairNumber: String?
     var productDetail: Product?
     var usersDeviceID: String!
+    var requestReference: DatabaseReference?
     var listWithUserFavorites = [Favorite]()
-    //var listWithFavorites = [String]()
     var listWithFavorites = [Favorite]()
+    var request: Request?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Request details"
-        setupReference()
-    
         tableView.delegate = self
         tableView.dataSource = self
+        
+        setupReference()
     }
     
-    
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        favoritesTableView.frame = CGRect(x: favoritesTableView.frame.origin.x, y: favoritesTableView.frame.origin.y, width: favoritesTableView.frame.size.width, height: favoritesTableView.contentSize.height)
-//    }
-//
-//    override func viewDidLayoutSubviews(){
-//        favoritesTableView.frame = CGRect(x: favoritesTableView.frame.origin.x, y: favoritesTableView.frame.origin.y, width: favoritesTableView.frame.size.width, height: favoritesTableView.contentSize.height)
-//        favoritesTableView.reloadData()
-//    }
-    
-    func getProductfromFirebase() {
-        //query doesnt work
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@ ______  ", productID, " _____@@@@@@@@@@@@@@@@@@@")
+    //Retrieve the product details from the DB.
+    func getProductfromDB() {
         productsRef?.queryOrdered(byChild: "sku").queryEqual(toValue: productID).observe(.value, with: { snapshot in
             for item in snapshot.children {
-                print(snapshot)
                 if let product = item as? DataSnapshot {
                     self.productDetail = Product(snapshot: product)
-                    print(product)
                 }
-                //self.setRequestedProductDetails()
             }
-            self.getFavoritesFromFirebase()
+            self.getFavoritesFromDB()
         })
     }
     
-    func getFavoritesFromFirebase() {
+    //Retrieve all favorites from that user, from the DB.
+    func getFavoritesFromDB() {
         listWithFavorites = []
         favoritesRef?.child(usersDeviceID).observe(.value, with: { snapshot in
             for item in snapshot.children {
@@ -72,36 +59,28 @@ class RequestDetailViewController: UITableViewController {
         })
     }
     
+    //Setting up primary references, and starting to retrieve the products.
     func setupReference() {
+        //We might be able to have this in Constants. func getProductsRef() -> DatabaseReference {
         datarootRef = Database.database().reference(withPath: Constants.firebaseDataroot)
         productsRef = datarootRef?.child(Constants.firebaseProductsTable)
         productsRef?.keepSynced(Constants.keepFirebaseSynced)
         favoritesRef = datarootRef?.child(Constants.firebaseFavoriteTable)
         favoritesRef?.keepSynced(Constants.keepFirebaseSynced)
-        //setupStyling()
-        getProductfromFirebase()
-//        getFavoritesFromUser()
-    }
-    
-//    func setRequestedProductDetails() {
-//        guard let pName = productDetail?.title else { return }
-//        guard let pCode = productDetail?.id else { return }
-//        productName.text = pName
-//        productCode.text = pCode
-//        userChairnumber.text = chairNumber
-//    }
 
+        getProductfromDB()
+    }
+
+    //Return the number of rows that have to be created
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //5 custom cells atm.
-        print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
         if(productDetail != nil) {
-            print("returning 5")
             return (numberOfCells + listWithFavorites.count)
         }else {
             return 0
         }
     }
     
+    //Give each individual cell a custom cellHeight.
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0) {
             return Constants.requestSimpleProductCellSize
@@ -120,36 +99,39 @@ class RequestDetailViewController: UITableViewController {
         }
     }
     
+    //Create each of the different cells, based on indexPath.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "requestProductInfoCell", for: indexPath) as? RequestProductInfoCell {
-                cell.setCellData(productName: (self.productDetail?.title)!, usersChairNumber: chairNumber!, productNumber: (self.productDetail?.prologisticaNumberHH)!)
+            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.requestProductInfo, for: indexPath) as? RequestProductInfoCell {
+                //Check later if all this data can be stored in one object.
+                cell.setCellData(productName: (self.productDetail?.title)!, usersChairNumber: chairNumber!, productNumber: (self.productDetail?.prologisticaNumberHH)!, productReference: self.requestReference!, isActive: self.request!.completed)
                 return cell
             }
         }else if(indexPath.row == 1) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "requestLocationLabelCell", for: indexPath) as? RequestLocationLabelCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.requestLocationLabelCell, for: indexPath) as? RequestLocationLabelCell {
                 return cell
             }
         }else if(indexPath.row == 2) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "requestLocationInfoCell", for: indexPath) as? RequestLocationInfoCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.requestLocationInfoCell, for: indexPath) as? RequestLocationInfoCell {
                 cell.setCellData(product: productDetail!)
                 return cell
             }
         }else if(indexPath.row == 3) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "requestFavoritesLabelCell", for: indexPath) as? RequestFavoritesLabelCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.requestFavoritesLabelCell, for: indexPath) as? RequestFavoritesLabelCell {
                 return cell
             }
         }else if(indexPath.row >= 4 && indexPath.row < ((numberOfCells + (listWithFavorites.count) - 2))) {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesInRequestCell", for: indexPath) as? FavoritesInRequestCell {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.favoritesInRequestCell, for: indexPath) as? FavoritesInRequestCell {
+                    //indexPath.row - 4, because when we reach this cell, the index is already at 4, otherwise the array from favorites goes out of bounds.
                     cell.setProductName(productName: listWithFavorites[(indexPath.row - 4)].title)
                     return cell
-            }
+                }
         }else if(indexPath.row == ((numberOfCells + listWithFavorites.count) - 1) ) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "requestExtraProductDetailCell", for: indexPath) as? RequestExtraProductDetailCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.requestExtraProductDetailCell, for: indexPath) as? RequestExtraProductDetailCell {
                 return cell
             }
         }else {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "requestExtraProductLabelCell", for: indexPath) as? RequestExtraProductDetailLabelCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.requestExtraProductLabelCell, for: indexPath) as? RequestExtraProductDetailLabelCell {
                 return cell
             }
         }
@@ -157,6 +139,6 @@ class RequestDetailViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        //Use this to navigate to the favorite detail page.
     }
 }

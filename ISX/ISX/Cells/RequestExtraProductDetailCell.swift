@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class RequestExtraProductDetailCell: UITableViewCell {
-    
     @IBOutlet weak var cellView: UIView!
     
     override func awakeFromNib() {
@@ -23,7 +22,7 @@ class RequestExtraProductDetailCell: UITableViewCell {
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         
-        imageView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        imageView.frame = Constants.imageViewFrame
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         cellView.addSubview(imageView)
     }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestPopupViewController" customModule="ISX" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="Yso-f8-Hd1" id="tsl-ve-dfK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Yso-f8-Hd1">
+            <rect key="frame" x="0.0" y="0.0" width="290" height="138"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Sold?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhk-kS-V5S">
+                    <rect key="frame" x="33" y="20" width="225" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="CKc-jK-fGK"/>
+                        <constraint firstAttribute="width" constant="225" id="FaS-kq-asg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please click &quot;Sold&quot; if you sold the product.   If the product isn't sold yet,   click &quot;Cancel&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="225" translatesAutoresizingMaskIntoConstraints="NO" id="MEV-lF-0aL">
+                    <rect key="frame" x="32.5" y="48" width="225" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="MQx-ew-k3E"/>
+                        <constraint firstAttribute="width" constant="225" id="TOQ-gr-gjM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Nhk-kS-V5S" firstAttribute="centerX" secondItem="6rn-bT-wH6" secondAttribute="centerX" id="04K-ll-ijD"/>
+                <constraint firstItem="MEV-lF-0aL" firstAttribute="leading" secondItem="6rn-bT-wH6" secondAttribute="leading" constant="32.5" id="SGf-lh-MKw"/>
+                <constraint firstItem="MEV-lF-0aL" firstAttribute="top" secondItem="Nhk-kS-V5S" secondAttribute="bottom" constant="8" id="SO1-vC-NT5"/>
+                <constraint firstItem="6rn-bT-wH6" firstAttribute="bottom" secondItem="MEV-lF-0aL" secondAttribute="bottom" constant="20" id="Y97-rR-RP3"/>
+                <constraint firstItem="Nhk-kS-V5S" firstAttribute="top" secondItem="6rn-bT-wH6" secondAttribute="top" constant="20" id="by6-L9-Fdd"/>
+                <constraint firstItem="6rn-bT-wH6" firstAttribute="trailing" secondItem="MEV-lF-0aL" secondAttribute="trailing" constant="32.5" id="dIb-et-2qF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="6rn-bT-wH6"/>
+            <point key="canvasLocation" x="-8" y="-5"/>
+        </view>
+    </objects>
+</document>

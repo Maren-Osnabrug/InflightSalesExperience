@@ -9,6 +9,4 @@
 import Foundation
 import UIKit
 
-class RequestLocationLabelCell: UITableViewCell {
-    
-}
+class RequestLocationLabelCell: UITableViewCell { }

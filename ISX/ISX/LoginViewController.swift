@@ -20,6 +20,7 @@ class LoginViewController:UIViewController {
         super.viewDidAppear(animated)
         emailTextField.text = "cabin@crew.nl"
         passwordTextField.text = "cabincrew"
+        navigationController?.isNavigationBarHidden = true
     }
     
     /*
@@ -37,7 +38,14 @@ class LoginViewController:UIViewController {
         } else {
             Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
                 if (error == nil) {
-                    //Redirect to cabin crew flow
+                    //Redirect to cabin crew
+                    let crewRef = Database.database().reference(withPath: "dataroot").child("crew")
+                    let crewMemberRef = crewRef.childByAutoId()
+                    let key = "deviceID\(crewMemberRef.key)"
+                    let crewMember = [InstanceID.instanceID().token()!:key]
+
+                    crewRef.updateChildValues(crewMember)
+
                     self.performSegue(withIdentifier: "loginSeque", sender: self)
                 } else {
                     //Alert user that an error occurred and shows firebase error

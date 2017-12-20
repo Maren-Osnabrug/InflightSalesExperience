@@ -24,9 +24,9 @@ class CategoryCell: UICollectionViewCell {
         categoryTitle.text = category.categoryName
         categoryImage.image = UIImage(named: String(category.categoryID)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(category.categoryID))
     }
-
+    
     // PRAGMA MARK: - Private
-    private func setupStyling(){
+    private func setupStyling() {
         backgroundColor =  Constants.darkGrey
         categoryTitle.backgroundColor = Constants.blue
         categoryTitle.textColor = .white

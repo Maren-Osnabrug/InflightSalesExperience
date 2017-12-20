@@ -11,6 +11,8 @@ class PopupViewController: UIViewController {
     
     @IBOutlet weak var chairNumberTextField: UITextField!
     
+    @IBOutlet weak var flyingBlueNumberTextField: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

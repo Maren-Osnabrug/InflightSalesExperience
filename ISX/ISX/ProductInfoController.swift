@@ -12,24 +12,34 @@ import FirebaseDatabase
 import SceneKit
 import PopupDialog
 
-class ProductInfoController : UIViewController {
+extension Int {
+    func withCommas() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        return numberFormatter.string(from: NSNumber(value:self))!
+    }
+}
+
+class ProductInfoController : UITableViewController {
+    @IBOutlet weak var productInfoTableView: UITableView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var ARButton: UIButton!
     @IBOutlet weak var productTitleLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var claimButton: UIButton!
     
-    var addAlertSaveAction: UIAlertAction?
     var product: Product?
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var favoriteRef: DatabaseReference?
     var customerChair: String?
+    var addAlertSaveAction: UIAlertAction?
 
-    private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
     private let favoriteImage = UIImage(named: "favorite")?.withRenderingMode(.alwaysTemplate)
+    private let unFavoriteImage = UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
     
     private let viewName = "Product information"
 
@@ -39,6 +49,8 @@ class ProductInfoController : UIViewController {
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         title = product?.title
         setupReferences()
+        self.tableView.estimatedRowHeight = Constants.tableViewRowHeight
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,32 +58,72 @@ class ProductInfoController : UIViewController {
         observeFavoriteStatus()
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func setupStyling() {
+        guard let product = product else {
+            return
+        }
+        productImageView.image = product.image
+        productTitleLabel.text = product.title
+        priceLabel.text = "€ " + String(product.retailPrice)
+        milesLabel.text = "Or " + String((product.retailPrice*Constants.multiplierFactorMiles).withCommas()) + " Miles"
+        descriptionLabel.text = product.description
+        updateFavoriteButton(favorite: product.favorite)
+        if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {
+            ARButton.isHidden = true
+        } else {
+            ARButton.isHidden = false
+        }
+    }
+
     @IBAction func didClickFavoriteButton(_ sender: Any) {
         if let product = product {
-            product.changeFavoriteStatus()
+            product.favorite = !product.favorite
             updateFavoriteButton(favorite: product.favorite)
-
             handleFavoriteInFirebase(isFavorite: product.favorite)
             GoogleAnalyticsHelper().googleAnalyticLogAction(category: "Favorite", action: "Favorite product", label: product.title)
         }
     }
     
     @IBAction func didClickARButton(_ sender: Any) {
-        performSegue(withIdentifier: "productInfoToARSegue", sender: self)
+        performSegue(withIdentifier: Constants.productInfoToAR, sender: self)
     }
     
     @IBAction func didClickRequestButton(_ sender: Any) {
-        showInputDialog()
+        showOrderDialog()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "productInfoToARSegue" {
+        if segue.identifier == Constants.productInfoToAR {
             if let controller = segue.destination as? ARViewController {
                 if let ARproduct = product {
                     controller.product = ARproduct
                 }
             }
+        } else if segue.identifier == Constants.productInfoToWeb {
+            if let controller = segue.destination as? WebViewController {
+                if let url = product?.url {
+                    controller.url = URL(string: url)!
+                }
+            }
         }
+    }
+    
+    func showOrderDialog() {
+        let title = "Delivery now or later?"
+        let message = "If you are currently on a plane -> press Now. If you want the product delivered on a different flight or at home -> press later."
+        
+        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
+                                transitionStyle: .bounceUp, gestureDismissal: true, hideStatusBar: true)
+        let buttonOne = DefaultButton(title: "Now") { self.showInputDialog()}
+        let buttonTwo = DefaultButton(title: "Later") {
+            self.performSegue(withIdentifier:  Constants.productInfoToWeb, sender: self)
+        }
+        popup.addButtons([buttonOne, buttonTwo])
+        present(popup, animated: true, completion: nil)
     }
     
     func showConfirmDialog(productName: String) {
@@ -92,6 +144,13 @@ class ProductInfoController : UIViewController {
         }
         let requestButton = DefaultButton(title: "I want it!", height: 60, dismissOnTap: false) {
             guard let customerChairNumber =  popupVC.chairNumberTextField.text else {return}
+            var flyingBlueNumber = ""
+            if (popupVC.flyingBlueNumberTextField.text == nil) {
+                flyingBlueNumber = ""
+            } else {
+                flyingBlueNumber = popupVC.flyingBlueNumberTextField.text!
+            }
+            
             guard let product = self.product else { return }
             
             if (!self.isValidChairNumber(chairNumber: customerChairNumber)) {
@@ -111,7 +170,10 @@ class ProductInfoController : UIViewController {
                             productId: productId,
                             customerChair: customerChairNumber,
                             completed: false,
-                            deviceID: Constants.DEVICEID
+                            deviceID: Constants.DEVICEID,
+                            flyingBlueNumber: flyingBlueNumber,
+                            flyingBlueMiles: product.fbMiles
+
                         )
                         
                         let requestForItemRef = self.requestsRef?.childByAutoId()
@@ -123,10 +185,8 @@ class ProductInfoController : UIViewController {
                 self.showConfirmDialog(productName: product.title)
             }
         }
-
         popup.addButtons([cancelButton, requestButton])
         present(popup, animated: true, completion: nil)
-
     }
     
     func observeFavoriteStatus() {
@@ -134,10 +194,10 @@ class ProductInfoController : UIViewController {
             favoriteRef?.child(Constants.DEVICEID).child(productID)
                 .observeSingleEvent(of: .value, with: { snapshot in
                     if (snapshot.hasChildren()) {
-                        self.product?.changeFavoriteStatus()
+                        self.product?.favorite = true
                         self.updateFavoriteButton(favorite: true)
                     } else {
-                        self.product?.changeFavoriteStatus()
+                        self.product?.favorite = false
                         self.updateFavoriteButton(favorite: false)
                     }
                 })
@@ -149,33 +209,6 @@ class ProductInfoController : UIViewController {
         requestsRef = datarootRef?.child("requests")
         favoriteRef = datarootRef?.child("favorite")
         requestsRef?.keepSynced(true)
-    }
-    
-    func setupStyling() {
-        guard let product = product else {
-            return
-        }
-        productImageView.image = product.image
-        productTitleLabel.text = product.title
-        priceLabel.text = "€" + String(product.retailPrice)
-        descriptionTextView!.text = product.description
-        descriptionTextView.textContainerInset = .zero
-        descriptionTextView.textContainer.lineFragmentPadding = 0
-        favoriteButton.tintColor = Constants.orange
-        updateFavoriteButton(favorite: product.favorite)
-        if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {
-            ARButton.isHidden = true
-        } else {
-            ARButton.isHidden = false
-        }
-    }
-    
-    func updateFavoriteButton(favorite: Bool) {
-        if (favorite) {
-            favoriteButton.setImage(favoriteImage, for: .normal)
-        } else {
-            favoriteButton.setImage(unFavoriteImage, for: .normal)
-        }
     }
     
     func isValidChairNumber(chairNumber: String) -> Bool {
@@ -198,6 +231,14 @@ class ProductInfoController : UIViewController {
             }
         } else {
             return
+        }
+    }
+
+    func updateFavoriteButton(favorite: Bool) {
+        if (favorite) {
+            favoriteButton.setImage(favoriteImage, for: .normal)
+        } else {
+            favoriteButton.setImage(unFavoriteImage, for: .normal)
         }
     }
     

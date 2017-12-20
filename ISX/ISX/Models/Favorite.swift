@@ -21,9 +21,9 @@ class Favorite {
     let image: UIImage!
     let retailPrice: Int!
     let drawer_EUR_Norway_Suisse: String
-//    let drawer_EUR_extended: String
-//    let drawer_EUR_reduced: String
-//    let drawer_ICA: String
+    let drawer_EUR_extended: String
+    let drawer_EUR_reduced: String
+    let drawer_ICA: String
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -43,10 +43,24 @@ class Favorite {
             drawer_EUR_Norway_Suisse = "200"
         }
         
-//        drawer_EUR_extended = snapshotValue["Drawer_EUR_extended"] as! String
-//        drawer_EUR_reduced = snapshotValue["Drawer_EUR_reduced"] as! String
-//        drawer_ICA = snapshotValue["Drawer_ICA"] as! String
+        if let extendedDrawer = snapshotValue["Drawer_EUR_extended"] as? String {
+            drawer_EUR_extended = extendedDrawer
+        }else {
+            drawer_EUR_extended = "Not Available"
+        }
         
+        if let reducedDrawer = snapshotValue["Drawer_EUR_reduced"] as? String {
+            drawer_EUR_reduced = reducedDrawer
+        }else {
+            drawer_EUR_reduced = "Not Available"
+        }
+        
+        if let icaDrawer = snapshotValue["Drawer_ICA"] as? String {
+            drawer_ICA = icaDrawer
+        }else {
+            drawer_ICA = "Not Available"
+        }
+
         if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
             retailPrice = price
         } else {

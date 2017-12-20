@@ -9,6 +9,4 @@
 import Foundation
 import UIKit
 
-class RequestExtraProductDetailLabelCell: UITableViewCell {
-    
-}
+class RequestExtraProductDetailLabelCell: UITableViewCell { }

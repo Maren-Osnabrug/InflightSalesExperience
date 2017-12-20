@@ -9,10 +9,4 @@
 import Foundation
 import UIKit
 
-class RequestFavoritesLabelCell: UITableViewCell {
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-}
+class RequestFavoritesLabelCell: UITableViewCell { }

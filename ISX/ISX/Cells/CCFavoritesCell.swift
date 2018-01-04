@@ -9,16 +9,8 @@
 import Foundation
 import UIKit
 
-class FavoritesInRequestCell: UITableViewCell {
+class CCFavoritesCell: UITableViewCell {
     @IBOutlet weak var productName: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    func setCellData(favorite: Favorite) {
-        productName.text = favorite.title
-    }
     
     func setProductName(productName: String) {
         self.productName.text = productName

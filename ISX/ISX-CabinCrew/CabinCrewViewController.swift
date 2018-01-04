@@ -41,11 +41,10 @@ class CabinCrewViewController: UITableViewController {
     }
     
     func setupReferences() {
-        datarootRef = Database.database().reference(withPath: Constants.firebaseDataroot)
-        requestsRef = datarootRef?.child(Constants.firebaseRequestsTable)
-        requestsRef?.keepSynced(Constants.keepFirebaseSynced)
-        productsRef = datarootRef?.child(Constants.firebaseProductsTable)
-        flightsRef = datarootRef?.child(Constants.firebaseFlightsTable)
+        requestsRef = Constants.getRequestRef()
+        requestsRef?.keepSynced(Constants.isFirebaseSynced())
+        productsRef = Constants.getProductRef()
+        flightsRef = Constants.getFlightsRef()
         
         executeObservers()
     }
@@ -56,7 +55,7 @@ class CabinCrewViewController: UITableViewController {
         requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let itemSnapshot = item as? DataSnapshot {
-                    let toAdd = Request.init(snapshot: itemSnapshot )
+                    let toAdd = Request(snapshot: itemSnapshot )
                     if (!self.requestsArray.contains { $0.id == toAdd.id }) {
                         self.requestsArray.append(toAdd)
                         self.requestsArray.sort { !$0.completed && $1.completed }
@@ -64,13 +63,12 @@ class CabinCrewViewController: UITableViewController {
                 }
             }
             self.tableView.reloadData()
-            self.activityIndicatorView?.stopAnimating()
         })
     }
     
     func observeNewRequest() {
         requestsRef?.queryLimited(toLast: 1).observe(.childAdded, with: { snapshot in
-            let latestRequest = Request.init(snapshot: snapshot)
+            let latestRequest = Request(snapshot: snapshot)
             let customerChair = latestRequest.customerChair
             self.checkAuthStatusProceed(customerChair)
             self.tableView.reloadData()
@@ -143,10 +141,13 @@ class CabinCrewViewController: UITableViewController {
                     self.productsArray.append(product)
                 }
             }
+            self.activityIndicatorView?.stopAnimating()
             self.tableView.reloadData()
             self.initialLoad = true
         })
     }
+    
+    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return Constants.progressBarCellHeight
@@ -178,7 +179,7 @@ class CabinCrewViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.customRequestCell, for: indexPath) as? RequestCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCRequestCell, for: indexPath) as? RequestCell else { return UITableViewCell() }
         let request = requestsArray[indexPath.row]
         cell.setCellData(request: request)
         
@@ -205,11 +206,7 @@ class CabinCrewViewController: UITableViewController {
                 guard let deviceID = self.selectedRequest?.deviceID else { return }
                 guard let requestDatabaseRef = self.selectedRequest?.ref else { return }
                 guard let request = self.selectedRequest else { return }
-                nextViewController.requestReference = requestDatabaseRef
-                nextViewController.productID = String(productID)
-                nextViewController.chairNumber = chairNumber
-                nextViewController.usersDeviceID = deviceID
-                nextViewController.request = request
+                nextViewController.requestDetail = RequestDetail(productId: String(productID), chairnumber: chairNumber, deviceId: deviceID, requestDatabaseRef: requestDatabaseRef, request: request)
             }
         }
     }

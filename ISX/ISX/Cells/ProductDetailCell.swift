@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RequestExtraProductDetailCell: UITableViewCell {
+class ProductDetailCell: UITableViewCell {
     @IBOutlet weak var cellView: UIView!
     
     override func awakeFromNib() {

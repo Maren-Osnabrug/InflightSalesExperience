@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 struct Constants {
     
@@ -46,12 +47,16 @@ struct Constants {
     static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
     static let DEVICEID = UIDevice.current.identifierForVendor!.uuidString
     static let imageViewFrame = CGRect(x: 0, y: 0, width: 400, height: 400)
+    static let requestCompletedTrue = true
+    static let requestCompletedFalse = false
+    static let emptyString: String = ""
 
 //      PRAGMA MARK: Segues
     static let productInfoToWeb = "productInfoToWebSegue"
     static let productInfoToAR = "productInfoToARSegue"
     static let homeToProductInfo = "homeToProductInfoSegue"
-    static let cabincrewToProductDetail = "toRequestInfoSegue"
+    static let cabincrewToProductDetail = "cabincrewToRequestInfoSegue"
+    static let productDetailToRequestFavorite = "requestdetailToRequestFavorites"
     
 //      PRAGMA MARK: Row heights
     static let tableViewRowHeight:CGFloat = 85
@@ -59,21 +64,21 @@ struct Constants {
 //      PRAGMA MARK: Cells
     static let progressBarCellHeight:CGFloat = 100
     static let requestCellHeight:CGFloat = 130
-    static let requestSimpleProductCellSize: CGFloat = 155
+    static let requestProductCellSize: CGFloat = 155
     static let requestLabelCellSize: CGFloat = 30
     static let requestLocationCellSize: CGFloat = 155
     static let requestFavoriteCellSize: CGFloat = 50
     static let requestExtraProductInfoCellSize: CGFloat = 400
     static let searchBarCellHeight:CGFloat = 60
 
-    //PRAGMA MARK: firebase
+    //PRAGMA MARK: Firebase
     static let firebaseFavoriteTable = "favorite"
-    static let firebaseDataroot = "dataroot"
+    private static let firebaseDataroot = "dataroot"
     static let firebaseProductsTable = "products"
     static let firebaseFlightsTable = "flights"
     static let firebaseProductGroupsTable = "productGroups"
     static let firebaseRequestsTable = "requests"
-    static let keepFirebaseSynced = true
+    private static let keepFirebaseSynced = true
 
     
 //      PRAGMA MARK: Calculate miles
@@ -83,13 +88,61 @@ struct Constants {
     static let popupButtonHeight = 60
     
     //PRAGMA MARK: Reusable identifiers
-    static let progressbarCell = "progressCell"
-    static let customRequestCell = "CustomRequestCell"
-    static let requestProductInfo = "requestProductInfoCell"
-    static let requestLocationLabelCell = "requestLocationLabelCell"
-    static let requestLocationInfoCell = "requestLocationInfoCell"
-    static let requestFavoritesLabelCell = "requestFavoritesLabelCell"
-    static let favoritesInRequestCell = "favoritesInRequestCell"
-    static let requestExtraProductDetailCell = "requestExtraProductDetailCell"
-    static let requestExtraProductLabelCell = "requestExtraProductLabelCell"
+    static let progressbarCell: String = "progressCell"
+    static let CCRequestCell: String = "CustomRequestCell"
+    static let CCrequestProductInfo: String = "requestProductInfoCell"
+    static let CCLocationLabel: String = "requestLocationLabelCell"
+    static let CCLocationInfo: String = "requestLocationInfoCell"
+    static let CCFavoritesLabel: String = "requestFavoritesLabelCell"
+    static let CCfavoritesInfo: String = "favoritesInRequestCell"
+    static let CCExtraProductDetail: String = "requestExtraProductDetailCell"
+    static let CCExtraProductLabel: String = "requestExtraProductLabelCell"
+    
+    //PRAGMA MARK: Methods
+    
+    static func isFirebaseSynced() -> Bool { return keepFirebaseSynced }
+    
+    private static func getRootRef() -> DatabaseReference { return Database.database().reference(withPath: firebaseDataroot) }
+    
+    static func getProductRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseProductsTable)
+    }
+    
+    static func getFavoriteRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseFavoriteTable)
+    }
+    
+    static func getRequestRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseRequestsTable)
+    }
+    
+    static func getFlightsRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseFlightsTable)
+    }
+    
+    static func getProductGroupRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseProductGroupsTable)
+    }
+    
+    static func setRequest(requestLatestId: Int,productId: Int, customerChairNumber: String,
+                              completed: Bool, flyingBlueNumber: String, flyingBlueMiles: String) {
+        let requestRef = Constants.getRequestRef()
+        let requestForItem = Request(
+            id: requestLatestId + 1,
+            productId: productId,
+            customerChair: customerChairNumber,
+            completed: completed,
+            deviceID: Constants.DEVICEID,
+            flyingBlueNumber: flyingBlueNumber,
+            flyingBlueMiles: flyingBlueMiles
+        )
+        
+        let requestForItemRef = requestRef.childByAutoId()
+        requestForItemRef.setValue(requestForItem.toAnyObject())
+    }
 }

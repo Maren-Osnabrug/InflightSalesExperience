@@ -9,4 +9,4 @@
 import Foundation
 import UIKit
 
-class RequestFavoritesLabelCell: UITableViewCell { }
+class FavoritesLabelCell: UITableViewCell { }

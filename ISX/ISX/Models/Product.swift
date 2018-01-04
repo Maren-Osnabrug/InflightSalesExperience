@@ -65,19 +65,19 @@ class Product {
         
         if let extendedDrawer = snapshotValue["Drawer_EUR_extended"] as? String {
             drawer_EUR_extended = extendedDrawer
-        }else {
+        } else {
             drawer_EUR_extended = "Not Available"
         }
         
         if let reducedDrawer = snapshotValue["Drawer_EUR_reduced"] as? String {
             drawer_EUR_reduced = reducedDrawer
-        }else {
+        } else {
             drawer_EUR_reduced = "Not Available"
         }
         
         if let icaDrawer = snapshotValue["Drawer_ICA"] as? String {
             drawer_ICA = icaDrawer
-        }else {
+        } else {
             drawer_ICA = "Not Available"
         }
 
@@ -101,10 +101,6 @@ class Product {
         //        KLM_Only = snapshotValue["KLM_Only"] as! String
         //        Save_21 = snapshotValue["Save_21"] as! String
         //        Tax_Free_Exclusive = snapshotValue["Tax_Free_Exclusive"] as! String
-    }
-    
-    func changeFavoriteStatus() {
-        favorite = !favorite
     }
     
     func toAnyObject()-> Any {

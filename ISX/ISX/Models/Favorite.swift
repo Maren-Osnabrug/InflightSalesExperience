@@ -24,6 +24,7 @@ class Favorite {
     let drawer_EUR_extended: String
     let drawer_EUR_reduced: String
     let drawer_ICA: String
+    let ref: DatabaseReference
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -45,27 +46,28 @@ class Favorite {
         
         if let extendedDrawer = snapshotValue["Drawer_EUR_extended"] as? String {
             drawer_EUR_extended = extendedDrawer
-        }else {
+        } else {
             drawer_EUR_extended = "Not Available"
         }
         
         if let reducedDrawer = snapshotValue["Drawer_EUR_reduced"] as? String {
             drawer_EUR_reduced = reducedDrawer
-        }else {
+        } else {
             drawer_EUR_reduced = "Not Available"
         }
         
         if let icaDrawer = snapshotValue["Drawer_ICA"] as? String {
             drawer_ICA = icaDrawer
-        }else {
+        } else {
             drawer_ICA = "Not Available"
         }
-
-        if let price = Int(snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as! String) {
+        
+        if let price = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as? Int {
             retailPrice = price
         } else {
             retailPrice = 0
         }
+        self.ref = snapshot.ref
     }
     
 }

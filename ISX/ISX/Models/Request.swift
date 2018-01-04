@@ -40,7 +40,7 @@ class Request {
         self.customerChair = dict["customerChair"] as! String
         self.completed = (dict["completed"] as! Int == 1 ? true : false)
 
-        if let deviceId = dict["deviceid"] as? String {
+        if let deviceId = dict["deviceId"] as? String {
             self.deviceID = deviceId
         }
 
@@ -61,7 +61,7 @@ class Request {
             "product": productId,
             "completed": completed,
             "customerChair": customerChair,
-            "deviceid": deviceID,
+            "deviceId": deviceID,
             "flyingBlueMiles": flyingBlueMiles,
             "flyingBlueNumber": flyingBlueNumber,
         ]

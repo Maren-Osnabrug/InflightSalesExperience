@@ -16,14 +16,14 @@ class ProductInfoCell: UITableViewCell {
     @IBOutlet weak var chairNumberView: UIView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var deliveredBtn: UIButton!
-    @IBOutlet weak var usersChairNumber: UILabel!
+    @IBOutlet weak var userChairNumber: UILabel!
     @IBOutlet weak var productNumber: UILabel!
     var productDetail: Product?
     var favorite: Favorite?
     var requestDetail: RequestDetail?
     var isFavorite: Bool = false
     var ref: DatabaseReference?
-    var requestRef: DatabaseReference?
+    var requestsRef: DatabaseReference?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,7 +32,7 @@ class ProductInfoCell: UITableViewCell {
     
     func setCellData(productName: String, usersChairNumber: String, productNumber: String, productReference: DatabaseReference, isActive: Bool) {
         self.productName.text = productName
-        self.usersChairNumber.text = usersChairNumber
+        self.userChairNumber.text = usersChairNumber
         self.productNumber.text = "No. " + productNumber
         self.ref = productReference
         if(isActive) {
@@ -42,7 +42,7 @@ class ProductInfoCell: UITableViewCell {
     
     func setCellData(productName: String, productNumber: String, isFavorite: Bool, favorite: Favorite, requestDetail: RequestDetail) {
         self.productName.text = productName
-        self.usersChairNumber.text = requestDetail.chairnumber
+        self.userChairNumber.text = requestDetail.chairnumber
         self.productNumber.text = "No. " + productNumber
         self.isFavorite = isFavorite
         self.favorite = favorite
@@ -70,7 +70,6 @@ class ProductInfoCell: UITableViewCell {
         let popupVC = RequestPopupViewController(nibName: "requestPopupView", bundle: nil)
         let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceUp, gestureDismissal: true)
         let cancelButton = CancelButton(title: "Cancel", height: Constants.popupButtonHeight) {
-            print("sold button was canceled")
         }
         let requestButton = DefaultButton(title: "Sold", height: Constants.popupButtonHeight) {
             if(self.isFavorite) {
@@ -91,7 +90,7 @@ class ProductInfoCell: UITableViewCell {
     func showConfirmDialog() {
         //Text can be changed ofcourse, its just some demo text
         let title = "Product sold!"
-        let message = "Good Job! The overview of sold items will be updated. Keep up the good work!"
+        let message = "Good Job! The sold items and sales amount will be updated. Keep up the good work!"
         
         let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
                                 transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)
@@ -145,7 +144,7 @@ class ProductInfoCell: UITableViewCell {
             if(self.productDetail?.id != nil) {
                 //if succeeded, add favorite as new request with completed on true, and remove the favorite.
                 if let productID = Int((self.productDetail?.id)!) {
-                    Constants.setRequest(requestLatestId: latestId, productId: productID, customerChairNumber: self.usersChairNumber.text!, completed: Constants.requestCompletedTrue, flyingBlueNumber: Constants.emptyString, flyingBlueMiles: (self.productDetail?.fbMiles)!)
+                    Constants.setRequest(requestLatestId: latestId, productId: productID, customerChairNumber: self.userChairNumber.text!, completed: Constants.requestCompletedTrue, flyingBlueNumber: Constants.emptyString, flyingBlueMiles: (self.productDetail?.fbMiles)!)
                     let favoriteRef = Constants.getFavoriteRef()
                     favoriteRef.child((self.requestDetail?.deviceId)!).child((self.favorite?.id)!).removeValue()
                     self.showConfirmDialog()

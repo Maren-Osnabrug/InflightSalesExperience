@@ -200,7 +200,6 @@ class CabinCrewViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == Constants.cabincrewToProductDetail {
             if let nextViewController = segue.destination as? RequestDetailViewController {
-                //Might be a cleaner way to achieve this. Maybe with one or two objects.
                 guard let productID = self.selectedRequest?.productId else { return }
                 guard let chairNumber = self.selectedRequest?.customerChair else { return }
                 guard let deviceID = self.selectedRequest?.deviceID else { return }

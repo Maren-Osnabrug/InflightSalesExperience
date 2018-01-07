@@ -18,7 +18,7 @@ class ProductDetailCell: UITableViewCell {
     }
     
     func setImageInView() {
-        let imageName = "ifihadapdf"
+        let imageName = "productDetailInformation"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         

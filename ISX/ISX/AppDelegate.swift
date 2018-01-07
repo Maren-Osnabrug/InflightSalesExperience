@@ -6,9 +6,6 @@
 //  Copyright © 2017 Maren Osnabrug. All rights reserved.
 //
 
-import UIKit
-import Firebase
-
 import UserNotifications
 import Firebase
 

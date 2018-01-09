@@ -23,8 +23,8 @@ class HouseInfoViewController: UITableViewController {
         setupStyling()
         title = house?.title
 
-        self.tableView.estimatedRowHeight = Constants.tableViewRowHeight
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = Constants.tableViewRowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

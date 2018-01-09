@@ -12,10 +12,6 @@ class HouseCell: UICollectionViewCell {
     @IBOutlet weak var houseImage: UIImageView!
     @IBOutlet weak var houseNumber: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     func setCellData(house: House) {
         houseImage.image = house.image
         houseNumber.text = house.id

@@ -58,9 +58,10 @@ struct Constants {
     static let productInfoToAR = "productInfoToARSegue"
     static let homeToProductInfo = "homeToProductInfoSegue"
     static let categoryToHouses = "categoryToHousesSeque"
-    static let houseToInfo = "houseToInfoSeque"
+    static let houseToHouseInfo = "houseToInfoSeque"
     static let cabincrewToProductDetail = "cabincrewToRequestInfoSegue"
     static let productDetailToRequestFavorite = "requestdetailToRequestFavorites"
+    static let productToProductInfo = "productsDetailSegue"
     
 //      PRAGMA MARK: Row heights
     static let tableViewRowHeight:CGFloat = 85
@@ -83,6 +84,7 @@ struct Constants {
     static let firebaseProductGroupsTable = "productGroups"
     static let firebaseRequestsTable = "requests"
     private static let keepFirebaseSynced = true
+    static let firebaseHouseTable = "houses"
 
 //      PRAGMA MARK: Calculate miles
     static let multiplierFactorMiles = 400
@@ -103,7 +105,7 @@ struct Constants {
     static let CCfavoritesInfo: String = "favoritesInRequestCell"
     static let CCExtraProductDetail: String = "requestExtraProductDetailCell"
     static let CCExtraProductLabel: String = "requestExtraProductLabelCell"
-    
+    static let houseCell: String = "houseCell"
     //PRAGMA MARK: Methods
     
     static func isFirebaseSynced() -> Bool { return keepFirebaseSynced }
@@ -133,6 +135,10 @@ struct Constants {
     static func getProductGroupRef() -> DatabaseReference {
         let databaseRootRef = getRootRef()
         return databaseRootRef.child(firebaseProductGroupsTable)
+    }
+    static func getHouseRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseHouseTable)
     }
     
     static func setRequest(requestLatestId: Int,productId: Int, customerChairNumber: String,

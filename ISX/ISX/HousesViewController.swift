@@ -32,10 +32,10 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "houseCell", for: indexPath) as? HouseCell
+        guard let houseCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.houseCell, for: indexPath) as? HouseCell
             else { return UICollectionViewCell() }
-        cell.setCellData(house: housesArray[indexPath.row])
-        return cell
+        houseCell.setCellData(house: housesArray[indexPath.row])
+        return houseCell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -44,8 +44,7 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     public func getHouses(categoryId: String) {
-        let rootRef = Database.database().reference(withPath: "dataroot")
-        let houseRef = rootRef.child("houses")
+        let houseRef = Constants.getHouseRef()
         houseRef.keepSynced(true)
         activityIndicatorView?.startAnimating()
         houseRef.observe(.value, with: { snapshot in
@@ -64,11 +63,11 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedHouse = housesArray[indexPath.row]
-        performSegue(withIdentifier: Constants.houseToInfo, sender: self)
+        performSegue(withIdentifier: Constants.houseToHouseInfo, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.houseToInfo {
+        if (segue.identifier == Constants.houseToHouseInfo) {
             if let nextViewController = segue.destination as? HouseInfoViewController {
                 if let house = selectedHouse {
                     nextViewController.house = house

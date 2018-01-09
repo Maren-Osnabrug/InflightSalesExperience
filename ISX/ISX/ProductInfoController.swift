@@ -72,7 +72,7 @@ class ProductInfoController : UITableViewController {
         milesLabel.text = "Or " + String((product.retailPrice*Constants.multiplierFactorMiles).withCommas()) + " Miles"
         descriptionLabel.text = product.description
         updateFavoriteButton(favorite: product.favorite)
-        if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).scn") == nil) {
+        if (SCNScene(named: "art.scnassets/\(String(describing: product.id))/\(String(describing: product.id)).dae") == nil) {
             ARButton.isHidden = true
         } else {
             ARButton.isHidden = false

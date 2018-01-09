@@ -26,7 +26,7 @@ struct Constants {
     static let buttonCornerRadius:CGFloat = 10
     static let chairNumberViewCornerRadius:CGFloat = 15
     
-    //PRAGMA MARK: Borders
+//      PRAGMA MARK: Borders
     static let cellBorderWidth: CGFloat = 1
     static let shadowOpacity: Float = 0.8
     static let shadowRadius: CGFloat = 3
@@ -71,7 +71,7 @@ struct Constants {
     static let requestExtraProductInfoCellSize: CGFloat = 400
     static let searchBarCellHeight:CGFloat = 60
 
-    //PRAGMA MARK: Firebase
+//      PRAGMA MARK: Firebase
     static let firebaseFavoriteTable = "favorite"
     private static let firebaseDataroot = "dataroot"
     static let firebaseProductsTable = "products"
@@ -84,10 +84,10 @@ struct Constants {
 //      PRAGMA MARK: Calculate miles
     static let multiplierFactorMiles = 400
     
-    //PRAGMA MARK: Buttons
+//      PRAGMA MARK: Buttons
     static let popupButtonHeight = 60
     
-    //PRAGMA MARK: Reusable identifiers
+//      PRAGMA MARK: Reusable identifiers
     static let progressbarCell: String = "progressCell"
     static let CCRequestCell: String = "CustomRequestCell"
     static let CCrequestProductInfo: String = "requestProductInfoCell"
@@ -98,7 +98,7 @@ struct Constants {
     static let CCExtraProductDetail: String = "requestExtraProductDetailCell"
     static let CCExtraProductLabel: String = "requestExtraProductLabelCell"
     
-    //PRAGMA MARK: Methods
+//      PRAGMA MARK: Methods
     
     static func isFirebaseSynced() -> Bool { return keepFirebaseSynced }
     

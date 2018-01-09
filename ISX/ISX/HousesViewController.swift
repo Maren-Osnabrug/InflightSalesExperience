@@ -27,11 +27,6 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
         getHouses(categoryId: (category?.categoryID)!)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return housesArray.count
     }

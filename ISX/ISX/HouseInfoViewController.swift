@@ -14,8 +14,7 @@ class HouseInfoViewController: UITableViewController {
     @IBOutlet weak var houseTitle: UILabel!
     @IBOutlet weak var houseNumber: UILabel!
     @IBOutlet weak var houseDescription: UILabel!
-    @IBOutlet weak var reserveHouseButton: UIButton!
-
+    @IBOutlet weak var businessClassReminder: UIView!
     var house: House?
 
     override func viewDidLoad() {
@@ -26,11 +25,6 @@ class HouseInfoViewController: UITableViewController {
 
         self.tableView.estimatedRowHeight = Constants.tableViewRowHeight
         self.tableView.rowHeight = UITableViewAutomaticDimension
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -45,5 +39,7 @@ class HouseInfoViewController: UITableViewController {
         houseTitle.text = house.title
         houseNumber.text = house.id
         houseDescription.text = house.description
+        businessClassReminder.layer.borderColor = Constants.orange.cgColor
+        businessClassReminder.layer.borderWidth = 1.0;
     }
 }

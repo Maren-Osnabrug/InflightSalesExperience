@@ -54,4 +54,7 @@ struct Constants {
     
 //      PRAGMA MARK: Calculate miles
     static let multiplierFactorMiles = 400
+
+//      PRAGMA MARK: ID's
+    static let housesCategoryID = "29"
 }

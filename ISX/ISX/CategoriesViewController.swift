@@ -71,7 +71,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCategory = categoryArray[indexPath.row]
         GoogleAnalyticsHelper().googleAnalyticLogAction(category: viewName, action: "Choosing a Category", label: categoryArray[indexPath.row].categoryName)
-        if selectedCategory?.categoryID == "29" {
+        if selectedCategory?.categoryID == Constants.housesCategoryID {
             performSegue(withIdentifier: Constants.categoryToHouses, sender: self)
         } else {
             performSegue(withIdentifier: "productsDetailSegue", sender: self)

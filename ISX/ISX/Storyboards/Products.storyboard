@@ -610,6 +610,7 @@
                         <outlet property="productInfoTableView" destination="UdR-h0-5NT" id="Ecg-IS-FXd"/>
                         <outlet property="productTitleLabel" destination="7o4-8f-RpM" id="2IO-6u-CwW"/>
                         <segue destination="3VO-uy-z4G" kind="show" identifier="productInfoToARSegue" id="WMH-dY-Voh"/>
+                        <segue destination="tno-bC-143" kind="show" identifier="productInfoToWebSegue" id="uXx-N9-nT8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuX-dm-l5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -625,7 +626,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPb-He-nsN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>

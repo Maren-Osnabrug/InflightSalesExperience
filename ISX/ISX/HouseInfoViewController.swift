@@ -40,6 +40,6 @@ class HouseInfoViewController: UITableViewController {
         houseNumber.text = house.id
         houseDescription.text = house.description
         businessClassReminder.layer.borderColor = Constants.orange.cgColor
-        businessClassReminder.layer.borderWidth = 1.0;
+        businessClassReminder.layer.borderWidth = Constants.cellBorderWidth
     }
 }

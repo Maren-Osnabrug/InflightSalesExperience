@@ -51,9 +51,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - NVActivityIndicatorView (4.0.0):
-    - NVActivityIndicatorView/Presenter (= 4.0.0)
-  - NVActivityIndicatorView/Presenter (4.0.0)
+  - NVActivityIndicatorView (4.1.1):
+    - NVActivityIndicatorView/Presenter (= 4.1.1)
+  - NVActivityIndicatorView/Presenter (4.1.1)
   - PopupDialog (0.6.2)
   - Protobuf (3.5.0)
 
@@ -79,7 +79,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
+  NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
   PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 

@@ -15,15 +15,19 @@ class Request {
     let productId: Int
     let customerChair: String
     var completed: Bool
+    var deviceID: String = ""
     let ref: DatabaseReference?
     var flyingBlueNumber: String = ""
     var flyingBlueMiles: String = ""
     
-    init(id: Int, productId: Int, customerChair: String, completed: Bool, flyingBlueNumber: String, flyingBlueMiles: String) {
+
+    init(id: Int, productId: Int, customerChair: String, completed: Bool, deviceID: String, flyingBlueNumber: String, flyingBlueMiles: String) {
+
         self.id = id
         self.productId = productId
         self.completed = completed
         self.customerChair = customerChair
+        self.deviceID = deviceID
         self.flyingBlueMiles = flyingBlueMiles
         self.flyingBlueNumber = flyingBlueNumber
         self.ref = nil
@@ -35,12 +39,19 @@ class Request {
         self.productId = dict["product"] as! Int
         self.customerChair = dict["customerChair"] as! String
         self.completed = (dict["completed"] as! Int == 1 ? true : false)
+
+        if let deviceId = dict["deviceId"] as? String {
+            self.deviceID = deviceId
+        }
+
         if let miles = dict["flyingBlueMiles"] as? String {
             self.flyingBlueMiles = miles
         }
+        
         if let number = dict["flyingBlueNumber"] as? String {
             self.flyingBlueNumber = number
         }
+        
         self.ref = snapshot.ref
     }
     
@@ -50,8 +61,9 @@ class Request {
             "product": productId,
             "completed": completed,
             "customerChair": customerChair,
+            "deviceId": deviceID,
             "flyingBlueMiles": flyingBlueMiles,
-            "flyingBlueNumber": flyingBlueNumber
+            "flyingBlueNumber": flyingBlueNumber,
         ]
     }
 }

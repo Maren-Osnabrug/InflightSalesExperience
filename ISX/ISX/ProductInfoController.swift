@@ -21,7 +21,6 @@ extension Int {
 }
 
 class ProductInfoController : UITableViewController {
-    
     @IBOutlet weak var productInfoTableView: UITableView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
@@ -171,8 +170,10 @@ class ProductInfoController : UITableViewController {
                             productId: productId,
                             customerChair: customerChairNumber,
                             completed: false,
+                            deviceID: Constants.DEVICEID,
                             flyingBlueNumber: flyingBlueNumber,
                             flyingBlueMiles: product.fbMiles
+
                         )
                         
                         let requestForItemRef = self.requestsRef?.childByAutoId()
@@ -184,10 +185,8 @@ class ProductInfoController : UITableViewController {
                 self.showConfirmDialog(productName: product.title)
             }
         }
-
         popup.addButtons([cancelButton, requestButton])
         present(popup, animated: true, completion: nil)
-
     }
     
     func observeFavoriteStatus() {

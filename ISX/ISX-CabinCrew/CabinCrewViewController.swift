@@ -13,16 +13,17 @@ import UserNotifications
 import NVActivityIndicatorView
 
 class CabinCrewViewController: UITableViewController {
-    
     var requestsArray = [Request]()
     var flightsArray = [Flight]()
     var productsArray = [Product]()
+    private var initialLoad: Bool = false
     private var datarootRef: DatabaseReference?
     private var requestsRef: DatabaseReference?
     private var productsRef: DatabaseReference?
     private var flightsRef: DatabaseReference?
     var activityIndicatorView: NVActivityIndicatorView?
-
+    private var selectedRequest: Request?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -40,30 +41,28 @@ class CabinCrewViewController: UITableViewController {
     }
     
     func setupReferences() {
-        datarootRef = Database.database().reference(withPath: "dataroot")
-        requestsRef = datarootRef?.child("requests")
-        productsRef = datarootRef?.child("products")
-        flightsRef = datarootRef?.child("flights")
+        requestsRef = Constants.getRequestRef()
+        requestsRef?.keepSynced(Constants.isFirebaseSynced())
+        productsRef = Constants.getProductRef()
+        flightsRef = Constants.getFlightsRef()
         
-        requestsRef?.keepSynced(true)
-        observeRequests()
-        observeNewRequest()
-        observeFlights()
-        observeProducts()
+        executeObservers()
     }
     
     func observeRequests() {
+        requestsArray = []
         activityIndicatorView?.startAnimating()
         requestsRef?.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
             for item in snapshot.children {
-                let toAdd = Request.init(snapshot: item as! DataSnapshot)
-                if (!self.requestsArray.contains { $0.id == toAdd.id }) {
-                    self.requestsArray.append(toAdd)
-                    self.requestsArray.sort { !$0.completed && $1.completed }
+                if let itemSnapshot = item as? DataSnapshot {
+                    let toAdd = Request(snapshot: itemSnapshot )
+                    if (!self.requestsArray.contains { $0.id == toAdd.id }) {
+                        self.requestsArray.append(toAdd)
+                        self.requestsArray.sort { !$0.completed && $1.completed }
+                    }
                 }
             }
             self.tableView.reloadData()
-            self.activityIndicatorView?.stopAnimating()
         })
     }
     
@@ -134,6 +133,7 @@ class CabinCrewViewController: UITableViewController {
      Returns array with products
     */
     func observeProducts() {
+        productsArray = []
         productsRef?.observe(.value, with: { snapshot in
             for item in snapshot.children {
                 if let productSnapshot = item as? DataSnapshot {
@@ -141,7 +141,9 @@ class CabinCrewViewController: UITableViewController {
                     self.productsArray.append(product)
                 }
             }
+            self.activityIndicatorView?.stopAnimating()
             self.tableView.reloadData()
+            self.initialLoad = true
         })
     }
     
@@ -152,7 +154,7 @@ class CabinCrewViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let progressBarCell = tableView.dequeueReusableCell(withIdentifier: "progressCell") as? ProgressBarCell
+        guard let progressBarCell = tableView.dequeueReusableCell(withIdentifier: Constants.progressbarCell) as? ProgressBarCell
             else { return UITableViewCell() }
         if (flightsArray.count > 0 ) {
             let flight = flightsArray[1]
@@ -177,7 +179,7 @@ class CabinCrewViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomRequestCell", for: indexPath) as? RequestCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCRequestCell, for: indexPath) as? RequestCell else { return UITableViewCell() }
         let request = requestsArray[indexPath.row]
         cell.setCellData(request: request)
         
@@ -189,32 +191,38 @@ class CabinCrewViewController: UITableViewController {
         return cell
     }
     
+    //Selected request will be loaded in the next screen.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Mark as Done", message: "Have you delivered this product to the passenger in seat \(self.requestsArray[indexPath.row].customerChair)?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .cancel, handler: { action in
-            tableView.deselectRow(at: indexPath, animated: true)
-            self.requestsArray[indexPath.row].completed = true
-            self.requestsArray.sort { !$0.completed && $1.completed }
-            self.requestsArray[indexPath.row].ref?.updateChildValues([
-                "completed": true
-                ])
-            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 0.25
-            self.tableView.reloadData()
-        })
-
-        let noAction = UIAlertAction(title: "No", style: .default, handler: { action in
-            tableView.deselectRow(at: indexPath, animated: true)
-            self.requestsArray[indexPath.row].completed = false
-            self.requestsArray.sort { !$0.completed && $1.completed }
-            self.requestsArray[indexPath.row].ref?.updateChildValues([
-                "completed": false
-                ])
-            self.tableView.cellForRow(at: indexPath)?.contentView.layer.opacity = 1
-            self.tableView.reloadData()
-        })
-
-        alertController.addAction(noAction)
-        alertController.addAction(yesAction)
-        self.present(alertController, animated: true, completion: nil)
+        selectedRequest = requestsArray[indexPath.row]
+        performSegue(withIdentifier: Constants.cabincrewToProductDetail, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == Constants.cabincrewToProductDetail {
+            if let nextViewController = segue.destination as? RequestDetailViewController {
+                guard let productID = self.selectedRequest?.productId else { return }
+                guard let chairNumber = self.selectedRequest?.customerChair else { return }
+                guard let deviceID = self.selectedRequest?.deviceID else { return }
+                guard let requestDatabaseRef = self.selectedRequest?.ref else { return }
+                guard let request = self.selectedRequest else { return }
+                nextViewController.requestDetail = RequestDetail(productId: String(productID), chairnumber: chairNumber, deviceId: deviceID, requestDatabaseRef: requestDatabaseRef, request: request)
+            }
+        }
+    }
+    
+    //Reload the page, after being away from it, or changed pages.
+    override func viewDidAppear(_ animated: Bool) {
+        if(initialLoad) {
+            executeObservers()
+        }
+    }
+    
+    //Functions to load data from DB, not sure if all observers are needed to reload the requests.
+    //It does not take away from the performance at the moment.
+    func executeObservers() {
+        observeRequests()
+        observeNewRequest()
+        observeFlights()
+        observeProducts()
     }
 }

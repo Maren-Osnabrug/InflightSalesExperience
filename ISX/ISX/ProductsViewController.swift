@@ -82,7 +82,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
                     let product = Product(snapshot: value)
                     if product.productGroup.elementsEqual(categoryId) {
                         self.productsArray.append(product)
-                        print(product.id + "    " + product.title)
                     }
                 }
             }

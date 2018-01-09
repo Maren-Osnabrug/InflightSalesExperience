@@ -24,10 +24,13 @@ class Product {
     var fbMiles: String = ""
 //    let localPrice: String = ""
 //    let Did_You_Know_iPad: String = ""
-//    let Drawer_EUR_Norway_Suisse: String = ""
-//    let Drawer_EUR_extended: String = ""
-//    let Drawer_EUR_reduced: String = ""
-//    let Drawer_ICA: String = ""
+
+    var drawer_EUR_Norway_Suisse: String
+    var drawer_EUR_extended: String
+    var drawer_EUR_reduced: String
+    var drawer_ICA: String
+//    let FB_miles_EARN_ob_1_2_miles_per_Euro: String = ""
+
 //    let Free_gift: String = ""
 //    let KLM_Only: String = ""
 //    let Save_21: String = ""
@@ -38,7 +41,6 @@ class Product {
     var image: UIImage?
     var url: String = "https://shop.klm.com/"
     var favorite: Bool = false
-
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
@@ -54,7 +56,31 @@ class Product {
         if let productURL = snapshotValue["url"] as? String {
             url = productURL
         }
+
+        if let norwayDrawer = snapshotValue["Drawer_EUR_Norway_Suisse"] as? String {
+            drawer_EUR_Norway_Suisse = norwayDrawer
+        } else {
+            drawer_EUR_Norway_Suisse = "200"
+        }
         
+        if let extendedDrawer = snapshotValue["Drawer_EUR_extended"] as? String {
+            drawer_EUR_extended = extendedDrawer
+        } else {
+            drawer_EUR_extended = "Not Available"
+        }
+        
+        if let reducedDrawer = snapshotValue["Drawer_EUR_reduced"] as? String {
+            drawer_EUR_reduced = reducedDrawer
+        } else {
+            drawer_EUR_reduced = "Not Available"
+        }
+        
+        if let icaDrawer = snapshotValue["Drawer_ICA"] as? String {
+            drawer_ICA = icaDrawer
+        } else {
+            drawer_ICA = "Not Available"
+        }
+
         if let price = snapshotValue["Ob_Retail_price_1_PL-HH-WBC-iPad"] as? Int {
             retailPrice = price
         } else {
@@ -86,6 +112,12 @@ class Product {
             "Start_date_SHC": startDateSHC,
             "brand_id": brand,
             "prologistica_number_HH": prologisticaNumberHH,
+
+            "Drawer_EUR_Norway_Suisse": drawer_EUR_Norway_Suisse,
+            "Drawer_EUR_extended": drawer_EUR_extended,
+            "Drawer_EUR_reduced": drawer_EUR_reduced,
+            "Drawer_ICA": drawer_ICA,
+
             "sku": id,
             "url": url,
             "Ob_Retail_price_1_PL-HH-WBC-iPad": retailPrice,

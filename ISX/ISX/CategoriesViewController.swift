@@ -12,7 +12,7 @@ import FirebaseDatabase
 import NVActivityIndicatorView
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate,
-        UICollectionViewDataSource {
+        UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     private let viewName = "Categories Overview"
     var selectedCategory: Category?
@@ -44,6 +44,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         
         cell.setCategoryData(category: categoryArray[indexPath.row])
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + Constants.sectionInsetsCollectionView)) / Constants.dividingFactorCollectionViewCell
+        return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorCollectionViewCell)
     }
     
     public func getFirebaseData(){

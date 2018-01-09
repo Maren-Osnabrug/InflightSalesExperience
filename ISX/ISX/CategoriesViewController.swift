@@ -71,12 +71,22 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCategory = categoryArray[indexPath.row]
         GoogleAnalyticsHelper().googleAnalyticLogAction(category: viewName, action: "Choosing a Category", label: categoryArray[indexPath.row].categoryName)
-        performSegue(withIdentifier: "productsDetailSegue", sender: self)
+        if (selectedCategory?.categoryID == Constants.housesCategoryID) {
+            performSegue(withIdentifier: Constants.categoryToHouses, sender: self)
+        } else {
+            performSegue(withIdentifier: Constants.productToProductInfo, sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "productsDetailSegue" {
+        if (segue.identifier == Constants.productToProductInfo) {
             if let nextViewController = segue.destination as? ProductsViewController {
+                if let category = self.selectedCategory {
+                    nextViewController.category = category
+                }
+            }
+        } else if (segue.identifier == Constants.categoryToHouses) {
+            if let nextViewController = segue.destination as? HousesViewController {
                 if let category = self.selectedCategory {
                     nextViewController.category = category
                 }

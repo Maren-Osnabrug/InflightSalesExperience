@@ -10,10 +10,11 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ARViewController: UIViewController, ARSCNViewDelegate {
+class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizerDelegate {
     @IBOutlet var sceneView: ARSCNView!
     var product: Product?
     var scene: SCNScene?
+    var currentAngle: Float?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,19 +24,23 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        currentAngle = -.pi / 2
         addProduct()
-        addTapGestureToSceneView()
-        addPanGestureToSceneView()
+//        addTapGestureToSceneView()
+//        addPanGestureToSceneView()
         addPinchGestureToSceneView()
+        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(didRotate(_:)))
+        rotationGesture.delegate = self
+        sceneView.addGestureRecognizer(rotationGesture)
+
     }
     
-    func addProduct(x: Float = 0, y: Float = 0, z: Float = -1) {
+    func addProduct(x: Float = 0.2, y: Float = -0.15, z: Float = -0.7) {
         if let product = product {
             scene = SCNScene(named: "art.scnassets/\(product.id)/\(product.id).scn")!
             let node = scene?.rootNode.childNode(withName: "Cube_bake", recursively: true)
-            node?.eulerAngles.y = -.pi / 2
+            node?.eulerAngles.y = currentAngle!
             let camera = sceneView.pointOfView!
-            print(camera.orientation, camera.position)
             let position = SCNVector3(x, y, z)
             node?.position = camera.convertPosition(position, to: nil)
             sceneView.scene.rootNode.addChildNode(node!)
@@ -70,20 +75,58 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
 //        node.removeFromParentNode()
     }
     
+    /// - Tag: didRotate
+    @objc
+    func didRotate(_ gesture: UIRotationGestureRecognizer) {
+        guard gesture.state == .changed else { return }
+        print("point")
+        
+        var point = gesture.location(in: sceneView)
+        point = CGPoint(x: point.x, y: point.y)
+        
+        let hitTestResults = sceneView.hitTest(point)
+        guard let node = hitTestResults.first?.node else { return }
+        
+        /*
+         - Note:
+         For looking down on the object (99% of all use cases), we need to subtract the angle.
+         To make rotation also work correctly when looking from below the object one would have to
+         flip the sign of the angle depending on whether the object is above or below the camera...
+         */
+        node.eulerAngles.y -= Float(gesture.rotation)
+        
+        gesture.rotation = 0
+    }
+    
     func CGPointToSCNVector3(view: SCNView, depth: Float, point: CGPoint) -> SCNVector3 {
         let projectedOrigin = view.projectPoint(SCNVector3Make(0, 0, depth))
         let locationWithz = SCNVector3Make(Float(point.x), Float(point.y), projectedOrigin.z)
         return view.unprojectPoint(locationWithz)
     }
     
-    @objc func didPan(withGestureRecognizer sender: UIGestureRecognizer) {
+    @objc func didPan(withGestureRecognizer sender: UIPanGestureRecognizer) {
         var point = sender.location(in: sceneView)
         point = CGPoint(x: point.x, y: point.y)
         let hitTestResults = sceneView.hitTest(point)
         guard let node = hitTestResults.first?.node else { return }
-        let position = node.position
-        let cgpoint = CGPoint(x: CGFloat(position.x) + point.x, y: CGFloat(position.y) + point.y)
-        node.position = CGPointToSCNVector3(view: sceneView, depth: node.simdPosition.z, point: cgpoint)
+//        let position = node.position
+//        let cgpoint = CGPoint(x: CGFloat(position.x) + point.x, y: CGFloat(position.y) + point.y)
+//        node.position = CGPointToSCNVector3(view: sceneView, depth: node.simdPosition.z, point: cgpoint)
+        
+        //getting the CGpoint at the end of the pan
+        let translation = sender.translation(in: sender.view!)
+        //creating a new angle in radians from the x value
+        var newAngle = (Float)(translation.x)*(Float)(Double.pi)/640.0
+        //current angle is an instance variable so i am adding the newAngle to the currentAngle to it
+        newAngle += currentAngle!
+        
+        //transforming the sphere node
+        node.transform = SCNMatrix4MakeRotation(newAngle, Float(translation.x), Float(translation.y),Float(0.0))
+        
+        //getting the end angle of the swipe put into the instance variable
+        if(sender.state == .ended) {
+            currentAngle = newAngle
+        }
     }
     
     @objc func didPinch(withGestureRecognizer gesture: UIPinchGestureRecognizer) {

@@ -14,6 +14,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
     @IBOutlet var sceneView: ARSCNView!
     var product: Product?
     var scene: SCNScene?
+    let scale: CGFloat = 1
+    let rotation: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +46,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
     
     // Adds one node to the sceneview, without position specified it spawns at defaults values
     func addProduct(x: Float = 0.0, y: Float = -0.15, z: Float = -0.9) {
-        if let product = product {
-            scene = SCNScene(named: "art.scnassets/\(product.id)/\(product.id).dae")!
-            let node = scene?.rootNode.childNode(withName: "node", recursively: true)
+        if let product = product, let scene = SCNScene(named: "art.scnassets/\(product.id)/\(product.id).dae") {
+            let node = scene.rootNode.childNode(withName: "node", recursively: true)
             node?.eulerAngles.y = -.pi / 2
             let camera = sceneView.pointOfView!
             let position = SCNVector3(x, y, z)
@@ -79,7 +80,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
         if let view = gesture.view {
             switch gesture.state {
             case .changed:
-                
                 let hitTestResults = sceneView.hitTest(gesture.location(in: view))
                 guard let node = hitTestResults.first?.node else { return }
                 
@@ -88,7 +88,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
                 let pinchScaleZ =  Float(gesture.scale) * node.scale.z
                 
                 node.scale = SCNVector3(pinchScaleX, pinchScaleY, pinchScaleZ)
-                gesture.scale = 1
+                gesture.scale = scale
             default:
                 return
             }
@@ -105,7 +105,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
         guard let node = hitTestResults.first?.node else { return }
         node.eulerAngles.y -= Float(gesture.rotation)
         
-        gesture.rotation = 0
+        gesture.rotation = rotation
     }
     
     @objc func didPan(withGestureRecognizer sender: UIPanGestureRecognizer) {

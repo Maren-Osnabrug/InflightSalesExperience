@@ -48,8 +48,8 @@ class RequestDetailViewController: UITableViewController {
     
     //Retrieve all favorites from that user, from the DB.
     func getFavoritesFromFirebase() {
-        arrayWithFavorites = []
         favoritesRef?.child((requestDetail?.deviceId)!).observe(.value, with: { snapshot in
+            self.arrayWithFavorites = []
             for item in snapshot.children {
                 if let favoriteFromFB = item as? DataSnapshot {
                     let favorite = Favorite(snapshot: favoriteFromFB)

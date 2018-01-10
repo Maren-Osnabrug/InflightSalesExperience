@@ -46,7 +46,7 @@ class CabinCrewViewController: UITableViewController {
         productsRef = Constants.getProductRef()
         flightsRef = Constants.getFlightsRef()
         
-        executeObservers()
+        observeRequests()
     }
     
     func observeRequests() {
@@ -62,7 +62,7 @@ class CabinCrewViewController: UITableViewController {
                     }
                 }
             }
-            self.tableView.reloadData()
+            self.observeNewRequest()
         })
     }
     
@@ -71,7 +71,7 @@ class CabinCrewViewController: UITableViewController {
             let latestRequest = Request(snapshot: snapshot)
             let customerChair = latestRequest.customerChair
             self.checkAuthStatusProceed(customerChair)
-            self.tableView.reloadData()
+            self.observeFlights()
         })
     }
     
@@ -126,6 +126,7 @@ class CabinCrewViewController: UITableViewController {
                     self.flightsArray.append(flight)
                 }
             }
+            self.observeProducts()
         })
     }
     
@@ -213,16 +214,7 @@ class CabinCrewViewController: UITableViewController {
     //Reload the page, after being away from it, or changed pages.
     override func viewDidAppear(_ animated: Bool) {
         if(initialLoad) {
-            executeObservers()
+            observeRequests()
         }
-    }
-    
-    //Functions to load data from DB, not sure if all observers are needed to reload the requests.
-    //It does not take away from the performance at the moment.
-    func executeObservers() {
-        observeRequests()
-        observeNewRequest()
-        observeFlights()
-        observeProducts()
     }
 }

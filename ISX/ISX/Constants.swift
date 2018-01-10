@@ -34,6 +34,9 @@ struct Constants {
 
 //      PRAGMA MARK: Display strings
     static let sortBy = "Sort by: "
+
+//      PRAGMA MARK: Reuse Strings
+    static let noImageAvailable: String = "noImageAvailable"
     
 //      PRAGMA MARK: Spacing
     static let sectionInsetsCollectionView: CGFloat = 60
@@ -49,8 +52,8 @@ struct Constants {
     static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
     static let DEVICEID = UIDevice.current.identifierForVendor!.uuidString
     static let imageViewFrame = CGRect(x: 0, y: 0, width: 400, height: 400)
-    static let requestCompletedTrue = true
-    static let requestCompletedFalse = false
+    static let requestIsCompleted = true
+    static let requestIsNotCompleted = false
     static let emptyString: String = ""
 
 //      PRAGMA MARK: Segues
@@ -66,7 +69,7 @@ struct Constants {
 //      PRAGMA MARK: Row heights
     static let tableViewRowHeight:CGFloat = 85
 
-//      PRAGMA MARK: Cells
+//      PRAGMA MARK: Cell Size
     static let progressBarCellHeight:CGFloat = 100
     static let requestCellHeight:CGFloat = 130
     static let requestProductCellSize: CGFloat = 155
@@ -83,8 +86,8 @@ struct Constants {
     static let firebaseFlightsTable = "flights"
     static let firebaseProductGroupsTable = "productGroups"
     static let firebaseRequestsTable = "requests"
-    private static let keepFirebaseSynced = true
     static let firebaseHouseTable = "houses"
+    private static let keepFirebaseSynced = true
 
 //      PRAGMA MARK: Calculate miles
     static let multiplierFactorMiles = 400
@@ -106,6 +109,9 @@ struct Constants {
     static let CCExtraProductDetail: String = "requestExtraProductDetailCell"
     static let CCExtraProductLabel: String = "requestExtraProductLabelCell"
     static let houseCell: String = "houseCell"
+    
+//      PRAGMA MARK: Reuse Strings
+    static let requestPopupView: String = "requestPopupView"
     
 //      PRAGMA MARK: Methods    
     static func isFirebaseSynced() -> Bool { return keepFirebaseSynced }

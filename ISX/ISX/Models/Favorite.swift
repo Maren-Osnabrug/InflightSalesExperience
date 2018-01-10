@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Favorite.swift
 //  ISX
 //
 //  Created by Robby Michels on 08-11-17.
@@ -9,7 +9,8 @@
 import Foundation
 import FirebaseDatabase
 
-class Favorite {    
+class Favorite {
+
     let bestsellers: String!
     let productGroup: String!
     let title: String!
@@ -36,7 +37,7 @@ class Favorite {
         brand = snapshotValue["brand_id"] as! String
         prologistricaNumberHH = snapshotValue["prologistica_number_HH"] as! String
         id = snapshotValue["sku"] as! String
-        image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
+        image = UIImage(named: String(id)) == nil ? UIImage(named: Constants.noImageAvailable) : UIImage(named: String(id))
         //drawer_EUR_Norway_Suisse = snapshotValue["Drawer_EUR_Norway_Suisse"] as! String
         if let norwayDrawer = snapshotValue["Drawer_EUR_Norway_Suisse"] as? String {
             drawer_EUR_Norway_Suisse = norwayDrawer

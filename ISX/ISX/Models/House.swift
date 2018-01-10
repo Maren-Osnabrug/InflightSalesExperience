@@ -12,12 +12,12 @@ import UIKit
 
 class House {
 
-let category: String
-let description: String
-let id: String
-let title: String
-var image: UIImage?
-let ref: DatabaseReference?
+    let category: String
+    let description: String
+    let id: String
+    let title: String
+    var image: UIImage?
+    let ref: DatabaseReference?
 
     init(category: String, description: String, id: String, title: String) {
         self.category = category
@@ -33,7 +33,7 @@ let ref: DatabaseReference?
         description = snapshotValue["Description"] as! String
         id = snapshotValue["ID"] as! String
         title = (snapshotValue["Title"] as! String).capitalized
-        image = UIImage(named: String(id)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(id))
+        image = UIImage(named: String(id)) == nil ? UIImage(named: Constants.noImageAvailable) : UIImage(named: String(id))
         ref = snapshot.ref
     }
     

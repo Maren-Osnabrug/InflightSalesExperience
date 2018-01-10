@@ -1,5 +1,5 @@
 //
-//  RequestSimpleProductInfoCell.swift
+//  ProductInfoCell.swift
 //  ISX
 //
 //  Created by Robby Michels on 28-11-17.
@@ -18,6 +18,7 @@ class ProductInfoCell: UITableViewCell {
     @IBOutlet weak var deliveredBtn: UIButton!
     @IBOutlet weak var userChairNumber: UILabel!
     @IBOutlet weak var productNumber: UILabel!
+
     var productDetail: Product?
     var favorite: Favorite?
     var requestDetail: RequestDetail?
@@ -30,7 +31,7 @@ class ProductInfoCell: UITableViewCell {
         setupStyling()
     }
     
-    func setCellData(productName: String, usersChairNumber: String, productNumber: String, productReference: DatabaseReference, isActive: Bool) {
+    func setProductData(productName: String, usersChairNumber: String, productNumber: String, productReference: DatabaseReference, isActive: Bool) {
         self.productName.text = productName
         self.userChairNumber.text = usersChairNumber
         self.productNumber.text = "No. " + productNumber
@@ -40,7 +41,7 @@ class ProductInfoCell: UITableViewCell {
         }
     }
     
-    func setCellData(productName: String, productNumber: String, isFavorite: Bool, favorite: Favorite, requestDetail: RequestDetail) {
+    func setFavoriteData(productName: String, productNumber: String, isFavorite: Bool, favorite: Favorite, requestDetail: RequestDetail) {
         self.productName.text = productName
         self.userChairNumber.text = requestDetail.chairnumber
         self.productNumber.text = "No. " + productNumber
@@ -49,25 +50,12 @@ class ProductInfoCell: UITableViewCell {
         self.requestDetail = requestDetail
     }
     
-    @IBAction func onButtonClicked(_ sender: Any) {
+    @IBAction func onDeliveredButtonClicked(_ sender: Any) {
         showSoldDialog()
     }
     
-    func setupStyling() {
-        chairNumberView.layer.cornerRadius = Constants.chairNumberViewCornerRadius
-        chairNumberView.layer.borderColor = Constants.radiusBorderColor
-        chairNumberView.layer.borderWidth = Constants.cellBorderWidth
-        chairNumberView.layer.shadowColor = Constants.radiusShadowColor
-        chairNumberView.layer.shadowOpacity = Constants.shadowOpacity
-        chairNumberView.layer.shadowRadius = Constants.shadowRadius
-        chairNumberView.layer.shadowOffset = Constants.shadowOffset
-        
-        deliveredBtn.layer.cornerRadius = Constants.buttonCornerRadius
-        deliveredBtn.layer.borderColor = Constants.radiusBorderColor
-    }
-    
     func showSoldDialog() {
-        let popupVC = RequestPopupViewController(nibName: "requestPopupView", bundle: nil)
+        let popupVC = RequestPopupViewController(nibName: Constants.requestPopupView, bundle: nil)
         let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceUp, gestureDismissal: true)
         let cancelButton = CancelButton(title: "Cancel", height: Constants.popupButtonHeight) {
         }
@@ -88,7 +76,6 @@ class ProductInfoCell: UITableViewCell {
     }
     
     func showConfirmDialog() {
-        //Text can be changed ofcourse, its just some demo text
         let title = "Product sold!"
         let message = "Good Job! The sold items and sales amount will be updated. Keep up the good work!"
         
@@ -100,7 +87,6 @@ class ProductInfoCell: UITableViewCell {
     }
     
     func showErrorDialog() {
-        //Text can be changed ofcourse, its just some demo text
         let title = "Oops, Something went wrong!"
         let message = "Try again later, something went wrong!"
         
@@ -111,7 +97,7 @@ class ProductInfoCell: UITableViewCell {
         UIApplication.shared.keyWindow?.rootViewController?.present(popup, animated: true, completion: nil)
     }
     
-    //Can be used to set button back to active aswell.
+    // Can be used to set button back to active as well.
     func setDeliveredButton(isActive: Bool, buttonColor: UIColor) {
         deliveredBtn.isEnabled = isActive
         deliveredBtn.backgroundColor = buttonColor
@@ -140,18 +126,32 @@ class ProductInfoCell: UITableViewCell {
                     self.productDetail = Product(snapshot: product)
                 }
             }
-            //check if firebase returned anything, if not display error dialog.
+            // Check if firebase returned anything, if not display error dialog.
             if(self.productDetail?.id != nil) {
-                //if succeeded, add favorite as new request with completed on true, and remove the favorite.
+                // If succeeded, add favorite as new request with completed on true, and remove the favorite.
                 if let productID = Int((self.productDetail?.id)!) {
-                    Constants.setRequest(requestLatestId: latestId, productId: productID, customerChairNumber: self.userChairNumber.text!, completed: Constants.requestCompletedTrue, flyingBlueNumber: Constants.emptyString, flyingBlueMiles: (self.productDetail?.fbMiles)!)
+                    Constants.setRequest(requestLatestId: latestId, productId: productID, customerChairNumber: self.userChairNumber.text!, completed: Constants.requestIsCompleted, flyingBlueNumber: Constants.emptyString, flyingBlueMiles: (self.productDetail?.fbMiles)!)
                     let favoriteRef = Constants.getFavoriteRef()
                     favoriteRef.child((self.requestDetail?.deviceId)!).child((self.favorite?.id)!).removeValue()
                     self.showConfirmDialog()
                 }
-            }else {
+            } else {
                 self.showErrorDialog()
             }
         })
+    }
+    
+    // PRAGMA MARK: - Private
+    private func setupStyling() {
+        chairNumberView.layer.cornerRadius = Constants.chairNumberViewCornerRadius
+        chairNumberView.layer.borderColor = Constants.radiusBorderColor
+        chairNumberView.layer.borderWidth = Constants.cellBorderWidth
+        chairNumberView.layer.shadowColor = Constants.radiusShadowColor
+        chairNumberView.layer.shadowOpacity = Constants.shadowOpacity
+        chairNumberView.layer.shadowRadius = Constants.shadowRadius
+        chairNumberView.layer.shadowOffset = Constants.shadowOffset
+        
+        deliveredBtn.layer.cornerRadius = Constants.buttonCornerRadius
+        deliveredBtn.layer.borderColor = Constants.radiusBorderColor
     }
 }

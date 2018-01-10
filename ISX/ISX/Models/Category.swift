@@ -18,7 +18,7 @@ class Category {
     let ref: DatabaseReference?
         
     init(snapshot: DataSnapshot) {
-        let dict = snapshot.value as! [String:AnyObject]
+        let dict = snapshot.value as! [String : AnyObject]
         categoryID = dict["ID"] as! String
         categoryName = dict["Product_groep"] as! String
         self.ref = snapshot.ref

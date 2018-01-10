@@ -1,5 +1,5 @@
 //
-//  FavoritesInRequestCell.swift
+//  CCFavoritesCell.swift
 //  ISX
 //
 //  Created by Robby Michels on 28-11-17.

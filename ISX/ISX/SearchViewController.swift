@@ -46,7 +46,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      */
     func configureDatabase() {
         datarootRef = Database.database().reference(withPath: "dataroot")
-        productsRef = datarootRef?.child("products")
+        productsRef = Constants.getProductRef()
         
         productsRef?.observe(.value, with: { snapshot in
             for item in snapshot.children {
@@ -117,14 +117,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedProduct = filteredProductsArray[indexPath.row]
-        performSegue(withIdentifier: "searchToProductInfoSegue", sender: self)
+        performSegue(withIdentifier: Constants.searchToProductInfo, sender: self)
     }
     
     /*
      Prepare for searchToProductInfoSegue
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "searchToProductInfoSegue" {
+        if segue.identifier == Constants.searchToProductInfo {
             if let nextViewController = segue.destination as? ProductInfoController {
                 if (selectedProduct != nil) {
                     nextViewController.product = selectedProduct

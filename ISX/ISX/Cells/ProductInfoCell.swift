@@ -102,7 +102,7 @@ class ProductInfoCell: UITableViewCell {
     func showErrorDialog() {
         //Text can be changed ofcourse, its just some demo text
         let title = "Oops, Something went wrong!"
-        let message = "Try again later, something went wrong!"
+        let message = "Please try again later"
         
         let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
                                 transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)

@@ -16,7 +16,7 @@ class LocationInfoCell: UITableViewCell {
     @IBOutlet weak var productDrawerIca: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     
-    func setCellData(product: Product) {
+    func setProductData(product: Product) {
         productDrawerEurNorway.text = "Drawer Norway: " + product.drawer_EUR_Norway_Suisse
         productDrawerEurExt.text = "Drawer Extended: " + product.drawer_EUR_extended
         productDrawerEurReduced.text = "Drawer Reduced: " + product.drawer_EUR_reduced
@@ -24,7 +24,7 @@ class LocationInfoCell: UITableViewCell {
         productImage.image = product.image
     }
     
-    func setCellData(product: Favorite) {
+    func setFavoriteData(product: Favorite) {
         productDrawerEurNorway.text = "Drawer Norway: " + product.drawer_EUR_Norway_Suisse
         productDrawerEurExt.text = "Drawer Extended: " + product.drawer_EUR_extended
         productDrawerEurReduced.text = "Drawer Reduced: " + product.drawer_EUR_reduced

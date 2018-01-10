@@ -252,7 +252,7 @@
                                     <outlet property="userChairNumber" destination="IIh-27-V8b" id="jmi-ee-a1f"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="requestLocationLabelCell" rowHeight="36" id="Jhs-XQ-Iul" customClass="LocationLabelCell" customModule="ISX_CabinCrew" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="requestLocationLabelCell" rowHeight="36" id="Jhs-XQ-Iul">
                                 <rect key="frame" x="0.0" y="178" width="375" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jhs-XQ-Iul" id="rdL-lH-Dlt">
@@ -434,7 +434,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vU2-w1-ASk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3181.5999999999999" y="-11.244377811094454"/>
+            <point key="canvasLocation" x="2319" y="-11"/>
         </scene>
         <!--Request Favorites View Controller-->
         <scene sceneID="ipz-e7-sNd">
@@ -649,7 +649,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dyq-TR-a5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4126" y="-11"/>
+            <point key="canvasLocation" x="3063" y="-11"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gDR-s7-sBd">

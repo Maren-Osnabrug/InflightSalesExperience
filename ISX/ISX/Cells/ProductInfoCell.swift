@@ -76,28 +76,28 @@ class ProductInfoCell: UITableViewCell {
     }
     
     func showConfirmDialog() {
-        let title = "Product sold!"
-        let message = "Good Job! The sold items and sales amount will be updated. Keep up the good work!"
+        let title = Constants.Popup.productSoldTitle
+        let message = Constants.Popup.productSoldMsg
         
         let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
                                 transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)
-        let buttonOne = DefaultButton(title: "I understand") {}
+        let buttonOne = DefaultButton(title: Constants.Popup.understand) {}
         popup.addButton(buttonOne)
         UIApplication.shared.keyWindow?.rootViewController?.present(popup, animated: true, completion: nil)
     }
     
     func showErrorDialog() {
-        let title = "Oops, Something went wrong!"
-        let message = "Please try again later"
+        let title = Constants.Popup.errorTitle
+        let message = Constants.Popup.errorMsg
         
         let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
                                 transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)
-        let buttonOne = DefaultButton(title: "I understand") {}
+        let buttonOne = DefaultButton(title: Constants.Popup.understand) {}
         popup.addButton(buttonOne)
         UIApplication.shared.keyWindow?.rootViewController?.present(popup, animated: true, completion: nil)
     }
     
-    // Can be used to set button back to active as well.
+    // Can be used to set button to (in)active
     func setDeliveredButton(isActive: Bool, buttonColor: UIColor) {
         deliveredBtn.isEnabled = isActive
         deliveredBtn.backgroundColor = buttonColor

@@ -99,39 +99,33 @@ class RequestDetailViewController: UITableViewController {
         }
     }
     
-    //Create each of the different cells, based on indexPath.
+    // Create each of the different cells, based on indexPath.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row == 0) {
+        if (indexPath.row == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCrequestProductInfo, for: indexPath) as? ProductInfoCell {
-                cell.setCellData(productName: (self.productDetail?.title)!, usersChairNumber: (requestDetail?.chairnumber)!, productNumber: (productDetail?.prologisticaNumberHH)!, productReference: (requestDetail?.requestDatabaseRef)!, isActive: (requestDetail?.request?.completed)!)
+                cell.setProductData(productName: (self.productDetail?.title)!, usersChairNumber: (requestDetail?.chairnumber)!, productNumber: (productDetail?.prologisticaNumberHH)!, productReference: (requestDetail?.requestDatabaseRef)!, isActive: (requestDetail?.request?.completed)!)
                 return cell
             }
-        } else if(indexPath.row == 1) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationLabel, for: indexPath) as? LocationLabelCell {
-                return cell
-            }
-        } else if(indexPath.row == 2) {
+        } else if (indexPath.row == 1) {
+            return tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationLabel, for: indexPath) as UITableViewCell
+        } else if (indexPath.row == 2) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationInfo, for: indexPath) as? LocationInfoCell {
-                cell.setCellData(product: productDetail!)
+                cell.setProductData(product: productDetail!)
                 return cell
             }
-        } else if(indexPath.row == 3) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCFavoritesLabel, for: indexPath) as? FavoritesLabelCell {
-                return cell
-            }
-        } else if(indexPath.row >= 4 && indexPath.row < ((NUMBEROFCELLS + (arrayWithFavorites.count) - 2))) {
+        } else if (indexPath.row == 3) {
+            return tableView.dequeueReusableCell(withIdentifier: Constants.CCFavoritesLabel, for: indexPath) as UITableViewCell
+        } else if (indexPath.row >= 4 && indexPath.row < ((NUMBEROFCELLS + (arrayWithFavorites.count) - 2))) {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCfavoritesInfo, for: indexPath) as? CCFavoritesCell {
                     cell.setProductName(productName: arrayWithFavorites[(indexPath.row - 4)].title)
                     return cell
                 }
-        } else if(indexPath.row == ((NUMBEROFCELLS + arrayWithFavorites.count) - 1) ) {
+        } else if (indexPath.row == ((NUMBEROFCELLS + arrayWithFavorites.count) - 1) ) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductDetail, for: indexPath) as? ProductDetailCell {
                 return cell
             }
         } else {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductLabel, for: indexPath) as? ProductDetailLabelCell {
-                return cell
-            }
+            return tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductLabel, for: indexPath) as UITableViewCell
         }
         return UITableViewCell()
     }

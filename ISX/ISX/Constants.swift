@@ -38,6 +38,15 @@ struct Constants {
 //      PRAGMA MARK: Reuse Strings
     static let noImageAvailable: String = "noImageAvailable"
     
+//      PRAGMA MARK: Popup Strings
+    struct Popup {
+        static let productSoldTitle: String = "Product sold!"
+        static let productSoldMsg: String = "Good Job! The sold items and sales amount will be updated. Keep up the good work!"
+        static let errorTitle: String = "Oops, Something went wrong!"
+        static let errorMsg: String = "Please try again later"
+        static let understand: String = "I understand"
+    }
+    
 //      PRAGMA MARK: Spacing
     static let sectionInsetsCollectionView: CGFloat = 60
     static let dividingFactorCollectionViewCell: CGFloat = 2

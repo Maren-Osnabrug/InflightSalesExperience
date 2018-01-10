@@ -45,27 +45,23 @@ class RequestFavoritesViewController: UITableViewController {
         }
     }
     
-    //Create each of the different cells, based on indexPath.
+    // Create each of the different cells, based on indexPath.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.row) {
         case 0  :
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCrequestProductInfo, for: indexPath) as? ProductInfoCell {
-                cell.setCellData(productName: (favorite?.title)!, productNumber: (favorite?.prologistricaNumberHH)!, isFavorite: true, favorite: favorite!, requestDetail: requestDetail!)
+                cell.setFavoriteData(productName: (favorite?.title)!, productNumber: (favorite?.prologistricaNumberHH)!, isFavorite: true, favorite: favorite!, requestDetail: requestDetail!)
                 return cell
             }
         case 1  :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationLabel, for: indexPath) as? LocationLabelCell {
-                return cell
-            }
+                return tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationLabel, for: indexPath) as UITableViewCell
         case 2  :
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationInfo, for: indexPath) as? LocationInfoCell {
-                cell.setCellData(product: favorite!)
+                cell.setFavoriteData(product: favorite!)
                 return cell
             }
         case 3  :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductLabel, for: indexPath) as? ProductDetailLabelCell {
-                return cell
-            }
+                return tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductLabel, for: indexPath) as UITableViewCell
         case 4  :
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductDetail, for: indexPath) as? ProductDetailCell {
                 return cell

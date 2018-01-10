@@ -132,7 +132,7 @@ class ProductInfoController : UITableViewController {
 
         let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
                                 transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)
-        let buttonOne = DefaultButton(title: "I understand") {}
+        let buttonOne = DefaultButton(title: Constants.Popup.understand) {}
         popup.addButton(buttonOne)
         present(popup, animated: true, completion: nil)
     }

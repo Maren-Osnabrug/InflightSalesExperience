@@ -13,6 +13,7 @@ class RequestFavoritesViewController: UITableViewController {
     var favorite: Favorite?
     var requestDetail: RequestDetail?
     final let NUMBEROFROWS = 5
+    final let SWITCHDEFAULT: CGFloat = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class RequestFavoritesViewController: UITableViewController {
         case 4  :
             return Constants.requestExtraProductInfoCellSize
         default :
-            return 0
+            return SWITCHDEFAULT
         }
     }
     

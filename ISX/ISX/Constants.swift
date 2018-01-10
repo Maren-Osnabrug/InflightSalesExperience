@@ -45,6 +45,8 @@ struct Constants {
         static let errorTitle: String = "Oops, Something went wrong!"
         static let errorMsg: String = "Please try again later"
         static let understand: String = "I understand"
+        static let enterAccountDetails: String = "Please enter an email address and a password"
+        static let wrongAccountDetails: String = "Incorrect email address or password"
     }
     
 //      PRAGMA MARK: Spacing
@@ -74,6 +76,7 @@ struct Constants {
     static let cabincrewToProductDetail = "cabincrewToRequestInfoSegue"
     static let productDetailToRequestFavorite = "requestdetailToRequestFavorites"
     static let productToProductInfo = "productsDetailSegue"
+    static let searchToProductInfo = "searchToProductInfoSegue"
     
 //      PRAGMA MARK: Row heights
     static let tableViewRowHeight:CGFloat = 85
@@ -96,6 +99,7 @@ struct Constants {
     static let firebaseProductGroupsTable = "productGroups"
     static let firebaseRequestsTable = "requests"
     static let firebaseHouseTable = "houses"
+    static let firebaseCrewTable = "crew"
     private static let keepFirebaseSynced = true
 
 //      PRAGMA MARK: Calculate miles
@@ -154,6 +158,11 @@ struct Constants {
     static func getHouseRef() -> DatabaseReference {
         let databaseRootRef = getRootRef()
         return databaseRootRef.child(firebaseHouseTable)
+    }
+    
+    static func getCrewRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseCrewTable)
     }
     
     static func setRequest(requestLatestId: Int,productId: Int, customerChairNumber: String,

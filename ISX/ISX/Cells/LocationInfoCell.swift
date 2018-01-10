@@ -17,18 +17,19 @@ class LocationInfoCell: UITableViewCell {
     @IBOutlet weak var productImage: UIImageView!
     
     func setProductData(product: Product) {
-        productDrawerEurNorway.text = "Drawer Norway: " + product.drawer_EUR_Norway_Suisse
-        productDrawerEurExt.text = "Drawer Extended: " + product.drawer_EUR_extended
-        productDrawerEurReduced.text = "Drawer Reduced: " + product.drawer_EUR_reduced
-        productDrawerIca.text = "Drawer ICA: " + product.drawer_ICA
+        productDrawerEurNorway.text = Constants.drawerEurNorway + product.drawer_EUR_Norway_Suisse
+        productDrawerEurExt.text = Constants.drawerEurExt + product.drawer_EUR_extended
+        productDrawerEurReduced.text = Constants.drawerEurReduced + product.drawer_EUR_reduced
+        productDrawerIca.text = Constants.drawerIca + product.drawer_ICA
         productImage.image = product.image
     }
     
     func setFavoriteData(product: Favorite) {
-        productDrawerEurNorway.text = "Drawer Norway: " + product.drawer_EUR_Norway_Suisse
-        productDrawerEurExt.text = "Drawer Extended: " + product.drawer_EUR_extended
-        productDrawerEurReduced.text = "Drawer Reduced: " + product.drawer_EUR_reduced
-        productDrawerIca.text = "Drawer ICA: " + product.drawer_ICA
+        productDrawerEurNorway.text = Constants.drawerEurNorway + product.drawer_EUR_Norway_Suisse
+        productDrawerEurExt.text = Constants.drawerEurExt + product.drawer_EUR_extended
+        productDrawerEurReduced.text = Constants.drawerEurReduced + product.drawer_EUR_reduced
+        productDrawerIca.text = Constants.drawerIca + product.drawer_ICA
         productImage.image = product.image
     }
+
 }

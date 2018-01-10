@@ -38,7 +38,7 @@ class LoginViewController:UIViewController {
         } else {
             Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
                 if (error == nil) {
-                    //Redirect to cabin crew
+                    // Redirect to cabin crew
                     let crewRef = Database.database().reference(withPath: "dataroot").child("crew")
                     let crewMemberRef = crewRef.childByAutoId()
                     let key = "deviceID\(crewMemberRef.key)"
@@ -48,7 +48,7 @@ class LoginViewController:UIViewController {
 
                     self.performSegue(withIdentifier: "loginSeque", sender: self)
                 } else {
-                    //Alert user that an error occurred and shows firebase error
+                    // Alert user that an error occurred and shows firebase error
                     let alertController = UIAlertController(title: "Error", message: "Incorrect email address or password.", preferredStyle: .alert)
                     let acknowledgedAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
                     alertController.addAction(acknowledgedAction)

@@ -105,7 +105,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      Add search results from array to cell in tableView
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let searchCell = Bundle.main.loadNibNamed("SearchCell", owner: self, options: nil)?.first as? SearchCell
+        guard let searchCell = Bundle.main.loadNibNamed("searchCell", owner: self, options: nil)?.first as? SearchCell
         else { return UITableViewCell() }
         let product = filteredProductsArray[indexPath.row]
         searchCell.setSearchCell(product: product)

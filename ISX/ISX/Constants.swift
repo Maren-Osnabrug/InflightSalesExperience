@@ -37,6 +37,10 @@ struct Constants {
 
 //      PRAGMA MARK: Reuse Strings
     static let noImageAvailable: String = "noImageAvailable"
+    static let drawerEurNorway: String = "Drawer Norway: "
+    static let drawerEurExt: String = "Drawer Extended: "
+    static let drawerEurReduced: String = "Drawer Reduced: "
+    static let drawerIca: String = "Drawer ICA: "
     
 //      PRAGMA MARK: Popup Strings
     struct Popup {
@@ -45,6 +49,7 @@ struct Constants {
         static let errorTitle: String = "Oops, Something went wrong!"
         static let errorMsg: String = "Please try again later"
         static let understand: String = "I understand"
+        static let orderTitle: String = "Inflight Sales Order"
     }
     
 //      PRAGMA MARK: Spacing

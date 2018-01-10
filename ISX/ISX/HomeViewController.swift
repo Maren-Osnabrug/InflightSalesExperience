@@ -24,7 +24,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
         Database.database().isPersistenceEnabled = true
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         collectionView?.delegate = self

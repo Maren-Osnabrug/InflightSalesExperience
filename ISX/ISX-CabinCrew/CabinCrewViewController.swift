@@ -13,6 +13,7 @@ import UserNotifications
 import NVActivityIndicatorView
 
 class CabinCrewViewController: UITableViewController {
+    
     var requestsArray = [Request]()
     var flightsArray = [Flight]()
     var productsArray = [Product]()
@@ -96,7 +97,7 @@ class CabinCrewViewController: UITableViewController {
         let notificationContent = UNMutableNotificationContent()
         
         // Configure Notification Content
-        notificationContent.title = "Inflight Sales Order"
+        notificationContent.title = Constants.Popup.orderTitle
         notificationContent.body = "A passenger ordered a product on seat: \(customerChair)"
         
         // Add Trigger
@@ -161,7 +162,7 @@ class CabinCrewViewController: UITableViewController {
             let flight = flightsArray[1]
             var currentRevenue = Int()
             for request in requestsArray {
-                if let found = productsArray.first(where: { $0.id.elementsEqual(String(request.productId)) && request.completed == true}) {
+                if let found = productsArray.first(where: { $0.id.elementsEqual(String(request.productId)) && request.completed == true }) {
                     currentRevenue += found.retailPrice
                 }
             }
@@ -199,7 +200,7 @@ class CabinCrewViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == Constants.cabincrewToProductDetail {
+        if (segue.identifier == Constants.cabincrewToProductDetail) {
             if let nextViewController = segue.destination as? RequestDetailViewController {
                 guard let productID = self.selectedRequest?.productId else { return }
                 guard let chairNumber = self.selectedRequest?.customerChair else { return }
@@ -213,7 +214,7 @@ class CabinCrewViewController: UITableViewController {
     
     //Reload the page, after being away from it, or changed pages.
     override func viewDidAppear(_ animated: Bool) {
-        if(initialLoad) {
+        if (initialLoad) {
             observeRequests()
         }
     }

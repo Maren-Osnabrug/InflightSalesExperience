@@ -22,8 +22,9 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = category?.categoryName        
+        title = category?.categoryName
+        activityIndicatorView = NVActivityIndicatorView(frame: view.frame, type: .ballSpinFadeLoader, color: Constants.spinnerGrey, padding: Constants.indicatorPadding)
+        collectionView?.addSubview(activityIndicatorView!)
         getHouses(categoryId: (category?.categoryID)!)
     }
 
@@ -45,7 +46,7 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
     
     public func getHouses(categoryId: String) {
         let houseRef = Constants.getHouseRef()
-        houseRef.keepSynced(true)
+        houseRef.keepSynced(Constants.isFirebaseSynced())
         activityIndicatorView?.startAnimating()
         houseRef.observe(.value, with: { snapshot in
             for item in snapshot.children {

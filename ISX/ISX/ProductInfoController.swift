@@ -12,14 +12,6 @@ import FirebaseDatabase
 import SceneKit
 import PopupDialog
 
-extension Int {
-    func withCommas() -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        return numberFormatter.string(from: NSNumber(value:self))!
-    }
-}
-
 class ProductInfoController : UITableViewController {
     @IBOutlet weak var productInfoTableView: UITableView!
     @IBOutlet weak var productImageView: UIImageView!
@@ -97,13 +89,13 @@ class ProductInfoController : UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Constants.productInfoToAR {
+        if (segue.identifier == Constants.productInfoToAR) {
             if let controller = segue.destination as? ARViewController {
                 if let ARproduct = product {
                     controller.product = ARproduct
                 }
             }
-        } else if segue.identifier == Constants.productInfoToWeb {
+        } else if (segue.identifier == Constants.productInfoToWeb) {
             if let controller = segue.destination as? WebViewController {
                 if let url = product?.url {
                     controller.url = URL(string: url)!
@@ -113,13 +105,13 @@ class ProductInfoController : UITableViewController {
     }
     
     func showOrderDialog() {
-        let title = "Delivery now or later?"
-        let message = "If you are currently on a plane -> press Now. If you want the product delivered on a different flight or at home -> press later."
+        let title = Constants.Popup.deliveryTitle
+        let message = Constants.Popup.deliveryMsg
         
         let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
                                 transitionStyle: .bounceUp, gestureDismissal: true, hideStatusBar: true)
-        let buttonOne = DefaultButton(title: "Now") { self.showInputDialog()}
-        let buttonTwo = DefaultButton(title: "Later") {
+        let buttonOne = DefaultButton(title: Constants.Popup.now) { self.showInputDialog()}
+        let buttonTwo = DefaultButton(title: Constants.Popup.later) {
             self.performSegue(withIdentifier:  Constants.productInfoToWeb, sender: self)
         }
         popup.addButtons([buttonOne, buttonTwo])
@@ -127,7 +119,7 @@ class ProductInfoController : UITableViewController {
     }
     
     func showConfirmDialog(productName: String) {
-        let title = "Request made!"
+        let title = Constants.Popup.confirmTitle
         let message = "Thank you for requesting \(productName). Cabin crew has been notified and will bring your item as soon as possible. Be advised this might take some time."
 
         let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal,
@@ -138,15 +130,15 @@ class ProductInfoController : UITableViewController {
     }
     
     func showInputDialog() {
-        let popupVC = PopupViewController(nibName: "popupView", bundle: nil)
+        let popupVC = PopupViewController(nibName: Constants.popupView, bundle: nil)
         let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceUp, gestureDismissal: true)
-        let cancelButton = CancelButton(title: "Cancel", height: 60) {
+        let cancelButton = CancelButton(title: Constants.Popup.cancel, height: 60) {
         }
-        let requestButton = DefaultButton(title: "I want it!", height: 60, dismissOnTap: false) {
+        let requestButton = DefaultButton(title: Constants.Popup.want, height: 60, dismissOnTap: false) {
             guard let customerChairNumber =  popupVC.chairNumberTextField.text else {return}
-            var flyingBlueNumber = ""
+            var flyingBlueNumber = Constants.emptyString
             if (popupVC.flyingBlueNumberTextField.text == nil) {
-                flyingBlueNumber = ""
+                flyingBlueNumber = Constants.emptyString
             } else {
                 flyingBlueNumber = popupVC.flyingBlueNumberTextField.text!
             }
@@ -205,10 +197,9 @@ class ProductInfoController : UITableViewController {
     }
     
     func setupReferences() {
-        datarootRef = Database.database().reference(withPath: "dataroot")
-        requestsRef = datarootRef?.child("requests")
-        favoriteRef = datarootRef?.child("favorite")
-        requestsRef?.keepSynced(true)
+        requestsRef = Constants.getRequestRef()
+        favoriteRef = Constants.getFavoriteRef()
+        requestsRef?.keepSynced(Constants.isFirebaseSynced())
     }
     
     func isValidChairNumber(chairNumber: String) -> Bool {
@@ -223,8 +214,8 @@ class ProductInfoController : UITableViewController {
     func handleFavoriteInFirebase(isFavorite: Bool) {
         if let productID = product?.id {
             if (isFavorite) {
-                if let favProduct = self.product {
-                    addFavoriteProduct(product: favProduct)
+                if let favoriteProduct = self.product {
+                    addFavoriteProduct(product: favoriteProduct)
                 }
             } else {
                 deleteFavorite(productID: productID)
@@ -249,5 +240,13 @@ class ProductInfoController : UITableViewController {
     
     func deleteFavorite(productID: String) {
         favoriteRef?.child(Constants.DEVICEID).child(productID).removeValue()
+    }
+}
+
+extension Int {
+    func withCommas() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        return numberFormatter.string(from: NSNumber(value:self))!
     }
 }

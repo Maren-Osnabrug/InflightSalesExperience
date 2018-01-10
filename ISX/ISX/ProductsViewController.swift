@@ -31,8 +31,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var counter = 0
     private let viewName = "Product Overview"
     var activityIndicatorView: NVActivityIndicatorView?
-    
-    //this has to be replaced by an algorithm at some point.
+
     var relevantArray: [Product] = []
     
     override func viewDidLoad() {
@@ -58,10 +57,10 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         setLabelOnEmptyCollectionView(emptyArray: false)
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath)
+        if let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.productCell, for: indexPath)
             as? ProductCell {
-            cell.setCellData(product: productsArray[indexPath.row])
-            return cell
+            productCell.setCellData(product: productsArray[indexPath.row])
+            return productCell
         }
         return UICollectionViewCell()
     }
@@ -72,9 +71,8 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     public func getProducts(categoryId: String) {
-        let rootRef = Database.database().reference(withPath: "dataroot")
-        let productRef = rootRef.child("products")
-        productRef.keepSynced(true)
+        let productRef = Constants.getProductRef()
+        productRef.keepSynced(Constants.isFirebaseSynced())
         activityIndicatorView?.startAnimating()
         productRef.observe(.value, with: { snapshot in
             for item in snapshot.children {
@@ -92,11 +90,11 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedProduct = productsArray[indexPath.row]
-        performSegue(withIdentifier: "productInfoSegue", sender: self)
+        performSegue(withIdentifier: Constants.categoryToProductInfo, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "productInfoSegue" {
+        if (segue.identifier == Constants.categoryToProductInfo) {
             if let nextViewController = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     nextViewController.product = product
@@ -129,17 +127,16 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
             sortFor(property: sortableProperties.sortPrice)
         } else {
             counter = 0
-            self.productsArray = self.relevantArray
-            self.sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue
-            self.collectionView.reloadData()
+            productsArray = self.relevantArray
+            sortLabel.text = Constants.sortBy + sortableProperties.sortRelevant.rawValue
+            collectionView.reloadData()
         }
     }
 
     
     func setLabelOnEmptyCollectionView(emptyArray: Bool) {
         let emptyLabel = getNoProductsLabel()
-        
-        if emptyArray {
+        if (emptyArray) {
             collectionView.backgroundView = emptyLabel
         } else {
             collectionView.backgroundView = nil
@@ -147,9 +144,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func getNoProductsLabel() -> UILabel {
-        let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-        emptyLabel.text = "Unfortunately there were no products found in this category. Please choose one of our other categories"
-        emptyLabel.textColor = UIColor(red:0.81, green:0.83, blue:0.82, alpha:1.0)
+        let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+        emptyLabel.text = Constants.nothingHere
+        emptyLabel.textColor = Constants.darkGrey
         emptyLabel.numberOfLines = 3
         emptyLabel.textAlignment = NSTextAlignment.center
         return emptyLabel

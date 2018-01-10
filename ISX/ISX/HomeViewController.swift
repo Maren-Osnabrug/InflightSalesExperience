@@ -13,7 +13,6 @@ import NVActivityIndicatorView
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var datarootRef: DatabaseReference?
     var productsRef: DatabaseReference?
     
     var suggestedProductsArray = [Product]()
@@ -25,7 +24,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Database.database().isPersistenceEnabled = true
         GoogleAnalyticsHelper().googleAnalyticLogScreen(screen: viewName)
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -35,8 +33,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
 
     func configureDatabase() {
-        datarootRef = Database.database().reference(withPath: "dataroot")
-        productsRef = datarootRef?.child("products")
+        productsRef = Constants.getProductRef()
         productsRef?.keepSynced(true)
         activityIndicatorView?.startAnimating()
         productsRef?.queryOrdered(byChild: "Bestsellers").queryStarting(atValue: "1").observe(.value, with: { snapshot in
@@ -57,11 +54,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "suggestionCell", for: indexPath) as? SuggestionCell
+        guard let suggestionCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.suggestionCell, for: indexPath) as? SuggestionCell
             else { return UICollectionViewCell() }
 
-        cell.setupData(product: suggestedProductsArray[indexPath.row])
-        return cell
+        suggestionCell.setupData(product: suggestedProductsArray[indexPath.row])
+        return suggestionCell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -75,12 +72,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionElementKindSectionHeader:
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HomeCollectionViewHeader", for: indexPath) as? HomeCollectionViewHeader else { return UICollectionReusableView() }
+        if (kind == UICollectionElementKindSectionHeader) {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.homeCollectionViewHeader, for: indexPath) as? HomeCollectionViewHeader else { return UICollectionReusableView() }
             return headerView
-        default:
-            assert(false, "Unexpected element kind")
+        } else {
+            return UICollectionReusableView()
         }
     }
     
@@ -96,7 +92,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func didTapSearch() {
-        let searchViewController = storyboard?.instantiateViewController(withIdentifier: "searchViewController")
+        let searchViewController = storyboard?.instantiateViewController(withIdentifier: Constants.searchViewController)
         let navigationController = UINavigationController(rootViewController: searchViewController!)
         navigationController.setViewControllers([searchViewController!], animated: false)
         navigationController.modalTransitionStyle = .crossDissolve

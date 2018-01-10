@@ -27,14 +27,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.titleView = searchController.searchBar
         searchController.searchBar.delegate = self
         
-        styling()
+        setupStyling()
         configureDatabase()
     }
     
     /*
      Styling for page
     */
-    func styling() {
+    func setupStyling() {
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         searchController.searchBar.backgroundColor = Constants.blue
@@ -45,7 +45,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      Database setup
      */
     func configureDatabase() {
-        datarootRef = Database.database().reference(withPath: "dataroot")
         productsRef = Constants.getProductRef()
         
         productsRef?.observe(.value, with: { snapshot in
@@ -81,9 +80,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      */
     func updateSearchResults(for searchController: UISearchController) {
         filteredProductsArray = product.filter({ (product: Product) -> Bool in
-            if product.title.lowercased().contains(self.searchController.searchBar.text!.lowercased()) {
+            if (product.title.lowercased().contains(self.searchController.searchBar.text!.lowercased())) {
                 return true
-            }else {
+            } else {
                 return false
             }
         })
@@ -105,7 +104,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      Add search results from array to cell in tableView
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let searchCell = Bundle.main.loadNibNamed("searchCell", owner: self, options: nil)?.first as? SearchCell
+        guard let searchCell = Bundle.main.loadNibNamed(Constants.searchCell, owner: self, options: nil)?.first as? SearchCell
         else { return UITableViewCell() }
         let product = filteredProductsArray[indexPath.row]
         searchCell.setSearchCell(product: product)
@@ -124,7 +123,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      Prepare for searchToProductInfoSegue
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == Constants.searchToProductInfo {
+        if (segue.identifier == Constants.searchToProductInfo) {
             if let nextViewController = segue.destination as? ProductInfoController {
                 if (selectedProduct != nil) {
                     nextViewController.product = selectedProduct

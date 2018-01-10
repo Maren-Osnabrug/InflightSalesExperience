@@ -37,13 +37,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath)
+        guard let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.categoryCell, for: indexPath)
             as? CategoryCell else {
                 return UICollectionViewCell()
         }
         
-        cell.setCategoryData(category: categoryArray[indexPath.row])
-        return cell
+        categoryCell.setCategoryData(category: categoryArray[indexPath.row])
+        return categoryCell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -52,9 +52,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
     }
     
     public func getFirebaseData(){
-        let datarootRef = Database.database().reference(withPath: "dataroot")
-        let productGroupsRef = datarootRef.child("productGroups")
-        productGroupsRef.keepSynced(true)
+        let productGroupsRef = Constants.getProductGroupsRef()
+        productGroupsRef.keepSynced(Constants.isFirebaseSynced())
         activityIndicatorView?.startAnimating()
         productGroupsRef.observe(.value, with: { snapshot in
             for item in snapshot.children {

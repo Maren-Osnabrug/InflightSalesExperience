@@ -47,7 +47,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
     // Adds one node to the sceneview, without position specified it spawns at defaults values
     func addProduct(x: Float = 0.0, y: Float = -0.15, z: Float = -0.9) {
         if let product = product, let scene = SCNScene(named: "art.scnassets/\(product.id)/\(product.id).dae") {
-            let node = scene.rootNode.childNode(withName: "node", recursively: true)
+            let node = scene.rootNode.childNode(withName: Constants.nodeName, recursively: true)
             node?.eulerAngles.y = -.pi / 2
             let camera = sceneView.pointOfView!
             let position = SCNVector3(x, y, z)

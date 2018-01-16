@@ -13,9 +13,7 @@ import NVActivityIndicatorView
 
 class FavoritesViewController: UITableViewController {
     private var favoritesArray = [Product]()
-    private var datarootRef: DatabaseReference?
     private var favoriteRef: DatabaseReference?
-    private var productsRef: DatabaseReference?
     var selectedProduct: Product?
     private let viewName = "Favorite view"
     var activityIndicatorView: NVActivityIndicatorView?
@@ -31,9 +29,8 @@ class FavoritesViewController: UITableViewController {
     }
     
     func setupReference() {
-        datarootRef = Database.database().reference(withPath: "dataroot")
-        favoriteRef = datarootRef?.child("favorite")
-        favoriteRef?.keepSynced(true)
+        favoriteRef = Constants.getFavoriteRef()
+        favoriteRef?.keepSynced(Constants.isFirebaseSynced())
         observeFavorites()
     }
     
@@ -60,8 +57,7 @@ class FavoritesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomFavoritesCell", for: indexPath) as? FavoritesCell else { return UITableViewCell() }
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.favoritesCell, for: indexPath) as? FavoritesCell else { return UITableViewCell() }
         cell.updateWithFavorite(favorite: favoritesArray[indexPath.row])
         return cell
     }
@@ -69,11 +65,11 @@ class FavoritesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedProduct = favoritesArray[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "favoriteToProductSegue", sender: self)
+        performSegue(withIdentifier: Constants.favoriteToProduct, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "favoriteToProductSegue" {
+        if segue.identifier == Constants.favoriteToProduct {
             if let controller = segue.destination as? ProductInfoController {
                 if let product = selectedProduct {
                     controller.product = product
@@ -96,7 +92,7 @@ class FavoritesViewController: UITableViewController {
     }
     
     func deleteFavorite(productID: String, indexPath: IndexPath) {
-        datarootRef?.child("favorite").child(Constants.DEVICEID).child(productID).removeValue()
+        Constants.getFavoriteRef().child(Constants.DEVICEID).child(productID).removeValue()
         favoritesArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
     }

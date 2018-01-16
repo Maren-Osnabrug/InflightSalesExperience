@@ -19,10 +19,10 @@ class CategoryCell: UICollectionViewCell {
         setupStyling()
     }
     
-    func setCategoryData(category: Category){
+    func setCategoryData(category: Category) {
         categoryID = category.categoryID
         categoryTitle.text = category.categoryName
-        categoryImage.image = UIImage(named: String(category.categoryID)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(category.categoryID))
+        categoryImage.image = UIImage(named: String(category.categoryID)) == nil ? UIImage(named: Constants.noImageAvailable) : UIImage(named: String(category.categoryID))
     }
     
     // PRAGMA MARK: - Private

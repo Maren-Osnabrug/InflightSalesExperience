@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import PopupDialog
 
 class LoginViewController:UIViewController {
 
@@ -24,35 +25,35 @@ class LoginViewController:UIViewController {
     }
     
     /*
-     * Login function
+     * Login for cabin crew
      */
-    
     @IBAction func loginAction(_ sender: Any) {
         if (emailTextField.text == "" || passwordTextField.text == "") {
-            //Alert user that an error occurred because they didn't fill in the textfields
-            let alertController = UIAlertController(title: "Error", message: "Please enter an email address and a password.", preferredStyle: .alert)
-            let acknowledgedAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alertController.addAction(acknowledgedAction)
-            present(alertController, animated: true, completion: nil)
-            
+            //Alert user if they didn't fill in the textfields
+            let popup = PopupDialog(title: Constants.Popup.errorTitle, message: Constants.Popup.enterAccountDetails, buttonAlignment: .horizontal,
+                                    transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)
+            let buttonOne = DefaultButton(title: Constants.Popup.understand) {}
+            popup.addButton(buttonOne)
+            present(popup, animated: true, completion: nil)
         } else {
             Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
                 if (error == nil) {
                     //Redirect to cabin crew
-                    let crewRef = Database.database().reference(withPath: "dataroot").child("crew")
+                    let crewRef = Constants.getCrewRef()
                     let crewMemberRef = crewRef.childByAutoId()
                     let key = "deviceID\(crewMemberRef.key)"
                     let crewMember = [InstanceID.instanceID().token()!:key]
 
                     crewRef.updateChildValues(crewMember)
 
-                    self.performSegue(withIdentifier: "loginSeque", sender: self)
+                    self.performSegue(withIdentifier: Constants.loginToRequests, sender: self)
                 } else {
-                    //Alert user that an error occurred and shows firebase error
-                    let alertController = UIAlertController(title: "Error", message: "Incorrect email address or password.", preferredStyle: .alert)
-                    let acknowledgedAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-                    alertController.addAction(acknowledgedAction)
-                    self.present(alertController, animated: true, completion: nil)
+                    //Alert user if account details are incorrect
+                    let popup = PopupDialog(title: Constants.Popup.errorTitle, message: Constants.Popup.wrongAccountDetails, buttonAlignment: .horizontal,
+                                            transitionStyle: .zoomIn, gestureDismissal: true, hideStatusBar: true)
+                    let buttonOne = DefaultButton(title: Constants.Popup.understand) {}
+                    popup.addButton(buttonOne)
+                    self.present(popup, animated: true, completion: nil)
                 }
             }
         }

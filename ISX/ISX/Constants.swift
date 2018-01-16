@@ -33,7 +33,35 @@ struct Constants {
     static let shadowOffset = CGSize(width: 1, height: 1)
 
 //      PRAGMA MARK: Display strings
-    static let sortBy = "Sort by: "
+    static let sortBy: String = "Sort by: "
+    static let nothingHere: String = "Unfortunately there were no products found in this category. Please choose one of our other categories"
+
+//      PRAGMA MARK: Reuse Strings
+    static let noImageAvailable: String = "noImageAvailable"
+    static let drawerEurNorway: String = "Drawer Norway: "
+    static let drawerEurExt: String = "Drawer Extended: "
+    static let drawerEurReduced: String = "Drawer Reduced: "
+    static let drawerIca: String = "Drawer ICA: "
+    
+//      PRAGMA MARK: Popup Strings
+    struct Popup {
+        static let productSoldTitle: String = "Product sold!"
+        static let productSoldMsg: String = "Good Job! The sold items and sales amount will be updated. Keep up the good work!"
+        static let errorTitle: String = "Oops, Something went wrong!"
+        static let errorMsg: String = "Please try again later"
+        static let understand: String = "I understand"
+        static let orderTitle: String = "Inflight Sales Order"
+        static let enterAccountDetails: String = "Please enter an email address and a password"
+        static let wrongAccountDetails: String = "Incorrect email address or password"
+        static let cancel: String = "Cancel"
+        static let want: String = "I want it!"
+        static let now: String = "Now"
+        static let later: String = "Later"
+        static let confirmTitle: String = "Request made!"
+        static let confirmMsg: String = "Please try again later"
+        static let deliveryTitle: String = "Delivery now or later?"
+        static let deliveryMsg: String = "If you are currently on a plane -> press Now. If you want the product delivered on a different flight or at home -> press later."
+    }
     
 //      PRAGMA MARK: Spacing
     static let sectionInsetsCollectionView: CGFloat = 60
@@ -49,11 +77,13 @@ struct Constants {
     static let chairNumberRegex = "^\\d{1,2}[A-Za-z]{1}$"
     static let DEVICEID = UIDevice.current.identifierForVendor!.uuidString
     static let imageViewFrame = CGRect(x: 0, y: 0, width: 400, height: 400)
-    static let requestCompletedTrue = true
-    static let requestCompletedFalse = false
+    static let requestIsCompleted = true
+    static let requestIsNotCompleted = false
     static let emptyString: String = ""
+    static let nodeName: String = "node"
 
 //      PRAGMA MARK: Segues
+    static let loginToRequests = "loginSeque"
     static let productInfoToWeb = "productInfoToWebSegue"
     static let productInfoToAR = "productInfoToARSegue"
     static let homeToProductInfo = "homeToProductInfoSegue"
@@ -62,11 +92,14 @@ struct Constants {
     static let cabincrewToProductDetail = "cabincrewToRequestInfoSegue"
     static let productDetailToRequestFavorite = "requestdetailToRequestFavorites"
     static let productToProductInfo = "productsDetailSegue"
+    static let searchToProductInfo = "searchToProductInfoSegue"
+    static let favoriteToProduct = "favoriteToProductSegue"
+    static let categoryToProductInfo = "productInfoSegue"
     
 //      PRAGMA MARK: Row heights
     static let tableViewRowHeight:CGFloat = 85
 
-//      PRAGMA MARK: Cells
+//      PRAGMA MARK: Cell Size
     static let progressBarCellHeight:CGFloat = 100
     static let requestCellHeight:CGFloat = 130
     static let requestProductCellSize: CGFloat = 155
@@ -83,8 +116,9 @@ struct Constants {
     static let firebaseFlightsTable = "flights"
     static let firebaseProductGroupsTable = "productGroups"
     static let firebaseRequestsTable = "requests"
-    private static let keepFirebaseSynced = true
     static let firebaseHouseTable = "houses"
+    static let firebaseCrewTable = "crew"
+    private static let keepFirebaseSynced = true
 
 //      PRAGMA MARK: Calculate miles
     static let multiplierFactorMiles = 400
@@ -106,6 +140,17 @@ struct Constants {
     static let CCExtraProductDetail: String = "requestExtraProductDetailCell"
     static let CCExtraProductLabel: String = "requestExtraProductLabelCell"
     static let houseCell: String = "houseCell"
+    static let favoritesCell: String = "favoritesCell"
+    static let productCell: String = "ProductCell"
+    static let categoryCell: String = "categoryCell"
+    static let suggestionCell: String = "suggestionCell"
+    static let homeCollectionViewHeader: String = "HomeCollectionViewHeader"
+    static let searchViewController: String = "searchViewController"
+    
+//      PRAGMA MARK: Reuse Strings
+    static let requestPopupView: String = "requestPopupView"
+    static let searchCell: String = "searchCell"
+    static let popupView: String = "popupView"
     
 //      PRAGMA MARK: Methods    
     static func isFirebaseSynced() -> Bool { return keepFirebaseSynced }
@@ -132,13 +177,18 @@ struct Constants {
         return databaseRootRef.child(firebaseFlightsTable)
     }
     
-    static func getProductGroupRef() -> DatabaseReference {
+    static func getProductGroupsRef() -> DatabaseReference {
         let databaseRootRef = getRootRef()
         return databaseRootRef.child(firebaseProductGroupsTable)
     }
     static func getHouseRef() -> DatabaseReference {
         let databaseRootRef = getRootRef()
         return databaseRootRef.child(firebaseHouseTable)
+    }
+    
+    static func getCrewRef() -> DatabaseReference {
+        let databaseRootRef = getRootRef()
+        return databaseRootRef.child(firebaseCrewTable)
     }
     
     static func setRequest(requestLatestId: Int,productId: Int, customerChairNumber: String,

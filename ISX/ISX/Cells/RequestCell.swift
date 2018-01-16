@@ -25,7 +25,7 @@ class RequestCell: UITableViewCell {
     
     func setCellData(request: Request) {
         contentView.layer.opacity = request.completed ? 0.25 : 1
-        productImage.image = UIImage(named: String(request.productId)) == nil ? UIImage(named: "noImageAvailable") : UIImage(named: String(request.productId))
+        productImage.image = UIImage(named: String(request.productId)) == nil ? UIImage(named: Constants.noImageAvailable) : UIImage(named: String(request.productId))
         productCode.text = String(request.productId)
         chairLabel.text = String(request.customerChair)
     }

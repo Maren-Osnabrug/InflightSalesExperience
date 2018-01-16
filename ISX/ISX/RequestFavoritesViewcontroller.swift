@@ -22,12 +22,12 @@ class RequestFavoritesViewController: UITableViewController {
         tableView.dataSource = self
     }
     
-    //Return the number of rows that have to be created
+    // Return the number of rows that have to be created
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return NUMBEROFROWS
     }
     
-    //Give each individual cell a custom cellHeight.
+    // Give each individual cell a custom cellHeight.
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.row) {
         case 0  :
@@ -45,34 +45,30 @@ class RequestFavoritesViewController: UITableViewController {
         }
     }
     
-    //Create each of the different cells, based on indexPath.
+    // Create each of the different cells, based on indexPath.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.row) {
-        case 0  :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCrequestProductInfo, for: indexPath) as? ProductInfoCell {
-                cell.setCellData(productName: (favorite?.title)!, productNumber: (favorite?.prologistricaNumberHH)!, isFavorite: true, favorite: favorite!, requestDetail: requestDetail!)
-                return cell
+            case 0:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCrequestProductInfo, for: indexPath) as? ProductInfoCell {
+                    cell.setFavoriteData(productName: (favorite?.title)!, productNumber: (favorite?.prologistricaNumberHH)!, isFavorite: true, favorite: favorite!, requestDetail: requestDetail!)
+                    return cell
+                }
+            case 1:
+                return tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationLabel, for: indexPath) as UITableViewCell
+            case 2:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationInfo, for: indexPath) as? LocationInfoCell {
+                    cell.setFavoriteData(product: favorite!)
+                    return cell
+                }
+            case 3:
+                return tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductLabel, for: indexPath) as UITableViewCell
+            case 4:
+                if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductDetail, for: indexPath) as? ProductDetailCell {
+                    return cell
+                }
+            default:
+                return UITableViewCell()
             }
-        case 1  :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationLabel, for: indexPath) as? LocationLabelCell {
-                return cell
-            }
-        case 2  :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationInfo, for: indexPath) as? LocationInfoCell {
-                cell.setCellData(product: favorite!)
-                return cell
-            }
-        case 3  :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductLabel, for: indexPath) as? ProductDetailLabelCell {
-                return cell
-            }
-        case 4  :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCExtraProductDetail, for: indexPath) as? ProductDetailCell {
-                return cell
-            }
-        default : /* Optional */
-            return UITableViewCell()
-        }
         return UITableViewCell()
     }
     

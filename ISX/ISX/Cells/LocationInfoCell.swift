@@ -23,13 +23,4 @@ class LocationInfoCell: UITableViewCell {
         productDrawerIca.text = Constants.drawerIca + product.drawer_ICA
         productImage.image = product.image
     }
-    
-    func setFavoriteData(product: Favorite) {
-        productDrawerEurNorway.text = Constants.drawerEurNorway + product.drawer_EUR_Norway_Suisse
-        productDrawerEurExt.text = Constants.drawerEurExt + product.drawer_EUR_extended
-        productDrawerEurReduced.text = Constants.drawerEurReduced + product.drawer_EUR_reduced
-        productDrawerIca.text = Constants.drawerIca + product.drawer_ICA
-        productImage.image = product.image
-    }
-
 }

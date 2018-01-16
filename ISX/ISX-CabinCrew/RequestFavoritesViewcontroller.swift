@@ -22,12 +22,16 @@ class RequestFavoritesViewController: UITableViewController {
         tableView.dataSource = self
     }
     
-    // Return the number of rows that have to be created
+    /*
+     * Return the number of rows that have to be created
+     */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return NUMBEROFROWS
     }
     
-    // Give each individual cell a custom cellHeight.
+    /*
+     * Give each individual cell a custom cellHeight.
+     */
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch(indexPath.row) {
         case 0  :
@@ -45,7 +49,10 @@ class RequestFavoritesViewController: UITableViewController {
         }
     }
     
-    // Create each of the different cells, based on indexPath.
+    /*
+     * Give each individual cell a custom cellHeight.
+     * Create each of the different cells, based on indexPath.
+     */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.row) {
             case 0:

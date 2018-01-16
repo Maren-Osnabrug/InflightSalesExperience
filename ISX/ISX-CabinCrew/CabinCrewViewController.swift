@@ -41,6 +41,9 @@ class CabinCrewViewController: UITableViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
+    /*
+     * Initial setup for the required database references.
+     */
     func setupReferences() {
         requestsRef = Constants.getRequestRef()
         requestsRef?.keepSynced(Constants.isFirebaseSynced())
@@ -50,6 +53,10 @@ class CabinCrewViewController: UITableViewController {
         observeRequests()
     }
     
+    /*
+     * Observer to retrieve all requests from the database, and order them by completed.
+     * When done retrieving requests, the next observer will be called.
+     */
     func observeRequests() {
         requestsArray = []
         activityIndicatorView?.startAnimating()
@@ -67,6 +74,9 @@ class CabinCrewViewController: UITableViewController {
         })
     }
     
+    /*
+     * Observer to retrieve newest request, and trigger a notification.
+     */
     func observeNewRequest() {
         requestsRef?.queryLimited(toLast: 1).observe(.childAdded, with: { snapshot in
             let latestRequest = Request(snapshot: snapshot)
@@ -76,6 +86,9 @@ class CabinCrewViewController: UITableViewController {
         })
     }
     
+    /*
+     * Trigger an notification, if authorized.
+     */
     func checkAuthStatusProceed(_ customerChair: String) {
         UNUserNotificationCenter.current().getNotificationSettings { (notificationSettings) in
             switch notificationSettings.authorizationStatus {
@@ -110,6 +123,9 @@ class CabinCrewViewController: UITableViewController {
         UNUserNotificationCenter.current().add(notificationRequest)
     }
     
+    /*
+     * Popup to request the authorization if it has not yet been given.
+     */
     private func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
             completionHandler(success)
@@ -117,7 +133,7 @@ class CabinCrewViewController: UITableViewController {
     }
     
     /*
-     Returns array with flights
+     * Retrieve all current flights from the database.
      */
     func observeFlights() {
         flightsRef?.observe(.value, with: { snapshot in
@@ -132,8 +148,10 @@ class CabinCrewViewController: UITableViewController {
     }
     
     /*
-     Returns array with products
-    */
+     * Retrieve all products from the database. When done retrieving,
+     * the loading indicator will stop, and the tableview will be reloaded.
+     * The initial load will be set true, as the first time loading is done.
+     */
     func observeProducts() {
         productsArray = []
         productsRef?.observe(.value, with: { snapshot in
@@ -155,6 +173,9 @@ class CabinCrewViewController: UITableViewController {
         return Constants.progressBarCellHeight
     }
     
+    /*
+     * Initializing tableview header and setting the variables, with the data retrieved from the database.
+     */
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let progressBarCell = tableView.dequeueReusableCell(withIdentifier: Constants.progressbarCell) as? ProgressBarCell
             else { return UITableViewCell() }
@@ -172,6 +193,9 @@ class CabinCrewViewController: UITableViewController {
         return progressBarCell
     }
     
+    /*
+     * Specifying the amount of tableview cells need to be intialized.
+     */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return requestsArray.count
     }
@@ -180,6 +204,9 @@ class CabinCrewViewController: UITableViewController {
         return Constants.requestCellHeight
     }
     
+    /*
+     * Initializing each tableviewcell, and filling the cells with the data retrieved from the database.
+     */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCRequestCell, for: indexPath) as? RequestCell else { return UITableViewCell() }
         let request = requestsArray[indexPath.row]
@@ -193,12 +220,17 @@ class CabinCrewViewController: UITableViewController {
         return cell
     }
     
-    //Selected request will be loaded in the next screen.
+    /*
+     * Selected request will be loaded in the next screen.
+     */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRequest = requestsArray[indexPath.row]
         performSegue(withIdentifier: Constants.cabincrewToProductDetail, sender: self)
     }
     
+    /*
+     * Preparing data to send to the next viewcontroller.
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if (segue.identifier == Constants.cabincrewToProductDetail) {
             if let nextViewController = segue.destination as? RequestDetailViewController {
@@ -212,7 +244,10 @@ class CabinCrewViewController: UITableViewController {
         }
     }
     
-    //Reload the page, after being away from it, or changed pages.
+    
+    /*
+     * Reload the page, after being away from it, or changed pages.
+     */
     override func viewDidAppear(_ animated: Bool) {
         if (initialLoad) {
             observeRequests()

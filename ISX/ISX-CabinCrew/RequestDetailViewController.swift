@@ -34,7 +34,9 @@ class RequestDetailViewController: UITableViewController {
         setupReferences()
     }
     
-    // Retrieve the product details from the DB.
+    /*
+     * Retrieve the product details from the database.
+     */
     func getProductfromFirebase() {
         activityIndicatorView?.startAnimating()
         productsRef?.queryOrdered(byChild: "sku").queryEqual(toValue: requestDetail?.productId).observe(.value, with: { snapshot in
@@ -47,7 +49,9 @@ class RequestDetailViewController: UITableViewController {
         })
     }
     
-    // Retrieve all favorites from that user, from the DB.
+    /*
+     * Retrieve all favorites from that a certain user, from the database.
+     */
     func getFavoritesFromFirebase() {
         favoritesRef?.child((requestDetail?.deviceId)!).observe(.value, with: { snapshot in
             self.arrayWithFavorites = []
@@ -62,7 +66,9 @@ class RequestDetailViewController: UITableViewController {
         })
     }
     
-    // Setting up primary references, and starting to retrieve the products.
+    /*
+     * Setting up primary references, and call the method to retrieve the products.
+     */
     func setupReferences() {
         productsRef = Constants.getProductRef()
         productsRef?.keepSynced(Constants.isFirebaseSynced())
@@ -72,7 +78,9 @@ class RequestDetailViewController: UITableViewController {
         getProductfromFirebase()
     }
 
-    // Return the number of rows that have to be created
+    /*
+     * Return the number of rows that have to be created.
+     */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (productDetail != nil) {
             return (NUMBEROFCELLS + arrayWithFavorites.count)
@@ -81,7 +89,9 @@ class RequestDetailViewController: UITableViewController {
         }
     }
     
-    // Give each individual cell a custom cellHeight.
+    /*
+     * Give each individual cell a custom cellHeight.
+     */
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.row == 0) {
             return Constants.requestProductCellSize
@@ -100,7 +110,10 @@ class RequestDetailViewController: UITableViewController {
         }
     }
     
-    // Create each of the different cells, based on indexPath.
+    /*
+     * Create each of the different cells, based on indexPath.
+     * And fill the cells with the needed data.
+     */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCrequestProductInfo, for: indexPath) as? ProductInfoCell {
@@ -131,12 +144,17 @@ class RequestDetailViewController: UITableViewController {
         return UITableViewCell()
     }
     
+    /*
+     * Fill the selectedFavorite object, and trigger the prepare function before going to the next screen.
+     */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedFavorite = arrayWithFavorites[indexPath.row - 4]
         performSegue(withIdentifier: Constants.productDetailToRequestFavorite, sender: self)
     }
 
-
+    /*
+     * Prepare data to send to the next viewcontroller.
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Constants.productDetailToRequestFavorite) {
             if let nextViewController = segue.destination as? RequestFavoritesViewController {

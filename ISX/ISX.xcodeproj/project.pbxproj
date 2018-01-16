@@ -188,11 +188,14 @@
 		9A3883A81FA8BAEE00601EDD /* ISX-CabinCrew */ = {
 			isa = PBXGroup;
 			children = (
+				9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */,
 				A4250F711F83848A0069C483 /* LoginViewController.swift */,
 				9A535EA61F84E164000AF927 /* CabinCrewViewController.swift */,
+				D54B91DB1FEBE70800CA1040 /* RequestFavoritesViewcontroller.swift */,
+				D5968A961FC4581300EC4C4E /* RequestDetailViewController.swift */,
+				D511FAB81FE027A50088A420 /* RequestPopupViewController.swift */,
 				9A74EEC11FC5C89C00411548 /* ISX-CabinCrew.entitlements */,
 				9A74EEBF1FC5C77B00411548 /* GoogleService-Info.plist */,
-				9A3883B21FA8BAEE00601EDD /* LaunchScreen.storyboard */,
 				9A3883B51FA8BAEE00601EDD /* Info.plist */,
 				9A5383931FCEED030018B16C /* AppDelegate.swift */,
 			);
@@ -299,11 +302,8 @@
 				9A8C72CD1FAB761B00322F8B /* ARViewController.swift */,
 				9A0A4CC21FBB4CD700F20758 /* HomeCollectionViewHeader.swift */,
 				9A5383911FCD6ED50018B16C /* PopupViewController.swift */,
-				D5968A961FC4581300EC4C4E /* RequestDetailViewController.swift */,
 				240D972E1FE12E07000EAEA5 /* HousesViewController.swift */,
 				240D97321FE139AC000EAEA5 /* HouseInfoViewController.swift */,
-				D511FAB81FE027A50088A420 /* RequestPopupViewController.swift */,
-				D54B91DB1FEBE70800CA1040 /* RequestFavoritesViewcontroller.swift */,
 				9AE3B66B1FD30C7700F90EC4 /* WebViewController.swift */,
 			);
 			path = ISX;

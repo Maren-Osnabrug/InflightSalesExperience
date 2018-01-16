@@ -397,13 +397,16 @@
                                     <constraint firstItem="Qbi-Qm-PLt" firstAttribute="centerX" secondItem="plS-RG-IbM" secondAttribute="centerX" id="bjv-Ff-rEO"/>
                                 </constraints>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestExtraProductDetailCell" id="Ic9-X7-qke" customClass="ProductDetailCell" customModule="ISX_CabinCrew" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="requestExtraProductDetailCell" id="Ic9-X7-qke" customClass="ProductDetailCell" customModule="ISX_CabinCrew" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="480" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ic9-X7-qke" id="DG3-US-xzI">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="cellView" destination="DG3-US-xzI" id="jDx-cV-SF2"/>
                                 </connections>
@@ -609,13 +612,16 @@
                                     <constraint firstItem="dNE-z8-4cD" firstAttribute="centerY" secondItem="9Bq-rn-Rkj" secondAttribute="centerY" id="x8e-Oz-BuK"/>
                                 </constraints>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="requestExtraProductDetailCell" id="RUi-5G-CIP" customClass="ProductDetailCell" customModule="ISX_CabinCrew" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="requestExtraProductDetailCell" id="RUi-5G-CIP" customClass="ProductDetailCell" customModule="ISX_CabinCrew" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="400" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RUi-5G-CIP" id="A3s-gT-4oj">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="cellView" destination="A3s-gT-4oj" id="yJV-ZR-JZ0"/>
                                 </connections>

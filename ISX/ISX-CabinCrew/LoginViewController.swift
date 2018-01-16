@@ -25,7 +25,9 @@ class LoginViewController:UIViewController {
     }
     
     /*
-     * Login for cabin crew
+     * Login for cabin crew.
+     * User input gets checked, if input is correct, Home will be loaded up.
+     * If input is wrong, user gets an error message.
      */
     @IBAction func loginAction(_ sender: Any) {
         if (emailTextField.text == "" || passwordTextField.text == "") {

@@ -148,8 +148,6 @@ class RequestDetailViewController: UITableViewController {
      * Fill the selectedFavorite object, and trigger the prepare function before going to the next screen.
      */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        print(NUMBEROFCELLS + arrayWithFavorites.count - 1)
         if ((arrayWithFavorites.count > 0) && (indexPath.row != (NUMBEROFCELLS + arrayWithFavorites.count - 1)) ) {
             selectedFavorite = arrayWithFavorites[indexPath.row - 4]
             performSegue(withIdentifier: Constants.productDetailToRequestFavorite, sender: self)

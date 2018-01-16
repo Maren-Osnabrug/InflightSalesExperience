@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class RequestFavoritesViewController: UITableViewController {
-    var favorite: Favorite?
+    var favorite: Product?
     var requestDetail: RequestDetail?
     final let NUMBEROFROWS = 5
     final let SWITCHDEFAULT: CGFloat = 100
@@ -57,14 +57,14 @@ class RequestFavoritesViewController: UITableViewController {
         switch(indexPath.row) {
             case 0:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCrequestProductInfo, for: indexPath) as? ProductInfoCell {
-                    cell.setFavoriteData(productName: (favorite?.title)!, productNumber: (favorite?.prologistricaNumberHH)!, isFavorite: true, favorite: favorite!, requestDetail: requestDetail!)
+                    cell.setFavoriteData(productName: (favorite?.title)!, productNumber: (favorite?.prologisticaNumberHH)!, isFavorite: true, favorite: favorite!, requestDetail: requestDetail!)
                     return cell
                 }
             case 1:
                 return tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationLabel, for: indexPath) as UITableViewCell
             case 2:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CCLocationInfo, for: indexPath) as? LocationInfoCell {
-                    cell.setFavoriteData(product: favorite!)
+                    cell.setProductData(product: favorite!)
                     return cell
                 }
             case 3:

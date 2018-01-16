@@ -18,8 +18,8 @@ class RequestDetailViewController: UITableViewController {
     final let NUMBEROFCELLS = 6
     var requestDetail: RequestDetail?
     var productDetail: Product?
-    var selectedFavorite: Favorite?
-    var arrayWithUserFavorites = [Favorite]()
+    var selectedFavorite: Product?
+    var arrayWithUserFavorites = [Product]()
     var arrayWithFavorites = [Favorite]()
     var activityIndicatorView: NVActivityIndicatorView?
 
@@ -149,8 +149,14 @@ class RequestDetailViewController: UITableViewController {
      */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if ((arrayWithFavorites.count > 0) && (indexPath.row != (NUMBEROFCELLS + arrayWithFavorites.count - 1)) ) {
-            selectedFavorite = arrayWithFavorites[indexPath.row - 4]
-            performSegue(withIdentifier: Constants.productDetailToRequestFavorite, sender: self)
+            productsRef?.queryOrdered(byChild: "sku").queryEqual(toValue: arrayWithFavorites[indexPath.row - 4].id).observe(.value, with: { snapshot in
+                for item in snapshot.children {
+                    if let product = item as? DataSnapshot {
+                        self.selectedFavorite = Product(snapshot: product)
+                    }
+                }
+                self.performSegue(withIdentifier: Constants.productDetailToRequestFavorite, sender: self)
+            })
         }
     }
 

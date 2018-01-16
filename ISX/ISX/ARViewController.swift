@@ -58,7 +58,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
 
 //      PRAGMA MARK: - Add Gesture to View
     
-    func addPinchGestureToSceneView(){
+    func addPinchGestureToSceneView() {
         let pinchGesture: UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(self.didPinch(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(pinchGesture)
     }
@@ -95,6 +95,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
         }
     }
     
+    /*
+     * For rotating a node by gesture
+     */
     @objc func didRotate(_ gesture: UIRotationGestureRecognizer) {
         guard gesture.state == .changed else { return }
 
@@ -108,6 +111,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
         gesture.rotation = rotation
     }
     
+    /*
+     * For panning a node by gesture
+     */
     @objc func didPan(withGestureRecognizer sender: UIPanGestureRecognizer) {
         var point = sender.location(in: sceneView)
         point = CGPoint(x: point.x, y: point.y)
@@ -136,6 +142,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, UIGestureRecognizer
 
 }
 
+/*
+ * This extension allows for using 3D translation
+ */
 extension float4x4 {
     var translation: float3 {
         let translation = self.columns.3

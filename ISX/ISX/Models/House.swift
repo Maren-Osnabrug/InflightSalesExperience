@@ -37,6 +37,9 @@ class House {
         ref = snapshot.ref
     }
     
+    /*
+     * For sending an object back to Firebase
+     */
     func toAnyObject()-> Any {
         return [
             "Category": category,

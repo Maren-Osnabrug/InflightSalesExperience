@@ -44,6 +44,14 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
         return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorHousesCollectionViewCell)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedHouse = housesArray[indexPath.row]
+        performSegue(withIdentifier: Constants.houseToHouseInfo, sender: self)
+    }
+    
+    /*
+     * For configuring the reference and getting the data from the database
+     */
     public func getHouses(categoryId: String) {
         let houseRef = Constants.getHouseRef()
         houseRef.keepSynced(Constants.isFirebaseSynced())
@@ -60,11 +68,6 @@ class HousesViewController: UICollectionViewController, UICollectionViewDelegate
             self.housesCollectionView.reloadData()
             self.activityIndicatorView?.stopAnimating()
         })
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedHouse = housesArray[indexPath.row]
-        performSegue(withIdentifier: Constants.houseToHouseInfo, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

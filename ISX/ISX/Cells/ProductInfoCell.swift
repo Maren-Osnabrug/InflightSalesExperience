@@ -20,7 +20,7 @@ class ProductInfoCell: UITableViewCell {
     @IBOutlet weak var productNumber: UILabel!
 
     var productDetail: Product?
-    var favorite: Favorite?
+    var favorite: Product?
     var requestDetail: RequestDetail?
     var isFavorite: Bool = false
     var ref: DatabaseReference?
@@ -41,7 +41,8 @@ class ProductInfoCell: UITableViewCell {
         }
     }
     
-    func setFavoriteData(productName: String, productNumber: String, isFavorite: Bool, favorite: Favorite, requestDetail: RequestDetail) {
+    func setFavoriteData(productName: String, productNumber: String, isFavorite: Bool,
+        favorite: Product, requestDetail: RequestDetail) {
         self.productName.text = productName
         self.userChairNumber.text = requestDetail.chairnumber
         self.productNumber.text = "No. " + productNumber

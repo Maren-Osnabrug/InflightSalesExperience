@@ -18,12 +18,12 @@ class ProductDetailCell: UITableViewCell {
     }
     
     func setImageInView() {
-        let imageName = "productDetailInformation"
+        let imageName = "noInformation"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         
         imageView.frame = Constants.imageViewFrame
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
         cellView.addSubview(imageView)
     }
 }

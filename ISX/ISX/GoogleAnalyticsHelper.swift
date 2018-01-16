@@ -9,8 +9,10 @@
 import Foundation
 
 class GoogleAnalyticsHelper {
-    
-    func googleAnalyticLogScreen (screen: String){
+    /*
+     * For logging a visit to a screen
+     */
+    func googleAnalyticLogScreen(screen: String) {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIScreenName, value: screen)
         
@@ -20,6 +22,9 @@ class GoogleAnalyticsHelper {
         tracker?.send(build)
     }
     
+    /*
+     * For logging an action
+     */
     func googleAnalyticLogAction(category: String, action: String, label: String) {
         let tracker = GAI.sharedInstance().defaultTracker
         tracker?.set(kGAIEventAction, value: action)

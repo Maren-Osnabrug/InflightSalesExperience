@@ -15,12 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // some styling on app level
         UINavigationBar.appearance().barStyle = UIBarStyle.blackOpaque
         UINavigationBar.appearance().tintColor = .white
     
         FirebaseConfiguration.shared.setLoggerLevel(FirebaseLoggerLevel.min)
         FirebaseApp.configure()
         
+        // setting up Google Analytics
         if let gai = GAI.sharedInstance(),
             let gaConfigValues = Bundle.main.infoDictionary?["GoogleAnalytics"] as? [String: String],
             let trackingId = gaConfigValues["TRACKING_ID"] {

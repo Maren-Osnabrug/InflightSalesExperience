@@ -51,7 +51,7 @@ class Product {
         if let norwayDrawer = snapshotValue["Drawer_EUR_Norway_Suisse"] as? String {
             drawer_EUR_Norway_Suisse = norwayDrawer
         } else {
-            drawer_EUR_Norway_Suisse = "200"
+            drawer_EUR_Norway_Suisse = "Not Available"
         }
         
         if let extendedDrawer = snapshotValue["Drawer_EUR_extended"] as? String {
@@ -83,6 +83,9 @@ class Product {
         ref = snapshot.ref
     }
     
+    /*
+     * For sending an object back to Firebase
+     */
     func toAnyObject()-> Any {
         return [
             "Bestsellers": bestsellers,

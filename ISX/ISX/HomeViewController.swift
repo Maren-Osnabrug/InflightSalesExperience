@@ -18,8 +18,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     var suggestedProductsArray = [Product]()
     var bestSellersArray = [Product]()
     var selectedProduct: Product?
-    private let viewName = "Home"
     var activityIndicatorView: NVActivityIndicatorView?
+    private let viewName = "Home"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,9 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         configureDatabase()
     }
 
+    /*
+     * For configuring the database ref and getting the bestsellers from the database
+     */
     func configureDatabase() {
         productsRef = Constants.getProductRef()
         productsRef?.keepSynced(true)
@@ -91,6 +94,9 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
+    /*
+     * For triggering the search functionality
+     */
     func didTapSearch() {
         let searchViewController = storyboard?.instantiateViewController(withIdentifier: Constants.searchViewController)
         let navigationController = UINavigationController(rootViewController: searchViewController!)
@@ -104,12 +110,19 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         didTapSearch()
     }
     
+    /*
+     * For shuffling our recommended suggestions
+     */
     func shuffleSuggestions() {
         bestSellersArray.shuffle()
         suggestedProductsArray = Array(bestSellersArray.prefix(Constants.suggestionCount))
         collectionView?.reloadData()
     }
 }
+
+/*
+ * These extensions allow for shuffling of an array
+ */
 
 extension MutableCollection {
     /// Shuffles the contents of this collection.

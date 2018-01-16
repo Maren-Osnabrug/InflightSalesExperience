@@ -54,6 +54,9 @@ class ProductInfoController : UITableViewController {
         return UITableViewAutomaticDimension
     }
     
+    /*
+     * For setting up the styling of the tablecell
+     */
     func setupStyling() {
         guard let product = product else {
             return
@@ -104,6 +107,9 @@ class ProductInfoController : UITableViewController {
         }
     }
     
+    /*
+     * For creating and showing the order dialog
+     */
     func showOrderDialog() {
         let title = Constants.Popup.deliveryTitle
         let message = Constants.Popup.deliveryMsg
@@ -118,6 +124,9 @@ class ProductInfoController : UITableViewController {
         present(popup, animated: true, completion: nil)
     }
     
+    /*
+     * For creating and showing the confirmation dialog
+     */
     func showConfirmDialog(productName: String) {
         let title = Constants.Popup.confirmTitle
         let message = "Thank you for requesting \(productName). Cabin crew has been notified and will bring your item as soon as possible. Be advised this might take some time."
@@ -129,6 +138,9 @@ class ProductInfoController : UITableViewController {
         present(popup, animated: true, completion: nil)
     }
     
+    /*
+     * For creating and showing the input dialog, getting the chairnumber and flying blue number
+     */
     func showInputDialog() {
         let popupVC = PopupViewController(nibName: Constants.popupView, bundle: nil)
         let popup = PopupDialog(viewController: popupVC, buttonAlignment: .horizontal, transitionStyle: .bounceUp, gestureDismissal: true)
@@ -181,6 +193,9 @@ class ProductInfoController : UITableViewController {
         present(popup, animated: true, completion: nil)
     }
     
+    /*
+     * For configuring the reference and getting the data from Firebase
+     */
     func observeFavoriteStatus() {
         if let productID = product?.id {
             favoriteRef?.child(Constants.DEVICEID).child(productID)
@@ -196,12 +211,18 @@ class ProductInfoController : UITableViewController {
         }
     }
     
+    /*
+     * For configuring the references and keeping them synced
+     */
     func setupReferences() {
         requestsRef = Constants.getRequestRef()
         favoriteRef = Constants.getFavoriteRef()
         requestsRef?.keepSynced(Constants.isFirebaseSynced())
     }
     
+    /*
+     * For checking the validity of the chairnumber
+     */
     func isValidChairNumber(chairNumber: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: Constants.chairNumberRegex, options: [])
         if (regex.firstMatch(in: chairNumber, options: [], range: NSMakeRange(0, chairNumber.utf16.count)) != nil) {
@@ -211,6 +232,9 @@ class ProductInfoController : UITableViewController {
         }
     }
     
+    /*
+     * For handling the favorites in the database
+     */
     func handleFavoriteInFirebase(isFavorite: Bool) {
         if let productID = product?.id {
             if (isFavorite) {
@@ -225,6 +249,9 @@ class ProductInfoController : UITableViewController {
         }
     }
 
+    /*
+     * For updating the image that shows the favorite status
+     */
     func updateFavoriteButton(favorite: Bool) {
         if (favorite) {
             favoriteButton.setImage(favoriteImage, for: .normal)
@@ -233,16 +260,25 @@ class ProductInfoController : UITableViewController {
         }
     }
     
+    /*
+     * For adding a favorite to the database table
+     */
     func addFavoriteProduct(product: Product) {
         let pushObjectToFirebase = favoriteRef?.child(Constants.DEVICEID).child(product.id)
         pushObjectToFirebase?.setValue(product.toAnyObject())
     }
     
+    /*
+     * For deleting a favorite from the database table
+     */
     func deleteFavorite(productID: String) {
         favoriteRef?.child(Constants.DEVICEID).child(productID).removeValue()
     }
 }
 
+/*
+ * This extension allows for using Int's with a comma in the number
+ */
 extension Int {
     func withCommas() -> String {
         let numberFormatter = NumberFormatter()

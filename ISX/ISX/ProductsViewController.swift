@@ -70,6 +70,10 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorCollectionViewCell)
     }
     
+    
+    /*
+     * For configuring the reference and getting the data from Firebase
+     */
     public func getProducts(categoryId: String) {
         let productRef = Constants.getProductRef()
         productRef.keepSynced(Constants.isFirebaseSynced())
@@ -104,6 +108,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    /*
+     * For sorting the products on a property within the array
+     */
     func sortFor(property: sortableProperties) {
         var toReturn = [Product]()
         if (property == sortableProperties.sortTitle) {
@@ -118,6 +125,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.reloadData()
     }
     
+    /*
+     * Responding to a click on the sort label
+     */
     @objc func onClickSortLabel() {
         if (counter == 0) {
             counter += 1
@@ -133,7 +143,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
 
-    
+    /*
+     * Handling empty categories with a display text
+     */
     func setLabelOnEmptyCollectionView(emptyArray: Bool) {
         let emptyLabel = getNoProductsLabel()
         if (emptyArray) {
@@ -143,6 +155,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    /*
+     * Creating an empty label
+     */
     func getNoProductsLabel() -> UILabel {
         let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
         emptyLabel.text = Constants.nothingHere

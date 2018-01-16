@@ -450,7 +450,7 @@
                                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="onButtonClicked:" destination="Ynr-GR-oe9" eventType="touchUpInside" id="4hk-hZ-rgi"/>
+                                                <action selector="onDeliveredButtonClicked:" destination="Ynr-GR-oe9" eventType="touchUpInside" id="3rC-E8-zFP"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductName" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRj-DN-J42">

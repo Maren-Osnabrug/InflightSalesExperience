@@ -31,6 +31,9 @@ class HouseInfoViewController: UITableViewController {
         return UITableViewAutomaticDimension
     }
     
+    /*
+     * For styling the view, the house is set in the segue
+     */
     func setupStyling() {
         guard let house = house else {
             return

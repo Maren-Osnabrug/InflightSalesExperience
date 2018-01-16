@@ -51,7 +51,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate,
         return CGSize(width: itemSize, height: itemSize*Constants.multiplierFactorCollectionViewCell)
     }
     
-    public func getFirebaseData(){
+    /*
+     * For configuring the reference and getting the data from Firebase
+     */
+    public func getFirebaseData() {
         let productGroupsRef = Constants.getProductGroupsRef()
         productGroupsRef.keepSynced(Constants.isFirebaseSynced())
         activityIndicatorView?.startAnimating()

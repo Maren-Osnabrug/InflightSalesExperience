@@ -34,6 +34,9 @@ class PopupViewController: UIViewController {
         view.endEditing(true)
     }
 
+    /*
+     * For checking the chairnumber for validity
+     */
     func isValidChairNumber(chairNumber: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: Constants.chairNumberRegex, options: [])
         if (regex.firstMatch(in: chairNumber, options: [], range: NSMakeRange(0, chairNumber.utf16.count)) != nil) {

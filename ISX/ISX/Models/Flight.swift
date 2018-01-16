@@ -34,6 +34,9 @@ class Flight {
         self.ref = snapshot.ref
     }
     
+    /*
+     * For sending an object back to Firebase
+     */
     func toAnyObject()-> Any {
         return [
             "id": id,

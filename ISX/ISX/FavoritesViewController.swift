@@ -28,12 +28,18 @@ class FavoritesViewController: UITableViewController {
         setupReference()
     }
     
+    /*
+     * For configuring the reference and triggering the observer
+     */
     func setupReference() {
         favoriteRef = Constants.getFavoriteRef()
         favoriteRef?.keepSynced(Constants.isFirebaseSynced())
         observeFavorites()
     }
     
+    /*
+     * For getting the data from the database
+     */
     func observeFavorites() {
         activityIndicatorView?.startAnimating()
         favoriteRef?.child(Constants.DEVICEID).observe(.value, with: { snapshot in
@@ -79,6 +85,9 @@ class FavoritesViewController: UITableViewController {
         }
     }
     
+    /*
+     * For adding a swipe action to the tablerow
+     */
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let modifyAction = UIContextualAction(style: .normal, title: "Unfavorite", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             let favoriteProduct = self.favoritesArray[indexPath.row]
@@ -91,6 +100,9 @@ class FavoritesViewController: UITableViewController {
         return UISwipeActionsConfiguration(actions: [modifyAction])
     }
     
+    /*
+     * For deleting the product in the database table
+     */
     func deleteFavorite(productID: String, indexPath: IndexPath) {
         Constants.getFavoriteRef().child(Constants.DEVICEID).child(productID).removeValue()
         favoritesArray.remove(at: indexPath.row)

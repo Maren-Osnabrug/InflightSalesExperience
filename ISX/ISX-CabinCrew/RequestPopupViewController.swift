@@ -19,5 +19,4 @@ class RequestPopupViewController: UIViewController {
     @objc func endEditing() {
         view.endEditing(true)
     }
-    
 }

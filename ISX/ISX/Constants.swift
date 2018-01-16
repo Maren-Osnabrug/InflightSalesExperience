@@ -155,7 +155,7 @@ struct Constants {
 //      PRAGMA MARK: Methods    
     static func isFirebaseSynced() -> Bool { return keepFirebaseSynced }
     
-    static func getRootRef() -> DatabaseReference { return Database.database().reference(withPath: firebaseDataroot) }
+    private static func getRootRef() -> DatabaseReference { return Database.database().reference(withPath: firebaseDataroot) }
     
     static func getProductRef() -> DatabaseReference {
         let databaseRootRef = getRootRef()

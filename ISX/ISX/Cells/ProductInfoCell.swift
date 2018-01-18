@@ -134,6 +134,7 @@ class ProductInfoCell: UITableViewCell {
                     Constants.setRequest(requestLatestId: latestId, productId: productID, customerChairNumber: self.userChairNumber.text!, completed: Constants.requestIsCompleted, flyingBlueNumber: Constants.emptyString, flyingBlueMiles: (self.productDetail?.fbMiles)!)
                     let favoriteRef = Constants.getFavoriteRef()
                     favoriteRef.child((self.requestDetail?.deviceId)!).child((self.favorite?.id)!).removeValue()
+                    self.setDeliveredButton(isActive: true, buttonColor: Constants.grey)
                     self.showConfirmDialog()
                 }
             } else {

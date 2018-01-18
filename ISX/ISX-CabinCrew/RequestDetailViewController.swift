@@ -148,7 +148,7 @@ class RequestDetailViewController: UITableViewController {
      * Fill the selectedFavorite object, and trigger the prepare function before going to the next screen.
      */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if ((arrayWithFavorites.count > 0) && (indexPath.row != (NUMBEROFCELLS + arrayWithFavorites.count - 1)) ) {
+        if ((arrayWithFavorites.count > 0) && (indexPath.row != (NUMBEROFCELLS + arrayWithFavorites.count - 1)) && indexPath.row > 3 ) {
             productsRef?.queryOrdered(byChild: "sku").queryEqual(toValue: arrayWithFavorites[indexPath.row - 4].id).observe(.value, with: { snapshot in
                 for item in snapshot.children {
                     if let product = item as? DataSnapshot {
